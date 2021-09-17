@@ -1,0 +1,3 @@
+export HASURA_GRAPHQL_ADMIN_SECRET=123
+export S3_SECRET_ACCESS_KEY=123
+docker-compose up -d

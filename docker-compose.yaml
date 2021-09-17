@@ -1,0 +1,93 @@
+version: "3.6"
+services:
+  # TODO API service that handles hasura webhooks
+
+  api:
+    image: node:latest
+    restart: unless-stopped
+    command: npm run start:debug
+    working_dir: /usr/src/app
+    command: npm run start:debug
+    ports: 
+      - 4000:3000
+    volumes: 
+      - ./api/:/usr/src/app
+      #- /usr/src/app/node_modules
+
+  meilisearch:
+    image: getmeili/meilisearch
+    restart: unless-stopped
+    ports:
+      - 7700:7700
+    volumes:
+      - meilisearch_data:/data.ms
+
+  admin:
+    image: node:15-alpine3.13
+    working_dir: /home/node/app
+    volumes:
+      - ./admin:/home/node/app
+    #command: "npm run prod"
+    command: "npm run dev"
+    restart: unless-stopped
+    ports:
+      - 81:3000
+
+  postgres:
+    image: postgres:12
+    restart: unless-stopped
+    environment:
+      POSTGRES_PASSWORD: postgrespassword
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  graphql-engine:
+    image: hasura/graphql-engine:latest.cli-migrations-v3
+    #image: hasura/graphql-engine:latest
+    ports:
+      - "8080:8080"
+    depends_on:
+      - "postgres"
+    restart: unless-stopped
+    environment:
+      HASURA_GRAPHQL_DATABASE_URL: postgres://postgres:postgrespassword@postgres:5432/postgres
+      HASURA_GRAPHQL_ADMIN_SECRET: "myhasurasecret"
+      HASURA_GRAPHQL_JWT_SECRET: '{"type": "RS256", "jwk_url": "http://hasura-backend-plus:3000/auth/jwks"}'
+      HASURA_GRAPHQL_ENABLE_CONSOLE: "true"
+    volumes: 
+      - ./hasura/migrations:/migrations
+      - ./hasura/metadata:/metadata
+      - ./hasura/config.yaml:/config.yaml
+
+  hasura-backend-plus:
+    image: nhost/hasura-backend-plus:latest
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
+    environment:
+      SERVER_URL: http://localhost:3000
+      HASURA_ENDPOINT: http://graphql-engine:8080/v1/graphql
+      HASURA_GRAPHQL_ADMIN_SECRET: "myhasurasecret"
+      JWT_ALGORITHM: RS256
+      S3_ENDPOINT: http://minio:9000
+      S3_BUCKET: hasura-backend-plus
+      S3_ACCESS_KEY_ID: minio_access_key
+      S3_SECRET_ACCESS_KEY: "thesupersecretkey"
+      AUTO_MIGRATE: "true"
+
+  minio:
+    image: minio/minio
+    restart: unless-stopped
+    environment:
+      S3_BUCKET: hasura-backend-plus
+      MINIO_ACCESS_KEY: minio_access_key
+      MINIO_SECRET_KEY: "thesupersecretkey" ## min 8 character
+    entrypoint: sh
+    command: "-c 'mkdir -p /export/hasura-backend-plus && /usr/bin/minio server /export'"
+    volumes:
+      - "minio_data:/data"
+
+volumes:
+  db_data:
+  minio_data:
+  meilisearch_data:

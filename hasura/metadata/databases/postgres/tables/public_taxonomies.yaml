@@ -1,0 +1,22 @@
+table:
+  name: taxonomies
+  schema: public
+object_relationships:
+- name: taxonomy
+  using:
+    foreign_key_constraint_on: parent_id
+array_relationships:
+- name: taxonomies
+  using:
+    foreign_key_constraint_on:
+      column: parent_id
+      table:
+        name: taxonomies
+        schema: public
+- name: terms
+  using:
+    foreign_key_constraint_on:
+      column: taxonomy_id
+      table:
+        name: terms
+        schema: public

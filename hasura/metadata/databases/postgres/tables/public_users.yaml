@@ -1,0 +1,49 @@
+table:
+  name: users
+  schema: public
+event_triggers:
+- definition:
+    enable_manual: false
+    insert:
+      columns: "*"
+  headers:
+  - name: secret-header
+    value: secret
+  name: user-created
+  retry_conf:
+    interval_sec: 10
+    num_retries: 0
+    timeout_sec: 60
+  webhook: http://api:3000/hasura/events
+- definition:
+    delete:
+      columns: "*"
+    enable_manual: false
+  headers:
+  - name: secret-header
+    value: secret
+  name: user-deleted
+  retry_conf:
+    interval_sec: 10
+    num_retries: 0
+    timeout_sec: 60
+  webhook: http://api:3000/hasura/events
+- definition:
+    enable_manual: false
+    update:
+      columns:
+      - avatar_url
+      - created_at
+      - id
+      - display_name
+      - updated_at
+      - meta
+  headers:
+  - name: secret-header
+    value: secret
+  name: user-updated
+  retry_conf:
+    interval_sec: 10
+    num_retries: 0
+    timeout_sec: 60
+  webhook: http://api:3000/hasura/events

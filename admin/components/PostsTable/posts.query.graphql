@@ -1,0 +1,12 @@
+query postsTable {
+  posts(where: { type: { _eq: "post" } }) {
+    id
+    title
+    slug
+  }
+  posts_aggregate(where: { type: { _eq: "post" } }) {
+    aggregate {
+      count
+    }
+  }
+}

@@ -1,0 +1,10 @@
+table:
+  name: term_relationships
+  schema: public
+object_relationships:
+- name: post
+  using:
+    foreign_key_constraint_on: post_id
+- name: term
+  using:
+    foreign_key_constraint_on: term_id
