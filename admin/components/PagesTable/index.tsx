@@ -1,8 +1,8 @@
-import { FunctionComponent, useMemo } from "react";
-import { usePagesTableQuery } from "../../generated/graphql"
+import { FunctionComponent } from "react";
 import { DataGrid, GridCellParams, GridColDef } from '@material-ui/data-grid';
-import { Button, CircularProgress, LinearProgress } from "@material-ui/core";
+import { Button, LinearProgress } from "@material-ui/core";
 import { Edit } from "@material-ui/icons";
+import { usePagesTableQuery } from "../../generated/graphql";
 
 const PagesTable: FunctionComponent = () => {
     const { data, loading, error } = usePagesTableQuery({
@@ -24,7 +24,7 @@ const PagesTable: FunctionComponent = () => {
         { field: 'slug', headerName: 'Slug' },
         { field: 'status', headerName: 'Status' },
         {
-            field: 'action', headerName: 'Actions', disableClickEventBubbling: true, disableColumnMenu: true, sortable: false, renderCell: (params: GridCellParams) => (
+            field: 'action', headerName: 'Actions', disableColumnMenu: true, sortable: false, renderCell: (params: GridCellParams) => (
                 <Button
                     variant="contained"
                     color="primary"
@@ -40,7 +40,7 @@ const PagesTable: FunctionComponent = () => {
 
     return (
         <>
-            {data.posts_aggregate.aggregate.count} PAGES {loading && <LinearProgress />}
+            {loading && <LinearProgress />}
             <div style={{ height: 400, width: '100%' }}>
                 <DataGrid rows={rows} columns={columns} pageSize={5} checkboxSelection />
             </div>

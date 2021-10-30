@@ -4,7 +4,22 @@ table:
 object_relationships:
 - name: post
   using:
-    foreign_key_constraint_on: post_id
+    manual_configuration:
+      column_mapping:
+        object_id: id
+      insertion_order: null
+      remote_table:
+        name: posts
+        schema: public
 - name: term
   using:
     foreign_key_constraint_on: term_id
+- name: user
+  using:
+    manual_configuration:
+      column_mapping:
+        object_id: id
+      insertion_order: null
+      remote_table:
+        name: users
+        schema: public

@@ -1,8 +1,9 @@
-query pagesTable {
+query PagesTable {
   posts(where: { type: { _eq: "page" } }) {
     id
     title
     slug
+    body
     status
   }
   posts_aggregate(where: { type: { _eq: "page" } }) {

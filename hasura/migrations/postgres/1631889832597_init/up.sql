@@ -45,8 +45,9 @@ CREATE TABLE public.taxonomies (
 );
 CREATE TABLE public.term_relationships (
     id uuid DEFAULT public.gen_random_uuid() NOT NULL,
-    post_id uuid NOT NULL,
-    term_id uuid NOT NULL
+    object_id uuid NOT NULL,
+    term_id uuid NOT NULL,
+    object_type text
 );
 CREATE TABLE public.terms (
     id uuid DEFAULT public.gen_random_uuid() NOT NULL,
@@ -94,8 +95,6 @@ ALTER TABLE ONLY public.comments
     ADD CONSTRAINT comments_parent_id_fkey FOREIGN KEY (parent_id) REFERENCES public.comments(id) ON UPDATE SET NULL ON DELETE SET NULL;
 ALTER TABLE ONLY public.comments
     ADD CONSTRAINT comments_post_id_fkey FOREIGN KEY (post_id) REFERENCES public.posts(id) ON UPDATE SET NULL ON DELETE SET NULL;
-ALTER TABLE ONLY public.term_relationships
-    ADD CONSTRAINT post_terms_post_id_fkey FOREIGN KEY (post_id) REFERENCES public.posts(id) ON UPDATE SET NULL ON DELETE SET NULL;
 ALTER TABLE ONLY public.taxonomies
     ADD CONSTRAINT taxonomies_parent_id_fkey FOREIGN KEY (parent_id) REFERENCES public.taxonomies(id) ON UPDATE RESTRICT ON DELETE RESTRICT;
 ALTER TABLE ONLY public.term_relationships

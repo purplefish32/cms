@@ -1,7 +1,5 @@
 version: "3.6"
-services:
-  # TODO API service that handles hasura webhooks
-
+services:    
   api:
     image: node:latest
     restart: unless-stopped
@@ -31,7 +29,7 @@ services:
     command: "npm run dev"
     restart: unless-stopped
     ports:
-      - 81:3000
+      - 5000:3000
 
   postgres:
     image: postgres:12

@@ -3,6 +3,7 @@ import { Module } from '@nestjs/common';
 import { MeiliSearchModule } from 'nestjs-meilisearch';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { TermService } from './term/term.service';
 import { UserService } from './user/user.service';
 const path = require('path');
 
@@ -37,6 +38,6 @@ const path = require('path');
     }),
   ],
   controllers: [AppController],
-  providers: [AppService, UserService],
+  providers: [AppService, UserService, TermService],
 })
 export class AppModule {}

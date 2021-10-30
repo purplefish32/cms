@@ -13,3 +13,50 @@ array_relationships:
       table:
         name: term_relationships
         schema: public
+event_triggers:
+- definition:
+    enable_manual: false
+    insert:
+      columns: "*"
+  headers:
+  - name: secret-header
+    value: secret
+  name: term-created
+  retry_conf:
+    interval_sec: 10
+    num_retries: 0
+    timeout_sec: 60
+  webhook: http://api:3000/hasura/events
+- definition:
+    delete:
+      columns: "*"
+    enable_manual: false
+  headers:
+  - name: secret-header
+    value: secret
+  name: term-deleted
+  retry_conf:
+    interval_sec: 10
+    num_retries: 0
+    timeout_sec: 60
+  webhook: http://api:3000/hasura/events
+- definition:
+    enable_manual: false
+    update:
+      columns:
+      - name
+      - created_at
+      - updated_at
+      - id
+      - taxonomy_id
+      - meta
+      - slug
+  headers:
+  - name: secret-header
+    value: secret
+  name: term-updated
+  retry_conf:
+    interval_sec: 10
+    num_retries: 0
+    timeout_sec: 60
+  webhook: http://api:3000/hasura/events

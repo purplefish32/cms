@@ -1,8 +1,10 @@
-query postsTable {
+query PostsTable {
   posts(where: { type: { _eq: "post" } }) {
     id
     title
     slug
+    body
+    author_id
   }
   posts_aggregate(where: { type: { _eq: "post" } }) {
     aggregate {

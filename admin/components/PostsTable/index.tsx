@@ -1,5 +1,8 @@
 import { FunctionComponent } from "react";
-import { usePostsTableQuery } from "../../generated/graphql"
+import { DataGrid, GridCellParams, GridColDef } from "@material-ui/data-grid";
+import { Button, LinearProgress } from "@material-ui/core";
+import { Edit } from "@material-ui/icons";
+import { usePostsTableQuery } from "../../generated/graphql";
 
 const PostsTable: FunctionComponent = () => {
     const { data, loading, error } = usePostsTableQuery({
@@ -10,34 +13,37 @@ const PostsTable: FunctionComponent = () => {
         return <div>Error loading posts.</div>;
     }
 
-    if (loading && !data) {
+    if (!data) {
         return <div>Loading</div>;
     }
 
+    const rows = data.posts;
+
+    const columns: GridColDef[] = [
+        { field: 'title', headerName: 'Title' },
+        { field: 'slug', headerName: 'Slug' },
+        {
+            field: 'action', headerName: 'Actions', disableColumnMenu: true, sortable: false, renderCell: (params: GridCellParams) => (
+                <Button
+                    variant="contained"
+                    color="primary"
+                    size="small"
+                    startIcon={<Edit />}
+                    onClick={() => {
+                        console.log(params.row.id)
+                    }}
+                >Edit</Button >
+            )
+        },
+    ];
+
     return (
-        <table className="table-auto">
-            <thead>
-                <tr>
-                    <th>{data.posts_aggregate.aggregate.count} POSTS</th>
-                </tr>
-            </thead>
-            <tbody>
-                {
-                    data.posts.map(
-                        (post, key) => (
-                            <tr key={key}>
-                                <td>
-                                    {post.title}
-                                </td>
-                                <td>
-                                    {post.slug}
-                                </td>
-                            </tr>
-                        )
-                    )
-                }
-            </tbody>
-        </table>
+        <>
+            {loading && <LinearProgress />}
+            <div style={{ height: 400, width: '100%' }}>
+                <DataGrid rows={rows} columns={columns} pageSize={5} checkboxSelection />
+            </div>
+        </>
     )
 }
 
