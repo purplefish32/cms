@@ -2,7 +2,6 @@ import Layout from '../../components/Layout';
 import { useRouter } from 'next/router'
 import { usePostViewQuery } from "../../generated/graphql";
 import { Label, Segment } from 'semantic-ui-react';
-import Link from 'next/link'
 
 const Page = () => {
     const router = useRouter()
@@ -61,18 +60,24 @@ const Page = () => {
                 {post.body}
             </Segment>
             {
-                taxonomies.map((taxonomy) =>
-                    <Segment>
-                        <h4>{taxonomy.name}</h4>
-                        <div>
-                            <em>{taxonomy.description}</em>
-                        </div>
-                        {taxonomy.terms.map((term) => {
-                            return (
-                                <Link href={"#"}><Label>{term.name}</Label></Link>
-                            )
-                        })}
-                    </Segment>
+                taxonomies.map(
+                    (taxonomy) => {
+                        <Segment>
+                            <h4>{taxonomy.name}</h4>
+                            <div>
+                                <em>{taxonomy.description}</em>
+                            </div>
+                            {
+                                taxonomy.terms.map(
+                                    (term) => {
+                                        return (
+                                            <Label>{term.name}</Label>
+                                        )
+                                    }
+                                )
+                            }
+                        </Segment>
+                    }
                 )
             }
         </Layout >
