@@ -1,12 +1,12 @@
 query PagesTable {
-  posts(where: { type: { _eq: "page" } }) {
+  posts(where: { type: { _eq: page } }) {
     id
     title
     slug
     body
     status
   }
-  posts_aggregate(where: { type: { _eq: "page" } }) {
+  posts_aggregate(where: { type: { _eq: page } }) {
     aggregate {
       count
     }

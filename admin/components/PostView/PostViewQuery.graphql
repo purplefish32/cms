@@ -1,0 +1,22 @@
+query PostView($uuid: uuid!) {
+  posts_by_pk(id: $uuid) {
+    id
+    title
+    slug
+    body
+    excerpt
+    status
+  }
+
+  taxonomies(
+    where: { terms: { term_relationships: { object_id: { _eq: $uuid } } } }
+  ) {
+    id
+    name
+    description
+    terms(where: { term_relationships: { object_id: { _eq: $uuid } } }) {
+      name
+      id
+    }
+  }
+}

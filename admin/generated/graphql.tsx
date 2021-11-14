@@ -1737,6 +1737,10 @@ export type MutationRoot = {
   delete_post_status?: Maybe<PostStatusMutationResponse>;
   /** delete single row from the table: "post_status" */
   delete_post_status_by_pk?: Maybe<PostStatus>;
+  /** delete data from the table: "post_types" */
+  delete_post_types?: Maybe<PostTypesMutationResponse>;
+  /** delete single row from the table: "post_types" */
+  delete_post_types_by_pk?: Maybe<PostTypes>;
   /** delete data from the table: "posts" */
   delete_posts?: Maybe<PostsMutationResponse>;
   /** delete single row from the table: "posts" */
@@ -1789,6 +1793,10 @@ export type MutationRoot = {
   insert_post_status?: Maybe<PostStatusMutationResponse>;
   /** insert a single row into the table: "post_status" */
   insert_post_status_one?: Maybe<PostStatus>;
+  /** insert data into the table: "post_types" */
+  insert_post_types?: Maybe<PostTypesMutationResponse>;
+  /** insert a single row into the table: "post_types" */
+  insert_post_types_one?: Maybe<PostTypes>;
   /** insert data into the table: "posts" */
   insert_posts?: Maybe<PostsMutationResponse>;
   /** insert a single row into the table: "posts" */
@@ -1841,6 +1849,10 @@ export type MutationRoot = {
   update_post_status?: Maybe<PostStatusMutationResponse>;
   /** update single row of the table: "post_status" */
   update_post_status_by_pk?: Maybe<PostStatus>;
+  /** update data of the table: "post_types" */
+  update_post_types?: Maybe<PostTypesMutationResponse>;
+  /** update single row of the table: "post_types" */
+  update_post_types_by_pk?: Maybe<PostTypes>;
   /** update data of the table: "posts" */
   update_posts?: Maybe<PostsMutationResponse>;
   /** update single row of the table: "posts" */
@@ -1957,6 +1969,18 @@ export type MutationRootDeletePostStatusArgs = {
 /** mutation root */
 export type MutationRootDeletePostStatusByPkArgs = {
   status: Scalars['String'];
+};
+
+
+/** mutation root */
+export type MutationRootDeletePostTypesArgs = {
+  where: PostTypesBoolExp;
+};
+
+
+/** mutation root */
+export type MutationRootDeletePostTypesByPkArgs = {
+  type: PostTypesEnum;
 };
 
 
@@ -2129,6 +2153,20 @@ export type MutationRootInsertPostStatusArgs = {
 export type MutationRootInsertPostStatusOneArgs = {
   object: PostStatusInsertInput;
   on_conflict?: Maybe<PostStatusOnConflict>;
+};
+
+
+/** mutation root */
+export type MutationRootInsertPostTypesArgs = {
+  objects: Array<PostTypesInsertInput>;
+  on_conflict?: Maybe<PostTypesOnConflict>;
+};
+
+
+/** mutation root */
+export type MutationRootInsertPostTypesOneArgs = {
+  object: PostTypesInsertInput;
+  on_conflict?: Maybe<PostTypesOnConflict>;
 };
 
 
@@ -2335,6 +2373,20 @@ export type MutationRootUpdatePostStatusByPkArgs = {
 
 
 /** mutation root */
+export type MutationRootUpdatePostTypesArgs = {
+  _set?: Maybe<PostTypesSetInput>;
+  where: PostTypesBoolExp;
+};
+
+
+/** mutation root */
+export type MutationRootUpdatePostTypesByPkArgs = {
+  _set?: Maybe<PostTypesSetInput>;
+  pk_columns: PostTypesPkColumnsInput;
+};
+
+
+/** mutation root */
 export type MutationRootUpdatePostsArgs = {
   _append?: Maybe<PostsAppendInput>;
   _delete_at_path?: Maybe<PostsDeleteAtPathInput>;
@@ -2462,31 +2514,7 @@ export enum OrderBy {
 /** columns and relationships of "post_status" */
 export type PostStatus = {
   __typename?: 'post_status';
-  /** An array relationship */
-  posts: Array<Posts>;
-  /** An aggregate relationship */
-  posts_aggregate: PostsAggregate;
   status: Scalars['String'];
-};
-
-
-/** columns and relationships of "post_status" */
-export type PostStatusPostsArgs = {
-  distinct_on?: Maybe<Array<PostsSelectColumn>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<PostsOrderBy>>;
-  where?: Maybe<PostsBoolExp>;
-};
-
-
-/** columns and relationships of "post_status" */
-export type PostStatusPostsAggregateArgs = {
-  distinct_on?: Maybe<Array<PostsSelectColumn>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<PostsOrderBy>>;
-  where?: Maybe<PostsBoolExp>;
 };
 
 /** aggregated selection of "post_status" */
@@ -2516,7 +2544,6 @@ export type PostStatusBoolExp = {
   _and?: Maybe<Array<PostStatusBoolExp>>;
   _not?: Maybe<PostStatusBoolExp>;
   _or?: Maybe<Array<PostStatusBoolExp>>;
-  posts?: Maybe<PostsBoolExp>;
   status?: Maybe<StringComparisonExp>;
 };
 
@@ -2543,7 +2570,6 @@ export type PostStatusEnumComparisonExp = {
 
 /** input type for inserting data into table "post_status" */
 export type PostStatusInsertInput = {
-  posts?: Maybe<PostsArrRelInsertInput>;
   status?: Maybe<Scalars['String']>;
 };
 
@@ -2568,13 +2594,6 @@ export type PostStatusMutationResponse = {
   returning: Array<PostStatus>;
 };
 
-/** input type for inserting object relation for remote table "post_status" */
-export type PostStatusObjRelInsertInput = {
-  data: PostStatusInsertInput;
-  /** on conflict condition */
-  on_conflict?: Maybe<PostStatusOnConflict>;
-};
-
 /** on conflict condition type for table "post_status" */
 export type PostStatusOnConflict = {
   constraint: PostStatusConstraint;
@@ -2584,7 +2603,6 @@ export type PostStatusOnConflict = {
 
 /** Ordering options when selecting data from "post_status". */
 export type PostStatusOrderBy = {
-  posts_aggregate?: Maybe<PostsAggregateOrderBy>;
   status?: Maybe<OrderBy>;
 };
 
@@ -2610,6 +2628,108 @@ export enum PostStatusUpdateColumn {
   Status = 'status'
 }
 
+/** columns and relationships of "post_types" */
+export type PostTypes = {
+  __typename?: 'post_types';
+  type: PostTypesEnum;
+};
+
+/** aggregated selection of "post_types" */
+export type PostTypesAggregate = {
+  __typename?: 'post_types_aggregate';
+  aggregate?: Maybe<PostTypesAggregateFields>;
+  nodes: Array<PostTypes>;
+};
+
+/** aggregate fields of "post_types" */
+export type PostTypesAggregateFields = {
+  __typename?: 'post_types_aggregate_fields';
+  count: Scalars['Int'];
+};
+
+
+/** aggregate fields of "post_types" */
+export type PostTypesAggregateFieldsCountArgs = {
+  columns?: Maybe<Array<PostTypesSelectColumn>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** Boolean expression to filter rows from the table "post_types". All fields are combined with a logical 'AND'. */
+export type PostTypesBoolExp = {
+  _and?: Maybe<Array<PostTypesBoolExp>>;
+  _not?: Maybe<PostTypesBoolExp>;
+  _or?: Maybe<Array<PostTypesBoolExp>>;
+  type?: Maybe<PostTypesEnumComparisonExp>;
+};
+
+/** unique or primary key constraints on table "post_types" */
+export enum PostTypesConstraint {
+  /** unique or primary key constraint */
+  ObjectTypesPkey = 'object_types_pkey'
+}
+
+export enum PostTypesEnum {
+  Page = 'page',
+  Post = 'post'
+}
+
+/** Boolean expression to compare columns of type "post_types_enum". All fields are combined with logical 'AND'. */
+export type PostTypesEnumComparisonExp = {
+  _eq?: Maybe<PostTypesEnum>;
+  _in?: Maybe<Array<PostTypesEnum>>;
+  _is_null?: Maybe<Scalars['Boolean']>;
+  _neq?: Maybe<PostTypesEnum>;
+  _nin?: Maybe<Array<PostTypesEnum>>;
+};
+
+/** input type for inserting data into table "post_types" */
+export type PostTypesInsertInput = {
+  type?: Maybe<PostTypesEnum>;
+};
+
+/** response of any mutation on the table "post_types" */
+export type PostTypesMutationResponse = {
+  __typename?: 'post_types_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data from the rows affected by the mutation */
+  returning: Array<PostTypes>;
+};
+
+/** on conflict condition type for table "post_types" */
+export type PostTypesOnConflict = {
+  constraint: PostTypesConstraint;
+  update_columns?: Array<PostTypesUpdateColumn>;
+  where?: Maybe<PostTypesBoolExp>;
+};
+
+/** Ordering options when selecting data from "post_types". */
+export type PostTypesOrderBy = {
+  type?: Maybe<OrderBy>;
+};
+
+/** primary key columns input for table: post_types */
+export type PostTypesPkColumnsInput = {
+  type: PostTypesEnum;
+};
+
+/** select columns of table "post_types" */
+export enum PostTypesSelectColumn {
+  /** column name */
+  Type = 'type'
+}
+
+/** input type for updating data in table "post_types" */
+export type PostTypesSetInput = {
+  type?: Maybe<PostTypesEnum>;
+};
+
+/** update columns of table "post_types" */
+export enum PostTypesUpdateColumn {
+  /** column name */
+  Type = 'type'
+}
+
 /** columns and relationships of "posts" */
 export type Posts = {
   __typename?: 'posts';
@@ -2623,12 +2743,10 @@ export type Posts = {
   excerpt?: Maybe<Scalars['String']>;
   id: Scalars['uuid'];
   meta?: Maybe<Scalars['jsonb']>;
-  /** An object relationship */
-  post_status: PostStatus;
   slug: Scalars['String'];
   status: PostStatusEnum;
   title: Scalars['String'];
-  type?: Maybe<Scalars['String']>;
+  type?: Maybe<PostTypesEnum>;
   updated_at?: Maybe<Scalars['timestamptz']>;
 };
 
@@ -2680,23 +2798,9 @@ export type PostsAggregateFieldsCountArgs = {
   distinct?: Maybe<Scalars['Boolean']>;
 };
 
-/** order by aggregate values of table "posts" */
-export type PostsAggregateOrderBy = {
-  count?: Maybe<OrderBy>;
-  max?: Maybe<PostsMaxOrderBy>;
-  min?: Maybe<PostsMinOrderBy>;
-};
-
 /** append existing jsonb value of filtered columns with new jsonb value */
 export type PostsAppendInput = {
   meta?: Maybe<Scalars['jsonb']>;
-};
-
-/** input type for inserting array relation for remote table "posts" */
-export type PostsArrRelInsertInput = {
-  data: Array<PostsInsertInput>;
-  /** on conflict condition */
-  on_conflict?: Maybe<PostsOnConflict>;
 };
 
 /** Boolean expression to filter rows from the table "posts". All fields are combined with a logical 'AND'. */
@@ -2711,11 +2815,10 @@ export type PostsBoolExp = {
   excerpt?: Maybe<StringComparisonExp>;
   id?: Maybe<UuidComparisonExp>;
   meta?: Maybe<JsonbComparisonExp>;
-  post_status?: Maybe<PostStatusBoolExp>;
   slug?: Maybe<StringComparisonExp>;
   status?: Maybe<PostStatusEnumComparisonExp>;
   title?: Maybe<StringComparisonExp>;
-  type?: Maybe<StringComparisonExp>;
+  type?: Maybe<PostTypesEnumComparisonExp>;
   updated_at?: Maybe<TimestamptzComparisonExp>;
 };
 
@@ -2751,11 +2854,10 @@ export type PostsInsertInput = {
   excerpt?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['uuid']>;
   meta?: Maybe<Scalars['jsonb']>;
-  post_status?: Maybe<PostStatusObjRelInsertInput>;
   slug?: Maybe<Scalars['String']>;
   status?: Maybe<PostStatusEnum>;
   title?: Maybe<Scalars['String']>;
-  type?: Maybe<Scalars['String']>;
+  type?: Maybe<PostTypesEnum>;
   updated_at?: Maybe<Scalars['timestamptz']>;
 };
 
@@ -2769,21 +2871,7 @@ export type PostsMaxFields = {
   id?: Maybe<Scalars['uuid']>;
   slug?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
-  type?: Maybe<Scalars['String']>;
   updated_at?: Maybe<Scalars['timestamptz']>;
-};
-
-/** order by max() on columns of table "posts" */
-export type PostsMaxOrderBy = {
-  author_id?: Maybe<OrderBy>;
-  body?: Maybe<OrderBy>;
-  created_at?: Maybe<OrderBy>;
-  excerpt?: Maybe<OrderBy>;
-  id?: Maybe<OrderBy>;
-  slug?: Maybe<OrderBy>;
-  title?: Maybe<OrderBy>;
-  type?: Maybe<OrderBy>;
-  updated_at?: Maybe<OrderBy>;
 };
 
 /** aggregate min on columns */
@@ -2796,21 +2884,7 @@ export type PostsMinFields = {
   id?: Maybe<Scalars['uuid']>;
   slug?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
-  type?: Maybe<Scalars['String']>;
   updated_at?: Maybe<Scalars['timestamptz']>;
-};
-
-/** order by min() on columns of table "posts" */
-export type PostsMinOrderBy = {
-  author_id?: Maybe<OrderBy>;
-  body?: Maybe<OrderBy>;
-  created_at?: Maybe<OrderBy>;
-  excerpt?: Maybe<OrderBy>;
-  id?: Maybe<OrderBy>;
-  slug?: Maybe<OrderBy>;
-  title?: Maybe<OrderBy>;
-  type?: Maybe<OrderBy>;
-  updated_at?: Maybe<OrderBy>;
 };
 
 /** response of any mutation on the table "posts" */
@@ -2845,7 +2919,6 @@ export type PostsOrderBy = {
   excerpt?: Maybe<OrderBy>;
   id?: Maybe<OrderBy>;
   meta?: Maybe<OrderBy>;
-  post_status?: Maybe<PostStatusOrderBy>;
   slug?: Maybe<OrderBy>;
   status?: Maybe<OrderBy>;
   title?: Maybe<OrderBy>;
@@ -2900,7 +2973,7 @@ export type PostsSetInput = {
   slug?: Maybe<Scalars['String']>;
   status?: Maybe<PostStatusEnum>;
   title?: Maybe<Scalars['String']>;
-  type?: Maybe<Scalars['String']>;
+  type?: Maybe<PostTypesEnum>;
   updated_at?: Maybe<Scalars['timestamptz']>;
 };
 
@@ -2980,9 +3053,15 @@ export type QueryRoot = {
   post_status_aggregate: PostStatusAggregate;
   /** fetch data from the table: "post_status" using primary key columns */
   post_status_by_pk?: Maybe<PostStatus>;
-  /** An array relationship */
+  /** fetch data from the table: "post_types" */
+  post_types: Array<PostTypes>;
+  /** fetch aggregated fields from the table: "post_types" */
+  post_types_aggregate: PostTypesAggregate;
+  /** fetch data from the table: "post_types" using primary key columns */
+  post_types_by_pk?: Maybe<PostTypes>;
+  /** fetch data from the table: "posts" */
   posts: Array<Posts>;
-  /** An aggregate relationship */
+  /** fetch aggregated fields from the table: "posts" */
   posts_aggregate: PostsAggregate;
   /** fetch data from the table: "posts" using primary key columns */
   posts_by_pk?: Maybe<Posts>;
@@ -3197,6 +3276,29 @@ export type QueryRootPostStatusByPkArgs = {
 };
 
 
+export type QueryRootPostTypesArgs = {
+  distinct_on?: Maybe<Array<PostTypesSelectColumn>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<PostTypesOrderBy>>;
+  where?: Maybe<PostTypesBoolExp>;
+};
+
+
+export type QueryRootPostTypesAggregateArgs = {
+  distinct_on?: Maybe<Array<PostTypesSelectColumn>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<PostTypesOrderBy>>;
+  where?: Maybe<PostTypesBoolExp>;
+};
+
+
+export type QueryRootPostTypesByPkArgs = {
+  type: PostTypesEnum;
+};
+
+
 export type QueryRootPostsArgs = {
   distinct_on?: Maybe<Array<PostsSelectColumn>>;
   limit?: Maybe<Scalars['Int']>;
@@ -3361,9 +3463,15 @@ export type SubscriptionRoot = {
   post_status_aggregate: PostStatusAggregate;
   /** fetch data from the table: "post_status" using primary key columns */
   post_status_by_pk?: Maybe<PostStatus>;
-  /** An array relationship */
+  /** fetch data from the table: "post_types" */
+  post_types: Array<PostTypes>;
+  /** fetch aggregated fields from the table: "post_types" */
+  post_types_aggregate: PostTypesAggregate;
+  /** fetch data from the table: "post_types" using primary key columns */
+  post_types_by_pk?: Maybe<PostTypes>;
+  /** fetch data from the table: "posts" */
   posts: Array<Posts>;
-  /** An aggregate relationship */
+  /** fetch aggregated fields from the table: "posts" */
   posts_aggregate: PostsAggregate;
   /** fetch data from the table: "posts" using primary key columns */
   posts_by_pk?: Maybe<Posts>;
@@ -3575,6 +3683,29 @@ export type SubscriptionRootPostStatusAggregateArgs = {
 
 export type SubscriptionRootPostStatusByPkArgs = {
   status: Scalars['String'];
+};
+
+
+export type SubscriptionRootPostTypesArgs = {
+  distinct_on?: Maybe<Array<PostTypesSelectColumn>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<PostTypesOrderBy>>;
+  where?: Maybe<PostTypesBoolExp>;
+};
+
+
+export type SubscriptionRootPostTypesAggregateArgs = {
+  distinct_on?: Maybe<Array<PostTypesSelectColumn>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<PostTypesOrderBy>>;
+  where?: Maybe<PostTypesBoolExp>;
+};
+
+
+export type SubscriptionRootPostTypesByPkArgs = {
+  type: PostTypesEnum;
 };
 
 
@@ -3994,7 +4125,6 @@ export type TermRelationships = {
   __typename?: 'term_relationships';
   id: Scalars['uuid'];
   object_id: Scalars['uuid'];
-  object_type?: Maybe<Scalars['String']>;
   /** An object relationship */
   post?: Maybe<Posts>;
   /** An object relationship */
@@ -4047,7 +4177,6 @@ export type TermRelationshipsBoolExp = {
   _or?: Maybe<Array<TermRelationshipsBoolExp>>;
   id?: Maybe<UuidComparisonExp>;
   object_id?: Maybe<UuidComparisonExp>;
-  object_type?: Maybe<StringComparisonExp>;
   post?: Maybe<PostsBoolExp>;
   term?: Maybe<TermsBoolExp>;
   term_id?: Maybe<UuidComparisonExp>;
@@ -4057,14 +4186,15 @@ export type TermRelationshipsBoolExp = {
 /** unique or primary key constraints on table "term_relationships" */
 export enum TermRelationshipsConstraint {
   /** unique or primary key constraint */
-  PostTermsPkey = 'post_terms_pkey'
+  PostTermsPkey = 'post_terms_pkey',
+  /** unique or primary key constraint */
+  TermRelationshipsObjectIdTermIdKey = 'term_relationships_object_id_term_id_key'
 }
 
 /** input type for inserting data into table "term_relationships" */
 export type TermRelationshipsInsertInput = {
   id?: Maybe<Scalars['uuid']>;
   object_id?: Maybe<Scalars['uuid']>;
-  object_type?: Maybe<Scalars['String']>;
   post?: Maybe<PostsObjRelInsertInput>;
   term?: Maybe<TermsObjRelInsertInput>;
   term_id?: Maybe<Scalars['uuid']>;
@@ -4076,7 +4206,6 @@ export type TermRelationshipsMaxFields = {
   __typename?: 'term_relationships_max_fields';
   id?: Maybe<Scalars['uuid']>;
   object_id?: Maybe<Scalars['uuid']>;
-  object_type?: Maybe<Scalars['String']>;
   term_id?: Maybe<Scalars['uuid']>;
 };
 
@@ -4084,7 +4213,6 @@ export type TermRelationshipsMaxFields = {
 export type TermRelationshipsMaxOrderBy = {
   id?: Maybe<OrderBy>;
   object_id?: Maybe<OrderBy>;
-  object_type?: Maybe<OrderBy>;
   term_id?: Maybe<OrderBy>;
 };
 
@@ -4093,7 +4221,6 @@ export type TermRelationshipsMinFields = {
   __typename?: 'term_relationships_min_fields';
   id?: Maybe<Scalars['uuid']>;
   object_id?: Maybe<Scalars['uuid']>;
-  object_type?: Maybe<Scalars['String']>;
   term_id?: Maybe<Scalars['uuid']>;
 };
 
@@ -4101,7 +4228,6 @@ export type TermRelationshipsMinFields = {
 export type TermRelationshipsMinOrderBy = {
   id?: Maybe<OrderBy>;
   object_id?: Maybe<OrderBy>;
-  object_type?: Maybe<OrderBy>;
   term_id?: Maybe<OrderBy>;
 };
 
@@ -4125,7 +4251,6 @@ export type TermRelationshipsOnConflict = {
 export type TermRelationshipsOrderBy = {
   id?: Maybe<OrderBy>;
   object_id?: Maybe<OrderBy>;
-  object_type?: Maybe<OrderBy>;
   post?: Maybe<PostsOrderBy>;
   term?: Maybe<TermsOrderBy>;
   term_id?: Maybe<OrderBy>;
@@ -4144,8 +4269,6 @@ export enum TermRelationshipsSelectColumn {
   /** column name */
   ObjectId = 'object_id',
   /** column name */
-  ObjectType = 'object_type',
-  /** column name */
   TermId = 'term_id'
 }
 
@@ -4153,7 +4276,6 @@ export enum TermRelationshipsSelectColumn {
 export type TermRelationshipsSetInput = {
   id?: Maybe<Scalars['uuid']>;
   object_id?: Maybe<Scalars['uuid']>;
-  object_type?: Maybe<Scalars['String']>;
   term_id?: Maybe<Scalars['uuid']>;
 };
 
@@ -4163,8 +4285,6 @@ export enum TermRelationshipsUpdateColumn {
   Id = 'id',
   /** column name */
   ObjectId = 'object_id',
-  /** column name */
-  ObjectType = 'object_type',
   /** column name */
   TermId = 'term_id'
 }
@@ -4463,10 +4583,6 @@ export type Users = {
   display_name?: Maybe<Scalars['String']>;
   id: Scalars['uuid'];
   meta?: Maybe<Scalars['jsonb']>;
-  /** An array relationship */
-  term_relationships: Array<TermRelationships>;
-  /** An aggregate relationship */
-  term_relationships_aggregate: TermRelationshipsAggregate;
   updated_at: Scalars['timestamptz'];
 };
 
@@ -4474,26 +4590,6 @@ export type Users = {
 /** columns and relationships of "users" */
 export type UsersMetaArgs = {
   path?: Maybe<Scalars['String']>;
-};
-
-
-/** columns and relationships of "users" */
-export type UsersTermRelationshipsArgs = {
-  distinct_on?: Maybe<Array<TermRelationshipsSelectColumn>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<TermRelationshipsOrderBy>>;
-  where?: Maybe<TermRelationshipsBoolExp>;
-};
-
-
-/** columns and relationships of "users" */
-export type UsersTermRelationshipsAggregateArgs = {
-  distinct_on?: Maybe<Array<TermRelationshipsSelectColumn>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<TermRelationshipsOrderBy>>;
-  where?: Maybe<TermRelationshipsBoolExp>;
 };
 
 /** aggregated selection of "users" */
@@ -4533,7 +4629,6 @@ export type UsersBoolExp = {
   display_name?: Maybe<StringComparisonExp>;
   id?: Maybe<UuidComparisonExp>;
   meta?: Maybe<JsonbComparisonExp>;
-  term_relationships?: Maybe<TermRelationshipsBoolExp>;
   updated_at?: Maybe<TimestamptzComparisonExp>;
 };
 
@@ -4565,7 +4660,6 @@ export type UsersInsertInput = {
   display_name?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['uuid']>;
   meta?: Maybe<Scalars['jsonb']>;
-  term_relationships?: Maybe<TermRelationshipsArrRelInsertInput>;
   updated_at?: Maybe<Scalars['timestamptz']>;
 };
 
@@ -4619,7 +4713,6 @@ export type UsersOrderBy = {
   display_name?: Maybe<OrderBy>;
   id?: Maybe<OrderBy>;
   meta?: Maybe<OrderBy>;
-  term_relationships_aggregate?: Maybe<TermRelationshipsAggregateOrderBy>;
   updated_at?: Maybe<OrderBy>;
 };
 
@@ -4706,6 +4799,26 @@ export type PagesTableQuery = (
   ) }
 );
 
+export type PostViewQueryVariables = Exact<{
+  uuid: Scalars['uuid'];
+}>;
+
+
+export type PostViewQuery = (
+  { __typename?: 'query_root' }
+  & { posts_by_pk?: Maybe<(
+    { __typename?: 'posts' }
+    & Pick<Posts, 'id' | 'title' | 'slug' | 'body' | 'excerpt' | 'status'>
+  )>, taxonomies: Array<(
+    { __typename?: 'taxonomies' }
+    & Pick<Taxonomies, 'id' | 'name' | 'description'>
+    & { terms: Array<(
+      { __typename?: 'terms' }
+      & Pick<Terms, 'name' | 'id'>
+    )> }
+  )> }
+);
+
 export type PostsTableQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -4726,14 +4839,14 @@ export type PostsTableQuery = (
 
 export const PagesTableDocument = gql`
     query PagesTable {
-  posts(where: {type: {_eq: "page"}}) {
+  posts(where: {type: {_eq: page}}) {
     id
     title
     slug
     body
     status
   }
-  posts_aggregate(where: {type: {_eq: "page"}}) {
+  posts_aggregate(where: {type: {_eq: page}}) {
     aggregate {
       count
     }
@@ -4767,16 +4880,65 @@ export function usePagesTableLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions
 export type PagesTableQueryHookResult = ReturnType<typeof usePagesTableQuery>;
 export type PagesTableLazyQueryHookResult = ReturnType<typeof usePagesTableLazyQuery>;
 export type PagesTableQueryResult = Apollo.QueryResult<PagesTableQuery, PagesTableQueryVariables>;
+export const PostViewDocument = gql`
+    query PostView($uuid: uuid!) {
+  posts_by_pk(id: $uuid) {
+    id
+    title
+    slug
+    body
+    excerpt
+    status
+  }
+  taxonomies(where: {terms: {term_relationships: {object_id: {_eq: $uuid}}}}) {
+    id
+    name
+    description
+    terms(where: {term_relationships: {object_id: {_eq: $uuid}}}) {
+      name
+      id
+    }
+  }
+}
+    `;
+
+/**
+ * __usePostViewQuery__
+ *
+ * To run a query within a React component, call `usePostViewQuery` and pass it any options that fit your needs.
+ * When your component renders, `usePostViewQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = usePostViewQuery({
+ *   variables: {
+ *      uuid: // value for 'uuid'
+ *   },
+ * });
+ */
+export function usePostViewQuery(baseOptions: Apollo.QueryHookOptions<PostViewQuery, PostViewQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<PostViewQuery, PostViewQueryVariables>(PostViewDocument, options);
+      }
+export function usePostViewLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<PostViewQuery, PostViewQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<PostViewQuery, PostViewQueryVariables>(PostViewDocument, options);
+        }
+export type PostViewQueryHookResult = ReturnType<typeof usePostViewQuery>;
+export type PostViewLazyQueryHookResult = ReturnType<typeof usePostViewLazyQuery>;
+export type PostViewQueryResult = Apollo.QueryResult<PostViewQuery, PostViewQueryVariables>;
 export const PostsTableDocument = gql`
     query PostsTable {
-  posts(where: {type: {_eq: "post"}}) {
+  posts(where: {type: {_eq: post}}) {
     id
     title
     slug
     body
     author_id
   }
-  posts_aggregate(where: {type: {_eq: "post"}}) {
+  posts_aggregate(where: {type: {_eq: post}}) {
     aggregate {
       count
     }
