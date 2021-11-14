@@ -2,9 +2,11 @@ query PostsTable {
   posts(where: { type: { _eq: post } }) {
     id
     title
+    status
     slug
     body
     author_id
+    created_at
   }
   posts_aggregate(where: { type: { _eq: post } }) {
     aggregate {

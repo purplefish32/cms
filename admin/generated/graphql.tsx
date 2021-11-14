@@ -4826,7 +4826,7 @@ export type PostsTableQuery = (
   { __typename?: 'query_root' }
   & { posts: Array<(
     { __typename?: 'posts' }
-    & Pick<Posts, 'id' | 'title' | 'slug' | 'body' | 'author_id'>
+    & Pick<Posts, 'id' | 'title' | 'status' | 'slug' | 'body' | 'author_id' | 'created_at'>
   )>, posts_aggregate: (
     { __typename?: 'posts_aggregate' }
     & { aggregate?: Maybe<(
@@ -4934,9 +4934,11 @@ export const PostsTableDocument = gql`
   posts(where: {type: {_eq: post}}) {
     id
     title
+    status
     slug
     body
     author_id
+    created_at
   }
   posts_aggregate(where: {type: {_eq: post}}) {
     aggregate {

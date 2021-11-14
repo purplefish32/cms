@@ -67,14 +67,13 @@ const Page = () => {
                             <div>
                                 <em>{taxonomy.description}</em>
                             </div>
-                            {
-                                taxonomy.terms.map(
-                                    (term) => {
-                                        return (
-                                            <Label>{term.name}</Label>
-                                        )
-                                    }
-                                )
+                            {taxonomy.terms.map(
+                                (term) => {
+                                    return (
+                                        <Label>{term.name}</Label>
+                                    )
+                                }
+                            )
                             }
                         </Segment>
                     }
