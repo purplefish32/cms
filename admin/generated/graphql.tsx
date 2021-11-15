@@ -4782,6 +4782,19 @@ export type UuidComparisonExp = {
   _nin?: Maybe<Array<Scalars['uuid']>>;
 };
 
+export type PageFromCreateMutationVariables = Exact<{
+  object: PostsInsertInput;
+}>;
+
+
+export type PageFromCreateMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_posts_one?: Maybe<(
+    { __typename?: 'posts' }
+    & Pick<Posts, 'id'>
+  )> }
+);
+
 export type PagesTableQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -4837,6 +4850,39 @@ export type PostsTableQuery = (
 );
 
 
+export const PageFromCreateDocument = gql`
+    mutation PageFromCreate($object: posts_insert_input!) {
+  insert_posts_one(object: $object) {
+    id
+  }
+}
+    `;
+export type PageFromCreateMutationFn = Apollo.MutationFunction<PageFromCreateMutation, PageFromCreateMutationVariables>;
+
+/**
+ * __usePageFromCreateMutation__
+ *
+ * To run a mutation, you first call `usePageFromCreateMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `usePageFromCreateMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [pageFromCreateMutation, { data, loading, error }] = usePageFromCreateMutation({
+ *   variables: {
+ *      object: // value for 'object'
+ *   },
+ * });
+ */
+export function usePageFromCreateMutation(baseOptions?: Apollo.MutationHookOptions<PageFromCreateMutation, PageFromCreateMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<PageFromCreateMutation, PageFromCreateMutationVariables>(PageFromCreateDocument, options);
+      }
+export type PageFromCreateMutationHookResult = ReturnType<typeof usePageFromCreateMutation>;
+export type PageFromCreateMutationResult = Apollo.MutationResult<PageFromCreateMutation>;
+export type PageFromCreateMutationOptions = Apollo.BaseMutationOptions<PageFromCreateMutation, PageFromCreateMutationVariables>;
 export const PagesTableDocument = gql`
     query PagesTable {
   posts(where: {type: {_eq: page}}) {
