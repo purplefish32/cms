@@ -19,10 +19,14 @@ module.exports = {
           ],
         config: {
           skipTypename: false,
+          withHooks: true,
+          withHOC: false,
+          withComponent: false,
           field: true,
           inputValue: true,
           object: true,
           maybeValue: 'T',
+          apolloReactHooksImportFrom: '@apollo/client',
           namingConvention: {
             typeNames: 'pascal-case#pascalCase',
             transformUnderscore: true,

@@ -1,0 +1,7 @@
+query PostCounter($where: posts_bool_exp) {
+  posts_aggregate(where: $where) {
+    aggregate {
+      count
+    }
+  }
+}

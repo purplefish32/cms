@@ -1,0 +1,11 @@
+query PageForm($id: uuid!) {
+  posts_by_pk(id: $id) {
+    id
+    author_id
+    body
+    excerpt
+    slug
+    status
+    title
+  }
+}

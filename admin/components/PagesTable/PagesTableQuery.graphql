@@ -1,5 +1,6 @@
 query PagesTable {
   posts(where: { type: { _eq: page } }) {
+    __typename
     id
     title
     slug
@@ -7,6 +8,7 @@ query PagesTable {
     status
   }
   posts_aggregate(where: { type: { _eq: page } }) {
+    __typename
     aggregate {
       count
     }

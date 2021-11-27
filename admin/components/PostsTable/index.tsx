@@ -31,36 +31,33 @@ const PostsTable: FunctionComponent = () => {
     }
 
     return (
-        <div>
-            All (x) | Published (x) | Draft (x)
-            <Table celled>
-                <Table.Header>
-                    <Table.Row>
-                        <Table.HeaderCell>Title</Table.HeaderCell>
-                        <Table.HeaderCell>Author</Table.HeaderCell>
-                        <Table.HeaderCell>Stats</Table.HeaderCell>
-                        <Table.HeaderCell>Comments</Table.HeaderCell>
-                        <Table.HeaderCell>Date</Table.HeaderCell>
-                    </Table.Row>
-                </Table.Header>
+        <Table celled>
+            <Table.Header>
+                <Table.Row>
+                    <Table.HeaderCell>Title</Table.HeaderCell>
+                    <Table.HeaderCell>Author</Table.HeaderCell>
+                    <Table.HeaderCell>Stats</Table.HeaderCell>
+                    <Table.HeaderCell>Comments</Table.HeaderCell>
+                    <Table.HeaderCell>Date</Table.HeaderCell>
+                </Table.Row>
+            </Table.Header>
 
-                <Table.Body>
-                    {
-                        data.posts.map((post) => {
-                            return (
-                                <Table.Row>
-                                    <Table.Cell><Label circular color={getStatusColor(post.status)} empty /> <Link href={`posts/${post.id}`}>{post.title}</Link></Table.Cell>
-                                    <Table.Cell>{post.author_id}</Table.Cell>
-                                    <Table.Cell>XXX</Table.Cell>
-                                    <Table.Cell>YYY</Table.Cell>
-                                    <Table.Cell>Created <br />{format(new Date(post.created_at), "yyyy/MM/dd 'at ' HH:ii")}</Table.Cell>
-                                </Table.Row>
-                            )
-                        })
-                    }
-                </Table.Body>
-            </Table >
-        </div>
+            <Table.Body>
+                {
+                    data.posts.map((post, key) => {
+                        return (
+                            <Table.Row key={key}>
+                                <Table.Cell><Label circular color={getStatusColor(post.status)} empty /> <Link href={`posts/${post.id}`}>{post.title}</Link></Table.Cell>
+                                <Table.Cell>{post.author_id}</Table.Cell>
+                                <Table.Cell>XXX</Table.Cell>
+                                <Table.Cell>YYY</Table.Cell>
+                                <Table.Cell>Created <br />{format(new Date(post.created_at), "yyyy/MM/dd 'at ' HH:ii")}</Table.Cell>
+                            </Table.Row>
+                        )
+                    })
+                }
+            </Table.Body>
+        </Table >
     )
 }
 

@@ -26,9 +26,9 @@ const PostsTable: FunctionComponent = () => {
             </Table.Header>
             <Table.Body>
                 {
-                    data.posts.map((post) => {
+                    data.posts.map((post, key) => {
                         return (
-                            <Table.Row>
+                            <Table.Row key={key}>
                                 <Table.Cell><Link href={`posts/${post.id}`}>{post.title}</Link></Table.Cell>
                                 <Table.Cell>{post.body}</Table.Cell>
                             </Table.Row>

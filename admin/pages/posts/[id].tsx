@@ -1,7 +1,7 @@
 import Layout from '../../components/Layout';
 import { useRouter } from 'next/router'
 import { usePostViewQuery } from "../../generated/graphql";
-import { Label, Segment } from 'semantic-ui-react';
+import { Button, Label, Segment } from 'semantic-ui-react';
 
 const Page = () => {
     const router = useRouter()
@@ -40,9 +40,14 @@ const Page = () => {
         }
     }
 
+    const handleClick = (e) => {
+        e.preventDefault()
+        router.push(`/posts/edit/${id}`)
+    }
+
     return (
         <Layout>
-            <h1 className={"text-4xl"}>{post.title}</h1>
+            <h1 className={"text-4xl"}>{post.title} <Button primary onClick={handleClick}>Edit</Button></h1>
             <Segment inverted color={getStatusColor()}>
                 <h4>Status</h4>
                 {post.status}

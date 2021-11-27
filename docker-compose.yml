@@ -1,11 +1,20 @@
 version: "3.6"
-services:    
+
+services:  
+  # pgadmin:
+  #   image: dpage/pgadmin4
+  #   restart: always
+  #   environment:
+  #     PGADMIN_DEFAULT_EMAIL: admin@admin.com
+  #     PGADMIN_DEFAULT_PASSWORD: root
+  #   ports:
+  #     - "5050:80"
+
   api:
     image: node:latest
     restart: unless-stopped
     command: npm run start:debug
     working_dir: /usr/src/app
-    command: npm run start:debug
     ports: 
       - 4000:3000
     volumes: 
@@ -50,8 +59,11 @@ services:
     environment:
       HASURA_GRAPHQL_DATABASE_URL: postgres://postgres:postgrespassword@postgres:5432/postgres
       HASURA_GRAPHQL_ADMIN_SECRET: "myhasurasecret"
-      HASURA_GRAPHQL_JWT_SECRET: '{"type": "RS256", "jwk_url": "http://hasura-backend-plus:3000/auth/jwks"}'
+      HASURA_GRAPHQL_JWT_SECRET: >-
+        {"type":"HS512", "key":
+        "jhyu89jiuhyg7678hoijhuytf7ghjiasodibagsdga9dha8os7df97a6sdgh9asudgo7f7g8h1uuoyafsod8pgasipdg8aps9dhaiaisydg8agsd87gasd9oihasd87gas78d"}
       HASURA_GRAPHQL_ENABLE_CONSOLE: "true"
+      HASURA_GRAPHQL_UNAUTHORIZED_ROLE: public
     volumes: 
       - ./hasura/migrations:/migrations
       - ./hasura/metadata:/metadata
@@ -66,12 +78,15 @@ services:
       SERVER_URL: http://localhost:3000
       HASURA_ENDPOINT: http://graphql-engine:8080/v1/graphql
       HASURA_GRAPHQL_ADMIN_SECRET: "myhasurasecret"
-      JWT_ALGORITHM: RS256
+      REFRESH_TOKEN_EXPIRES: 43200
       S3_ENDPOINT: http://minio:9000
       S3_BUCKET: hasura-backend-plus
       S3_ACCESS_KEY_ID: minio_access_key
       S3_SECRET_ACCESS_KEY: "thesupersecretkey"
       AUTO_MIGRATE: "true"
+      JWT_KEY: jhyu89jiuhyg7678hoijhuytf7ghjiasodibagsdga9dha8os7df97a6sdgh9asudgo7f7g8h1uuoyafsod8pgasipdg8aps9dhaiaisydg8agsd87gasd9oihasd87gas78d
+      JWT_ALGORITHM: HS512
+      JWT_EXPIRES_IN: 1 #TODO remove this
 
   minio:
     image: minio/minio
@@ -87,5 +102,6 @@ services:
 
 volumes:
   db_data:
+  db_kong_data:
   minio_data:
   meilisearch_data:

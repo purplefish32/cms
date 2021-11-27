@@ -1,5 +1,6 @@
 import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
+import * as ApolloReactHooks from '@apollo/client';
 export type Maybe<T> = T;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
@@ -4782,14 +4783,41 @@ export type UuidComparisonExp = {
   _nin?: Maybe<Array<Scalars['uuid']>>;
 };
 
-export type PageFromCreateMutationVariables = Exact<{
+export type PageFormCreateMutationVariables = Exact<{
   object: PostsInsertInput;
 }>;
 
 
-export type PageFromCreateMutation = (
+export type PageFormCreateMutation = (
   { __typename?: 'mutation_root' }
   & { insert_posts_one?: Maybe<(
+    { __typename?: 'posts' }
+    & Pick<Posts, 'id'>
+  )> }
+);
+
+export type PageFormQueryVariables = Exact<{
+  id: Scalars['uuid'];
+}>;
+
+
+export type PageFormQuery = (
+  { __typename?: 'query_root' }
+  & { posts_by_pk?: Maybe<(
+    { __typename?: 'posts' }
+    & Pick<Posts, 'id' | 'author_id' | 'body' | 'excerpt' | 'slug' | 'status' | 'title'>
+  )> }
+);
+
+export type PageFormUpdateMutationVariables = Exact<{
+  pk_columns: PostsPkColumnsInput;
+  _set?: Maybe<PostsSetInput>;
+}>;
+
+
+export type PageFormUpdateMutation = (
+  { __typename?: 'mutation_root' }
+  & { update_posts_by_pk?: Maybe<(
     { __typename?: 'posts' }
     & Pick<Posts, 'id'>
   )> }
@@ -4804,6 +4832,22 @@ export type PagesTableQuery = (
     { __typename?: 'posts' }
     & Pick<Posts, 'id' | 'title' | 'slug' | 'body' | 'status'>
   )>, posts_aggregate: (
+    { __typename?: 'posts_aggregate' }
+    & { aggregate?: Maybe<(
+      { __typename?: 'posts_aggregate_fields' }
+      & Pick<PostsAggregateFields, 'count'>
+    )> }
+  ) }
+);
+
+export type PostCounterQueryVariables = Exact<{
+  where?: Maybe<PostsBoolExp>;
+}>;
+
+
+export type PostCounterQuery = (
+  { __typename?: 'query_root' }
+  & { posts_aggregate: (
     { __typename?: 'posts_aggregate' }
     & { aggregate?: Maybe<(
       { __typename?: 'posts_aggregate_fields' }
@@ -4850,39 +4894,114 @@ export type PostsTableQuery = (
 );
 
 
-export const PageFromCreateDocument = gql`
-    mutation PageFromCreate($object: posts_insert_input!) {
+export const PageFormCreateDocument = gql`
+    mutation PageFormCreate($object: posts_insert_input!) {
   insert_posts_one(object: $object) {
     id
   }
 }
     `;
-export type PageFromCreateMutationFn = Apollo.MutationFunction<PageFromCreateMutation, PageFromCreateMutationVariables>;
+export type PageFormCreateMutationFn = Apollo.MutationFunction<PageFormCreateMutation, PageFormCreateMutationVariables>;
 
 /**
- * __usePageFromCreateMutation__
+ * __usePageFormCreateMutation__
  *
- * To run a mutation, you first call `usePageFromCreateMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `usePageFromCreateMutation` returns a tuple that includes:
+ * To run a mutation, you first call `usePageFormCreateMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `usePageFormCreateMutation` returns a tuple that includes:
  * - A mutate function that you can call at any time to execute the mutation
  * - An object with fields that represent the current status of the mutation's execution
  *
  * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
  *
  * @example
- * const [pageFromCreateMutation, { data, loading, error }] = usePageFromCreateMutation({
+ * const [pageFormCreateMutation, { data, loading, error }] = usePageFormCreateMutation({
  *   variables: {
  *      object: // value for 'object'
  *   },
  * });
  */
-export function usePageFromCreateMutation(baseOptions?: Apollo.MutationHookOptions<PageFromCreateMutation, PageFromCreateMutationVariables>) {
+export function usePageFormCreateMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<PageFormCreateMutation, PageFormCreateMutationVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<PageFromCreateMutation, PageFromCreateMutationVariables>(PageFromCreateDocument, options);
+        return ApolloReactHooks.useMutation<PageFormCreateMutation, PageFormCreateMutationVariables>(PageFormCreateDocument, options);
       }
-export type PageFromCreateMutationHookResult = ReturnType<typeof usePageFromCreateMutation>;
-export type PageFromCreateMutationResult = Apollo.MutationResult<PageFromCreateMutation>;
-export type PageFromCreateMutationOptions = Apollo.BaseMutationOptions<PageFromCreateMutation, PageFromCreateMutationVariables>;
+export type PageFormCreateMutationHookResult = ReturnType<typeof usePageFormCreateMutation>;
+export type PageFormCreateMutationResult = Apollo.MutationResult<PageFormCreateMutation>;
+export type PageFormCreateMutationOptions = Apollo.BaseMutationOptions<PageFormCreateMutation, PageFormCreateMutationVariables>;
+export const PageFormDocument = gql`
+    query PageForm($id: uuid!) {
+  posts_by_pk(id: $id) {
+    id
+    author_id
+    body
+    excerpt
+    slug
+    status
+    title
+  }
+}
+    `;
+
+/**
+ * __usePageFormQuery__
+ *
+ * To run a query within a React component, call `usePageFormQuery` and pass it any options that fit your needs.
+ * When your component renders, `usePageFormQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = usePageFormQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function usePageFormQuery(baseOptions: ApolloReactHooks.QueryHookOptions<PageFormQuery, PageFormQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return ApolloReactHooks.useQuery<PageFormQuery, PageFormQueryVariables>(PageFormDocument, options);
+      }
+export function usePageFormLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<PageFormQuery, PageFormQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return ApolloReactHooks.useLazyQuery<PageFormQuery, PageFormQueryVariables>(PageFormDocument, options);
+        }
+export type PageFormQueryHookResult = ReturnType<typeof usePageFormQuery>;
+export type PageFormLazyQueryHookResult = ReturnType<typeof usePageFormLazyQuery>;
+export type PageFormQueryResult = Apollo.QueryResult<PageFormQuery, PageFormQueryVariables>;
+export const PageFormUpdateDocument = gql`
+    mutation PageFormUpdate($pk_columns: posts_pk_columns_input!, $_set: posts_set_input) {
+  update_posts_by_pk(pk_columns: $pk_columns, _set: $_set) {
+    id
+  }
+}
+    `;
+export type PageFormUpdateMutationFn = Apollo.MutationFunction<PageFormUpdateMutation, PageFormUpdateMutationVariables>;
+
+/**
+ * __usePageFormUpdateMutation__
+ *
+ * To run a mutation, you first call `usePageFormUpdateMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `usePageFormUpdateMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [pageFormUpdateMutation, { data, loading, error }] = usePageFormUpdateMutation({
+ *   variables: {
+ *      pk_columns: // value for 'pk_columns'
+ *      _set: // value for '_set'
+ *   },
+ * });
+ */
+export function usePageFormUpdateMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<PageFormUpdateMutation, PageFormUpdateMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return ApolloReactHooks.useMutation<PageFormUpdateMutation, PageFormUpdateMutationVariables>(PageFormUpdateDocument, options);
+      }
+export type PageFormUpdateMutationHookResult = ReturnType<typeof usePageFormUpdateMutation>;
+export type PageFormUpdateMutationResult = Apollo.MutationResult<PageFormUpdateMutation>;
+export type PageFormUpdateMutationOptions = Apollo.BaseMutationOptions<PageFormUpdateMutation, PageFormUpdateMutationVariables>;
 export const PagesTableDocument = gql`
     query PagesTable {
   posts(where: {type: {_eq: page}}) {
@@ -4915,17 +5034,54 @@ export const PagesTableDocument = gql`
  *   },
  * });
  */
-export function usePagesTableQuery(baseOptions?: Apollo.QueryHookOptions<PagesTableQuery, PagesTableQueryVariables>) {
+export function usePagesTableQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<PagesTableQuery, PagesTableQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<PagesTableQuery, PagesTableQueryVariables>(PagesTableDocument, options);
+        return ApolloReactHooks.useQuery<PagesTableQuery, PagesTableQueryVariables>(PagesTableDocument, options);
       }
-export function usePagesTableLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<PagesTableQuery, PagesTableQueryVariables>) {
+export function usePagesTableLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<PagesTableQuery, PagesTableQueryVariables>) {
           const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<PagesTableQuery, PagesTableQueryVariables>(PagesTableDocument, options);
+          return ApolloReactHooks.useLazyQuery<PagesTableQuery, PagesTableQueryVariables>(PagesTableDocument, options);
         }
 export type PagesTableQueryHookResult = ReturnType<typeof usePagesTableQuery>;
 export type PagesTableLazyQueryHookResult = ReturnType<typeof usePagesTableLazyQuery>;
 export type PagesTableQueryResult = Apollo.QueryResult<PagesTableQuery, PagesTableQueryVariables>;
+export const PostCounterDocument = gql`
+    query PostCounter($where: posts_bool_exp) {
+  posts_aggregate(where: $where) {
+    aggregate {
+      count
+    }
+  }
+}
+    `;
+
+/**
+ * __usePostCounterQuery__
+ *
+ * To run a query within a React component, call `usePostCounterQuery` and pass it any options that fit your needs.
+ * When your component renders, `usePostCounterQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = usePostCounterQuery({
+ *   variables: {
+ *      where: // value for 'where'
+ *   },
+ * });
+ */
+export function usePostCounterQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<PostCounterQuery, PostCounterQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return ApolloReactHooks.useQuery<PostCounterQuery, PostCounterQueryVariables>(PostCounterDocument, options);
+      }
+export function usePostCounterLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<PostCounterQuery, PostCounterQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return ApolloReactHooks.useLazyQuery<PostCounterQuery, PostCounterQueryVariables>(PostCounterDocument, options);
+        }
+export type PostCounterQueryHookResult = ReturnType<typeof usePostCounterQuery>;
+export type PostCounterLazyQueryHookResult = ReturnType<typeof usePostCounterLazyQuery>;
+export type PostCounterQueryResult = Apollo.QueryResult<PostCounterQuery, PostCounterQueryVariables>;
 export const PostViewDocument = gql`
     query PostView($uuid: uuid!) {
   posts_by_pk(id: $uuid) {
@@ -4964,13 +5120,13 @@ export const PostViewDocument = gql`
  *   },
  * });
  */
-export function usePostViewQuery(baseOptions: Apollo.QueryHookOptions<PostViewQuery, PostViewQueryVariables>) {
+export function usePostViewQuery(baseOptions: ApolloReactHooks.QueryHookOptions<PostViewQuery, PostViewQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<PostViewQuery, PostViewQueryVariables>(PostViewDocument, options);
+        return ApolloReactHooks.useQuery<PostViewQuery, PostViewQueryVariables>(PostViewDocument, options);
       }
-export function usePostViewLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<PostViewQuery, PostViewQueryVariables>) {
+export function usePostViewLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<PostViewQuery, PostViewQueryVariables>) {
           const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<PostViewQuery, PostViewQueryVariables>(PostViewDocument, options);
+          return ApolloReactHooks.useLazyQuery<PostViewQuery, PostViewQueryVariables>(PostViewDocument, options);
         }
 export type PostViewQueryHookResult = ReturnType<typeof usePostViewQuery>;
 export type PostViewLazyQueryHookResult = ReturnType<typeof usePostViewLazyQuery>;
@@ -5009,13 +5165,13 @@ export const PostsTableDocument = gql`
  *   },
  * });
  */
-export function usePostsTableQuery(baseOptions?: Apollo.QueryHookOptions<PostsTableQuery, PostsTableQueryVariables>) {
+export function usePostsTableQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<PostsTableQuery, PostsTableQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<PostsTableQuery, PostsTableQueryVariables>(PostsTableDocument, options);
+        return ApolloReactHooks.useQuery<PostsTableQuery, PostsTableQueryVariables>(PostsTableDocument, options);
       }
-export function usePostsTableLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<PostsTableQuery, PostsTableQueryVariables>) {
+export function usePostsTableLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<PostsTableQuery, PostsTableQueryVariables>) {
           const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<PostsTableQuery, PostsTableQueryVariables>(PostsTableDocument, options);
+          return ApolloReactHooks.useLazyQuery<PostsTableQuery, PostsTableQueryVariables>(PostsTableDocument, options);
         }
 export type PostsTableQueryHookResult = ReturnType<typeof usePostsTableQuery>;
 export type PostsTableLazyQueryHookResult = ReturnType<typeof usePostsTableLazyQuery>;

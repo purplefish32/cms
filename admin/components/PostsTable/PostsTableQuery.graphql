@@ -1,5 +1,6 @@
 query PostsTable {
   posts(where: { type: { _eq: post } }) {
+    __typename
     id
     title
     status
@@ -9,6 +10,7 @@ query PostsTable {
     created_at
   }
   posts_aggregate(where: { type: { _eq: post } }) {
+    __typename
     aggregate {
       count
     }

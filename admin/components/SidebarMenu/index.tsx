@@ -1,8 +1,12 @@
 import Link from 'next/link'
-import { Menu, Sidebar } from 'semantic-ui-react';
+import router from 'next/router';
+import { Button, Menu, Sidebar } from 'semantic-ui-react';
+import { useAuth } from '../../lib/auth';
 import SearchBar from '../SearchBar';
 
 const SidebarMenu = () => {
+
+    const { signOut } = useAuth()
 
     return (
         <Sidebar
@@ -103,6 +107,17 @@ const SidebarMenu = () => {
                     </Menu.Item>
                 </Menu.Menu>
             </Menu.Item>
+
+            <Menu.Menu>
+                <Menu.Item name='tools'>
+                    <Button onClick={
+                        () => {
+                            signOut()
+                            router.push("/login")
+                        }
+                    }>Logout</Button>
+                </Menu.Item>
+            </Menu.Menu>
         </Sidebar>
     )
 }

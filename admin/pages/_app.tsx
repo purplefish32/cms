@@ -1,9 +1,9 @@
 import '../styles/globals.css'
-import { ApolloProvider } from "@apollo/client";
-import { useApollo } from "../lib/apolloClient";
 import Head from 'next/head';
 import { useEffect } from 'react';
 import 'semantic-ui-css/semantic.min.css'
+import { AuthProvider, useAuth } from '../lib/auth.js'
+import router from 'next/router';
 
 export default function App({ Component, pageProps }) {
   useEffect(() => {
@@ -14,15 +14,13 @@ export default function App({ Component, pageProps }) {
     }
   }, []);
 
-  const apolloClient = useApollo(pageProps.initialApolloState);
-
   return (
-    <ApolloProvider client={apolloClient}>
+    <AuthProvider>
       <Head>
         <title>My App</title>
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
       </Head>
       <Component {...pageProps} />
-    </ApolloProvider>
+    </AuthProvider>
   );
 }
