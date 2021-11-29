@@ -3,7 +3,9 @@ import Head from 'next/head';
 import { useEffect } from 'react';
 import 'semantic-ui-css/semantic.min.css'
 import { AuthProvider, useAuth } from '../lib/auth.js'
+import { ApolloProvider } from '@apollo/client'
 import router from 'next/router';
+import { useApollo } from '../lib/apolloClient';
 
 export default function App({ Component, pageProps }) {
   useEffect(() => {
@@ -14,13 +16,18 @@ export default function App({ Component, pageProps }) {
     }
   }, []);
 
+  const apolloClient = useApollo(pageProps.initialApolloState, "TOKENXXXX")
+  const getLayout = Component.getLayout || ((page) => page)
+
   return (
     <AuthProvider>
-      <Head>
-        <title>My App</title>
-        <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
-      </Head>
-      <Component {...pageProps} />
+      <ApolloProvider client={apolloClient}>
+        <Head>
+          <title>My App</title>
+          <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
+        </Head>
+        <Component {...pageProps} />
+      </ApolloProvider>
     </AuthProvider>
   );
 }

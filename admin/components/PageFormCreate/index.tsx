@@ -46,12 +46,6 @@ const PageFormCreate = () => {
 
     };
 
-    const handleChange = (e) => {
-        e.persist();
-        setValue(e.target.name, e.target.value);
-        trigger(e.target.name);
-    };
-
     return (
         <Form onSubmit={handleSubmit(onSubmit)} loading={loading} error={Boolean(error)}>
             <Form.Field>
@@ -68,7 +62,10 @@ const PageFormCreate = () => {
                     type="text"
                     placeholder="Title"
                     label="Title"
-                    onBlur={handleChange}
+                    onChange={async (e, { name, value }) => {
+                        setValue(name, value);
+                        await trigger("name");
+                    }}
                     error={
                         errors.type ? {
                             content: "Title is required",
@@ -85,7 +82,10 @@ const PageFormCreate = () => {
                     type="text"
                     placeholder="Slug"
                     label="Slug"
-                    onBlur={handleChange}
+                    onChange={async (e, { name, value }) => {
+                        setValue(name, value);
+                        await trigger("name");
+                    }}
                     error={
                         errors.slug ? {
                             content: "Slug is invalid",
@@ -101,7 +101,10 @@ const PageFormCreate = () => {
                     name="excerpt"
                     placeholder="Excerpt"
                     label="Excerpt"
-                    onBlur={handleChange}
+                    onChange={async (e, { name, value }) => {
+                        setValue(name, value);
+                        await trigger("name");
+                    }}
                 />
 
             </Form.Field>
@@ -110,7 +113,10 @@ const PageFormCreate = () => {
                     name="body"
                     placeholder="Body"
                     label="Body"
-                    onBlur={handleChange}
+                    onChange={async (e, { name, value }) => {
+                        setValue(name, value);
+                        await trigger("name");
+                    }}
                 />
 
             </Form.Field>

@@ -2,38 +2,28 @@ import { useForm } from "react-hook-form";
 import { Button, Form } from "semantic-ui-react";
 import router from "next/router";
 import { useAuth } from "../lib/auth";
+import { useEffect } from "react";
 
 export default function Login() {
     const { signIn } = useAuth()
 
-    /*
-        useEffect(() => {
-            effect
-            return () => {
-                cleanup
-            }
-        }, [input])(() => {
-            register("title", { required: true });
-            register("slug", { required: true, pattern: /^[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*$/ });
-            register("body");
-            register("excerpt");
-        }, []);
-    */
+    useEffect(() => {
+        register("email", { required: true });
+        register("password", { required: true });
+    }, []);
+
     const {
         register,
         handleSubmit,
         setValue,
         trigger,
         formState: { errors }
-    } = useForm({
-        mode: "onBlur"
-    });
+    } = useForm();
 
     const onSubmit = async (data) => {
         const { email, password } = data
 
         try {
-            console.log("Login Action");
             const response = await fetch('http://localhost:3000/auth/login', {
                 method: 'POST',
                 headers: {
@@ -59,12 +49,6 @@ export default function Login() {
 
     };
 
-    const handleChange = (e) => {
-        e.persist();
-        setValue(e.target.name, e.target.value);
-        trigger(e.target.name);
-    };
-
     return (
         <div>
             <h1 className={"text-4xl"}>Login</h1>
@@ -75,14 +59,11 @@ export default function Login() {
                         type="text"
                         placeholder="Email"
                         label="Email"
-                        onBlur={handleChange}
-                        error={
-                            errors.type ? {
-                                content: "Email is required",
-                                pointing: 'below',
-
-                            } : false
-                        }
+                        onChange={async (e, { name, value }) => {
+                            setValue(name, value);
+                            await trigger("email");
+                        }}
+                        error={errors.email ? true : false}
                     />
 
                 </Form.Field>
@@ -92,7 +73,11 @@ export default function Login() {
                         type="password"
                         placeholder="Password"
                         label="Password"
-                        onBlur={handleChange}
+                        onChange={async (e, { name, value }) => {
+                            setValue(name, value);
+                            await trigger("password");
+                        }}
+                        error={errors.password ? true : false}
                     />
 
                 </Form.Field>
