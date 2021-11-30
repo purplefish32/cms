@@ -12,6 +12,7 @@
   "dependencies": {
     "@algolia/autocomplete-js": "^1.5.0",
     "@apollo/client": "^3.4.3",
+    "@graphql-codegen/named-operations-object": "^2.2.0",
     "@meilisearch/instant-meilisearch": "^0.5.9",
     "date-fns": "^2.25.0",
     "graphql": "^15.5.1",

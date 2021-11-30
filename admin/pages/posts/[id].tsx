@@ -2,6 +2,7 @@ import Layout from '../../components/Layout';
 import { useRouter } from 'next/router'
 import { usePostViewQuery } from "../../generated/graphql";
 import { Button, Label, Segment } from 'semantic-ui-react';
+import getStatusColor from '../../utils/getStatusColor';
 
 const Page = () => {
     const router = useRouter()
@@ -27,19 +28,6 @@ const Page = () => {
         taxonomies
     } = data
 
-    function getStatusColor() {
-        switch (post.status) {
-            case 'published':
-                return 'green';
-            case 'draft':
-                return 'yellow';
-            case 'archived':
-                return 'grey';
-            default:
-                return 'yellow';
-        }
-    }
-
     const handleClick = (e) => {
         e.preventDefault()
         router.push(`/posts/edit/${id}`)
@@ -48,7 +36,7 @@ const Page = () => {
     return (
         <Layout>
             <h1 className={"text-4xl"}>{post.title} <Button primary onClick={handleClick}>Edit</Button></h1>
-            <Segment inverted color={getStatusColor()}>
+            <Segment inverted color={getStatusColor(post.status)}>
                 <h4>Status</h4>
                 {post.status}
             </Segment>

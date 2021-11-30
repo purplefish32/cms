@@ -1,8 +1,10 @@
-import { FunctionComponent } from "react";
-import { Label, SemanticCOLORS, Table } from 'semantic-ui-react'
+import { FunctionComponent, MouseEvent } from "react";
+import { Label, Table } from 'semantic-ui-react'
 import { usePostsTableQuery } from "../../generated/graphql";
 import Link from 'next/link'
 import { format } from 'date-fns';
+import getStatusColor from "../../utils/getStatusColor";
+import PostDeleteButton from "../PostDeleteButton";
 
 const PostsTable: FunctionComponent = () => {
     const { data, error } = usePostsTableQuery({
@@ -17,19 +19,6 @@ const PostsTable: FunctionComponent = () => {
         return <div>Loading</div>;
     }
 
-    function getStatusColor(status): SemanticCOLORS {
-        switch (status) {
-            case 'published':
-                return 'green';
-            case 'draft':
-                return 'yellow';
-            case 'archived':
-                return 'grey';
-            default:
-                return 'yellow';
-        }
-    }
-
     return (
         <Table celled>
             <Table.Header>
@@ -39,6 +28,7 @@ const PostsTable: FunctionComponent = () => {
                     <Table.HeaderCell>Stats</Table.HeaderCell>
                     <Table.HeaderCell>Comments</Table.HeaderCell>
                     <Table.HeaderCell>Date</Table.HeaderCell>
+                    <Table.HeaderCell>Actions</Table.HeaderCell>
                 </Table.Row>
             </Table.Header>
 
@@ -51,7 +41,13 @@ const PostsTable: FunctionComponent = () => {
                                 <Table.Cell>{post.author_id}</Table.Cell>
                                 <Table.Cell>XXX</Table.Cell>
                                 <Table.Cell>YYY</Table.Cell>
-                                <Table.Cell>Created <br />{format(new Date(post.created_at), "yyyy/MM/dd 'at ' HH:ii")}</Table.Cell>
+                                <Table.Cell>Created <br />{
+                                    format(new Date(post.created_at), "yyyy/MM/dd 'at ' HH:ii")
+                                }</Table.Cell>
+                                <Table.Cell>
+                                    <Link href={`posts/edit/${post.id}`}>Edit</Link>
+                                    <PostDeleteButton postId={post.id} />
+                                </Table.Cell>
                             </Table.Row>
                         )
                     })

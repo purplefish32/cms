@@ -2515,7 +2515,31 @@ export enum OrderBy {
 /** columns and relationships of "post_status" */
 export type PostStatus = {
   __typename?: 'post_status';
+  /** An array relationship */
+  posts: Array<Posts>;
+  /** An aggregate relationship */
+  posts_aggregate: PostsAggregate;
   status: Scalars['String'];
+};
+
+
+/** columns and relationships of "post_status" */
+export type PostStatusPostsArgs = {
+  distinct_on?: Maybe<Array<PostsSelectColumn>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<PostsOrderBy>>;
+  where?: Maybe<PostsBoolExp>;
+};
+
+
+/** columns and relationships of "post_status" */
+export type PostStatusPostsAggregateArgs = {
+  distinct_on?: Maybe<Array<PostsSelectColumn>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<PostsOrderBy>>;
+  where?: Maybe<PostsBoolExp>;
 };
 
 /** aggregated selection of "post_status" */
@@ -2545,6 +2569,7 @@ export type PostStatusBoolExp = {
   _and?: Maybe<Array<PostStatusBoolExp>>;
   _not?: Maybe<PostStatusBoolExp>;
   _or?: Maybe<Array<PostStatusBoolExp>>;
+  posts?: Maybe<PostsBoolExp>;
   status?: Maybe<StringComparisonExp>;
 };
 
@@ -2571,6 +2596,7 @@ export type PostStatusEnumComparisonExp = {
 
 /** input type for inserting data into table "post_status" */
 export type PostStatusInsertInput = {
+  posts?: Maybe<PostsArrRelInsertInput>;
   status?: Maybe<Scalars['String']>;
 };
 
@@ -2595,6 +2621,13 @@ export type PostStatusMutationResponse = {
   returning: Array<PostStatus>;
 };
 
+/** input type for inserting object relation for remote table "post_status" */
+export type PostStatusObjRelInsertInput = {
+  data: PostStatusInsertInput;
+  /** on conflict condition */
+  on_conflict?: Maybe<PostStatusOnConflict>;
+};
+
 /** on conflict condition type for table "post_status" */
 export type PostStatusOnConflict = {
   constraint: PostStatusConstraint;
@@ -2604,6 +2637,7 @@ export type PostStatusOnConflict = {
 
 /** Ordering options when selecting data from "post_status". */
 export type PostStatusOrderBy = {
+  posts_aggregate?: Maybe<PostsAggregateOrderBy>;
   status?: Maybe<OrderBy>;
 };
 
@@ -2632,7 +2666,35 @@ export enum PostStatusUpdateColumn {
 /** columns and relationships of "post_types" */
 export type PostTypes = {
   __typename?: 'post_types';
+  /** An object relationship */
+  postTypeByType?: Maybe<PostTypes>;
+  /** An object relationship */
+  post_type: PostTypes;
+  /** An array relationship */
+  posts: Array<Posts>;
+  /** An aggregate relationship */
+  posts_aggregate: PostsAggregate;
   type: PostTypesEnum;
+};
+
+
+/** columns and relationships of "post_types" */
+export type PostTypesPostsArgs = {
+  distinct_on?: Maybe<Array<PostsSelectColumn>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<PostsOrderBy>>;
+  where?: Maybe<PostsBoolExp>;
+};
+
+
+/** columns and relationships of "post_types" */
+export type PostTypesPostsAggregateArgs = {
+  distinct_on?: Maybe<Array<PostsSelectColumn>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<PostsOrderBy>>;
+  where?: Maybe<PostsBoolExp>;
 };
 
 /** aggregated selection of "post_types" */
@@ -2660,6 +2722,9 @@ export type PostTypesBoolExp = {
   _and?: Maybe<Array<PostTypesBoolExp>>;
   _not?: Maybe<PostTypesBoolExp>;
   _or?: Maybe<Array<PostTypesBoolExp>>;
+  postTypeByType?: Maybe<PostTypesBoolExp>;
+  post_type?: Maybe<PostTypesBoolExp>;
+  posts?: Maybe<PostsBoolExp>;
   type?: Maybe<PostTypesEnumComparisonExp>;
 };
 
@@ -2685,6 +2750,9 @@ export type PostTypesEnumComparisonExp = {
 
 /** input type for inserting data into table "post_types" */
 export type PostTypesInsertInput = {
+  postTypeByType?: Maybe<PostTypesObjRelInsertInput>;
+  post_type?: Maybe<PostTypesObjRelInsertInput>;
+  posts?: Maybe<PostsArrRelInsertInput>;
   type?: Maybe<PostTypesEnum>;
 };
 
@@ -2697,6 +2765,13 @@ export type PostTypesMutationResponse = {
   returning: Array<PostTypes>;
 };
 
+/** input type for inserting object relation for remote table "post_types" */
+export type PostTypesObjRelInsertInput = {
+  data: PostTypesInsertInput;
+  /** on conflict condition */
+  on_conflict?: Maybe<PostTypesOnConflict>;
+};
+
 /** on conflict condition type for table "post_types" */
 export type PostTypesOnConflict = {
   constraint: PostTypesConstraint;
@@ -2706,6 +2781,9 @@ export type PostTypesOnConflict = {
 
 /** Ordering options when selecting data from "post_types". */
 export type PostTypesOrderBy = {
+  postTypeByType?: Maybe<PostTypesOrderBy>;
+  post_type?: Maybe<PostTypesOrderBy>;
+  posts_aggregate?: Maybe<PostsAggregateOrderBy>;
   type?: Maybe<OrderBy>;
 };
 
@@ -2744,6 +2822,10 @@ export type Posts = {
   excerpt?: Maybe<Scalars['String']>;
   id: Scalars['uuid'];
   meta?: Maybe<Scalars['jsonb']>;
+  /** An object relationship */
+  post_status: PostStatus;
+  /** An object relationship */
+  post_type?: Maybe<PostTypes>;
   slug: Scalars['String'];
   status: PostStatusEnum;
   title: Scalars['String'];
@@ -2799,9 +2881,23 @@ export type PostsAggregateFieldsCountArgs = {
   distinct?: Maybe<Scalars['Boolean']>;
 };
 
+/** order by aggregate values of table "posts" */
+export type PostsAggregateOrderBy = {
+  count?: Maybe<OrderBy>;
+  max?: Maybe<PostsMaxOrderBy>;
+  min?: Maybe<PostsMinOrderBy>;
+};
+
 /** append existing jsonb value of filtered columns with new jsonb value */
 export type PostsAppendInput = {
   meta?: Maybe<Scalars['jsonb']>;
+};
+
+/** input type for inserting array relation for remote table "posts" */
+export type PostsArrRelInsertInput = {
+  data: Array<PostsInsertInput>;
+  /** on conflict condition */
+  on_conflict?: Maybe<PostsOnConflict>;
 };
 
 /** Boolean expression to filter rows from the table "posts". All fields are combined with a logical 'AND'. */
@@ -2816,6 +2912,8 @@ export type PostsBoolExp = {
   excerpt?: Maybe<StringComparisonExp>;
   id?: Maybe<UuidComparisonExp>;
   meta?: Maybe<JsonbComparisonExp>;
+  post_status?: Maybe<PostStatusBoolExp>;
+  post_type?: Maybe<PostTypesBoolExp>;
   slug?: Maybe<StringComparisonExp>;
   status?: Maybe<PostStatusEnumComparisonExp>;
   title?: Maybe<StringComparisonExp>;
@@ -2855,6 +2953,8 @@ export type PostsInsertInput = {
   excerpt?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['uuid']>;
   meta?: Maybe<Scalars['jsonb']>;
+  post_status?: Maybe<PostStatusObjRelInsertInput>;
+  post_type?: Maybe<PostTypesObjRelInsertInput>;
   slug?: Maybe<Scalars['String']>;
   status?: Maybe<PostStatusEnum>;
   title?: Maybe<Scalars['String']>;
@@ -2875,6 +2975,18 @@ export type PostsMaxFields = {
   updated_at?: Maybe<Scalars['timestamptz']>;
 };
 
+/** order by max() on columns of table "posts" */
+export type PostsMaxOrderBy = {
+  author_id?: Maybe<OrderBy>;
+  body?: Maybe<OrderBy>;
+  created_at?: Maybe<OrderBy>;
+  excerpt?: Maybe<OrderBy>;
+  id?: Maybe<OrderBy>;
+  slug?: Maybe<OrderBy>;
+  title?: Maybe<OrderBy>;
+  updated_at?: Maybe<OrderBy>;
+};
+
 /** aggregate min on columns */
 export type PostsMinFields = {
   __typename?: 'posts_min_fields';
@@ -2886,6 +2998,18 @@ export type PostsMinFields = {
   slug?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
   updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** order by min() on columns of table "posts" */
+export type PostsMinOrderBy = {
+  author_id?: Maybe<OrderBy>;
+  body?: Maybe<OrderBy>;
+  created_at?: Maybe<OrderBy>;
+  excerpt?: Maybe<OrderBy>;
+  id?: Maybe<OrderBy>;
+  slug?: Maybe<OrderBy>;
+  title?: Maybe<OrderBy>;
+  updated_at?: Maybe<OrderBy>;
 };
 
 /** response of any mutation on the table "posts" */
@@ -2920,6 +3044,8 @@ export type PostsOrderBy = {
   excerpt?: Maybe<OrderBy>;
   id?: Maybe<OrderBy>;
   meta?: Maybe<OrderBy>;
+  post_status?: Maybe<PostStatusOrderBy>;
+  post_type?: Maybe<PostTypesOrderBy>;
   slug?: Maybe<OrderBy>;
   status?: Maybe<OrderBy>;
   title?: Maybe<OrderBy>;
@@ -3060,9 +3186,9 @@ export type QueryRoot = {
   post_types_aggregate: PostTypesAggregate;
   /** fetch data from the table: "post_types" using primary key columns */
   post_types_by_pk?: Maybe<PostTypes>;
-  /** fetch data from the table: "posts" */
+  /** An array relationship */
   posts: Array<Posts>;
-  /** fetch aggregated fields from the table: "posts" */
+  /** An aggregate relationship */
   posts_aggregate: PostsAggregate;
   /** fetch data from the table: "posts" using primary key columns */
   posts_by_pk?: Maybe<Posts>;
@@ -3470,9 +3596,9 @@ export type SubscriptionRoot = {
   post_types_aggregate: PostTypesAggregate;
   /** fetch data from the table: "post_types" using primary key columns */
   post_types_by_pk?: Maybe<PostTypes>;
-  /** fetch data from the table: "posts" */
+  /** An array relationship */
   posts: Array<Posts>;
-  /** fetch aggregated fields from the table: "posts" */
+  /** An aggregate relationship */
   posts_aggregate: PostsAggregate;
   /** fetch data from the table: "posts" using primary key columns */
   posts_by_pk?: Maybe<Posts>;
@@ -4829,15 +4955,28 @@ export type PagesTableQueryVariables = Exact<{ [key: string]: never; }>;
 export type PagesTableQuery = (
   { __typename?: 'query_root' }
   & { posts: Array<(
-    { __typename?: 'posts' }
+    { __typename: 'posts' }
     & Pick<Posts, 'id' | 'title' | 'slug' | 'body' | 'status'>
   )>, posts_aggregate: (
-    { __typename?: 'posts_aggregate' }
+    { __typename: 'posts_aggregate' }
     & { aggregate?: Maybe<(
       { __typename?: 'posts_aggregate_fields' }
       & Pick<PostsAggregateFields, 'count'>
     )> }
   ) }
+);
+
+export type PostsDeleteMutationVariables = Exact<{
+  id?: Maybe<Scalars['uuid']>;
+}>;
+
+
+export type PostsDeleteMutation = (
+  { __typename?: 'mutation_root' }
+  & { delete_posts?: Maybe<(
+    { __typename?: 'posts_mutation_response' }
+    & Pick<PostsMutationResponse, 'affected_rows'>
+  )> }
 );
 
 export type PostCounterQueryVariables = Exact<{
@@ -4882,10 +5021,10 @@ export type PostsTableQueryVariables = Exact<{ [key: string]: never; }>;
 export type PostsTableQuery = (
   { __typename?: 'query_root' }
   & { posts: Array<(
-    { __typename?: 'posts' }
+    { __typename: 'posts' }
     & Pick<Posts, 'id' | 'title' | 'status' | 'slug' | 'body' | 'author_id' | 'created_at'>
   )>, posts_aggregate: (
-    { __typename?: 'posts_aggregate' }
+    { __typename: 'posts_aggregate' }
     & { aggregate?: Maybe<(
       { __typename?: 'posts_aggregate_fields' }
       & Pick<PostsAggregateFields, 'count'>
@@ -5005,6 +5144,7 @@ export type PageFormUpdateMutationOptions = Apollo.BaseMutationOptions<PageFormU
 export const PagesTableDocument = gql`
     query PagesTable {
   posts(where: {type: {_eq: page}}) {
+    __typename
     id
     title
     slug
@@ -5012,6 +5152,7 @@ export const PagesTableDocument = gql`
     status
   }
   posts_aggregate(where: {type: {_eq: page}}) {
+    __typename
     aggregate {
       count
     }
@@ -5045,6 +5186,39 @@ export function usePagesTableLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryH
 export type PagesTableQueryHookResult = ReturnType<typeof usePagesTableQuery>;
 export type PagesTableLazyQueryHookResult = ReturnType<typeof usePagesTableLazyQuery>;
 export type PagesTableQueryResult = Apollo.QueryResult<PagesTableQuery, PagesTableQueryVariables>;
+export const PostsDeleteDocument = gql`
+    mutation PostsDelete($id: uuid) {
+  delete_posts(where: {id: {_eq: $id}}) {
+    affected_rows
+  }
+}
+    `;
+export type PostsDeleteMutationFn = Apollo.MutationFunction<PostsDeleteMutation, PostsDeleteMutationVariables>;
+
+/**
+ * __usePostsDeleteMutation__
+ *
+ * To run a mutation, you first call `usePostsDeleteMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `usePostsDeleteMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [postsDeleteMutation, { data, loading, error }] = usePostsDeleteMutation({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function usePostsDeleteMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<PostsDeleteMutation, PostsDeleteMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return ApolloReactHooks.useMutation<PostsDeleteMutation, PostsDeleteMutationVariables>(PostsDeleteDocument, options);
+      }
+export type PostsDeleteMutationHookResult = ReturnType<typeof usePostsDeleteMutation>;
+export type PostsDeleteMutationResult = Apollo.MutationResult<PostsDeleteMutation>;
+export type PostsDeleteMutationOptions = Apollo.BaseMutationOptions<PostsDeleteMutation, PostsDeleteMutationVariables>;
 export const PostCounterDocument = gql`
     query PostCounter($where: posts_bool_exp) {
   posts_aggregate(where: $where) {
@@ -5134,6 +5308,7 @@ export type PostViewQueryResult = Apollo.QueryResult<PostViewQuery, PostViewQuer
 export const PostsTableDocument = gql`
     query PostsTable {
   posts(where: {type: {_eq: post}}) {
+    __typename
     id
     title
     status
@@ -5143,6 +5318,7 @@ export const PostsTableDocument = gql`
     created_at
   }
   posts_aggregate(where: {type: {_eq: post}}) {
+    __typename
     aggregate {
       count
     }

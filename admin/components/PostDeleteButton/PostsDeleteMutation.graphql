@@ -1,0 +1,5 @@
+mutation PostsDelete($id: uuid) {
+  delete_posts(where: { id: { _eq: $id } }) {
+    affected_rows
+  }
+}
