@@ -1,47 +1,76 @@
 import router from "next/router";
-import { useEffect } from "react";
-import { useForm } from "react-hook-form";
-import { Button, Form, Message } from "semantic-ui-react";
-import { PostTypesEnum, usePageFormUpdateMutation } from "../../generated/graphql";
+import { useEffect, useRef, useState } from "react";
+import { PostTypesEnum, usePageFormQuery, usePageFormUpdateMutation } from "../../generated/graphql";
+import { Form, Schema, Button, Message } from 'rsuite';
 
-interface Data {
-    id: string;
-    body?: string;
-    slug: string;
-    title: string;
-    excerpt?: string;
+type Props = {
+    postId: string | string[];
 }
 
-const PageFormUpdate = (props: Data) => {
+const PageFormUpdate = (props: Props) => {
 
-    const { id, body, slug, title, excerpt } = props
+    const [formValue, setFormValue] = useState(undefined);
 
-    const [update_posts_one, { loading, error }] = usePageFormUpdateMutation()
+    const { postId } = props;
 
-    useEffect(() => {
-        register("title", { required: true });
-        register("slug", { required: true, pattern: /^[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*$/ })
-        register("body");
-        register("excerpt");
-    }, []);
+    const { StringType } = Schema.Types;
 
-    const {
-        register,
-        handleSubmit,
-        setValue,
-        trigger,
-        formState: { errors }
-    } = useForm({
-        mode: "onBlur"
+    const model = Schema.Model({
+        title: StringType().isRequired('This field is required.'),
+        slug: StringType().isRequired('This field is required.'), // TODO test slug unique
+        excerpt: StringType(),
+        body: StringType(),
     });
 
-    const onSubmit = async (data) => {
-        const { title, slug, body, excerpt } = data;
+    const formRef = useRef();
+
+    const [formError, setFormError] = useState({});
+
+    const {
+        data: queryData,
+        loading: queryLoading,
+        error: queryError
+    } = usePageFormQuery({
+        fetchPolicy: "cache-and-network",
+        variables: {
+            id: postId
+        }
+    });
+
+    useEffect(() => {
+        if (queryLoading === false && queryData) {
+
+            const {
+                title,
+                slug,
+                excerpt,
+                body
+            } = queryData.posts_by_pk
+
+            setFormValue({
+                title,
+                slug,
+                excerpt,
+                body
+            });
+        }
+    }, [queryLoading, queryData])
+
+    const [update_posts_one, { loading: mutationLoading, error: mutationError }] = usePageFormUpdateMutation()
+
+    const handleSubmit = async () => {
+        if (!formRef.current.check()) {
+            console.error('Form Error');
+            return;
+        }
+
+        const { title, slug, body, excerpt } = formValue
+
         try {
             await update_posts_one({
                 variables: {
                     pk_columns: {
-                        id
+                        id: postId
                     },
                     _set: {
                         title,
@@ -52,87 +81,78 @@ const PageFormUpdate = (props: Data) => {
                     }
                 }
             });
-            router.push("/pages");
-        } catch (e) {
-            console.log(e);
+            router.push("/pages")
+        } catch (error) {
+            console.log(error)
         }
-
     };
 
-    const handleChange = (e) => {
-        e.persist();
-        setValue(e.target.name, e.target.value);
-        trigger(e.target.name);
-    };
+    if (queryError) {
+        return <div>Error loading page data.</div>;
+    }
+
+    if (!queryData) {
+        return <div>Loading</div>;
+    }
 
     return (
-        <Form onSubmit={handleSubmit(onSubmit)} loading={loading} error={Boolean(error)}>
-            <Form.Field>
-                {error && (
+        <Form
+            ref={formRef}
+            onChange={setFormValue}
+            onCheck={setFormError}
+            formValue={formValue}
+            model={model}
+            fluid
+        >
+            <Form.Group>
+                {mutationError && (
                     <Message
-                        error
-                        icon="warning sign"
+                        type="error"
+                        showIcon
                         header='Error'
-                        content={error.message}
-                    />
+                    >
+                        {mutationError.message}
+                    </Message>
                 )}
-                <Form.Input
+                <Form.ControlLabel>Title</Form.ControlLabel>
+                <Form.Control
                     name="title"
                     type="text"
                     placeholder="Title"
-                    label="Title"
-                    onBlur={handleChange}
-                    defaultValue={title}
-                    error={
-                        errors.type ? {
-                            content: "Title is required",
-                            pointing: 'below',
-
-                        } : false
-                    }
+                //defaultValue=""
                 />
 
-            </Form.Field>
-            <Form.Field>
-                <Form.Input
+            </Form.Group>
+            <Form.Group>
+                <Form.ControlLabel>Slug</Form.ControlLabel>
+                <Form.Control
+                    checkAsync
                     name="slug"
                     type="text"
                     placeholder="Slug"
                     label="Slug"
-                    onBlur={handleChange}
-                    defaultValue={slug}
-                    error={
-                        errors.slug ? {
-                            content: "Slug is invalid",
-                            pointing: 'below',
-
-                        } : false
-                    }
+                //defaultValue=""
                 />
 
-            </Form.Field>
-            <Form.Field>
-                <Form.TextArea
+            </Form.Group>
+            <Form.Group>
+                <Form.ControlLabel>Excerpt</Form.ControlLabel>
+                <Form.Control
                     name="excerpt"
                     placeholder="Excerpt"
-                    label="Excerpt"
-                    onBlur={handleChange}
-                    defaultValue={excerpt}
+                //defaultValue=""
                 />
-
-            </Form.Field>
-            <Form.Field>
-                <Form.TextArea
+            </Form.Group>
+            <Form.Group>
+                <Form.ControlLabel>Body</Form.ControlLabel>
+                <Form.Control
                     name="body"
                     placeholder="Body"
-                    label="Body"
-                    onBlur={handleChange}
-                    defaultValue={body}
+                //defaultValue=""
                 />
-
-            </Form.Field>
-            <Button type="submit">Submit</Button>
-        </Form>
+            </Form.Group>
+            <Button type="submit" appearance="primary" onClick={handleSubmit} loading={mutationLoading}>Submit</Button>
+        </Form >
     )
 }
 

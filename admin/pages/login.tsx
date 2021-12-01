@@ -49,6 +49,10 @@ export default function Login() {
 
     };
 
+    /*const handleChange = (event) => {
+
+    }*/
+
     return (
         <div>
             <h1 className={"text-4xl"}>Login</h1>
@@ -60,8 +64,8 @@ export default function Login() {
                         placeholder="Email"
                         label="Email"
                         onChange={async (e, { name, value }) => {
-                            setValue(name, value);
-                            await trigger("email");
+                            setValue(name, value)
+                            await trigger(e.target.name)
                         }}
                         error={errors.email ? true : false}
                     />
@@ -74,8 +78,8 @@ export default function Login() {
                         placeholder="Password"
                         label="Password"
                         onChange={async (e, { name, value }) => {
-                            setValue(name, value);
-                            await trigger("password");
+                            setValue(name, value)
+                            await trigger(e.target.name)
                         }}
                         error={errors.password ? true : false}
                     />

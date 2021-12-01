@@ -1,8 +1,10 @@
 import { FunctionComponent } from "react";
-import { Table } from 'semantic-ui-react'
 import { usePagesTableQuery } from "../../generated/graphql";
 import Link from 'next/link'
 import PageDeleteButton from "../PageDeleteButton";
+import { Button, ButtonToolbar } from "rsuite";
+import router from "next/router";
+import { Table } from "semantic-ui-react";
 
 const PostsTable: FunctionComponent = () => {
     const { data, error } = usePagesTableQuery({
@@ -34,8 +36,18 @@ const PostsTable: FunctionComponent = () => {
                                 <Table.Cell><Link href={`posts/${post.id}`}>{post.title}</Link></Table.Cell>
                                 <Table.Cell>{post.body}</Table.Cell>
                                 <Table.Cell>
-                                    <Link href={`posts/edit/${post.id}`}>Edit</Link>
-                                    <PageDeleteButton postId={post.id} />
+                                    <ButtonToolbar>
+                                        <Button
+                                            size="xs"
+                                            appearance="primary"
+                                            onClick={
+                                                () => {
+                                                    router.push(`posts/edit/${post.id}`)
+                                                }
+                                            }
+                                        >Edit</Button>
+                                        <PageDeleteButton postId={post.id} />
+                                    </ButtonToolbar>
                                 </Table.Cell>
                             </Table.Row>
                         )

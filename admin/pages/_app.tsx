@@ -6,6 +6,7 @@ import { AuthProvider, useAuth } from '../lib/auth.js'
 import { ApolloProvider } from '@apollo/client'
 import router from 'next/router';
 import { useApollo } from '../lib/apolloClient';
+import 'rsuite/dist/rsuite.min.css';
 
 export default function App({ Component, pageProps }) {
   useEffect(() => {
