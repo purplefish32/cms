@@ -5,8 +5,8 @@ import { Button, Label, Segment } from 'semantic-ui-react';
 import getStatusColor from '../../utils/getStatusColor';
 
 const Page = () => {
-    const router = useRouter()
-    const { id } = router.query
+    const { query } = useRouter()
+    const { id } = query
 
     const { data, error } = usePostViewQuery({
         fetchPolicy: "cache-and-network",

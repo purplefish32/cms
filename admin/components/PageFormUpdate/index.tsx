@@ -9,7 +9,12 @@ type Props = {
 
 const PageFormUpdate = (props: Props) => {
 
-    const [formValue, setFormValue] = useState(undefined);
+    const [formValue, setFormValue] = useState({
+        title: '',
+        slug: '',
+        excerpt: '',
+        body: ''
+    });
 
     const { postId } = props;
 
@@ -58,6 +63,12 @@ const PageFormUpdate = (props: Props) => {
 
     const [update_posts_one, { loading: mutationLoading, error: mutationError }] = usePageFormUpdateMutation()
 
+    const handleChange = (_value, event) => {
+        setFormValue((formValue) => ({
+            ...formValue, [event.target.name]: event.target.value
+        }));
+    };
+
     const handleSubmit = async () => {
         if (!formRef.current.check()) {
             console.error('Form Error');
@@ -98,7 +109,7 @@ const PageFormUpdate = (props: Props) => {
     return (
         <Form
             ref={formRef}
-            onChange={setFormValue}
+            onChange={handleChange}
             onCheck={setFormError}
             formValue={formValue}
             model={model}
