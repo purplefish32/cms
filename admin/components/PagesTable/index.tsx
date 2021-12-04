@@ -1,7 +1,7 @@
 import { FunctionComponent } from "react";
 import { usePagesTableQuery } from "../../generated/graphql";
 import Link from 'next/link'
-import PageDeleteButton from "../PageDeleteButton";
+import PostDeleteButton from "../PostDeleteButton";
 import { Button, ButtonToolbar } from "rsuite";
 import router from "next/router";
 import { Table } from "semantic-ui-react";
@@ -46,7 +46,7 @@ const PostsTable: FunctionComponent = () => {
                                                 }
                                             }
                                         >Edit</Button>
-                                        <PageDeleteButton postId={post.id} />
+                                        <PostDeleteButton postId={post.id} />
                                     </ButtonToolbar>
                                 </Table.Cell>
                             </Table.Row>

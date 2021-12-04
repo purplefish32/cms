@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+import { Content, Header, Panel, PanelGroup } from 'rsuite';
 import Layout from '../../../components/Layout';
 import PageFormUpdate from '../../../components/PageFormUpdate';
 
@@ -8,9 +9,20 @@ const UpdatePage = () => {
 
     return (
         <Layout>
-            <h1 className={"text-4xl"}>Edit Page</h1>
-            <PageFormUpdate postId={query['id']}></PageFormUpdate>
+            <PanelGroup>
+                <Panel>
+                    <Header>
+                        <h1>Edit Page</h1>
+                    </Header>
+                </Panel>
+                <Panel>
+                    <Content>
+                        <PageFormUpdate postId={query['id']}></PageFormUpdate>
+                    </Content>
+                </Panel>
+            </PanelGroup>
         </Layout>
+
     )
 }
 

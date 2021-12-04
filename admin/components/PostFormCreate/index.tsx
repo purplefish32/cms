@@ -1,13 +1,9 @@
 import router from "next/router";
 import { useEffect, useRef, useState } from "react";
-import { PostTypesEnum, usePageFormQuery, usePageFormUpdateMutation } from "../../generated/graphql";
+import { PostTypesEnum, usePageFormCreateMutation, usePageFormQuery, usePageFormUpdateMutation } from "../../generated/graphql";
 import { Form, Schema, Button, Message } from 'rsuite';
 
-type Props = {
-    postId: string | string[];
-}
-
-const PageFormUpdate = (props: Props) => {
+const PostFormCreate = () => {
 
     const [formValue, setFormValue] = useState({
         title: '',
@@ -15,8 +11,6 @@ const PageFormUpdate = (props: Props) => {
         excerpt: '',
         body: ''
     });
-
-    const { postId } = props;
 
     const { StringType } = Schema.Types;
 
@@ -31,37 +25,7 @@ const PageFormUpdate = (props: Props) => {
 
     const [formError, setFormError] = useState({});
 
-    const {
-        data: queryData,
-        loading: queryLoading,
-        error: queryError
-    } = usePageFormQuery({
-        fetchPolicy: "cache-and-network",
-        variables: {
-            id: postId
-        }
-    });
-
-    useEffect(() => {
-        if (queryLoading === false && queryData) {
-
-            const {
-                title,
-                slug,
-                excerpt,
-                body
-            } = queryData.posts_by_pk
-
-            setFormValue({
-                title,
-                slug,
-                excerpt,
-                body
-            });
-        }
-    }, [queryLoading, queryData])
-
-    const [update_posts_one, { loading: mutationLoading, error: mutationError }] = usePageFormUpdateMutation()
+    const [insert_posts_one, { loading, error }] = usePageFormCreateMutation()
 
     const handleChange = (_value, event) => {
         setFormValue((formValue) => ({
@@ -78,33 +42,22 @@ const PageFormUpdate = (props: Props) => {
         const { title, slug, body, excerpt } = formValue
 
         try {
-            await update_posts_one({
+            await insert_posts_one({
                 variables: {
-                    pk_columns: {
-                        id: postId
-                    },
-                    _set: {
+                    object: {
                         title,
                         slug,
                         body,
                         excerpt,
-                        type: PostTypesEnum.Page
+                        type: PostTypesEnum.Post
                     }
                 }
             });
-            router.push("/pages")
+            router.push("/posts")
         } catch (error) {
             console.log(error)
         }
     };
-
-    if (queryError) {
-        return <div>Error loading page data.</div>;
-    }
-
-    if (!queryData) {
-        return <div>Loading</div>;
-    }
 
     return (
         <Form
@@ -116,13 +69,13 @@ const PageFormUpdate = (props: Props) => {
             fluid
         >
             <Form.Group>
-                {mutationError && (
+                {error && (
                     <Message
                         type="error"
                         showIcon
                         header='Error'
                     >
-                        {mutationError.message}
+                        {error.message}
                     </Message>
                 )}
                 <Form.ControlLabel>Title</Form.ControlLabel>
@@ -158,9 +111,9 @@ const PageFormUpdate = (props: Props) => {
                     placeholder="Body"
                 />
             </Form.Group>
-            <Button type="submit" appearance="primary" onClick={handleSubmit} loading={mutationLoading}>Submit</Button>
+            <Button type="submit" appearance="primary" onClick={handleSubmit} loading={loading}>Submit</Button>
         </Form >
     )
 }
 
-export default PageFormUpdate
+export default PostFormCreate

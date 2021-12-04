@@ -1,10 +1,12 @@
-import { FunctionComponent, MouseEvent } from "react";
+import { FunctionComponent } from "react";
 import { Label, Table } from 'semantic-ui-react'
 import { usePostsTableQuery } from "../../generated/graphql";
 import Link from 'next/link'
 import { format } from 'date-fns';
 import getStatusColor from "../../utils/getStatusColor";
 import PostDeleteButton from "../PostDeleteButton";
+import router from "next/router";
+import { Button, ButtonToolbar } from "rsuite";
 
 const PostsTable: FunctionComponent = () => {
     const { data, error } = usePostsTableQuery({
@@ -45,8 +47,17 @@ const PostsTable: FunctionComponent = () => {
                                     format(new Date(post.created_at), "yyyy/MM/dd 'at ' HH:ii")
                                 }</Table.Cell>
                                 <Table.Cell>
-                                    <Link href={`posts/edit/${post.id}`}>Edit</Link>
-                                    <PostDeleteButton postId={post.id} />
+                                    <ButtonToolbar>
+                                        <Button
+                                            size="xs"
+                                            appearance="primary"
+                                            onClick={
+                                                () => {
+                                                    router.push(`posts/edit/${post.id}`)
+                                                }
+                                            }
+                                        >Edit</Button><PostDeleteButton postId={post.id} />
+                                    </ButtonToolbar>
                                 </Table.Cell>
                             </Table.Row>
                         )

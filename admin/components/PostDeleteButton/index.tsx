@@ -1,33 +1,31 @@
 import { useState } from "react";
-import { Button, SemanticCOLORS } from "semantic-ui-react";
 import { usePostsDeleteMutation } from "../../generated/graphql";
 import { namedOperations } from "../../types";
+import { Button } from 'rsuite';
 
-function PostDeleteButton({ postId }) {
-    const [text, setText] = useState("Delete");
-    const [color, setColor] = useState<SemanticCOLORS>("red");
+function PageDeleteButton({ postId }) {
 
     const [postsDelete, { loading }] = usePostsDeleteMutation({
         refetchQueries: [
-            namedOperations.Query.PostsTable,
+            namedOperations.Query.PagesTable,
             namedOperations.Query.PostCounter
         ]
     })
 
     return (
         <Button
+            size="xs"
             loading={loading}
-            color={color}
+            color="red"
+            appearance="primary"
             onClick={
                 async (event) => {
                     await postsDelete({
                         variables: { id: postId }
                     });
-                    setText("OK")
-                    setColor("green")
                 }
-            }>{text}</Button>
+            }>Delete</Button>
     )
 }
 
-export default PostDeleteButton
+export default PageDeleteButton

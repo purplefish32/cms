@@ -1,8 +1,8 @@
 import Layout from '../../components/Layout';
-import { useRouter } from 'next/router'
+import router, { useRouter } from 'next/router'
 import { usePostViewQuery } from "../../generated/graphql";
-import { Button, Label, Segment } from 'semantic-ui-react';
 import getStatusColor from '../../utils/getStatusColor';
+import { Header, Content, Panel, PanelGroup, Button, Tag } from 'rsuite';
 
 const Page = () => {
     const { query } = useRouter()
@@ -28,51 +28,59 @@ const Page = () => {
         taxonomies
     } = data
 
-    const handleClick = (e) => {
-        e.preventDefault()
+    const handleClick = () => {
         router.push(`/posts/edit/${id}`)
     }
 
     return (
         <Layout>
-            <h1 className={"text-4xl"}>{post.title} <Button primary onClick={handleClick}>Edit</Button></h1>
-            <Segment inverted color={getStatusColor(post.status)}>
-                <h4>Status</h4>
-                {post.status}
-            </Segment>
-            <Segment>
-                <h4>Slug</h4>
-                {post.slug}
-            </Segment>
-            <Segment>
-                <h4>Excerpt</h4>
-                {post.excerpt}
-            </Segment>
-            <Segment>
-                <h4>Body</h4>
-                {post.body}
-            </Segment>
-            {
-                taxonomies.map(
-                    (taxonomy) => {
-                        <Segment>
-                            <h4>{taxonomy.name}</h4>
-                            <div>
-                                <em>{taxonomy.description}</em>
-                            </div>
-                            {taxonomy.terms.map(
-                                (term) => {
-                                    return (
-                                        <Label>{term.name}</Label>
-                                    )
+            <PanelGroup>
+                <Panel>
+                    <Header>
+                        <h1 className={"text-4xl"}>{post.title} <Button appearance={'primary'} onClick={handleClick}>Edit</Button></h1>
+                    </Header>
+                </Panel>
+                <Panel>
+                    <Content>
+                        <Panel color={getStatusColor(post.status)}>
+                            <h4>Status</h4>
+                            {post.status}
+                        </Panel>
+                        <Panel>
+                            <h4>Slug</h4>
+                            {post.slug}
+                        </Panel>
+                        <Panel>
+                            <h4>Excerpt</h4>
+                            {post.excerpt}
+                        </Panel>
+                        <Panel>
+                            <h4>Body</h4>
+                            {post.body}
+                        </Panel>
+                        {
+                            taxonomies.map(
+                                (taxonomy) => {
+                                    <Panel>
+                                        <h4>{taxonomy.name}</h4>
+                                        <div>
+                                            <em>{taxonomy.description}</em>
+                                        </div>
+                                        {taxonomy.terms.map(
+                                            (term) => {
+                                                return (
+                                                    <Tag>{term.name}</Tag>
+                                                )
+                                            }
+                                        )
+                                        }
+                                    </Panel>
                                 }
                             )
-                            }
-                        </Segment>
-                    }
-                )
-            }
-        </Layout >
+                        } </Content>
+                </Panel>
+            </PanelGroup>
+        </Layout>
     )
 }
 

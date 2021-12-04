@@ -1,32 +1,46 @@
 import router from "next/router";
-import { useEffect } from "react";
-import { useForm } from "react-hook-form";
-import { Button, Form, Message } from "semantic-ui-react";
-import { PostTypesEnum, usePageFormCreateMutation } from "../../generated/graphql";
+import { useEffect, useRef, useState } from "react";
+import { PostTypesEnum, usePageFormCreateMutation, usePageFormQuery, usePageFormUpdateMutation } from "../../generated/graphql";
+import { Form, Schema, Button, Message } from 'rsuite';
 
 const PageFormCreate = () => {
 
-    const [insert_posts_one, { loading, error }] = usePageFormCreateMutation();
-
-    useEffect(() => {
-        register("title", { required: true });
-        register("slug", { required: true, pattern: /^[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*$/ });
-        register("body");
-        register("excerpt");
-    }, []);
-
-    const {
-        register,
-        handleSubmit,
-        setValue,
-        trigger,
-        formState: { errors }
-    } = useForm({
-        mode: "onBlur"
+    const [formValue, setFormValue] = useState({
+        title: '',
+        slug: '',
+        excerpt: '',
+        body: ''
     });
 
-    const onSubmit = async (data) => {
-        const { title, slug, body, excerpt } = data;
+    const { StringType } = Schema.Types;
+
+    const model = Schema.Model({
+        title: StringType().isRequired('This field is required.'),
+        slug: StringType().isRequired('This field is required.'), // TODO test slug unique
+        excerpt: StringType(),
+        body: StringType(),
+    });
+
+    const formRef = useRef();
+
+    const [formError, setFormError] = useState({});
+
+    const [insert_posts_one, { loading, error }] = usePageFormCreateMutation()
+
+    const handleChange = (_value, event) => {
+        setFormValue((formValue) => ({
+            ...formValue, [event.target.name]: event.target.value
+        }));
+    };
+
+    const handleSubmit = async () => {
+        if (!formRef.current.check()) {
+            console.error('Form Error');
+            return;
+        }
+
+        const { title, slug, body, excerpt } = formValue
+
         try {
             await insert_posts_one({
                 variables: {
@@ -39,89 +53,66 @@ const PageFormCreate = () => {
                     }
                 }
             });
-            router.push("/pages");
-        } catch (e) {
-            console.log(e);
+            router.push("/pages")
+        } catch (error) {
+            console.log(error)
         }
-
     };
 
     return (
-        <Form onSubmit={handleSubmit(onSubmit)} loading={loading} error={Boolean(error)}>
-            <Form.Field>
+        <Form
+            ref={formRef}
+            onChange={handleChange}
+            onCheck={setFormError}
+            formValue={formValue}
+            model={model}
+            fluid
+        >
+            <Form.Group>
                 {error && (
                     <Message
-                        error
-                        icon="warning sign"
+                        type="error"
+                        showIcon
                         header='Error'
-                        content={error.message}
-                    />
+                    >
+                        {error.message}
+                    </Message>
                 )}
-                <Form.Input
+                <Form.ControlLabel>Title</Form.ControlLabel>
+                <Form.Control
                     name="title"
                     type="text"
                     placeholder="Title"
-                    label="Title"
-                    onChange={async (e, { name, value }) => {
-                        setValue(name, value);
-                        await trigger("name");
-                    }}
-                    error={
-                        errors.type ? {
-                            content: "Title is required",
-                            pointing: 'below',
-
-                        } : false
-                    }
                 />
 
-            </Form.Field>
-            <Form.Field>
-                <Form.Input
+            </Form.Group>
+            <Form.Group>
+                <Form.ControlLabel>Slug</Form.ControlLabel>
+                <Form.Control
+                    checkAsync
                     name="slug"
                     type="text"
                     placeholder="Slug"
                     label="Slug"
-                    onChange={async (e, { name, value }) => {
-                        setValue(name, value);
-                        await trigger("name");
-                    }}
-                    error={
-                        errors.slug ? {
-                            content: "Slug is invalid",
-                            pointing: 'below',
-
-                        } : false
-                    }
                 />
 
-            </Form.Field>
-            <Form.Field>
-                <Form.TextArea
+            </Form.Group>
+            <Form.Group>
+                <Form.ControlLabel>Excerpt</Form.ControlLabel>
+                <Form.Control
                     name="excerpt"
                     placeholder="Excerpt"
-                    label="Excerpt"
-                    onChange={async (e, { name, value }) => {
-                        setValue(name, value);
-                        await trigger("name");
-                    }}
                 />
-
-            </Form.Field>
-            <Form.Field>
-                <Form.TextArea
+            </Form.Group>
+            <Form.Group>
+                <Form.ControlLabel>Body</Form.ControlLabel>
+                <Form.Control
                     name="body"
                     placeholder="Body"
-                    label="Body"
-                    onChange={async (e, { name, value }) => {
-                        setValue(name, value);
-                        await trigger("name");
-                    }}
                 />
-
-            </Form.Field>
-            <Button type="submit">Submit</Button>
-        </Form>
+            </Form.Group>
+            <Button type="submit" appearance="primary" onClick={handleSubmit} loading={loading}>Submit</Button>
+        </Form >
     )
 }
 
