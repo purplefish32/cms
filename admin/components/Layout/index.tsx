@@ -1,4 +1,5 @@
 import { Container, Header, Content, Footer, Sidebar, Sidenav, Nav, Dropdown, Navbar } from 'rsuite';
+import { Pin, Page, Media } from '@rsuite/icons';
 import { useState } from "react";
 import Link from 'next/link'
 
@@ -49,7 +50,7 @@ export default function Layout({ children }) {
                             <Nav.Item eventKey="1">
                                 <Link href="/">Dashboard</Link>
                             </Nav.Item>
-                            <Dropdown eventKey="2" title="Posts">
+                            <Dropdown eventKey="2" title="Posts" icon={<Pin />}>
                                 <Dropdown.Item eventKey="2-1">
                                     <Link href="/posts">All Posts</Link>
                                 </Dropdown.Item>
@@ -59,11 +60,11 @@ export default function Layout({ children }) {
                                 <Dropdown.Item eventKey="2-3">Categories</Dropdown.Item>
                                 <Dropdown.Item eventKey="2-4">Tags</Dropdown.Item>
                             </Dropdown>
-                            <Dropdown eventKey="3" title="Media">
+                            <Dropdown eventKey="3" title="Media" icon={<Media />}>
                                 <Dropdown.Item eventKey="3-1">Library</Dropdown.Item>
                                 <Dropdown.Item eventKey="3-2">Add New</Dropdown.Item>
                             </Dropdown>
-                            <Dropdown eventKey="4" title="Pages">
+                            <Dropdown eventKey="4" title="Pages" icon={<Page />}>
                                 <Dropdown.Item eventKey="4-1">
                                     <Link href="/pages">All Pages</Link>
                                 </Dropdown.Item>
@@ -81,6 +82,6 @@ export default function Layout({ children }) {
             <Container>
                 {children}
             </Container>
-        </Container>
+        </Container >
     )
 }

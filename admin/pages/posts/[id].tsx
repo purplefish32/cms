@@ -37,7 +37,7 @@ const Page = () => {
             <PanelGroup>
                 <Panel>
                     <Header>
-                        <h1 className={"text-4xl"}>{post.title} <Button appearance={'primary'} onClick={handleClick}>Edit</Button></h1>
+                        <h1>{post.title} <Button appearance={'primary'} onClick={handleClick}>Edit</Button></h1>
                     </Header>
                 </Panel>
                 <Panel>
