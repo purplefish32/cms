@@ -7,16 +7,4 @@ query PostView($uuid: uuid!) {
     excerpt
     status
   }
-
-  taxonomies(
-    where: { terms: { term_relationships: { object_id: { _eq: $uuid } } } }
-  ) {
-    id
-    name
-    description
-    terms(where: { term_relationships: { object_id: { _eq: $uuid } } }) {
-      name
-      id
-    }
-  }
 }
