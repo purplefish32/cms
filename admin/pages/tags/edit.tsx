@@ -1,6 +1,5 @@
 import { Header, Content, Panel, PanelGroup, Form, Button } from 'rsuite';
-import Layout from '../../../components/Layout';
-import TermTaxonomiesTable from '../../../components/TermTaxonomiesTable';
+import Layout from '../../components/Layout';
 
 const Page = () => {
     return (
@@ -8,12 +7,12 @@ const Page = () => {
             <PanelGroup>
                 <Panel>
                     <Header>
-                        <h1>Categories</h1>
+                        <h1>Tags</h1>
                     </Header>
                 </Panel>
                 <Panel>
                     <Content>
-                        <h4>Add New Category</h4>
+                        <h4>Add New Tag</h4>
                         <Form>
                             <Form.Group>
                                 <Form.ControlLabel>Name</Form.ControlLabel>
@@ -40,15 +39,6 @@ const Page = () => {
                                 </Form.HelpText>
                             </Form.Group>
                             <Form.Group>
-                                <Form.ControlLabel>Parent</Form.ControlLabel>
-                                <Form.Control
-                                    name="parent"
-                                    type="text"
-                                />
-                                <Form.HelpText>
-                                    Categories, unlike tags, can have a hierarchy. You might have a Jazz category, and under that have children categories for Bebop and Big Band. Totally optional.                                </Form.HelpText>
-                            </Form.Group>
-                            <Form.Group>
                                 <Form.ControlLabel>Description</Form.ControlLabel>
                                 <Form.Control
                                     name="description"
@@ -60,7 +50,6 @@ const Page = () => {
                             </Form.Group>
                             <Button type="submit" appearance="primary">Add New Taxonomy Term</Button>
                         </Form>
-                        <TermTaxonomiesTable></TermTaxonomiesTable>
                     </Content>
                 </Panel>
             </PanelGroup>

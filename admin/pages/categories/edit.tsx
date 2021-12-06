@@ -1,5 +1,6 @@
 import { Header, Content, Panel, PanelGroup, Form, Button } from 'rsuite';
-import Layout from '../../../components/Layout';
+import Layout from '../../components/Layout';
+import TermTaxonomiesTable from '../../components/TermTaxonomiesTable';
 
 const Page = () => {
     return (
@@ -7,12 +8,12 @@ const Page = () => {
             <PanelGroup>
                 <Panel>
                     <Header>
-                        <h1>Tags</h1>
+                        <h1>Categories</h1>
                     </Header>
                 </Panel>
                 <Panel>
                     <Content>
-                        <h4>Add New Tag</h4>
+                        <h4>Add New Category</h4>
                         <Form>
                             <Form.Group>
                                 <Form.ControlLabel>Name</Form.ControlLabel>
@@ -59,6 +60,7 @@ const Page = () => {
                             </Form.Group>
                             <Button type="submit" appearance="primary">Add New Taxonomy Term</Button>
                         </Form>
+                        <TermTaxonomiesTable></TermTaxonomiesTable>
                     </Content>
                 </Panel>
             </PanelGroup>

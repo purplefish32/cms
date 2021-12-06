@@ -58,10 +58,10 @@ export default function Layout({ children }) {
                                     <Link href="/posts/create">Add New</Link>
                                 </Dropdown.Item>
                                 <Dropdown.Item eventKey="2-3">
-                                    <Link href="/taxonomies/categories/edit">Categories</Link>
+                                    <Link href="/categories/edit">Categories</Link>
                                 </Dropdown.Item>
                                 <Dropdown.Item eventKey="2-4">
-                                    <Link href="/taxonomies/tags/edit">Tags</Link>
+                                    <Link href="/tags/edit">Tags</Link>
                                 </Dropdown.Item>
                             </Dropdown>
                             <Dropdown eventKey="3" title="Media" icon={<Media />}>
