@@ -1,13 +1,17 @@
-import router from "next/router";
 import { useRef, useState } from "react";
-import { PostTypesEnum, useCreatePostMutation } from "../../../generated/graphql";
-import { Form, Schema, Button, Message } from 'rsuite';
+import { PostStatesEnum, PostTypesEnum, useCreatePostMutation } from "../../../generated/graphql";
+import { Form, Schema, Message, ButtonToolbar } from 'rsuite';
+import { capitalize } from "underscore.string";
+import SubmitDraftButton from "../Form/SubmitDraftButton";
+import SubmitPublishedButton from "../Form/SubmitPublishedButton";
+import router from "next/router";
 
 const PageFormCreate = () => {
 
     const [formValue, setFormValue] = useState({
         title: '',
         slug: '',
+        state: '',
         body: ''
     });
 
@@ -25,26 +29,36 @@ const PageFormCreate = () => {
 
     const [insert_posts_one, { loading, error }] = useCreatePostMutation()
 
+    const handleSubmitDraft = () => {
+        setFormValue({ ...formValue, state: PostStatesEnum.Draft })
+    }
+
+    const handleSubmitPublished = () => {
+        setFormValue({ ...formValue, state: PostStatesEnum.Published })
+    }
+
     const handleSubmit = async () => {
         if (!formRef.current.check()) {
             console.error('Form Error');
             return;
         }
 
-        const { title, slug, body } = formValue
+        const { title, slug, state, body } = formValue
 
         try {
-            await insert_posts_one({
+            const { data } = await insert_posts_one({
                 variables: {
                     object: {
                         title,
                         slug,
                         body,
+                        state: PostStatesEnum[capitalize(state)],
                         type: PostTypesEnum.Page
                     }
                 }
             });
-            router.push("/pages")
+            console.log(data);
+            router.push(`/pages/edit/${data.insert_posts_one.id}`)
         } catch (error) {
             console.log(error)
         }
@@ -58,6 +72,7 @@ const PageFormCreate = () => {
             }}
             onCheck={setFormError}
             formValue={formValue}
+            onSubmit={handleSubmit}
             model={model}
             fluid
         >
@@ -97,7 +112,16 @@ const PageFormCreate = () => {
                     placeholder="Body"
                 />
             </Form.Group>
-            <Button type="submit" appearance="primary" onClick={handleSubmit} loading={loading}>Submit</Button>
+            <ButtonToolbar>
+                <SubmitDraftButton
+                    loading={loading}
+                    handleClick={handleSubmitDraft}
+                />
+                <SubmitPublishedButton
+                    loading={loading}
+                    handleClick={handleSubmitPublished}
+                />
+            </ButtonToolbar>
         </Form >
     )
 }

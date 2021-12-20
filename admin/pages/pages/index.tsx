@@ -5,9 +5,7 @@ import { PostStatesEnum, PostTypesEnum } from '../../generated/graphql';
 import { Header, Content, Panel, PanelGroup, Button } from 'rsuite';
 import PostStateCounter from '../../src/components/PostStateCounter';
 
-
-const handleClick = (e) => {
-  e.preventDefault()
+const handleClick = () => {
   router.push("pages/create")
 }
 
@@ -22,12 +20,11 @@ const Pages = () => {
         </Panel>
         <Panel>
           <Content>
-            All (<PostStateCounter type={PostTypesEnum.Page} />) | Published (<PostStateCounter type={PostTypesEnum.Page} state={PostStatesEnum.Published} />) | Draft (<PostStateCounter type={PostTypesEnum.Page} state={PostStatesEnum.Draft} />)
+            Published (<PostStateCounter type={PostTypesEnum.Page} state={PostStatesEnum.Published} />) | Draft (<PostStateCounter type={PostTypesEnum.Page} state={PostStatesEnum.Draft} />)
             <PagesTable></PagesTable>
           </Content>
         </Panel>
       </PanelGroup>
-
     </Layout>
   )
 }

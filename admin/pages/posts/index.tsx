@@ -20,7 +20,7 @@ const ListPosts = () => (
             </Panel>
             <Panel>
                 <Content>
-                    All (<PostStateCounter type={PostTypesEnum.Post} />) | Published (<PostStateCounter type={PostTypesEnum.Post} state={PostStatesEnum.Published} />) | Draft (<PostStateCounter type={PostTypesEnum.Post} state={PostStatesEnum.Draft} />)
+                    Published (<PostStateCounter type={PostTypesEnum.Post} state={PostStatesEnum.Published} />) | Draft (<PostStateCounter type={PostTypesEnum.Post} state={PostStatesEnum.Draft} />)
                     <PostsTable></PostsTable>
                 </Content>
             </Panel>

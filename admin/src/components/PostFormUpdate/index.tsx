@@ -1,8 +1,9 @@
-import router from "next/router";
 import { useEffect, useRef, useState } from "react";
 import { PostStatesEnum, PostTypesEnum, usePostQuery, useUpdatePostMutation } from "../../../generated/graphql";
-import { Form, Schema, Button, Message, InputPicker } from 'rsuite';
+import { Form, Schema, Message, ButtonToolbar } from 'rsuite';
 import { capitalize } from 'underscore.string';
+import SubmitDraftButton from "../Form/SubmitDraftButton";
+import SubmitPublishedButton from "../Form/SubmitPublishedButton";
 
 type Props = {
     postId: string | string[];
@@ -17,6 +18,8 @@ const PostFormUpdate = (props: Props) => {
         excerpt: '',
         body: ''
     }
+
+    const [saved, setSaved] = useState(true);
 
     const [formValue, setFormValue] = useState(initFormValue);
 
@@ -67,7 +70,15 @@ const PostFormUpdate = (props: Props) => {
         }
     }, [queryLoading, queryData])
 
-    const [update_posts_one, { loading: mutationLoading, error: mutationError }] = useUpdatePostMutation()
+    const [update_posts_one, { loading, error: mutationError }] = useUpdatePostMutation()
+
+    const handleSubmitDraft = () => {
+        setFormValue({ ...formValue, state: PostStatesEnum.Draft })
+    }
+
+    const handleSubmitPublished = () => {
+        setFormValue({ ...formValue, state: PostStatesEnum.Published })
+    }
 
     const handleSubmit = async () => {
         if (!formRef.current.check()) {
@@ -93,7 +104,7 @@ const PostFormUpdate = (props: Props) => {
                     }
                 }
             });
-            router.push("/posts")
+            setSaved(true)
         } catch (error) {
             console.log(error)
         }
@@ -112,8 +123,10 @@ const PostFormUpdate = (props: Props) => {
             ref={formRef}
             onChange={formValue => {
                 setFormValue(formValue)
+                setSaved(false)
             }}
             onCheck={setFormError}
+            onSubmit={handleSubmit}
             formValue={formValue}
             model={model}
             fluid
@@ -153,36 +166,28 @@ const PostFormUpdate = (props: Props) => {
                 />
             </Form.Group>
             <Form.Group>
-                <Form.ControlLabel>State</Form.ControlLabel>
-                <Form.Control
-                    name="state"
-                    accepter={InputPicker}
-                    data={
-                        [
-                            {
-                                "label": "Draft",
-                                "value": PostStatesEnum.Draft
-                            },
-                            {
-                                "label": "Published",
-                                "value": PostStatesEnum.Published
-                            },
-                            {
-                                "label": "Archived",
-                                "value": PostStatesEnum.Archived
-                            },
-                        ]
-                    }
-                />
-            </Form.Group>
-            <Form.Group>
                 <Form.ControlLabel>Body</Form.ControlLabel>
                 <Form.Control
                     name="body"
                     placeholder="Body"
                 />
             </Form.Group>
-            <Button type="submit" appearance="primary" onClick={handleSubmit} loading={mutationLoading}>Submit</Button>
+            <ButtonToolbar>
+                <SubmitDraftButton
+                    loading={loading && formValue.state === "draft"}
+                    handleClick={handleSubmitDraft}
+                    state={formValue.state}
+                    disabled={saved && formValue.state === "draft"}
+                    saved={saved}
+                />
+                <SubmitPublishedButton
+                    loading={loading && formValue.state === "published"}
+                    handleClick={handleSubmitPublished}
+                    state={formValue.state}
+                    disabled={saved && formValue.state === "published"}
+                    saved={saved}
+                />
+            </ButtonToolbar>
         </Form >
     )
 }

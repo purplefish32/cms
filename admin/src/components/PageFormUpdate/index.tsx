@@ -1,7 +1,9 @@
-import router from "next/router";
 import { useEffect, useRef, useState } from "react";
-import { PostTypesEnum, usePostQuery, useUpdatePostMutation } from "../../../generated/graphql";
-import { Form, Schema, Button, Message } from 'rsuite';
+import { PostStatesEnum, PostTypesEnum, usePostQuery, useUpdatePostMutation } from "../../../generated/graphql";
+import { Form, Schema, Message, ButtonToolbar } from 'rsuite';
+import { capitalize } from "underscore.string";
+import SubmitDraftButton from "../Form/SubmitDraftButton";
+import SubmitPublishedButton from "../Form/SubmitPublishedButton";
 
 type Props = {
     postId: string | string[];
@@ -12,8 +14,11 @@ const PageFormUpdate = (props: Props) => {
     const [formValue, setFormValue] = useState({
         title: '',
         slug: '',
+        state: '',
         body: ''
     });
+
+    const [saved, setSaved] = useState(true);
 
     const { postId } = props;
 
@@ -46,18 +51,28 @@ const PageFormUpdate = (props: Props) => {
             const {
                 title,
                 slug,
+                state,
                 body
             } = queryData.posts_by_pk
 
             setFormValue({
                 title,
                 slug,
+                state,
                 body
             });
         }
     }, [queryLoading, queryData])
 
-    const [update_posts_one, { loading: mutationLoading, error: mutationError }] = useUpdatePostMutation()
+    const [update_posts_one, { loading, error: mutationError }] = useUpdatePostMutation()
+
+    const handleSubmitDraft = () => {
+        setFormValue({ ...formValue, state: PostStatesEnum.Draft })
+    }
+
+    const handleSubmitPublished = () => {
+        setFormValue({ ...formValue, state: PostStatesEnum.Published })
+    }
 
     const handleSubmit = async () => {
         if (!formRef.current.check()) {
@@ -65,7 +80,7 @@ const PageFormUpdate = (props: Props) => {
             return;
         }
 
-        const { title, slug, body } = formValue
+        const { title, slug, state, body } = formValue
 
         try {
             await update_posts_one({
@@ -77,11 +92,12 @@ const PageFormUpdate = (props: Props) => {
                         title,
                         slug,
                         body,
+                        state: PostStatesEnum[capitalize(state)],
                         type: PostTypesEnum.Page
                     }
                 }
             });
-            router.push("/pages")
+            setSaved(true)
         } catch (error) {
             console.log(error)
         }
@@ -100,8 +116,10 @@ const PageFormUpdate = (props: Props) => {
             ref={formRef}
             onChange={formValue => {
                 setFormValue(formValue)
+                setSaved(false)
             }}
             onCheck={setFormError}
+            onSubmit={handleSubmit}
             formValue={formValue}
             model={model}
             fluid
@@ -122,7 +140,6 @@ const PageFormUpdate = (props: Props) => {
                     type="text"
                     placeholder="Title"
                 />
-
             </Form.Group>
             <Form.Group>
                 <Form.ControlLabel>Slug</Form.ControlLabel>
@@ -133,7 +150,6 @@ const PageFormUpdate = (props: Props) => {
                     placeholder="Slug"
                     label="Slug"
                 />
-
             </Form.Group>
             <Form.Group>
                 <Form.ControlLabel>Body</Form.ControlLabel>
@@ -142,7 +158,22 @@ const PageFormUpdate = (props: Props) => {
                     placeholder="Body"
                 />
             </Form.Group>
-            <Button type="submit" appearance="primary" onClick={handleSubmit} loading={mutationLoading}>Submit</Button>
+            <ButtonToolbar>
+                <SubmitDraftButton
+                    loading={loading && formValue.state === "draft"}
+                    handleClick={handleSubmitDraft}
+                    state={formValue.state}
+                    disabled={saved && formValue.state === "draft"}
+                    saved={saved}
+                />
+                <SubmitPublishedButton
+                    loading={loading && formValue.state === "published"}
+                    handleClick={handleSubmitPublished}
+                    state={formValue.state}
+                    disabled={saved && formValue.state === "published"}
+                    saved={saved}
+                />
+            </ButtonToolbar>
         </Form >
     )
 }
