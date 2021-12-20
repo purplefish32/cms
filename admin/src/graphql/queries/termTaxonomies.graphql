@@ -1,0 +1,14 @@
+query termTaxonomies($where: term_taxonomies_bool_exp) {
+  term_taxonomies(where: $where) {
+    __typename
+    taxonomy
+    description
+    term_slug
+    parent_slug
+    term {
+      __typename
+      name
+      slug
+    }
+  }
+}

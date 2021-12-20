@@ -1,5 +1,0 @@
-mutation PageFormCreate($object: posts_insert_input!) {
-  insert_posts_one(object: $object) {
-    id
-  }
-}

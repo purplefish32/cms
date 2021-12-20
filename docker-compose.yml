@@ -49,7 +49,7 @@ services:
       - db_data:/var/lib/postgresql/data
 
   graphql-engine:
-    image: hasura/graphql-engine:latest.cli-migrations-v3
+    image: hasura/graphql-engine:v2.1.0-beta.3.cli-migrations-v3
     #image: hasura/graphql-engine:latest
     ports:
       - "8080:8080"

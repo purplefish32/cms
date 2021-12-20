@@ -1,0 +1,6 @@
+mutation createTerm($object: terms_insert_input!) {
+  insert_terms_one(object: $object) {
+    __typename
+    slug
+  }
+}

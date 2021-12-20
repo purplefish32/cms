@@ -1,0 +1,14 @@
+query posts($where: posts_bool_exp) {
+  posts(where: $where) {
+    __typename
+    id
+    title
+    type
+    state
+    excerpt
+    slug
+    body
+    author_id
+    created_at
+  }
+}

@@ -1,8 +1,0 @@
-mutation PageFormUpdate(
-  $pk_columns: posts_pk_columns_input!
-  $_set: posts_set_input
-) {
-  update_posts_by_pk(pk_columns: $pk_columns, _set: $_set) {
-    id
-  }
-}

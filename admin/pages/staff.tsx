@@ -1,6 +1,6 @@
 import Head from 'next/head'
-import Layout from '../components/Layout'
-import StaffTable from '../components/StaffTable'
+import Layout from '../src/components/Layout'
+import StaffTable from '../src/components/StaffTable'
 
 export default function Staff() {
   return (

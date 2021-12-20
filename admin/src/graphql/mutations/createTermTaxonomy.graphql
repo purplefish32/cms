@@ -1,0 +1,9 @@
+mutation createTermTaxonomy($objects: [term_taxonomies_insert_input!]!) {
+  insert_term_taxonomies(objects: $objects) {
+    __typename
+    returning {
+      __typename
+      term_slug
+    }
+  }
+}

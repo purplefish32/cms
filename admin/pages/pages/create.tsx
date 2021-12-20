@@ -1,5 +1,5 @@
-import Layout from '../../components/Layout';
-import PageFormCreate from '../../components/PageFormCreate';
+import Layout from '../../src/components/Layout';
+import PageFormCreate from '../../src/components/PageFormCreate';
 import { Header, Content, Panel, PanelGroup } from 'rsuite';
 
 const CreatePage = () => {

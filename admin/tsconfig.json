@@ -24,7 +24,7 @@
     "**/*.ts",
     "**/*.tsx",
     "lib/apolloClient.js"
-, "components/PagesTable/index.tsx", "pages/pages.tsx"  ],
+  ],
   "exclude": [
     "node_modules"
   ]

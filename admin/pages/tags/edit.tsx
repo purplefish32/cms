@@ -1,7 +1,10 @@
-import { Header, Content, Panel, PanelGroup, Form, Button } from 'rsuite';
-import Layout from '../../components/Layout';
+import { Header, Content, Panel, PanelGroup, FlexboxGrid } from "rsuite";
+import { TaxonomiesEnum } from "../../generated/graphql";
+import TagFormCreate from "../../src/components/Form/TagFormCreate";
+import Layout from "../../src/components/Layout";
+import TermTaxonomiesTable from "../../src/components/TermTaxonomiesTable";
 
-const Page = () => {
+export default () => {
     return (
         <Layout>
             <PanelGroup>
@@ -12,49 +15,20 @@ const Page = () => {
                 </Panel>
                 <Panel>
                     <Content>
-                        <h4>Add New Tag</h4>
-                        <Form>
-                            <Form.Group>
-                                <Form.ControlLabel>Name</Form.ControlLabel>
-                                <Form.Control
-                                    name="name"
-                                    type="text"
-                                    placeholder="Name"
+                        <FlexboxGrid>
+                            <FlexboxGrid.Item colspan={6}>
+                                <h4>Add New Tag</h4>
+                                <TagFormCreate />
+                            </FlexboxGrid.Item>
+                            <FlexboxGrid.Item colspan={18}>
+                                <TermTaxonomiesTable
+                                    taxonomy={TaxonomiesEnum.Tags}
                                 />
-                                <Form.HelpText>
-                                    The name is how it appears on your site.
-                                </Form.HelpText>
-
-                            </Form.Group>
-                            <Form.Group>
-                                <Form.ControlLabel>Slug</Form.ControlLabel>
-                                <Form.Control
-                                    checkAsync
-                                    name="slug"
-                                    type="text"
-                                    placeholder="Slug"
-                                />
-                                <Form.HelpText>
-                                    The “slug” is the URL-friendly version of the name. It is usually all lowercase and contains only letters, numbers, and hyphens.
-                                </Form.HelpText>
-                            </Form.Group>
-                            <Form.Group>
-                                <Form.ControlLabel>Description</Form.ControlLabel>
-                                <Form.Control
-                                    name="description"
-                                    type="text"
-                                />
-                                <Form.HelpText>
-                                    The description is not prominent by default; however, some themes may show it.
-                                </Form.HelpText>
-                            </Form.Group>
-                            <Button type="submit" appearance="primary">Add New Taxonomy Term</Button>
-                        </Form>
+                            </FlexboxGrid.Item>
+                        </FlexboxGrid>
                     </Content>
                 </Panel>
             </PanelGroup>
         </Layout>
-    )
-}
-
-export default Page;
+    );
+};

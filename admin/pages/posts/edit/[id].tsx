@@ -1,10 +1,9 @@
 import { useRouter } from 'next/router';
 import { Content, Header, Panel, PanelGroup } from 'rsuite';
-import Layout from '../../../components/Layout';
-import PageFormUpdate from '../../../components/PageFormUpdate';
+import Layout from '../../../src/components/Layout';
+import PostFormUpdate from '../../../src/components/PostFormUpdate';
 
-const UpdatePage = () => {
-
+export default () => {
     const { query } = useRouter()
 
     return (
@@ -12,18 +11,15 @@ const UpdatePage = () => {
             <PanelGroup>
                 <Panel>
                     <Header>
-                        <h1>Edit Page</h1>
+                        <h1>Edit Post</h1>
                     </Header>
                 </Panel>
                 <Panel>
                     <Content>
-                        <PageFormUpdate postId={query['id']}></PageFormUpdate>
+                        <PostFormUpdate postId={query['id']}></PostFormUpdate>
                     </Content>
                 </Panel>
             </PanelGroup>
         </Layout>
-
     )
 }
-
-export default UpdatePage;

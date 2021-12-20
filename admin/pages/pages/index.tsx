@@ -1,9 +1,9 @@
 import router from 'next/router';
-import Layout from '../../components/Layout';
-import PagesTable from '../../components/PagesTable';
-import PostStatusCounter from '../../components/PostStatusCounter';
-import { PostStatusEnum, PostTypesEnum } from '../../generated/graphql';
+import Layout from '../../src/components/Layout';
+import PagesTable from '../../src/components/PagesTable';
+import { PostStatesEnum, PostTypesEnum } from '../../generated/graphql';
 import { Header, Content, Panel, PanelGroup, Button } from 'rsuite';
+import PostStateCounter from '../../src/components/PostStateCounter';
 
 
 const handleClick = (e) => {
@@ -22,7 +22,7 @@ const Pages = () => {
         </Panel>
         <Panel>
           <Content>
-            All (<PostStatusCounter type={PostTypesEnum.Page} />) | Published (<PostStatusCounter type={PostTypesEnum.Page} status={PostStatusEnum.Published} />) | Draft (<PostStatusCounter type={PostTypesEnum.Page} status={PostStatusEnum.Draft} />)
+            All (<PostStateCounter type={PostTypesEnum.Page} />) | Published (<PostStateCounter type={PostTypesEnum.Page} state={PostStatesEnum.Published} />) | Draft (<PostStateCounter type={PostTypesEnum.Page} state={PostStatesEnum.Draft} />)
             <PagesTable></PagesTable>
           </Content>
         </Panel>

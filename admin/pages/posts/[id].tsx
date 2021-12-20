@@ -1,22 +1,24 @@
-import Layout from '../../components/Layout';
 import router, { useRouter } from 'next/router'
-import { usePostViewQuery } from "../../generated/graphql";
-import getStatusColor from '../../utils/getStatusColor';
 import { Header, Content, Panel, PanelGroup, Button, Tag } from 'rsuite';
+import Layout from '../../src/components/Layout';
+import { usePostQuery } from '../../generated/graphql';
+import getStateColor from '../../src/utils/getStateColor';
 
-const Page = () => {
+const ShowPost = () => {
     const { query } = useRouter()
     const { id } = query
 
-    const { data, error } = usePostViewQuery({
+    const { data, error } = usePostQuery({
         fetchPolicy: "cache-and-network",
         variables: {
             uuid: id
         }
     });
 
+    console.log(data);
+
     if (error) {
-        return <div>Error loading posts.</div>;
+        return <div>Error loading post.</div>;
     }
 
     if (!data) {
@@ -25,7 +27,6 @@ const Page = () => {
 
     const {
         posts_by_pk: post,
-        taxonomies
     } = data
 
     const handleClick = () => {
@@ -42,9 +43,9 @@ const Page = () => {
                 </Panel>
                 <Panel>
                     <Content>
-                        <Panel color={getStatusColor(post.status)}>
-                            <h4>Status</h4>
-                            {post.status}
+                        <Panel color={getStateColor(post.state)}>
+                            <h4>State</h4>
+                            {post.state}
                         </Panel>
                         <Panel>
                             <h4>Slug</h4>
@@ -58,30 +59,11 @@ const Page = () => {
                             <h4>Body</h4>
                             {post.body}
                         </Panel>
-                        {
-                            taxonomies.map(
-                                (taxonomy) => {
-                                    <Panel>
-                                        <h4>{taxonomy.name}</h4>
-                                        <div>
-                                            <em>{taxonomy.description}</em>
-                                        </div>
-                                        {taxonomy.terms.map(
-                                            (term) => {
-                                                return (
-                                                    <Tag>{term.name}</Tag>
-                                                )
-                                            }
-                                        )
-                                        }
-                                    </Panel>
-                                }
-                            )
-                        } </Content>
+                    </Content>
                 </Panel>
             </PanelGroup>
         </Layout>
     )
 }
 
-export default Page;
+export default ShowPost
