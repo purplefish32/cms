@@ -1,5 +1,5 @@
 import router, { useRouter } from 'next/router'
-import { Header, Content, Panel, PanelGroup, Button, Tag } from 'rsuite';
+import { Header, Content, Panel, PanelGroup, Button } from 'rsuite';
 import Layout from '../../src/components/Layout';
 import { usePostQuery } from '../../generated/graphql';
 import getStateColor from '../../src/utils/getStateColor';
@@ -14,8 +14,6 @@ const ShowPost = () => {
             uuid: id
         }
     });
-
-    console.log(data);
 
     if (error) {
         return <div>Error loading post.</div>;
