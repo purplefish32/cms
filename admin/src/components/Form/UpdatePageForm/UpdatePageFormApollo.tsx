@@ -1,12 +1,12 @@
 import { capitalize } from "underscore.string";
 import { PostStatesEnum, PostTypesEnum, usePostQuery, useUpdatePostMutation } from "../../../../generated/graphql";
-import UpdatePostFormLogic, { UpdatePostFormModel } from "./UpdatePostFormLogic";
+import UpdatePageFormLogic, { UpdatePageFormModel } from "./UpdatePageFormLogic";
 
 interface Props {
     postId: string;
 }
 
-const UpdatePostFormApollo = ({ postId }: Props) => {
+const UpdatePageFormApollo = ({ postId }: Props) => {
     const {
         data,
         loading,
@@ -20,13 +20,12 @@ const UpdatePostFormApollo = ({ postId }: Props) => {
     const [update_posts_one] = useUpdatePostMutation()
 
 
-    const handleSubmit = async (data: UpdatePostFormModel) => {
+    const handleSubmit = async (data: UpdatePageFormModel) => {
         const {
             title,
             slug,
             state,
             body,
-            excerpt
         } = data
 
         try {
@@ -42,8 +41,7 @@ const UpdatePostFormApollo = ({ postId }: Props) => {
                             capitalize(state)
                         ],
                         body,
-                        excerpt,
-                        type: PostTypesEnum.Post
+                        type: PostTypesEnum.Page
                     }
                 }
             });
@@ -60,15 +58,14 @@ const UpdatePostFormApollo = ({ postId }: Props) => {
         slug: data?.posts_by_pk?.slug ?? "",
         body: data?.posts_by_pk?.body ?? "",
         state: data?.posts_by_pk?.state ?? "",
-        excerpt: data?.posts_by_pk?.excerpt ?? ""
     };
 
     return (
-        <UpdatePostFormLogic
+        <UpdatePageFormLogic
             defaultValues={defaultValues}
             onSubmit={handleSubmit}
         />
     );
 };
 
-export default UpdatePostFormApollo;
+export default UpdatePageFormApollo;

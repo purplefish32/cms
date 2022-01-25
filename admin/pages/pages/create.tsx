@@ -1,8 +1,8 @@
-import Layout from '../../src/components/Layout';
-import PageFormCreate from '../../src/components/PageFormCreate';
 import { Header, Content, Panel, PanelGroup } from 'rsuite';
+import CreatePageForm from '../../src/components/Form/CreatePageForm/CreatePageFormApollo';
+import Layout from '../../src/components/Layout';
 
-const CreatePage = () => {
+export default () => {
   return (
     <Layout>
       <PanelGroup>
@@ -13,12 +13,10 @@ const CreatePage = () => {
         </Panel>
         <Panel>
           <Content>
-            <PageFormCreate></PageFormCreate>
+            <CreatePageForm />
           </Content>
         </Panel>
       </PanelGroup>
     </Layout>
   )
 }
-
-export default CreatePage;

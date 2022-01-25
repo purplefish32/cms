@@ -2,26 +2,25 @@ import { useState } from "react";
 import { Button, Form, InputPicker } from "rsuite";
 import { Schema } from "schema-typed";
 import { PostStatesEnum } from "../../../../generated/graphql";
-import { UpdatePostFormModel } from "./UpdatePostFormLogic";
+import { UpdatePageFormModel } from "./UpdatePageFormLogic";
 
 interface Props {
     model: Schema<{
         title: unknown;
         slug: unknown;
-        excerpt: unknown;
         body: unknown;
     }, string>,
-    defaultValues: UpdatePostFormModel,
-    handleSubmit: (data: UpdatePostFormModel) => Promise<void>
+    defaultValues: UpdatePageFormModel,
+    handleSubmit: (data: UpdatePageFormModel) => Promise<void>
 }
 
-const UpdatePostFormView = ({ model, defaultValues, handleSubmit }: Props) => {
-    const [formValue, setFormValue] = useState<UpdatePostFormModel>(defaultValues);
+const UpdatePageFormView = ({ model, defaultValues, handleSubmit }: Props) => {
+    const [formValue, setFormValue] = useState<UpdatePageFormModel>(defaultValues);
 
     return (
         <Form
             onChange={formValue => {
-                setFormValue(formValue as UpdatePostFormModel)
+                setFormValue(formValue as UpdatePageFormModel)
             }}
             formValue={formValue}
             model={model}
@@ -64,13 +63,6 @@ const UpdatePostFormView = ({ model, defaultValues, handleSubmit }: Props) => {
                 />
             </Form.Group>
             <Form.Group>
-                <Form.ControlLabel>Excerpt</Form.ControlLabel>
-                <Form.Control
-                    name="excerpt"
-                    placeholder="Excerpt"
-                />
-            </Form.Group>
-            <Form.Group>
                 <Form.ControlLabel>Body</Form.ControlLabel>
                 <Form.Control
                     name="body"
@@ -90,4 +82,4 @@ const UpdatePostFormView = ({ model, defaultValues, handleSubmit }: Props) => {
     );
 };
 
-export default UpdatePostFormView;
+export default UpdatePageFormView;
