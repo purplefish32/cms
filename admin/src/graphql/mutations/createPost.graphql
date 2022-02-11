@@ -1,6 +1,0 @@
-mutation createPost($object: posts_insert_input!) {
-  insert_posts_one(object: $object) {
-    __typename
-    id
-  }
-}

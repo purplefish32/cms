@@ -1,0 +1,15 @@
+query article($uuid: uuid!) {
+  articles_by_pk(post_id: $uuid) {
+    __typename
+    post_id
+    post {
+      __typename
+      title
+      description
+      slug
+    }
+    body
+    excerpt
+    state
+  }
+}

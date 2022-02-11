@@ -1,7 +1,7 @@
 import { Schema } from 'rsuite';
-import CreatePostFormView from './CreatePostFormView';
+import CreateArticleFormView from './CreateArticleFormView';
 
-export interface CreatePostFormModel {
+export interface CreateArticleFormModel {
     title: string;
     slug: string;
     body: string;
@@ -19,17 +19,17 @@ const CreatePostFormSchema = Schema.Model({
 });
 
 interface Props {
-    defaultValues: CreatePostFormModel;
-    onSubmit: (data: CreatePostFormModel) => Promise<void>
+    defaultValues: CreateArticleFormModel;
+    onSubmit: (data: CreateArticleFormModel) => Promise<void>
 }
 
-const CreatePostFormLogic = ({ defaultValues, onSubmit }: Props) => {
-    const handleSubmit = async (data: CreatePostFormModel) => {
+const CreateArticleFormLogic = ({ defaultValues, onSubmit }: Props) => {
+    const handleSubmit = async (data: CreateArticleFormModel) => {
         await onSubmit(data)
     };
 
     return (
-        <CreatePostFormView
+        <CreateArticleFormView
             defaultValues={defaultValues}
             handleSubmit={handleSubmit}
             model={CreatePostFormSchema}
@@ -37,4 +37,4 @@ const CreatePostFormLogic = ({ defaultValues, onSubmit }: Props) => {
     )
 };
 
-export default CreatePostFormLogic;
+export default CreateArticleFormLogic;

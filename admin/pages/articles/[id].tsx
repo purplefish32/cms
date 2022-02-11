@@ -1,14 +1,15 @@
 import router, { useRouter } from 'next/router'
 import { Header, Content, Panel, PanelGroup, Button } from 'rsuite';
+import { useArticleQuery } from '../../generated/graphql';
 import Layout from '../../src/components/Layout';
-import { usePostQuery } from '../../generated/graphql';
-import getStateColor from '../../src/utils/getStateColor';
+//import { usePostQuery } from '../../generated/graphql';
+//import getStateColor from '../../src/utils/getStateColor';
 
 const ShowPost = () => {
     const { query } = useRouter()
     const { id } = query
 
-    const { data, error } = usePostQuery({
+    const { data, error } = useArticleQuery({
         fetchPolicy: "cache-and-network",
         variables: {
             uuid: id
@@ -24,11 +25,11 @@ const ShowPost = () => {
     }
 
     const {
-        posts_by_pk: post,
+        articles_by_pk: article,
     } = data
 
     const handleClick = () => {
-        router.push(`/posts/edit/${id}`)
+        router.push(`/articles/edit/${id}`)
     }
 
     return (
@@ -36,26 +37,27 @@ const ShowPost = () => {
             <PanelGroup>
                 <Panel>
                     <Header>
-                        <h1>{post.title} <Button appearance={'primary'} onClick={handleClick}>Edit</Button></h1>
+                        <h1>{article.post.title} <Button appearance={'primary'} onClick={handleClick}>Edit</Button></h1>
                     </Header>
                 </Panel>
                 <Panel>
                     <Content>
-                        <Panel color={getStateColor(post.state)}>
+                        {/* <Panel color={getStateColor(post.state)}> */}
+                        <Panel>
                             <h4>State</h4>
-                            {post.state}
+                            {article.state}
                         </Panel>
                         <Panel>
                             <h4>Slug</h4>
-                            {post.slug}
+                            {article.post.slug}
                         </Panel>
                         <Panel>
                             <h4>Excerpt</h4>
-                            {post.excerpt}
+                            {article.excerpt}
                         </Panel>
                         <Panel>
                             <h4>Body</h4>
-                            {post.body}
+                            {article.body}
                         </Panel>
                     </Content>
                 </Panel>

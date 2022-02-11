@@ -1,8 +1,0 @@
-query postsAggregate($where: posts_bool_exp) {
-  posts_aggregate(where: $where) {
-    aggregate {
-      __typename
-      count
-    }
-  }
-}

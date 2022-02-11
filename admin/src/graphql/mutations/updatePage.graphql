@@ -1,0 +1,9 @@
+mutation updatePage(
+  $pk_columns: pages_pk_columns_input!
+  $_set: pages_set_input
+) {
+  update_pages_by_pk(pk_columns: $pk_columns, _set: $_set) {
+    __typename
+    post_id
+  }
+}

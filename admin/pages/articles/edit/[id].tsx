@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import { Content, Header, Panel, PanelGroup } from 'rsuite';
+import UpdateArticleFormApollo from '../../../src/components/Form/UpdateArticleForm/UpdateArticleFormApollo';
 import Layout from '../../../src/components/Layout';
-import UpdatePostForm from '../../../src/components/Form/UpdatePostForm/UpdatePostFormApollo';
 
 export default () => {
     const { query } = useRouter()
@@ -16,7 +16,7 @@ export default () => {
                 </Panel>
                 <Panel>
                     <Content>
-                        <UpdatePostForm postId={query['id'] as string}></UpdatePostForm>
+                        <UpdateArticleFormApollo postId={query['id'] as string}></UpdateArticleFormApollo>
                     </Content>
                 </Panel>
             </PanelGroup>

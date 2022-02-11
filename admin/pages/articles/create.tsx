@@ -1,5 +1,6 @@
 import { Header, Content, Panel, PanelGroup } from 'rsuite';
-import CreatePostForm from '../../src/components/Form/CreatePostForm/CreatePostFormApollo';
+import CreateArticleFormApollo from '../../src/components/Form/CreateArticleForm/CreateArticleFormApollo';
+//import CreatePostForm from '../../src/components/Form/CreateArticleForm/CreatePostFormApollo';
 import Layout from '../../src/components/Layout';
 
 export default () => {
@@ -8,12 +9,12 @@ export default () => {
             <PanelGroup>
                 <Panel>
                     <Header>
-                        <h1>Create Post</h1>
+                        <h1>Create Article</h1>
                     </Header>
                 </Panel>
                 <Panel>
                     <Content>
-                        <CreatePostForm />
+                        <CreateArticleFormApollo />
                     </Content>
                 </Panel>
             </PanelGroup>

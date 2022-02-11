@@ -62,10 +62,10 @@ export default function Layout({ children }) {
                                 Dashboard
                             </Nav.Item>
                             <Dropdown eventKey="2" title="Posts" icon={<Pin />}>
-                                <Dropdown.Item as={MyLink} eventKey="2-1" href="/posts">
-                                    All Posts
+                                <Dropdown.Item as={MyLink} eventKey="2-1" href="/articles">
+                                    All Articles
                                 </Dropdown.Item>
-                                <Dropdown.Item as={MyLink} eventKey="2-2" href="/posts/create">
+                                {/* <Dropdown.Item as={MyLink} eventKey="2-2" href="/posts/create">
                                     Add New
                                 </Dropdown.Item>
                                 <Dropdown.Item as={MyLink} eventKey="2-3" href="/categories/edit">
@@ -73,15 +73,15 @@ export default function Layout({ children }) {
                                 </Dropdown.Item>
                                 <Dropdown.Item as={MyLink} eventKey="2-4" href="/tags/edit">
                                     Tags
-                                </Dropdown.Item>
+                                </Dropdown.Item> */}
                             </Dropdown>
                             <Dropdown eventKey="4" title="Pages" icon={<Page />}>
                                 <Dropdown.Item as={MyLink} eventKey="4-1" href="/pages">
                                     All Pages
                                 </Dropdown.Item>
-                                <Dropdown.Item as={MyLink} eventKey="4-2" href="/pages/create">
+                                {/* <Dropdown.Item as={MyLink} eventKey="4-2" href="/pages/create">
                                     Add New
-                                </Dropdown.Item>
+                                </Dropdown.Item> */}
                             </Dropdown>
                         </Nav>
                     </Sidenav.Body>

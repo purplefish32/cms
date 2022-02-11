@@ -1,9 +1,9 @@
 import router from 'next/router';
 import Layout from '../../src/components/Layout';
 import PagesTable from '../../src/components/PagesTable';
-import { PostStatesEnum, PostTypesEnum } from '../../generated/graphql';
+import { PageStatesEnum } from '../../generated/graphql';
 import { Header, Content, Panel, PanelGroup, Button } from 'rsuite';
-import PostStateCounter from '../../src/components/PostStateCounter';
+import PageCounter from '../../src/components/PageCounter';
 
 const handleClick = () => {
   router.push("pages/create")
@@ -20,7 +20,7 @@ const Pages = () => {
         </Panel>
         <Panel>
           <Content>
-            Published (<PostStateCounter type={PostTypesEnum.Page} state={PostStatesEnum.Published} />) | Draft (<PostStateCounter type={PostTypesEnum.Page} state={PostStatesEnum.Draft} />)
+            Published (<PageCounter state={PageStatesEnum.Published} />) | Draft (<PageCounter state={PageStatesEnum.Draft} />)
             <PagesTable></PagesTable>
           </Content>
         </Panel>

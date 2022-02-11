@@ -62,6 +62,275 @@ export type String_Comparison_Exp = {
   _similar?: Maybe<Scalars['String']>;
 };
 
+/** columns and relationships of "article_states" */
+export type Article_States = {
+  __typename?: 'article_states';
+  comment: Scalars['String'];
+  value: Scalars['String'];
+};
+
+/** aggregated selection of "article_states" */
+export type Article_States_Aggregate = {
+  __typename?: 'article_states_aggregate';
+  aggregate?: Maybe<Article_States_Aggregate_Fields>;
+  nodes: Array<Article_States>;
+};
+
+/** aggregate fields of "article_states" */
+export type Article_States_Aggregate_Fields = {
+  __typename?: 'article_states_aggregate_fields';
+  count: Scalars['Int'];
+  max?: Maybe<Article_States_Max_Fields>;
+  min?: Maybe<Article_States_Min_Fields>;
+};
+
+
+/** aggregate fields of "article_states" */
+export type Article_States_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Article_States_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** Boolean expression to filter rows from the table "article_states". All fields are combined with a logical 'AND'. */
+export type Article_States_Bool_Exp = {
+  _and?: Maybe<Array<Article_States_Bool_Exp>>;
+  _not?: Maybe<Article_States_Bool_Exp>;
+  _or?: Maybe<Array<Article_States_Bool_Exp>>;
+  comment?: Maybe<String_Comparison_Exp>;
+  value?: Maybe<String_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "article_states" */
+export enum Article_States_Constraint {
+  /** unique or primary key constraint */
+  ArticleStatesPkey = 'article_states_pkey'
+}
+
+export enum Article_States_Enum {
+  /** Archived */
+  Archived = 'archived',
+  /** Draft */
+  Draft = 'draft',
+  /** Published */
+  Published = 'published'
+}
+
+/** Boolean expression to compare columns of type "article_states_enum". All fields are combined with logical 'AND'. */
+export type Article_States_Enum_Comparison_Exp = {
+  _eq?: Maybe<Article_States_Enum>;
+  _in?: Maybe<Array<Article_States_Enum>>;
+  _is_null?: Maybe<Scalars['Boolean']>;
+  _neq?: Maybe<Article_States_Enum>;
+  _nin?: Maybe<Array<Article_States_Enum>>;
+};
+
+/** input type for inserting data into table "article_states" */
+export type Article_States_Insert_Input = {
+  comment?: Maybe<Scalars['String']>;
+  value?: Maybe<Scalars['String']>;
+};
+
+/** aggregate max on columns */
+export type Article_States_Max_Fields = {
+  __typename?: 'article_states_max_fields';
+  comment?: Maybe<Scalars['String']>;
+  value?: Maybe<Scalars['String']>;
+};
+
+/** aggregate min on columns */
+export type Article_States_Min_Fields = {
+  __typename?: 'article_states_min_fields';
+  comment?: Maybe<Scalars['String']>;
+  value?: Maybe<Scalars['String']>;
+};
+
+/** response of any mutation on the table "article_states" */
+export type Article_States_Mutation_Response = {
+  __typename?: 'article_states_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Article_States>;
+};
+
+/** on conflict condition type for table "article_states" */
+export type Article_States_On_Conflict = {
+  constraint: Article_States_Constraint;
+  update_columns?: Array<Article_States_Update_Column>;
+  where?: Maybe<Article_States_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "article_states". */
+export type Article_States_Order_By = {
+  comment?: Maybe<Order_By>;
+  value?: Maybe<Order_By>;
+};
+
+/** primary key columns input for table: article_states */
+export type Article_States_Pk_Columns_Input = {
+  value: Scalars['String'];
+};
+
+/** select columns of table "article_states" */
+export enum Article_States_Select_Column {
+  /** column name */
+  Comment = 'comment',
+  /** column name */
+  Value = 'value'
+}
+
+/** input type for updating data in table "article_states" */
+export type Article_States_Set_Input = {
+  comment?: Maybe<Scalars['String']>;
+  value?: Maybe<Scalars['String']>;
+};
+
+/** update columns of table "article_states" */
+export enum Article_States_Update_Column {
+  /** column name */
+  Comment = 'comment',
+  /** column name */
+  Value = 'value'
+}
+
+/** columns and relationships of "articles" */
+export type Articles = {
+  __typename?: 'articles';
+  body?: Maybe<Scalars['String']>;
+  excerpt?: Maybe<Scalars['String']>;
+  /** An object relationship */
+  post?: Maybe<Posts>;
+  post_id: Scalars['uuid'];
+  state: Article_States_Enum;
+};
+
+/** aggregated selection of "articles" */
+export type Articles_Aggregate = {
+  __typename?: 'articles_aggregate';
+  aggregate?: Maybe<Articles_Aggregate_Fields>;
+  nodes: Array<Articles>;
+};
+
+/** aggregate fields of "articles" */
+export type Articles_Aggregate_Fields = {
+  __typename?: 'articles_aggregate_fields';
+  count: Scalars['Int'];
+  max?: Maybe<Articles_Max_Fields>;
+  min?: Maybe<Articles_Min_Fields>;
+};
+
+
+/** aggregate fields of "articles" */
+export type Articles_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Articles_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** Boolean expression to filter rows from the table "articles". All fields are combined with a logical 'AND'. */
+export type Articles_Bool_Exp = {
+  _and?: Maybe<Array<Articles_Bool_Exp>>;
+  _not?: Maybe<Articles_Bool_Exp>;
+  _or?: Maybe<Array<Articles_Bool_Exp>>;
+  body?: Maybe<String_Comparison_Exp>;
+  excerpt?: Maybe<String_Comparison_Exp>;
+  post?: Maybe<Posts_Bool_Exp>;
+  post_id?: Maybe<Uuid_Comparison_Exp>;
+  state?: Maybe<Article_States_Enum_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "articles" */
+export enum Articles_Constraint {
+  /** unique or primary key constraint */
+  ArticlesPkey = 'articles_pkey'
+}
+
+/** input type for inserting data into table "articles" */
+export type Articles_Insert_Input = {
+  body?: Maybe<Scalars['String']>;
+  excerpt?: Maybe<Scalars['String']>;
+  post?: Maybe<Posts_Obj_Rel_Insert_Input>;
+  post_id?: Maybe<Scalars['uuid']>;
+  state?: Maybe<Article_States_Enum>;
+};
+
+/** aggregate max on columns */
+export type Articles_Max_Fields = {
+  __typename?: 'articles_max_fields';
+  body?: Maybe<Scalars['String']>;
+  excerpt?: Maybe<Scalars['String']>;
+  post_id?: Maybe<Scalars['uuid']>;
+};
+
+/** aggregate min on columns */
+export type Articles_Min_Fields = {
+  __typename?: 'articles_min_fields';
+  body?: Maybe<Scalars['String']>;
+  excerpt?: Maybe<Scalars['String']>;
+  post_id?: Maybe<Scalars['uuid']>;
+};
+
+/** response of any mutation on the table "articles" */
+export type Articles_Mutation_Response = {
+  __typename?: 'articles_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Articles>;
+};
+
+/** on conflict condition type for table "articles" */
+export type Articles_On_Conflict = {
+  constraint: Articles_Constraint;
+  update_columns?: Array<Articles_Update_Column>;
+  where?: Maybe<Articles_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "articles". */
+export type Articles_Order_By = {
+  body?: Maybe<Order_By>;
+  excerpt?: Maybe<Order_By>;
+  post?: Maybe<Posts_Order_By>;
+  post_id?: Maybe<Order_By>;
+  state?: Maybe<Order_By>;
+};
+
+/** primary key columns input for table: articles */
+export type Articles_Pk_Columns_Input = {
+  post_id: Scalars['uuid'];
+};
+
+/** select columns of table "articles" */
+export enum Articles_Select_Column {
+  /** column name */
+  Body = 'body',
+  /** column name */
+  Excerpt = 'excerpt',
+  /** column name */
+  PostId = 'post_id',
+  /** column name */
+  State = 'state'
+}
+
+/** input type for updating data in table "articles" */
+export type Articles_Set_Input = {
+  body?: Maybe<Scalars['String']>;
+  excerpt?: Maybe<Scalars['String']>;
+  post_id?: Maybe<Scalars['uuid']>;
+  state?: Maybe<Article_States_Enum>;
+};
+
+/** update columns of table "articles" */
+export enum Articles_Update_Column {
+  /** column name */
+  Body = 'body',
+  /** column name */
+  Excerpt = 'excerpt',
+  /** column name */
+  PostId = 'post_id',
+  /** column name */
+  State = 'state'
+}
+
 /** columns and relationships of "auth.account_providers" */
 export type Auth_Account_Providers = {
   __typename?: 'auth_account_providers';
@@ -1380,7 +1649,7 @@ export type Comments = {
   author_id?: Maybe<Scalars['uuid']>;
   /** An object relationship */
   comment?: Maybe<Comments>;
-  /** fetch data from the table: "comments" */
+  /** An array relationship */
   comments: Array<Comments>;
   /** An aggregate relationship */
   comments_aggregate: Comments_Aggregate;
@@ -1702,6 +1971,14 @@ export type Jsonb_Comparison_Exp = {
 /** mutation root */
 export type Mutation_Root = {
   __typename?: 'mutation_root';
+  /** delete data from the table: "article_states" */
+  delete_article_states?: Maybe<Article_States_Mutation_Response>;
+  /** delete single row from the table: "article_states" */
+  delete_article_states_by_pk?: Maybe<Article_States>;
+  /** delete data from the table: "articles" */
+  delete_articles?: Maybe<Articles_Mutation_Response>;
+  /** delete single row from the table: "articles" */
+  delete_articles_by_pk?: Maybe<Articles>;
   /** delete data from the table: "auth.account_providers" */
   delete_auth_account_providers?: Maybe<Auth_Account_Providers_Mutation_Response>;
   /** delete single row from the table: "auth.account_providers" */
@@ -1730,10 +2007,14 @@ export type Mutation_Root = {
   delete_comments?: Maybe<Comments_Mutation_Response>;
   /** delete single row from the table: "comments" */
   delete_comments_by_pk?: Maybe<Comments>;
-  /** delete data from the table: "post_states" */
-  delete_post_states?: Maybe<Post_States_Mutation_Response>;
-  /** delete single row from the table: "post_states" */
-  delete_post_states_by_pk?: Maybe<Post_States>;
+  /** delete data from the table: "page_states" */
+  delete_page_states?: Maybe<Page_States_Mutation_Response>;
+  /** delete single row from the table: "page_states" */
+  delete_page_states_by_pk?: Maybe<Page_States>;
+  /** delete data from the table: "pages" */
+  delete_pages?: Maybe<Pages_Mutation_Response>;
+  /** delete single row from the table: "pages" */
+  delete_pages_by_pk?: Maybe<Pages>;
   /** delete data from the table: "post_types" */
   delete_post_types?: Maybe<Post_Types_Mutation_Response>;
   /** delete single row from the table: "post_types" */
@@ -1762,6 +2043,14 @@ export type Mutation_Root = {
   delete_users?: Maybe<Users_Mutation_Response>;
   /** delete single row from the table: "users" */
   delete_users_by_pk?: Maybe<Users>;
+  /** insert data into the table: "article_states" */
+  insert_article_states?: Maybe<Article_States_Mutation_Response>;
+  /** insert a single row into the table: "article_states" */
+  insert_article_states_one?: Maybe<Article_States>;
+  /** insert data into the table: "articles" */
+  insert_articles?: Maybe<Articles_Mutation_Response>;
+  /** insert a single row into the table: "articles" */
+  insert_articles_one?: Maybe<Articles>;
   /** insert data into the table: "auth.account_providers" */
   insert_auth_account_providers?: Maybe<Auth_Account_Providers_Mutation_Response>;
   /** insert a single row into the table: "auth.account_providers" */
@@ -1790,10 +2079,14 @@ export type Mutation_Root = {
   insert_comments?: Maybe<Comments_Mutation_Response>;
   /** insert a single row into the table: "comments" */
   insert_comments_one?: Maybe<Comments>;
-  /** insert data into the table: "post_states" */
-  insert_post_states?: Maybe<Post_States_Mutation_Response>;
-  /** insert a single row into the table: "post_states" */
-  insert_post_states_one?: Maybe<Post_States>;
+  /** insert data into the table: "page_states" */
+  insert_page_states?: Maybe<Page_States_Mutation_Response>;
+  /** insert a single row into the table: "page_states" */
+  insert_page_states_one?: Maybe<Page_States>;
+  /** insert data into the table: "pages" */
+  insert_pages?: Maybe<Pages_Mutation_Response>;
+  /** insert a single row into the table: "pages" */
+  insert_pages_one?: Maybe<Pages>;
   /** insert data into the table: "post_types" */
   insert_post_types?: Maybe<Post_Types_Mutation_Response>;
   /** insert a single row into the table: "post_types" */
@@ -1822,6 +2115,14 @@ export type Mutation_Root = {
   insert_users?: Maybe<Users_Mutation_Response>;
   /** insert a single row into the table: "users" */
   insert_users_one?: Maybe<Users>;
+  /** update data of the table: "article_states" */
+  update_article_states?: Maybe<Article_States_Mutation_Response>;
+  /** update single row of the table: "article_states" */
+  update_article_states_by_pk?: Maybe<Article_States>;
+  /** update data of the table: "articles" */
+  update_articles?: Maybe<Articles_Mutation_Response>;
+  /** update single row of the table: "articles" */
+  update_articles_by_pk?: Maybe<Articles>;
   /** update data of the table: "auth.account_providers" */
   update_auth_account_providers?: Maybe<Auth_Account_Providers_Mutation_Response>;
   /** update single row of the table: "auth.account_providers" */
@@ -1850,10 +2151,14 @@ export type Mutation_Root = {
   update_comments?: Maybe<Comments_Mutation_Response>;
   /** update single row of the table: "comments" */
   update_comments_by_pk?: Maybe<Comments>;
-  /** update data of the table: "post_states" */
-  update_post_states?: Maybe<Post_States_Mutation_Response>;
-  /** update single row of the table: "post_states" */
-  update_post_states_by_pk?: Maybe<Post_States>;
+  /** update data of the table: "page_states" */
+  update_page_states?: Maybe<Page_States_Mutation_Response>;
+  /** update single row of the table: "page_states" */
+  update_page_states_by_pk?: Maybe<Page_States>;
+  /** update data of the table: "pages" */
+  update_pages?: Maybe<Pages_Mutation_Response>;
+  /** update single row of the table: "pages" */
+  update_pages_by_pk?: Maybe<Pages>;
   /** update data of the table: "post_types" */
   update_post_types?: Maybe<Post_Types_Mutation_Response>;
   /** update single row of the table: "post_types" */
@@ -1882,6 +2187,30 @@ export type Mutation_Root = {
   update_users?: Maybe<Users_Mutation_Response>;
   /** update single row of the table: "users" */
   update_users_by_pk?: Maybe<Users>;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Article_StatesArgs = {
+  where: Article_States_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Article_States_By_PkArgs = {
+  value: Scalars['String'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_ArticlesArgs = {
+  where: Articles_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Articles_By_PkArgs = {
+  post_id: Scalars['uuid'];
 };
 
 
@@ -1970,14 +2299,26 @@ export type Mutation_RootDelete_Comments_By_PkArgs = {
 
 
 /** mutation root */
-export type Mutation_RootDelete_Post_StatesArgs = {
-  where: Post_States_Bool_Exp;
+export type Mutation_RootDelete_Page_StatesArgs = {
+  where: Page_States_Bool_Exp;
 };
 
 
 /** mutation root */
-export type Mutation_RootDelete_Post_States_By_PkArgs = {
+export type Mutation_RootDelete_Page_States_By_PkArgs = {
   value: Scalars['String'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_PagesArgs = {
+  where: Pages_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Pages_By_PkArgs = {
+  post_id: Scalars['uuid'];
 };
 
 
@@ -1989,7 +2330,7 @@ export type Mutation_RootDelete_Post_TypesArgs = {
 
 /** mutation root */
 export type Mutation_RootDelete_Post_Types_By_PkArgs = {
-  value: Post_Types_Enum;
+  value: Scalars['String'];
 };
 
 
@@ -2062,6 +2403,34 @@ export type Mutation_RootDelete_UsersArgs = {
 /** mutation root */
 export type Mutation_RootDelete_Users_By_PkArgs = {
   id: Scalars['uuid'];
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Article_StatesArgs = {
+  objects: Array<Article_States_Insert_Input>;
+  on_conflict?: Maybe<Article_States_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Article_States_OneArgs = {
+  object: Article_States_Insert_Input;
+  on_conflict?: Maybe<Article_States_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_ArticlesArgs = {
+  objects: Array<Articles_Insert_Input>;
+  on_conflict?: Maybe<Articles_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Articles_OneArgs = {
+  object: Articles_Insert_Input;
+  on_conflict?: Maybe<Articles_On_Conflict>;
 };
 
 
@@ -2164,16 +2533,30 @@ export type Mutation_RootInsert_Comments_OneArgs = {
 
 
 /** mutation root */
-export type Mutation_RootInsert_Post_StatesArgs = {
-  objects: Array<Post_States_Insert_Input>;
-  on_conflict?: Maybe<Post_States_On_Conflict>;
+export type Mutation_RootInsert_Page_StatesArgs = {
+  objects: Array<Page_States_Insert_Input>;
+  on_conflict?: Maybe<Page_States_On_Conflict>;
 };
 
 
 /** mutation root */
-export type Mutation_RootInsert_Post_States_OneArgs = {
-  object: Post_States_Insert_Input;
-  on_conflict?: Maybe<Post_States_On_Conflict>;
+export type Mutation_RootInsert_Page_States_OneArgs = {
+  object: Page_States_Insert_Input;
+  on_conflict?: Maybe<Page_States_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_PagesArgs = {
+  objects: Array<Pages_Insert_Input>;
+  on_conflict?: Maybe<Pages_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Pages_OneArgs = {
+  object: Pages_Insert_Input;
+  on_conflict?: Maybe<Pages_On_Conflict>;
 };
 
 
@@ -2272,6 +2655,34 @@ export type Mutation_RootInsert_UsersArgs = {
 export type Mutation_RootInsert_Users_OneArgs = {
   object: Users_Insert_Input;
   on_conflict?: Maybe<Users_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Article_StatesArgs = {
+  _set?: Maybe<Article_States_Set_Input>;
+  where: Article_States_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Article_States_By_PkArgs = {
+  _set?: Maybe<Article_States_Set_Input>;
+  pk_columns: Article_States_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_ArticlesArgs = {
+  _set?: Maybe<Articles_Set_Input>;
+  where: Articles_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Articles_By_PkArgs = {
+  _set?: Maybe<Articles_Set_Input>;
+  pk_columns: Articles_Pk_Columns_Input;
 };
 
 
@@ -2394,16 +2805,30 @@ export type Mutation_RootUpdate_Comments_By_PkArgs = {
 
 
 /** mutation root */
-export type Mutation_RootUpdate_Post_StatesArgs = {
-  _set?: Maybe<Post_States_Set_Input>;
-  where: Post_States_Bool_Exp;
+export type Mutation_RootUpdate_Page_StatesArgs = {
+  _set?: Maybe<Page_States_Set_Input>;
+  where: Page_States_Bool_Exp;
 };
 
 
 /** mutation root */
-export type Mutation_RootUpdate_Post_States_By_PkArgs = {
-  _set?: Maybe<Post_States_Set_Input>;
-  pk_columns: Post_States_Pk_Columns_Input;
+export type Mutation_RootUpdate_Page_States_By_PkArgs = {
+  _set?: Maybe<Page_States_Set_Input>;
+  pk_columns: Page_States_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_PagesArgs = {
+  _set?: Maybe<Pages_Set_Input>;
+  where: Pages_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Pages_By_PkArgs = {
+  _set?: Maybe<Pages_Set_Input>;
+  pk_columns: Pages_Pk_Columns_Input;
 };
 
 
@@ -2423,11 +2848,6 @@ export type Mutation_RootUpdate_Post_Types_By_PkArgs = {
 
 /** mutation root */
 export type Mutation_RootUpdate_PostsArgs = {
-  _append?: Maybe<Posts_Append_Input>;
-  _delete_at_path?: Maybe<Posts_Delete_At_Path_Input>;
-  _delete_elem?: Maybe<Posts_Delete_Elem_Input>;
-  _delete_key?: Maybe<Posts_Delete_Key_Input>;
-  _prepend?: Maybe<Posts_Prepend_Input>;
   _set?: Maybe<Posts_Set_Input>;
   where: Posts_Bool_Exp;
 };
@@ -2435,11 +2855,6 @@ export type Mutation_RootUpdate_PostsArgs = {
 
 /** mutation root */
 export type Mutation_RootUpdate_Posts_By_PkArgs = {
-  _append?: Maybe<Posts_Append_Input>;
-  _delete_at_path?: Maybe<Posts_Delete_At_Path_Input>;
-  _delete_elem?: Maybe<Posts_Delete_Elem_Input>;
-  _delete_key?: Maybe<Posts_Delete_Key_Input>;
-  _prepend?: Maybe<Posts_Prepend_Input>;
   _set?: Maybe<Posts_Set_Input>;
   pk_columns: Posts_Pk_Columns_Input;
 };
@@ -2540,204 +2955,290 @@ export enum Order_By {
   DescNullsLast = 'desc_nulls_last'
 }
 
-/** columns and relationships of "post_states" */
-export type Post_States = {
-  __typename?: 'post_states';
+/** columns and relationships of "page_states" */
+export type Page_States = {
+  __typename?: 'page_states';
   comment: Scalars['String'];
-  /** An array relationship */
-  posts: Array<Posts>;
-  /** An aggregate relationship */
-  posts_aggregate: Posts_Aggregate;
   value: Scalars['String'];
 };
 
-
-/** columns and relationships of "post_states" */
-export type Post_StatesPostsArgs = {
-  distinct_on?: Maybe<Array<Posts_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Posts_Order_By>>;
-  where?: Maybe<Posts_Bool_Exp>;
+/** aggregated selection of "page_states" */
+export type Page_States_Aggregate = {
+  __typename?: 'page_states_aggregate';
+  aggregate?: Maybe<Page_States_Aggregate_Fields>;
+  nodes: Array<Page_States>;
 };
 
-
-/** columns and relationships of "post_states" */
-export type Post_StatesPosts_AggregateArgs = {
-  distinct_on?: Maybe<Array<Posts_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Posts_Order_By>>;
-  where?: Maybe<Posts_Bool_Exp>;
-};
-
-/** aggregated selection of "post_states" */
-export type Post_States_Aggregate = {
-  __typename?: 'post_states_aggregate';
-  aggregate?: Maybe<Post_States_Aggregate_Fields>;
-  nodes: Array<Post_States>;
-};
-
-/** aggregate fields of "post_states" */
-export type Post_States_Aggregate_Fields = {
-  __typename?: 'post_states_aggregate_fields';
+/** aggregate fields of "page_states" */
+export type Page_States_Aggregate_Fields = {
+  __typename?: 'page_states_aggregate_fields';
   count: Scalars['Int'];
-  max?: Maybe<Post_States_Max_Fields>;
-  min?: Maybe<Post_States_Min_Fields>;
+  max?: Maybe<Page_States_Max_Fields>;
+  min?: Maybe<Page_States_Min_Fields>;
 };
 
 
-/** aggregate fields of "post_states" */
-export type Post_States_Aggregate_FieldsCountArgs = {
-  columns?: Maybe<Array<Post_States_Select_Column>>;
+/** aggregate fields of "page_states" */
+export type Page_States_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Page_States_Select_Column>>;
   distinct?: Maybe<Scalars['Boolean']>;
 };
 
-/** Boolean expression to filter rows from the table "post_states". All fields are combined with a logical 'AND'. */
-export type Post_States_Bool_Exp = {
-  _and?: Maybe<Array<Post_States_Bool_Exp>>;
-  _not?: Maybe<Post_States_Bool_Exp>;
-  _or?: Maybe<Array<Post_States_Bool_Exp>>;
+/** Boolean expression to filter rows from the table "page_states". All fields are combined with a logical 'AND'. */
+export type Page_States_Bool_Exp = {
+  _and?: Maybe<Array<Page_States_Bool_Exp>>;
+  _not?: Maybe<Page_States_Bool_Exp>;
+  _or?: Maybe<Array<Page_States_Bool_Exp>>;
   comment?: Maybe<String_Comparison_Exp>;
-  posts?: Maybe<Posts_Bool_Exp>;
   value?: Maybe<String_Comparison_Exp>;
 };
 
-/** unique or primary key constraints on table "post_states" */
-export enum Post_States_Constraint {
+/** unique or primary key constraints on table "page_states" */
+export enum Page_States_Constraint {
   /** unique or primary key constraint */
-  PostStatusPkey = 'post_status_pkey'
+  PageStatesPkey = 'page_states_pkey'
 }
 
-export enum Post_States_Enum {
-  /** Archived */
-  Archived = 'archived',
+export enum Page_States_Enum {
   /** Draft */
   Draft = 'draft',
   /** Published */
   Published = 'published'
 }
 
-/** Boolean expression to compare columns of type "post_states_enum". All fields are combined with logical 'AND'. */
-export type Post_States_Enum_Comparison_Exp = {
-  _eq?: Maybe<Post_States_Enum>;
-  _in?: Maybe<Array<Post_States_Enum>>;
+/** Boolean expression to compare columns of type "page_states_enum". All fields are combined with logical 'AND'. */
+export type Page_States_Enum_Comparison_Exp = {
+  _eq?: Maybe<Page_States_Enum>;
+  _in?: Maybe<Array<Page_States_Enum>>;
   _is_null?: Maybe<Scalars['Boolean']>;
-  _neq?: Maybe<Post_States_Enum>;
-  _nin?: Maybe<Array<Post_States_Enum>>;
+  _neq?: Maybe<Page_States_Enum>;
+  _nin?: Maybe<Array<Page_States_Enum>>;
 };
 
-/** input type for inserting data into table "post_states" */
-export type Post_States_Insert_Input = {
+/** input type for inserting data into table "page_states" */
+export type Page_States_Insert_Input = {
   comment?: Maybe<Scalars['String']>;
-  posts?: Maybe<Posts_Arr_Rel_Insert_Input>;
   value?: Maybe<Scalars['String']>;
 };
 
 /** aggregate max on columns */
-export type Post_States_Max_Fields = {
-  __typename?: 'post_states_max_fields';
+export type Page_States_Max_Fields = {
+  __typename?: 'page_states_max_fields';
   comment?: Maybe<Scalars['String']>;
   value?: Maybe<Scalars['String']>;
 };
 
 /** aggregate min on columns */
-export type Post_States_Min_Fields = {
-  __typename?: 'post_states_min_fields';
+export type Page_States_Min_Fields = {
+  __typename?: 'page_states_min_fields';
   comment?: Maybe<Scalars['String']>;
   value?: Maybe<Scalars['String']>;
 };
 
-/** response of any mutation on the table "post_states" */
-export type Post_States_Mutation_Response = {
-  __typename?: 'post_states_mutation_response';
+/** response of any mutation on the table "page_states" */
+export type Page_States_Mutation_Response = {
+  __typename?: 'page_states_mutation_response';
   /** number of rows affected by the mutation */
   affected_rows: Scalars['Int'];
   /** data from the rows affected by the mutation */
-  returning: Array<Post_States>;
+  returning: Array<Page_States>;
 };
 
-/** input type for inserting object relation for remote table "post_states" */
-export type Post_States_Obj_Rel_Insert_Input = {
-  data: Post_States_Insert_Input;
+/** input type for inserting object relation for remote table "page_states" */
+export type Page_States_Obj_Rel_Insert_Input = {
+  data: Page_States_Insert_Input;
   /** on conflict condition */
-  on_conflict?: Maybe<Post_States_On_Conflict>;
+  on_conflict?: Maybe<Page_States_On_Conflict>;
 };
 
-/** on conflict condition type for table "post_states" */
-export type Post_States_On_Conflict = {
-  constraint: Post_States_Constraint;
-  update_columns?: Array<Post_States_Update_Column>;
-  where?: Maybe<Post_States_Bool_Exp>;
+/** on conflict condition type for table "page_states" */
+export type Page_States_On_Conflict = {
+  constraint: Page_States_Constraint;
+  update_columns?: Array<Page_States_Update_Column>;
+  where?: Maybe<Page_States_Bool_Exp>;
 };
 
-/** Ordering options when selecting data from "post_states". */
-export type Post_States_Order_By = {
+/** Ordering options when selecting data from "page_states". */
+export type Page_States_Order_By = {
   comment?: Maybe<Order_By>;
-  posts_aggregate?: Maybe<Posts_Aggregate_Order_By>;
   value?: Maybe<Order_By>;
 };
 
-/** primary key columns input for table: post_states */
-export type Post_States_Pk_Columns_Input = {
+/** primary key columns input for table: page_states */
+export type Page_States_Pk_Columns_Input = {
   value: Scalars['String'];
 };
 
-/** select columns of table "post_states" */
-export enum Post_States_Select_Column {
+/** select columns of table "page_states" */
+export enum Page_States_Select_Column {
   /** column name */
   Comment = 'comment',
   /** column name */
   Value = 'value'
 }
 
-/** input type for updating data in table "post_states" */
-export type Post_States_Set_Input = {
+/** input type for updating data in table "page_states" */
+export type Page_States_Set_Input = {
   comment?: Maybe<Scalars['String']>;
   value?: Maybe<Scalars['String']>;
 };
 
-/** update columns of table "post_states" */
-export enum Post_States_Update_Column {
+/** update columns of table "page_states" */
+export enum Page_States_Update_Column {
   /** column name */
   Comment = 'comment',
   /** column name */
   Value = 'value'
+}
+
+/** columns and relationships of "pages" */
+export type Pages = {
+  __typename?: 'pages';
+  body?: Maybe<Scalars['String']>;
+  id: Scalars['uuid'];
+  /** An object relationship */
+  page_state: Page_States;
+  /** An object relationship */
+  post: Posts;
+  post_id: Scalars['uuid'];
+  state: Page_States_Enum;
+};
+
+/** aggregated selection of "pages" */
+export type Pages_Aggregate = {
+  __typename?: 'pages_aggregate';
+  aggregate?: Maybe<Pages_Aggregate_Fields>;
+  nodes: Array<Pages>;
+};
+
+/** aggregate fields of "pages" */
+export type Pages_Aggregate_Fields = {
+  __typename?: 'pages_aggregate_fields';
+  count: Scalars['Int'];
+  max?: Maybe<Pages_Max_Fields>;
+  min?: Maybe<Pages_Min_Fields>;
+};
+
+
+/** aggregate fields of "pages" */
+export type Pages_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Pages_Select_Column>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** Boolean expression to filter rows from the table "pages". All fields are combined with a logical 'AND'. */
+export type Pages_Bool_Exp = {
+  _and?: Maybe<Array<Pages_Bool_Exp>>;
+  _not?: Maybe<Pages_Bool_Exp>;
+  _or?: Maybe<Array<Pages_Bool_Exp>>;
+  body?: Maybe<String_Comparison_Exp>;
+  id?: Maybe<Uuid_Comparison_Exp>;
+  page_state?: Maybe<Page_States_Bool_Exp>;
+  post?: Maybe<Posts_Bool_Exp>;
+  post_id?: Maybe<Uuid_Comparison_Exp>;
+  state?: Maybe<Page_States_Enum_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "pages" */
+export enum Pages_Constraint {
+  /** unique or primary key constraint */
+  PagesPkey = 'pages_pkey'
+}
+
+/** input type for inserting data into table "pages" */
+export type Pages_Insert_Input = {
+  body?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['uuid']>;
+  page_state?: Maybe<Page_States_Obj_Rel_Insert_Input>;
+  post?: Maybe<Posts_Obj_Rel_Insert_Input>;
+  post_id?: Maybe<Scalars['uuid']>;
+  state?: Maybe<Page_States_Enum>;
+};
+
+/** aggregate max on columns */
+export type Pages_Max_Fields = {
+  __typename?: 'pages_max_fields';
+  body?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['uuid']>;
+  post_id?: Maybe<Scalars['uuid']>;
+};
+
+/** aggregate min on columns */
+export type Pages_Min_Fields = {
+  __typename?: 'pages_min_fields';
+  body?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['uuid']>;
+  post_id?: Maybe<Scalars['uuid']>;
+};
+
+/** response of any mutation on the table "pages" */
+export type Pages_Mutation_Response = {
+  __typename?: 'pages_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Pages>;
+};
+
+/** on conflict condition type for table "pages" */
+export type Pages_On_Conflict = {
+  constraint: Pages_Constraint;
+  update_columns?: Array<Pages_Update_Column>;
+  where?: Maybe<Pages_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "pages". */
+export type Pages_Order_By = {
+  body?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
+  page_state?: Maybe<Page_States_Order_By>;
+  post?: Maybe<Posts_Order_By>;
+  post_id?: Maybe<Order_By>;
+  state?: Maybe<Order_By>;
+};
+
+/** primary key columns input for table: pages */
+export type Pages_Pk_Columns_Input = {
+  post_id: Scalars['uuid'];
+};
+
+/** select columns of table "pages" */
+export enum Pages_Select_Column {
+  /** column name */
+  Body = 'body',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  PostId = 'post_id',
+  /** column name */
+  State = 'state'
+}
+
+/** input type for updating data in table "pages" */
+export type Pages_Set_Input = {
+  body?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['uuid']>;
+  post_id?: Maybe<Scalars['uuid']>;
+  state?: Maybe<Page_States_Enum>;
+};
+
+/** update columns of table "pages" */
+export enum Pages_Update_Column {
+  /** column name */
+  Body = 'body',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  PostId = 'post_id',
+  /** column name */
+  State = 'state'
 }
 
 /** columns and relationships of "post_types" */
 export type Post_Types = {
   __typename?: 'post_types';
   comment: Scalars['String'];
-  /** An object relationship */
-  postTypeByType?: Maybe<Post_Types>;
-  /** An object relationship */
-  post_type: Post_Types;
-  /** An array relationship */
-  posts: Array<Posts>;
-  /** An aggregate relationship */
-  posts_aggregate: Posts_Aggregate;
-  value: Post_Types_Enum;
-};
-
-
-/** columns and relationships of "post_types" */
-export type Post_TypesPostsArgs = {
-  distinct_on?: Maybe<Array<Posts_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Posts_Order_By>>;
-  where?: Maybe<Posts_Bool_Exp>;
-};
-
-
-/** columns and relationships of "post_types" */
-export type Post_TypesPosts_AggregateArgs = {
-  distinct_on?: Maybe<Array<Posts_Select_Column>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Posts_Order_By>>;
-  where?: Maybe<Posts_Bool_Exp>;
+  value: Scalars['String'];
 };
 
 /** aggregated selection of "post_types" */
@@ -2768,19 +3269,18 @@ export type Post_Types_Bool_Exp = {
   _not?: Maybe<Post_Types_Bool_Exp>;
   _or?: Maybe<Array<Post_Types_Bool_Exp>>;
   comment?: Maybe<String_Comparison_Exp>;
-  postTypeByType?: Maybe<Post_Types_Bool_Exp>;
-  post_type?: Maybe<Post_Types_Bool_Exp>;
-  posts?: Maybe<Posts_Bool_Exp>;
-  value?: Maybe<Post_Types_Enum_Comparison_Exp>;
+  value?: Maybe<String_Comparison_Exp>;
 };
 
 /** unique or primary key constraints on table "post_types" */
 export enum Post_Types_Constraint {
   /** unique or primary key constraint */
-  ObjectTypesPkey = 'object_types_pkey'
+  PostTypesPkey = 'post_types_pkey'
 }
 
 export enum Post_Types_Enum {
+  /** Article */
+  Article = 'article',
   /** Page */
   Page = 'page',
   /** Post */
@@ -2799,22 +3299,21 @@ export type Post_Types_Enum_Comparison_Exp = {
 /** input type for inserting data into table "post_types" */
 export type Post_Types_Insert_Input = {
   comment?: Maybe<Scalars['String']>;
-  postTypeByType?: Maybe<Post_Types_Obj_Rel_Insert_Input>;
-  post_type?: Maybe<Post_Types_Obj_Rel_Insert_Input>;
-  posts?: Maybe<Posts_Arr_Rel_Insert_Input>;
-  value?: Maybe<Post_Types_Enum>;
+  value?: Maybe<Scalars['String']>;
 };
 
 /** aggregate max on columns */
 export type Post_Types_Max_Fields = {
   __typename?: 'post_types_max_fields';
   comment?: Maybe<Scalars['String']>;
+  value?: Maybe<Scalars['String']>;
 };
 
 /** aggregate min on columns */
 export type Post_Types_Min_Fields = {
   __typename?: 'post_types_min_fields';
   comment?: Maybe<Scalars['String']>;
+  value?: Maybe<Scalars['String']>;
 };
 
 /** response of any mutation on the table "post_types" */
@@ -2824,13 +3323,6 @@ export type Post_Types_Mutation_Response = {
   affected_rows: Scalars['Int'];
   /** data from the rows affected by the mutation */
   returning: Array<Post_Types>;
-};
-
-/** input type for inserting object relation for remote table "post_types" */
-export type Post_Types_Obj_Rel_Insert_Input = {
-  data: Post_Types_Insert_Input;
-  /** on conflict condition */
-  on_conflict?: Maybe<Post_Types_On_Conflict>;
 };
 
 /** on conflict condition type for table "post_types" */
@@ -2843,15 +3335,12 @@ export type Post_Types_On_Conflict = {
 /** Ordering options when selecting data from "post_types". */
 export type Post_Types_Order_By = {
   comment?: Maybe<Order_By>;
-  postTypeByType?: Maybe<Post_Types_Order_By>;
-  post_type?: Maybe<Post_Types_Order_By>;
-  posts_aggregate?: Maybe<Posts_Aggregate_Order_By>;
   value?: Maybe<Order_By>;
 };
 
 /** primary key columns input for table: post_types */
 export type Post_Types_Pk_Columns_Input = {
-  value: Post_Types_Enum;
+  value: Scalars['String'];
 };
 
 /** select columns of table "post_types" */
@@ -2865,7 +3354,7 @@ export enum Post_Types_Select_Column {
 /** input type for updating data in table "post_types" */
 export type Post_Types_Set_Input = {
   comment?: Maybe<Scalars['String']>;
-  value?: Maybe<Post_Types_Enum>;
+  value?: Maybe<Scalars['String']>;
 };
 
 /** update columns of table "post_types" */
@@ -2879,22 +3368,14 @@ export enum Post_Types_Update_Column {
 /** columns and relationships of "posts" */
 export type Posts = {
   __typename?: 'posts';
-  author_id?: Maybe<Scalars['uuid']>;
-  body?: Maybe<Scalars['String']>;
-  /** fetch data from the table: "comments" */
+  /** An array relationship */
   comments: Array<Comments>;
   /** An aggregate relationship */
   comments_aggregate: Comments_Aggregate;
   created_at?: Maybe<Scalars['timestamptz']>;
-  excerpt?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
   id: Scalars['uuid'];
-  meta?: Maybe<Scalars['jsonb']>;
-  /** An object relationship */
-  post_state: Post_States;
-  /** An object relationship */
-  post_type?: Maybe<Post_Types>;
   slug: Scalars['String'];
-  state: Post_States_Enum;
   title: Scalars['String'];
   type?: Maybe<Post_Types_Enum>;
   updated_at?: Maybe<Scalars['timestamptz']>;
@@ -2920,12 +3401,6 @@ export type PostsComments_AggregateArgs = {
   where?: Maybe<Comments_Bool_Exp>;
 };
 
-
-/** columns and relationships of "posts" */
-export type PostsMetaArgs = {
-  path?: Maybe<Scalars['String']>;
-};
-
 /** aggregated selection of "posts" */
 export type Posts_Aggregate = {
   __typename?: 'posts_aggregate';
@@ -2948,41 +3423,16 @@ export type Posts_Aggregate_FieldsCountArgs = {
   distinct?: Maybe<Scalars['Boolean']>;
 };
 
-/** order by aggregate values of table "posts" */
-export type Posts_Aggregate_Order_By = {
-  count?: Maybe<Order_By>;
-  max?: Maybe<Posts_Max_Order_By>;
-  min?: Maybe<Posts_Min_Order_By>;
-};
-
-/** append existing jsonb value of filtered columns with new jsonb value */
-export type Posts_Append_Input = {
-  meta?: Maybe<Scalars['jsonb']>;
-};
-
-/** input type for inserting array relation for remote table "posts" */
-export type Posts_Arr_Rel_Insert_Input = {
-  data: Array<Posts_Insert_Input>;
-  /** on conflict condition */
-  on_conflict?: Maybe<Posts_On_Conflict>;
-};
-
 /** Boolean expression to filter rows from the table "posts". All fields are combined with a logical 'AND'. */
 export type Posts_Bool_Exp = {
   _and?: Maybe<Array<Posts_Bool_Exp>>;
   _not?: Maybe<Posts_Bool_Exp>;
   _or?: Maybe<Array<Posts_Bool_Exp>>;
-  author_id?: Maybe<Uuid_Comparison_Exp>;
-  body?: Maybe<String_Comparison_Exp>;
   comments?: Maybe<Comments_Bool_Exp>;
   created_at?: Maybe<Timestamptz_Comparison_Exp>;
-  excerpt?: Maybe<String_Comparison_Exp>;
+  description?: Maybe<String_Comparison_Exp>;
   id?: Maybe<Uuid_Comparison_Exp>;
-  meta?: Maybe<Jsonb_Comparison_Exp>;
-  post_state?: Maybe<Post_States_Bool_Exp>;
-  post_type?: Maybe<Post_Types_Bool_Exp>;
   slug?: Maybe<String_Comparison_Exp>;
-  state?: Maybe<Post_States_Enum_Comparison_Exp>;
   title?: Maybe<String_Comparison_Exp>;
   type?: Maybe<Post_Types_Enum_Comparison_Exp>;
   updated_at?: Maybe<Timestamptz_Comparison_Exp>;
@@ -2996,34 +3446,13 @@ export enum Posts_Constraint {
   PostsSlugKey = 'posts_slug_key'
 }
 
-/** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
-export type Posts_Delete_At_Path_Input = {
-  meta?: Maybe<Array<Scalars['String']>>;
-};
-
-/** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
-export type Posts_Delete_Elem_Input = {
-  meta?: Maybe<Scalars['Int']>;
-};
-
-/** delete key/value pair or string element. key/value pairs are matched based on their key value */
-export type Posts_Delete_Key_Input = {
-  meta?: Maybe<Scalars['String']>;
-};
-
 /** input type for inserting data into table "posts" */
 export type Posts_Insert_Input = {
-  author_id?: Maybe<Scalars['uuid']>;
-  body?: Maybe<Scalars['String']>;
   comments?: Maybe<Comments_Arr_Rel_Insert_Input>;
   created_at?: Maybe<Scalars['timestamptz']>;
-  excerpt?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['uuid']>;
-  meta?: Maybe<Scalars['jsonb']>;
-  post_state?: Maybe<Post_States_Obj_Rel_Insert_Input>;
-  post_type?: Maybe<Post_Types_Obj_Rel_Insert_Input>;
   slug?: Maybe<Scalars['String']>;
-  state?: Maybe<Post_States_Enum>;
   title?: Maybe<Scalars['String']>;
   type?: Maybe<Post_Types_Enum>;
   updated_at?: Maybe<Scalars['timestamptz']>;
@@ -3032,51 +3461,23 @@ export type Posts_Insert_Input = {
 /** aggregate max on columns */
 export type Posts_Max_Fields = {
   __typename?: 'posts_max_fields';
-  author_id?: Maybe<Scalars['uuid']>;
-  body?: Maybe<Scalars['String']>;
   created_at?: Maybe<Scalars['timestamptz']>;
-  excerpt?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['uuid']>;
   slug?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
   updated_at?: Maybe<Scalars['timestamptz']>;
-};
-
-/** order by max() on columns of table "posts" */
-export type Posts_Max_Order_By = {
-  author_id?: Maybe<Order_By>;
-  body?: Maybe<Order_By>;
-  created_at?: Maybe<Order_By>;
-  excerpt?: Maybe<Order_By>;
-  id?: Maybe<Order_By>;
-  slug?: Maybe<Order_By>;
-  title?: Maybe<Order_By>;
-  updated_at?: Maybe<Order_By>;
 };
 
 /** aggregate min on columns */
 export type Posts_Min_Fields = {
   __typename?: 'posts_min_fields';
-  author_id?: Maybe<Scalars['uuid']>;
-  body?: Maybe<Scalars['String']>;
   created_at?: Maybe<Scalars['timestamptz']>;
-  excerpt?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['uuid']>;
   slug?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
   updated_at?: Maybe<Scalars['timestamptz']>;
-};
-
-/** order by min() on columns of table "posts" */
-export type Posts_Min_Order_By = {
-  author_id?: Maybe<Order_By>;
-  body?: Maybe<Order_By>;
-  created_at?: Maybe<Order_By>;
-  excerpt?: Maybe<Order_By>;
-  id?: Maybe<Order_By>;
-  slug?: Maybe<Order_By>;
-  title?: Maybe<Order_By>;
-  updated_at?: Maybe<Order_By>;
 };
 
 /** response of any mutation on the table "posts" */
@@ -3104,17 +3505,11 @@ export type Posts_On_Conflict = {
 
 /** Ordering options when selecting data from "posts". */
 export type Posts_Order_By = {
-  author_id?: Maybe<Order_By>;
-  body?: Maybe<Order_By>;
   comments_aggregate?: Maybe<Comments_Aggregate_Order_By>;
   created_at?: Maybe<Order_By>;
-  excerpt?: Maybe<Order_By>;
+  description?: Maybe<Order_By>;
   id?: Maybe<Order_By>;
-  meta?: Maybe<Order_By>;
-  post_state?: Maybe<Post_States_Order_By>;
-  post_type?: Maybe<Post_Types_Order_By>;
   slug?: Maybe<Order_By>;
-  state?: Maybe<Order_By>;
   title?: Maybe<Order_By>;
   type?: Maybe<Order_By>;
   updated_at?: Maybe<Order_By>;
@@ -3125,29 +3520,16 @@ export type Posts_Pk_Columns_Input = {
   id: Scalars['uuid'];
 };
 
-/** prepend existing jsonb value of filtered columns with new jsonb value */
-export type Posts_Prepend_Input = {
-  meta?: Maybe<Scalars['jsonb']>;
-};
-
 /** select columns of table "posts" */
 export enum Posts_Select_Column {
   /** column name */
-  AuthorId = 'author_id',
-  /** column name */
-  Body = 'body',
-  /** column name */
   CreatedAt = 'created_at',
   /** column name */
-  Excerpt = 'excerpt',
+  Description = 'description',
   /** column name */
   Id = 'id',
   /** column name */
-  Meta = 'meta',
-  /** column name */
   Slug = 'slug',
-  /** column name */
-  State = 'state',
   /** column name */
   Title = 'title',
   /** column name */
@@ -3158,14 +3540,10 @@ export enum Posts_Select_Column {
 
 /** input type for updating data in table "posts" */
 export type Posts_Set_Input = {
-  author_id?: Maybe<Scalars['uuid']>;
-  body?: Maybe<Scalars['String']>;
   created_at?: Maybe<Scalars['timestamptz']>;
-  excerpt?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['uuid']>;
-  meta?: Maybe<Scalars['jsonb']>;
   slug?: Maybe<Scalars['String']>;
-  state?: Maybe<Post_States_Enum>;
   title?: Maybe<Scalars['String']>;
   type?: Maybe<Post_Types_Enum>;
   updated_at?: Maybe<Scalars['timestamptz']>;
@@ -3174,21 +3552,13 @@ export type Posts_Set_Input = {
 /** update columns of table "posts" */
 export enum Posts_Update_Column {
   /** column name */
-  AuthorId = 'author_id',
-  /** column name */
-  Body = 'body',
-  /** column name */
   CreatedAt = 'created_at',
   /** column name */
-  Excerpt = 'excerpt',
+  Description = 'description',
   /** column name */
   Id = 'id',
   /** column name */
-  Meta = 'meta',
-  /** column name */
   Slug = 'slug',
-  /** column name */
-  State = 'state',
   /** column name */
   Title = 'title',
   /** column name */
@@ -3199,6 +3569,18 @@ export enum Posts_Update_Column {
 
 export type Query_Root = {
   __typename?: 'query_root';
+  /** fetch data from the table: "article_states" */
+  article_states: Array<Article_States>;
+  /** fetch aggregated fields from the table: "article_states" */
+  article_states_aggregate: Article_States_Aggregate;
+  /** fetch data from the table: "article_states" using primary key columns */
+  article_states_by_pk?: Maybe<Article_States>;
+  /** fetch data from the table: "articles" */
+  articles: Array<Articles>;
+  /** fetch aggregated fields from the table: "articles" */
+  articles_aggregate: Articles_Aggregate;
+  /** fetch data from the table: "articles" using primary key columns */
+  articles_by_pk?: Maybe<Articles>;
   /** fetch data from the table: "auth.account_providers" */
   auth_account_providers: Array<Auth_Account_Providers>;
   /** fetch aggregated fields from the table: "auth.account_providers" */
@@ -3235,27 +3617,33 @@ export type Query_Root = {
   auth_roles_aggregate: Auth_Roles_Aggregate;
   /** fetch data from the table: "auth.roles" using primary key columns */
   auth_roles_by_pk?: Maybe<Auth_Roles>;
-  /** fetch data from the table: "comments" */
+  /** An array relationship */
   comments: Array<Comments>;
   /** An aggregate relationship */
   comments_aggregate: Comments_Aggregate;
   /** fetch data from the table: "comments" using primary key columns */
   comments_by_pk?: Maybe<Comments>;
-  /** fetch data from the table: "post_states" */
-  post_states: Array<Post_States>;
-  /** fetch aggregated fields from the table: "post_states" */
-  post_states_aggregate: Post_States_Aggregate;
-  /** fetch data from the table: "post_states" using primary key columns */
-  post_states_by_pk?: Maybe<Post_States>;
+  /** fetch data from the table: "page_states" */
+  page_states: Array<Page_States>;
+  /** fetch aggregated fields from the table: "page_states" */
+  page_states_aggregate: Page_States_Aggregate;
+  /** fetch data from the table: "page_states" using primary key columns */
+  page_states_by_pk?: Maybe<Page_States>;
+  /** fetch data from the table: "pages" */
+  pages: Array<Pages>;
+  /** fetch aggregated fields from the table: "pages" */
+  pages_aggregate: Pages_Aggregate;
+  /** fetch data from the table: "pages" using primary key columns */
+  pages_by_pk?: Maybe<Pages>;
   /** fetch data from the table: "post_types" */
   post_types: Array<Post_Types>;
   /** fetch aggregated fields from the table: "post_types" */
   post_types_aggregate: Post_Types_Aggregate;
   /** fetch data from the table: "post_types" using primary key columns */
   post_types_by_pk?: Maybe<Post_Types>;
-  /** An array relationship */
+  /** fetch data from the table: "posts" */
   posts: Array<Posts>;
-  /** An aggregate relationship */
+  /** fetch aggregated fields from the table: "posts" */
   posts_aggregate: Posts_Aggregate;
   /** fetch data from the table: "posts" using primary key columns */
   posts_by_pk?: Maybe<Posts>;
@@ -3293,6 +3681,52 @@ export type Query_Root = {
   users_aggregate: Users_Aggregate;
   /** fetch data from the table: "users" using primary key columns */
   users_by_pk?: Maybe<Users>;
+};
+
+
+export type Query_RootArticle_StatesArgs = {
+  distinct_on?: Maybe<Array<Article_States_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Article_States_Order_By>>;
+  where?: Maybe<Article_States_Bool_Exp>;
+};
+
+
+export type Query_RootArticle_States_AggregateArgs = {
+  distinct_on?: Maybe<Array<Article_States_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Article_States_Order_By>>;
+  where?: Maybe<Article_States_Bool_Exp>;
+};
+
+
+export type Query_RootArticle_States_By_PkArgs = {
+  value: Scalars['String'];
+};
+
+
+export type Query_RootArticlesArgs = {
+  distinct_on?: Maybe<Array<Articles_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Articles_Order_By>>;
+  where?: Maybe<Articles_Bool_Exp>;
+};
+
+
+export type Query_RootArticles_AggregateArgs = {
+  distinct_on?: Maybe<Array<Articles_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Articles_Order_By>>;
+  where?: Maybe<Articles_Bool_Exp>;
+};
+
+
+export type Query_RootArticles_By_PkArgs = {
+  post_id: Scalars['uuid'];
 };
 
 
@@ -3457,26 +3891,49 @@ export type Query_RootComments_By_PkArgs = {
 };
 
 
-export type Query_RootPost_StatesArgs = {
-  distinct_on?: Maybe<Array<Post_States_Select_Column>>;
+export type Query_RootPage_StatesArgs = {
+  distinct_on?: Maybe<Array<Page_States_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Post_States_Order_By>>;
-  where?: Maybe<Post_States_Bool_Exp>;
+  order_by?: Maybe<Array<Page_States_Order_By>>;
+  where?: Maybe<Page_States_Bool_Exp>;
 };
 
 
-export type Query_RootPost_States_AggregateArgs = {
-  distinct_on?: Maybe<Array<Post_States_Select_Column>>;
+export type Query_RootPage_States_AggregateArgs = {
+  distinct_on?: Maybe<Array<Page_States_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Post_States_Order_By>>;
-  where?: Maybe<Post_States_Bool_Exp>;
+  order_by?: Maybe<Array<Page_States_Order_By>>;
+  where?: Maybe<Page_States_Bool_Exp>;
 };
 
 
-export type Query_RootPost_States_By_PkArgs = {
+export type Query_RootPage_States_By_PkArgs = {
   value: Scalars['String'];
+};
+
+
+export type Query_RootPagesArgs = {
+  distinct_on?: Maybe<Array<Pages_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Pages_Order_By>>;
+  where?: Maybe<Pages_Bool_Exp>;
+};
+
+
+export type Query_RootPages_AggregateArgs = {
+  distinct_on?: Maybe<Array<Pages_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Pages_Order_By>>;
+  where?: Maybe<Pages_Bool_Exp>;
+};
+
+
+export type Query_RootPages_By_PkArgs = {
+  post_id: Scalars['uuid'];
 };
 
 
@@ -3499,7 +3956,7 @@ export type Query_RootPost_Types_AggregateArgs = {
 
 
 export type Query_RootPost_Types_By_PkArgs = {
-  value: Post_Types_Enum;
+  value: Scalars['String'];
 };
 
 
@@ -3660,6 +4117,18 @@ export type Query_RootUsers_By_PkArgs = {
 
 export type Subscription_Root = {
   __typename?: 'subscription_root';
+  /** fetch data from the table: "article_states" */
+  article_states: Array<Article_States>;
+  /** fetch aggregated fields from the table: "article_states" */
+  article_states_aggregate: Article_States_Aggregate;
+  /** fetch data from the table: "article_states" using primary key columns */
+  article_states_by_pk?: Maybe<Article_States>;
+  /** fetch data from the table: "articles" */
+  articles: Array<Articles>;
+  /** fetch aggregated fields from the table: "articles" */
+  articles_aggregate: Articles_Aggregate;
+  /** fetch data from the table: "articles" using primary key columns */
+  articles_by_pk?: Maybe<Articles>;
   /** fetch data from the table: "auth.account_providers" */
   auth_account_providers: Array<Auth_Account_Providers>;
   /** fetch aggregated fields from the table: "auth.account_providers" */
@@ -3696,27 +4165,33 @@ export type Subscription_Root = {
   auth_roles_aggregate: Auth_Roles_Aggregate;
   /** fetch data from the table: "auth.roles" using primary key columns */
   auth_roles_by_pk?: Maybe<Auth_Roles>;
-  /** fetch data from the table: "comments" */
+  /** An array relationship */
   comments: Array<Comments>;
   /** An aggregate relationship */
   comments_aggregate: Comments_Aggregate;
   /** fetch data from the table: "comments" using primary key columns */
   comments_by_pk?: Maybe<Comments>;
-  /** fetch data from the table: "post_states" */
-  post_states: Array<Post_States>;
-  /** fetch aggregated fields from the table: "post_states" */
-  post_states_aggregate: Post_States_Aggregate;
-  /** fetch data from the table: "post_states" using primary key columns */
-  post_states_by_pk?: Maybe<Post_States>;
+  /** fetch data from the table: "page_states" */
+  page_states: Array<Page_States>;
+  /** fetch aggregated fields from the table: "page_states" */
+  page_states_aggregate: Page_States_Aggregate;
+  /** fetch data from the table: "page_states" using primary key columns */
+  page_states_by_pk?: Maybe<Page_States>;
+  /** fetch data from the table: "pages" */
+  pages: Array<Pages>;
+  /** fetch aggregated fields from the table: "pages" */
+  pages_aggregate: Pages_Aggregate;
+  /** fetch data from the table: "pages" using primary key columns */
+  pages_by_pk?: Maybe<Pages>;
   /** fetch data from the table: "post_types" */
   post_types: Array<Post_Types>;
   /** fetch aggregated fields from the table: "post_types" */
   post_types_aggregate: Post_Types_Aggregate;
   /** fetch data from the table: "post_types" using primary key columns */
   post_types_by_pk?: Maybe<Post_Types>;
-  /** An array relationship */
+  /** fetch data from the table: "posts" */
   posts: Array<Posts>;
-  /** An aggregate relationship */
+  /** fetch aggregated fields from the table: "posts" */
   posts_aggregate: Posts_Aggregate;
   /** fetch data from the table: "posts" using primary key columns */
   posts_by_pk?: Maybe<Posts>;
@@ -3754,6 +4229,52 @@ export type Subscription_Root = {
   users_aggregate: Users_Aggregate;
   /** fetch data from the table: "users" using primary key columns */
   users_by_pk?: Maybe<Users>;
+};
+
+
+export type Subscription_RootArticle_StatesArgs = {
+  distinct_on?: Maybe<Array<Article_States_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Article_States_Order_By>>;
+  where?: Maybe<Article_States_Bool_Exp>;
+};
+
+
+export type Subscription_RootArticle_States_AggregateArgs = {
+  distinct_on?: Maybe<Array<Article_States_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Article_States_Order_By>>;
+  where?: Maybe<Article_States_Bool_Exp>;
+};
+
+
+export type Subscription_RootArticle_States_By_PkArgs = {
+  value: Scalars['String'];
+};
+
+
+export type Subscription_RootArticlesArgs = {
+  distinct_on?: Maybe<Array<Articles_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Articles_Order_By>>;
+  where?: Maybe<Articles_Bool_Exp>;
+};
+
+
+export type Subscription_RootArticles_AggregateArgs = {
+  distinct_on?: Maybe<Array<Articles_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Articles_Order_By>>;
+  where?: Maybe<Articles_Bool_Exp>;
+};
+
+
+export type Subscription_RootArticles_By_PkArgs = {
+  post_id: Scalars['uuid'];
 };
 
 
@@ -3918,26 +4439,49 @@ export type Subscription_RootComments_By_PkArgs = {
 };
 
 
-export type Subscription_RootPost_StatesArgs = {
-  distinct_on?: Maybe<Array<Post_States_Select_Column>>;
+export type Subscription_RootPage_StatesArgs = {
+  distinct_on?: Maybe<Array<Page_States_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Post_States_Order_By>>;
-  where?: Maybe<Post_States_Bool_Exp>;
+  order_by?: Maybe<Array<Page_States_Order_By>>;
+  where?: Maybe<Page_States_Bool_Exp>;
 };
 
 
-export type Subscription_RootPost_States_AggregateArgs = {
-  distinct_on?: Maybe<Array<Post_States_Select_Column>>;
+export type Subscription_RootPage_States_AggregateArgs = {
+  distinct_on?: Maybe<Array<Page_States_Select_Column>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<Post_States_Order_By>>;
-  where?: Maybe<Post_States_Bool_Exp>;
+  order_by?: Maybe<Array<Page_States_Order_By>>;
+  where?: Maybe<Page_States_Bool_Exp>;
 };
 
 
-export type Subscription_RootPost_States_By_PkArgs = {
+export type Subscription_RootPage_States_By_PkArgs = {
   value: Scalars['String'];
+};
+
+
+export type Subscription_RootPagesArgs = {
+  distinct_on?: Maybe<Array<Pages_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Pages_Order_By>>;
+  where?: Maybe<Pages_Bool_Exp>;
+};
+
+
+export type Subscription_RootPages_AggregateArgs = {
+  distinct_on?: Maybe<Array<Pages_Select_Column>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<Pages_Order_By>>;
+  where?: Maybe<Pages_Bool_Exp>;
+};
+
+
+export type Subscription_RootPages_By_PkArgs = {
+  post_id: Scalars['uuid'];
 };
 
 
@@ -3960,7 +4504,7 @@ export type Subscription_RootPost_Types_AggregateArgs = {
 
 
 export type Subscription_RootPost_Types_By_PkArgs = {
-  value: Post_Types_Enum;
+  value: Scalars['String'];
 };
 
 
@@ -4399,6 +4943,7 @@ export type Term_Taxonomies = {
   __typename?: 'term_taxonomies';
   created_at: Scalars['timestamptz'];
   description?: Maybe<Scalars['String']>;
+  id: Scalars['uuid'];
   parent_slug?: Maybe<Scalars['String']>;
   taxonomy: Taxonomies_Enum;
   /** An object relationship */
@@ -4452,6 +4997,7 @@ export type Term_Taxonomies_Bool_Exp = {
   _or?: Maybe<Array<Term_Taxonomies_Bool_Exp>>;
   created_at?: Maybe<Timestamptz_Comparison_Exp>;
   description?: Maybe<String_Comparison_Exp>;
+  id?: Maybe<Uuid_Comparison_Exp>;
   parent_slug?: Maybe<String_Comparison_Exp>;
   taxonomy?: Maybe<Taxonomies_Enum_Comparison_Exp>;
   taxonomyByTaxonomy?: Maybe<Taxonomies_Bool_Exp>;
@@ -4470,6 +5016,7 @@ export enum Term_Taxonomies_Constraint {
 export type Term_Taxonomies_Insert_Input = {
   created_at?: Maybe<Scalars['timestamptz']>;
   description?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['uuid']>;
   parent_slug?: Maybe<Scalars['String']>;
   taxonomy?: Maybe<Taxonomies_Enum>;
   taxonomyByTaxonomy?: Maybe<Taxonomies_Obj_Rel_Insert_Input>;
@@ -4483,6 +5030,7 @@ export type Term_Taxonomies_Max_Fields = {
   __typename?: 'term_taxonomies_max_fields';
   created_at?: Maybe<Scalars['timestamptz']>;
   description?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['uuid']>;
   parent_slug?: Maybe<Scalars['String']>;
   term_slug?: Maybe<Scalars['String']>;
   updated_at?: Maybe<Scalars['timestamptz']>;
@@ -4492,6 +5040,7 @@ export type Term_Taxonomies_Max_Fields = {
 export type Term_Taxonomies_Max_Order_By = {
   created_at?: Maybe<Order_By>;
   description?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
   parent_slug?: Maybe<Order_By>;
   term_slug?: Maybe<Order_By>;
   updated_at?: Maybe<Order_By>;
@@ -4502,6 +5051,7 @@ export type Term_Taxonomies_Min_Fields = {
   __typename?: 'term_taxonomies_min_fields';
   created_at?: Maybe<Scalars['timestamptz']>;
   description?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['uuid']>;
   parent_slug?: Maybe<Scalars['String']>;
   term_slug?: Maybe<Scalars['String']>;
   updated_at?: Maybe<Scalars['timestamptz']>;
@@ -4511,6 +5061,7 @@ export type Term_Taxonomies_Min_Fields = {
 export type Term_Taxonomies_Min_Order_By = {
   created_at?: Maybe<Order_By>;
   description?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
   parent_slug?: Maybe<Order_By>;
   term_slug?: Maybe<Order_By>;
   updated_at?: Maybe<Order_By>;
@@ -4536,6 +5087,7 @@ export type Term_Taxonomies_On_Conflict = {
 export type Term_Taxonomies_Order_By = {
   created_at?: Maybe<Order_By>;
   description?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
   parent_slug?: Maybe<Order_By>;
   taxonomy?: Maybe<Order_By>;
   taxonomyByTaxonomy?: Maybe<Taxonomies_Order_By>;
@@ -4556,6 +5108,8 @@ export enum Term_Taxonomies_Select_Column {
   /** column name */
   Description = 'description',
   /** column name */
+  Id = 'id',
+  /** column name */
   ParentSlug = 'parent_slug',
   /** column name */
   Taxonomy = 'taxonomy',
@@ -4569,6 +5123,7 @@ export enum Term_Taxonomies_Select_Column {
 export type Term_Taxonomies_Set_Input = {
   created_at?: Maybe<Scalars['timestamptz']>;
   description?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['uuid']>;
   parent_slug?: Maybe<Scalars['String']>;
   taxonomy?: Maybe<Taxonomies_Enum>;
   term_slug?: Maybe<Scalars['String']>;
@@ -4662,6 +5217,8 @@ export enum Term_Taxonomies_Update_Column {
   /** column name */
   Description = 'description',
   /** column name */
+  Id = 'id',
+  /** column name */
   ParentSlug = 'parent_slug',
   /** column name */
   Taxonomy = 'taxonomy',
@@ -4675,6 +5232,7 @@ export enum Term_Taxonomies_Update_Column {
 export type Terms = {
   __typename?: 'terms';
   created_at?: Maybe<Scalars['timestamptz']>;
+  id: Scalars['uuid'];
   name: Scalars['String'];
   slug: Scalars['String'];
   updated_at?: Maybe<Scalars['timestamptz']>;
@@ -4708,6 +5266,7 @@ export type Terms_Bool_Exp = {
   _not?: Maybe<Terms_Bool_Exp>;
   _or?: Maybe<Array<Terms_Bool_Exp>>;
   created_at?: Maybe<Timestamptz_Comparison_Exp>;
+  id?: Maybe<Uuid_Comparison_Exp>;
   name?: Maybe<String_Comparison_Exp>;
   slug?: Maybe<String_Comparison_Exp>;
   updated_at?: Maybe<Timestamptz_Comparison_Exp>;
@@ -4724,6 +5283,7 @@ export enum Terms_Constraint {
 /** input type for inserting data into table "terms" */
 export type Terms_Insert_Input = {
   created_at?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['uuid']>;
   name?: Maybe<Scalars['String']>;
   slug?: Maybe<Scalars['String']>;
   updated_at?: Maybe<Scalars['timestamptz']>;
@@ -4733,6 +5293,7 @@ export type Terms_Insert_Input = {
 export type Terms_Max_Fields = {
   __typename?: 'terms_max_fields';
   created_at?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['uuid']>;
   name?: Maybe<Scalars['String']>;
   slug?: Maybe<Scalars['String']>;
   updated_at?: Maybe<Scalars['timestamptz']>;
@@ -4742,6 +5303,7 @@ export type Terms_Max_Fields = {
 export type Terms_Min_Fields = {
   __typename?: 'terms_min_fields';
   created_at?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['uuid']>;
   name?: Maybe<Scalars['String']>;
   slug?: Maybe<Scalars['String']>;
   updated_at?: Maybe<Scalars['timestamptz']>;
@@ -4773,6 +5335,7 @@ export type Terms_On_Conflict = {
 /** Ordering options when selecting data from "terms". */
 export type Terms_Order_By = {
   created_at?: Maybe<Order_By>;
+  id?: Maybe<Order_By>;
   name?: Maybe<Order_By>;
   slug?: Maybe<Order_By>;
   updated_at?: Maybe<Order_By>;
@@ -4788,6 +5351,8 @@ export enum Terms_Select_Column {
   /** column name */
   CreatedAt = 'created_at',
   /** column name */
+  Id = 'id',
+  /** column name */
   Name = 'name',
   /** column name */
   Slug = 'slug',
@@ -4798,6 +5363,7 @@ export enum Terms_Select_Column {
 /** input type for updating data in table "terms" */
 export type Terms_Set_Input = {
   created_at?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['uuid']>;
   name?: Maybe<Scalars['String']>;
   slug?: Maybe<Scalars['String']>;
   updated_at?: Maybe<Scalars['timestamptz']>;
@@ -4807,6 +5373,8 @@ export type Terms_Set_Input = {
 export enum Terms_Update_Column {
   /** column name */
   CreatedAt = 'created_at',
+  /** column name */
+  Id = 'id',
   /** column name */
   Name = 'name',
   /** column name */
@@ -5036,16 +5604,29 @@ export type Uuid_Comparison_Exp = {
   _nin?: Maybe<Array<Scalars['uuid']>>;
 };
 
-export type CreatePostMutationVariables = Exact<{
-  object: Posts_Insert_Input;
+export type CreateArticleMutationVariables = Exact<{
+  object: Articles_Insert_Input;
 }>;
 
 
-export type CreatePostMutation = (
+export type CreateArticleMutation = (
   { __typename?: 'mutation_root' }
-  & { insert_posts_one?: Maybe<(
-    { __typename: 'posts' }
-    & Pick<Posts, 'id'>
+  & { insert_articles_one?: Maybe<(
+    { __typename: 'articles' }
+    & Pick<Articles, 'post_id'>
+  )> }
+);
+
+export type CreatePageMutationVariables = Exact<{
+  object: Pages_Insert_Input;
+}>;
+
+
+export type CreatePageMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_pages_one?: Maybe<(
+    { __typename: 'pages' }
+    & Pick<Pages, 'id'>
   )> }
 );
 
@@ -5091,6 +5672,39 @@ export type DeletePostMutation = (
   )> }
 );
 
+export type UpdateArticleMutationVariables = Exact<{
+  articles_pk_columns: Articles_Pk_Columns_Input;
+  articles_set?: Maybe<Articles_Set_Input>;
+  posts_pk_columns: Posts_Pk_Columns_Input;
+  posts_set?: Maybe<Posts_Set_Input>;
+}>;
+
+
+export type UpdateArticleMutation = (
+  { __typename?: 'mutation_root' }
+  & { update_articles_by_pk?: Maybe<(
+    { __typename: 'articles' }
+    & Pick<Articles, 'post_id'>
+  )>, update_posts_by_pk?: Maybe<(
+    { __typename: 'posts' }
+    & Pick<Posts, 'id'>
+  )> }
+);
+
+export type UpdatePageMutationVariables = Exact<{
+  pk_columns: Pages_Pk_Columns_Input;
+  _set?: Maybe<Pages_Set_Input>;
+}>;
+
+
+export type UpdatePageMutation = (
+  { __typename?: 'mutation_root' }
+  & { update_pages_by_pk?: Maybe<(
+    { __typename: 'pages' }
+    & Pick<Pages, 'post_id'>
+  )> }
+);
+
 export type UpdatePostMutationVariables = Exact<{
   pk_columns: Posts_Pk_Columns_Input;
   _set?: Maybe<Posts_Set_Input>;
@@ -5105,44 +5719,102 @@ export type UpdatePostMutation = (
   )> }
 );
 
-export type PostQueryVariables = Exact<{
+export type ArticleQueryVariables = Exact<{
   uuid: Scalars['uuid'];
 }>;
 
 
-export type PostQuery = (
+export type ArticleQuery = (
   { __typename?: 'query_root' }
-  & { posts_by_pk?: Maybe<(
-    { __typename: 'posts' }
-    & Pick<Posts, 'id' | 'title' | 'slug' | 'author_id' | 'body' | 'excerpt' | 'state' | 'type'>
+  & { articles_by_pk?: Maybe<(
+    { __typename: 'articles' }
+    & Pick<Articles, 'post_id' | 'body' | 'excerpt' | 'state'>
+    & { post?: Maybe<(
+      { __typename: 'posts' }
+      & Pick<Posts, 'title' | 'description' | 'slug'>
+    )> }
   )> }
 );
 
-export type PostsQueryVariables = Exact<{
-  where?: Maybe<Posts_Bool_Exp>;
+export type ArticlesQueryVariables = Exact<{
+  where?: Maybe<Articles_Bool_Exp>;
 }>;
 
 
-export type PostsQuery = (
+export type ArticlesQuery = (
   { __typename?: 'query_root' }
-  & { posts: Array<(
-    { __typename: 'posts' }
-    & Pick<Posts, 'id' | 'title' | 'type' | 'state' | 'excerpt' | 'slug' | 'body' | 'author_id' | 'created_at'>
+  & { articles: Array<(
+    { __typename: 'articles' }
+    & Pick<Articles, 'post_id' | 'state'>
+    & { post?: Maybe<(
+      { __typename: 'posts' }
+      & Pick<Posts, 'title' | 'type' | 'slug' | 'created_at'>
+    )> }
   )> }
 );
 
-export type PostsAggregateQueryVariables = Exact<{
-  where?: Maybe<Posts_Bool_Exp>;
+export type ArticlesAggregateQueryVariables = Exact<{
+  where?: Maybe<Articles_Bool_Exp>;
 }>;
 
 
-export type PostsAggregateQuery = (
+export type ArticlesAggregateQuery = (
   { __typename?: 'query_root' }
-  & { posts_aggregate: (
-    { __typename?: 'posts_aggregate' }
+  & { articles_aggregate: (
+    { __typename?: 'articles_aggregate' }
     & { aggregate?: Maybe<(
-      { __typename: 'posts_aggregate_fields' }
-      & Pick<Posts_Aggregate_Fields, 'count'>
+      { __typename: 'articles_aggregate_fields' }
+      & Pick<Articles_Aggregate_Fields, 'count'>
+    )> }
+  ) }
+);
+
+export type PageQueryVariables = Exact<{
+  uuid: Scalars['uuid'];
+}>;
+
+
+export type PageQuery = (
+  { __typename?: 'query_root' }
+  & { pages_by_pk?: Maybe<(
+    { __typename: 'pages' }
+    & Pick<Pages, 'id' | 'body' | 'state'>
+    & { post: (
+      { __typename: 'posts' }
+      & Pick<Posts, 'title' | 'description' | 'slug'>
+    ) }
+  )> }
+);
+
+export type PagesQueryVariables = Exact<{
+  where?: Maybe<Pages_Bool_Exp>;
+}>;
+
+
+export type PagesQuery = (
+  { __typename?: 'query_root' }
+  & { pages: Array<(
+    { __typename: 'pages' }
+    & Pick<Pages, 'id' | 'body'>
+    & { post: (
+      { __typename: 'posts' }
+      & Pick<Posts, 'title' | 'type' | 'slug' | 'created_at'>
+    ) }
+  )> }
+);
+
+export type PagesAggregateQueryVariables = Exact<{
+  where?: Maybe<Pages_Bool_Exp>;
+}>;
+
+
+export type PagesAggregateQuery = (
+  { __typename?: 'query_root' }
+  & { pages_aggregate: (
+    { __typename?: 'pages_aggregate' }
+    & { aggregate?: Maybe<(
+      { __typename: 'pages_aggregate_fields' }
+      & Pick<Pages_Aggregate_Fields, 'count'>
     )> }
   ) }
 );
@@ -5179,17 +5851,23 @@ export type TermTaxonomiesTreeQuery = (
 
 export const namedOperations = {
   Query: {
-    post: 'post',
-    posts: 'posts',
-    postsAggregate: 'postsAggregate',
+    article: 'article',
+    articles: 'articles',
+    articlesAggregate: 'articlesAggregate',
+    page: 'page',
+    pages: 'pages',
+    pagesAggregate: 'pagesAggregate',
     termTaxonomies: 'termTaxonomies',
     termTaxonomiesTree: 'termTaxonomiesTree'
   },
   Mutation: {
-    createPost: 'createPost',
+    createArticle: 'createArticle',
+    createPage: 'createPage',
     createTerm: 'createTerm',
     createTermTaxonomy: 'createTermTaxonomy',
     deletePost: 'deletePost',
+    updateArticle: 'updateArticle',
+    updatePage: 'updatePage',
     updatePost: 'updatePost'
   }
 }

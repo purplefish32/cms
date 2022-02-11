@@ -13,7 +13,7 @@ export default () => {
         </Panel>
         <Panel>
           <Content>
-            <CreatePageForm />
+            {/* <CreatePageForm /> */}
           </Content>
         </Panel>
       </PanelGroup>

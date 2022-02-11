@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button, Form, InputPicker } from "rsuite";
 import { Schema } from "schema-typed";
-import { PostStatesEnum } from "../../../../generated/graphql";
+import { PageStatesEnum } from "../../../../generated/graphql";
 import { CreatePageFormModel } from "./CreatePageFormLogic";
 
 interface Props {
@@ -34,11 +34,11 @@ const CreatePageFormView = ({ model, defaultValues, handleSubmit }: Props) => {
                         [
                             {
                                 "label": "Draft",
-                                "value": PostStatesEnum.Draft
+                                "value": PageStatesEnum.Draft
                             },
                             {
                                 "label": "Published",
-                                "value": PostStatesEnum.Published
+                                "value": PageStatesEnum.Published
                             },
                         ]
                     }

@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Button, Form, InputPicker } from "rsuite";
 import { Schema } from "schema-typed";
-import { PostStatesEnum } from "../../../../generated/graphql";
-import { UpdatePostFormModel } from "./UpdatePostFormLogic";
+import { ArticleStatesEnum } from "../../../../generated/graphql";
+import { UpdateArticleFormModel } from "./UpdateArticleFormLogic";
 
 interface Props {
     model: Schema<{
@@ -11,17 +11,17 @@ interface Props {
         excerpt: unknown;
         body: unknown;
     }, string>,
-    defaultValues: UpdatePostFormModel,
-    handleSubmit: (data: UpdatePostFormModel) => Promise<void>
+    defaultValues: UpdateArticleFormModel,
+    handleSubmit: (data: UpdateArticleFormModel) => Promise<void>
 }
 
 const UpdatePostFormView = ({ model, defaultValues, handleSubmit }: Props) => {
-    const [formValue, setFormValue] = useState<UpdatePostFormModel>(defaultValues);
+    const [formValue, setFormValue] = useState<UpdateArticleFormModel>(defaultValues);
 
     return (
         <Form
             onChange={formValue => {
-                setFormValue(formValue as UpdatePostFormModel)
+                setFormValue(formValue as UpdateArticleFormModel)
             }}
             formValue={formValue}
             model={model}
@@ -35,11 +35,11 @@ const UpdatePostFormView = ({ model, defaultValues, handleSubmit }: Props) => {
                         [
                             {
                                 "label": "Draft",
-                                "value": PostStatesEnum.Draft
+                                "value": ArticleStatesEnum.Draft
                             },
                             {
                                 "label": "Published",
-                                "value": PostStatesEnum.Published
+                                "value": ArticleStatesEnum.Published
                             },
                         ]
                     }

@@ -1,6 +1,6 @@
 import router from "next/router";
 import { capitalize } from "underscore.string";
-import { PostStatesEnum, PostTypesEnum, useCreatePostMutation } from "../../../../generated/graphql";
+import { PostTypesEnum, useCreatePostMutation } from "../../../../generated/graphql";
 import CreatePageFormLogic, { CreatePageFormModel } from "./CreatePageFormLogic";
 
 const CreatePageFormApollo = () => {
@@ -12,8 +12,8 @@ const CreatePageFormApollo = () => {
         const {
             title,
             slug,
-            state,
-            body,
+            //state,
+            //body,
         } = data
 
         try {
@@ -22,8 +22,8 @@ const CreatePageFormApollo = () => {
                     object: {
                         title,
                         slug,
-                        body,
-                        state: PostStatesEnum[capitalize(state)],
+                        //body,
+                        //state: PageStatesEnum[capitalize(state)],
                         type: PostTypesEnum.Page
                     }
                 }

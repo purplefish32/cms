@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react";
-import { PostTypesEnum, usePostsQuery } from "../../../generated/graphql";
+import { usePagesQuery } from "../../../generated/graphql";
 import Link from 'next/link'
 import PostDeleteButton from "../PostDeleteButton";
 import { Button, ButtonToolbar } from "rsuite";
@@ -7,15 +7,8 @@ import router from "next/router";
 import { Table } from "semantic-ui-react";
 
 const PostsTable: FunctionComponent = () => {
-    const { data, error } = usePostsQuery({
+    const { data, error } = usePagesQuery({
         fetchPolicy: "cache-and-network",
-        variables: {
-            where: {
-                type: {
-                    _eq: PostTypesEnum.Page
-                }
-            }
-        }
     });
 
     if (error) {
@@ -37,11 +30,11 @@ const PostsTable: FunctionComponent = () => {
             </Table.Header>
             <Table.Body>
                 {
-                    data.posts.map((post, key) => {
+                    data.pages.map((page, key) => {
                         return (
                             <Table.Row key={key}>
-                                <Table.Cell><Link href={`pages/${post.id}`}>{post.title}</Link></Table.Cell>
-                                <Table.Cell>{post.body}</Table.Cell>
+                                <Table.Cell><Link href={`pages/${page.id}`}>{page.post.title}</Link></Table.Cell>
+                                <Table.Cell>{page.body}</Table.Cell>
                                 <Table.Cell>
                                     <ButtonToolbar>
                                         <Button
@@ -49,11 +42,11 @@ const PostsTable: FunctionComponent = () => {
                                             appearance="primary"
                                             onClick={
                                                 () => {
-                                                    router.push(`pages/edit/${post.id}`)
+                                                    router.push(`pages/edit/${page.id}`)
                                                 }
                                             }
                                         >Edit</Button>
-                                        <PostDeleteButton postId={post.id} />
+                                        <PostDeleteButton postId={page.id} />
                                     </ButtonToolbar>
                                 </Table.Cell>
                             </Table.Row>

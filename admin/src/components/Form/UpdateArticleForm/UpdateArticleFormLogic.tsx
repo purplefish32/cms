@@ -1,7 +1,7 @@
 import { Schema } from 'rsuite';
-import UpdatePostFormView from './UpdatePostFormView';
+import UpdateArticleFormView from './UpdateArticleFormView';
 
-export interface UpdatePostFormModel {
+export interface UpdateArticleFormModel {
     title: string;
     slug: string;
     body: string;
@@ -19,17 +19,17 @@ const UpdatePostFormSchema = Schema.Model({
 });
 
 interface Props {
-    defaultValues: UpdatePostFormModel;
-    onSubmit: (data: UpdatePostFormModel) => Promise<void>
+    defaultValues: UpdateArticleFormModel;
+    onSubmit: (data: UpdateArticleFormModel) => Promise<void>
 }
 
 const UpdatePostFormLogic = ({ defaultValues, onSubmit }: Props) => {
-    const handleSubmit = async (data: UpdatePostFormModel) => {
+    const handleSubmit = async (data: UpdateArticleFormModel) => {
         await onSubmit(data)
     };
 
     return (
-        <UpdatePostFormView
+        <UpdateArticleFormView
             defaultValues={defaultValues}
             handleSubmit={handleSubmit}
             model={UpdatePostFormSchema}

@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Button, Form, InputPicker } from "rsuite";
 import { Schema } from "schema-typed";
-import { PostStatesEnum } from "../../../../generated/graphql";
-import { CreatePostFormModel } from "./CreatePostFormLogic";
+import { ArticleStatesEnum } from "../../../../generated/graphql";
+import { CreateArticleFormModel } from "./CreateArticleFormLogic";
 
 interface Props {
     model: Schema<{
@@ -11,17 +11,17 @@ interface Props {
         excerpt: unknown;
         body: unknown;
     }, string>,
-    defaultValues: CreatePostFormModel,
-    handleSubmit: (data: CreatePostFormModel) => Promise<void>
+    defaultValues: CreateArticleFormModel,
+    handleSubmit: (data: CreateArticleFormModel) => Promise<void>
 }
 
-const CreatePostFormView = ({ model, defaultValues, handleSubmit }: Props) => {
-    const [formValue, setFormValue] = useState<CreatePostFormModel>(defaultValues);
+const CreateArticleFormView = ({ model, defaultValues, handleSubmit }: Props) => {
+    const [formValue, setFormValue] = useState<CreateArticleFormModel>(defaultValues);
 
     return (
         <Form
             onChange={formValue => {
-                setFormValue(formValue as CreatePostFormModel)
+                setFormValue(formValue as CreateArticleFormModel)
             }}
             formValue={formValue}
             model={model}
@@ -35,11 +35,11 @@ const CreatePostFormView = ({ model, defaultValues, handleSubmit }: Props) => {
                         [
                             {
                                 "label": "Draft",
-                                "value": PostStatesEnum.Draft
+                                "value": ArticleStatesEnum.Draft
                             },
                             {
                                 "label": "Published",
-                                "value": PostStatesEnum.Published
+                                "value": ArticleStatesEnum.Published
                             },
                         ]
                     }
@@ -90,4 +90,4 @@ const CreatePostFormView = ({ model, defaultValues, handleSubmit }: Props) => {
     );
 };
 
-export default CreatePostFormView;
+export default CreateArticleFormView;

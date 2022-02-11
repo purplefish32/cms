@@ -16,7 +16,7 @@ export default () => {
                 </Panel>
                 <Panel>
                     <Content>
-                        <UpdatePageForm postId={query['id'] as string}></UpdatePageForm>
+                        {/* <UpdatePageForm postId={query['id'] as string}></UpdatePageForm> */}
                     </Content>
                 </Panel>
             </PanelGroup>
