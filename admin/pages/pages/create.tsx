@@ -1,8 +1,13 @@
-import { Header, Content, Panel, PanelGroup } from 'rsuite';
-import CreatePageForm from '../../src/components/Form/CreatePageForm/CreatePageFormApollo';
-import Layout from '../../src/components/Layout';
+import { Header, Content, Panel, PanelGroup } from "rsuite";
+import Layout from "../../src/components/Layout";
+import React from "react";
+import CreatePageFormApollo from "../../src/components/Form/CreatePageForm/CreatePageFormApollo";
 
-export default () => {
+/**
+ * PageCreatePage: The Page Create Page
+ * @return {JSX.Element} The JSX Code for the Page Create Page
+ */
+export default function PageCreatePage() {
   return (
     <Layout>
       <PanelGroup>
@@ -13,10 +18,10 @@ export default () => {
         </Panel>
         <Panel>
           <Content>
-            {/* <CreatePageForm /> */}
+            <CreatePageFormApollo />
           </Content>
         </Panel>
       </PanelGroup>
     </Layout>
-  )
+  );
 }

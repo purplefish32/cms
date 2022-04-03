@@ -1,7 +1,7 @@
 query pages($where: pages_bool_exp) {
   pages(where: $where) {
     __typename
-    id
+    post_id
     body
     post {
       __typename

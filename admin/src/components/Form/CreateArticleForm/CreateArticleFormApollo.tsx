@@ -1,61 +1,60 @@
 import router from "next/router";
 import { capitalize } from "underscore.string";
-import { ArticleStatesEnum, PostTypesEnum, useCreateArticleMutation } from "../../../../generated/graphql";
-import CreateArticleFormLogic, { CreateArticleFormModel } from "./CreateArticleFormLogic";
+import {
+  ArticleStatesEnum,
+  PostTypesEnum,
+  useCreateArticleMutation,
+} from "../../../../generated/graphql";
+import CreateArticleFormLogic, {
+  CreateArticleFormModel,
+} from "./CreateArticleFormLogic";
+import React from "react";
 
 const CreateArticleFormApollo = () => {
+  const [insertArticlesOne] = useCreateArticleMutation();
 
-    const [insert_articles_one] = useCreateArticleMutation()
+  const handleSubmit = async (data: CreateArticleFormModel) => {
+    const { title, slug, state, body, excerpt } = data;
 
-
-    const handleSubmit = async (data: CreateArticleFormModel) => {
-        const {
-            title,
-            slug,
-            state,
+    try {
+      const { data } = await insertArticlesOne({
+        variables: {
+          object: {
+            post: {
+              data: {
+                title,
+                slug,
+                type: PostTypesEnum.Article,
+              },
+            },
             body,
-            excerpt
-        } = data
+            excerpt,
+            state: ArticleStatesEnum[capitalize(state)],
+          },
+        },
+      });
 
-        try {
-            const { data } = await insert_articles_one({
-                variables: {
-                    object: {
-                        post: {
-                            data: {
-                                title,
-                                slug,
-                                type: PostTypesEnum.Article
-                            }
-                        },
-                        body,
-                        excerpt,
-                        state: ArticleStatesEnum[capitalize(state)],
-                    }
-                }
-            });
+      router.push(`/articles/edit/${data.insert_articles_one.post_id}`);
+    } catch (error) {
+      console.log(error.stack);
+      throw new Error("Could not create article");
+    }
+  };
 
-            router.push(`/articles/edit/${data.insert_articles_one.post_id}`)
+  const defaultValues = {
+    title: "",
+    slug: "",
+    body: "",
+    state: "",
+    excerpt: "",
+  };
 
-        } catch (error) {
-            console.log(error)
-        }
-    };
-
-    const defaultValues = {
-        title: "",
-        slug: "",
-        body: "",
-        state: "",
-        excerpt: ""
-    };
-
-    return (
-        <CreateArticleFormLogic
-            defaultValues={defaultValues}
-            onSubmit={handleSubmit}
-        />
-    );
+  return (
+    <CreateArticleFormLogic
+      defaultValues={defaultValues}
+      onSubmit={handleSubmit}
+    />
+  );
 };
 
 export default CreateArticleFormApollo;

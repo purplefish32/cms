@@ -5692,8 +5692,10 @@ export type UpdateArticleMutation = (
 );
 
 export type UpdatePageMutationVariables = Exact<{
-  pk_columns: Pages_Pk_Columns_Input;
-  _set?: Maybe<Pages_Set_Input>;
+  pages_pk_columns: Pages_Pk_Columns_Input;
+  pages_set?: Maybe<Pages_Set_Input>;
+  posts_pk_columns: Posts_Pk_Columns_Input;
+  posts_set?: Maybe<Posts_Set_Input>;
 }>;
 
 
@@ -5702,6 +5704,9 @@ export type UpdatePageMutation = (
   & { update_pages_by_pk?: Maybe<(
     { __typename: 'pages' }
     & Pick<Pages, 'post_id'>
+  )>, update_posts_by_pk?: Maybe<(
+    { __typename: 'posts' }
+    & Pick<Posts, 'id'>
   )> }
 );
 
@@ -5778,7 +5783,7 @@ export type PageQuery = (
   { __typename?: 'query_root' }
   & { pages_by_pk?: Maybe<(
     { __typename: 'pages' }
-    & Pick<Pages, 'id' | 'body' | 'state'>
+    & Pick<Pages, 'post_id' | 'body' | 'state'>
     & { post: (
       { __typename: 'posts' }
       & Pick<Posts, 'title' | 'description' | 'slug'>
@@ -5795,7 +5800,7 @@ export type PagesQuery = (
   { __typename?: 'query_root' }
   & { pages: Array<(
     { __typename: 'pages' }
-    & Pick<Pages, 'id' | 'body'>
+    & Pick<Pages, 'post_id' | 'body'>
     & { post: (
       { __typename: 'posts' }
       & Pick<Posts, 'title' | 'type' | 'slug' | 'created_at'>

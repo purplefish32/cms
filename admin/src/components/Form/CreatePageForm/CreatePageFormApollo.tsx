@@ -1,54 +1,58 @@
 import router from "next/router";
 import { capitalize } from "underscore.string";
-import { PostTypesEnum, useCreatePostMutation } from "../../../../generated/graphql";
-import CreatePageFormLogic, { CreatePageFormModel } from "./CreatePageFormLogic";
+import {
+  PageStatesEnum,
+  PostTypesEnum,
+  useCreatePageMutation,
+} from "../../../../generated/graphql";
+import CreatePageFormLogic, {
+  CreatePageFormModel,
+} from "./CreatePageFormLogic";
+import React from "react";
 
 const CreatePageFormApollo = () => {
+  const [insertPagesOne] = useCreatePageMutation();
 
-    const [insert_posts_one] = useCreatePostMutation()
+  const handleSubmit = async (data: CreatePageFormModel) => {
+    const { title, slug, state, body } = data;
 
+    try {
+      const { data } = await insertPagesOne({
+        variables: {
+          object: {
+            post: {
+              data: {
+                title,
+                slug,
+                type: PostTypesEnum.Page,
+              },
+            },
+            body,
+            state: PageStatesEnum[capitalize(state)],
+          },
+        },
+      });
 
-    const handleSubmit = async (data: CreatePageFormModel) => {
-        const {
-            title,
-            slug,
-            //state,
-            //body,
-        } = data
+      router.push(`/pages/edit/${data.insert_pages_one.id}`);
+    } catch (error) {
+      console.log(error.stack);
+      throw new Error("Could not create page");
+    }
+  };
 
-        try {
-            const { data } = await insert_posts_one({
-                variables: {
-                    object: {
-                        title,
-                        slug,
-                        //body,
-                        //state: PageStatesEnum[capitalize(state)],
-                        type: PostTypesEnum.Page
-                    }
-                }
-            });
+  const defaultValues = {
+    title: "",
+    slug: "",
+    body: "",
+    state: "",
+  };
 
-            router.push(`/pages/edit/${data.insert_posts_one.id}`)
-
-        } catch (error) {
-            console.log(error)
-        }
-    };
-
-    const defaultValues = {
-        title: "",
-        slug: "",
-        body: "",
-        state: ""
-    };
-
-    return (
-        <CreatePageFormLogic
-            defaultValues={defaultValues}
-            onSubmit={handleSubmit}
-        />
-    );
+  return (
+    <CreatePageFormLogic
+      defaultValues={defaultValues}
+      onSubmit={handleSubmit}
+    />
+  );
 };
 
 export default CreatePageFormApollo;

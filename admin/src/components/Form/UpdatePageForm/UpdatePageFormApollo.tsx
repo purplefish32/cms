@@ -1,71 +1,74 @@
 import { capitalize } from "underscore.string";
-import { PostStatesEnum, PostTypesEnum, usePostQuery, useUpdatePostMutation } from "../../../../generated/graphql";
-import UpdatePageFormLogic, { UpdatePageFormModel } from "./UpdatePageFormLogic";
+import {
+  PageStatesEnum,
+  usePageQuery,
+  useUpdatePageMutation,
+} from "../../../../generated/graphql";
+import UpdatePageFormLogic, {
+  UpdatePageFormModel,
+} from "./UpdatePageFormLogic";
+import React from "react";
+import { FetchResult } from "@apollo/client";
+import { UpdatePageMutation } from "../../../../types";
 
 interface Props {
-    postId: string;
+  postId: string;
 }
 
 const UpdatePageFormApollo = ({ postId }: Props) => {
-    const {
-        data,
-        loading,
-    } = usePostQuery({
-        fetchPolicy: "cache-and-network",
+  const { data, loading } = usePageQuery({
+    fetchPolicy: "cache-and-network",
+    variables: {
+      uuid: postId,
+    },
+  });
+
+  const [updatePagesOne] = useUpdatePageMutation();
+
+  const handleSubmit = async (data: UpdatePageFormModel): Promise<void> => {
+    const { title, slug, state, body } = data;
+
+    try {
+      await updatePagesOne({
         variables: {
-            uuid: postId
-        }
-    });
-
-    const [update_posts_one] = useUpdatePostMutation()
-
-
-    const handleSubmit = async (data: UpdatePageFormModel) => {
-        const {
+          pages_pk_columns: {
+            post_id: postId,
+          },
+          pages_set: {
+            state: PageStatesEnum[capitalize(state)],
+            body,
+          },
+          posts_pk_columns: {
+            id: postId,
+          },
+          posts_set: {
             title,
             slug,
-            state,
-            body,
-        } = data
+          },
+        },
+      });
+    } catch (error) {
+      console.log(error.stack);
+      throw new Error("Could not update page");
+    }
+  };
 
-        try {
-            await update_posts_one({
-                variables: {
-                    pk_columns: {
-                        id: postId
-                    },
-                    _set: {
-                        title,
-                        slug,
-                        state: PostStatesEnum[
-                            capitalize(state)
-                        ],
-                        body,
-                        type: PostTypesEnum.Page
-                    }
-                }
-            });
-        } catch (error) {
-            console.log(error)
-        }
-    };
+  // return early if initial form data isn't loaded
+  if (loading) return <div>Loading...</div>;
 
-    // return early if initial form data isn't loaded
-    if (loading) return <div>Loading...</div>;
+  const defaultValues = {
+    title: data?.pages_by_pk?.post?.title ?? "",
+    slug: data?.pages_by_pk?.post?.slug ?? "",
+    body: data?.pages_by_pk?.body ?? "",
+    state: data?.pages_by_pk?.state ?? "",
+  };
 
-    const defaultValues = {
-        title: data?.posts_by_pk?.title ?? "",
-        slug: data?.posts_by_pk?.slug ?? "",
-        body: data?.posts_by_pk?.body ?? "",
-        state: data?.posts_by_pk?.state ?? "",
-    };
-
-    return (
-        <UpdatePageFormLogic
-            defaultValues={defaultValues}
-            onSubmit={handleSubmit}
-        />
-    );
+  return (
+    <UpdatePageFormLogic
+      defaultValues={defaultValues}
+      onSubmit={handleSubmit}
+    />
+  );
 };
 
 export default UpdatePageFormApollo;

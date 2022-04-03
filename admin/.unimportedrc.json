@@ -1,0 +1,18 @@
+{
+  "ignoreUnresolved": [
+    "bufferutil",
+    "utf-8-validate"
+  ],
+  "ignoreUnused": [
+    "@algolia/autocomplete-js",
+    "@graphql-codegen/named-operations-object",
+    "@meilisearch/instant-meilisearch",
+    "@types/underscore.string",
+    "draftjs-to-html",
+    "next",
+    "react",
+    "react-dom",
+    "react-instantsearch-dom"
+  ],
+  "ignoreUnimported": []
+}
