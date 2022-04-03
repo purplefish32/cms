@@ -26,8 +26,6 @@ const ArticlesTable: FunctionComponent = () => {
       <Table.Header>
         <Table.Row>
           <Table.HeaderCell>Title</Table.HeaderCell>
-          <Table.HeaderCell>Stats</Table.HeaderCell>
-          <Table.HeaderCell>Comments</Table.HeaderCell>
           <Table.HeaderCell>Date</Table.HeaderCell>
           <Table.HeaderCell>Actions</Table.HeaderCell>
         </Table.Row>
@@ -42,8 +40,6 @@ const ArticlesTable: FunctionComponent = () => {
                   {article.post.title}
                 </Link>
               </Table.Cell>
-              <Table.Cell>XXX</Table.Cell>
-              <Table.Cell>YYY</Table.Cell>
               <Table.Cell>
                 Created <br />
                 {format(
