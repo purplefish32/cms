@@ -1,3 +1,4 @@
+import React from "react";
 import { capitalize } from "underscore.string";
 import {
   ArticleStatesEnum,
@@ -7,7 +8,6 @@ import {
 import UpdatePostFormLogic, {
   UpdateArticleFormModel,
 } from "./UpdateArticleFormLogic";
-import React from "react";
 
 interface Props {
   postId: string;

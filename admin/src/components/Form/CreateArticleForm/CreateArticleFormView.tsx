@@ -1,9 +1,8 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Button, Form, InputPicker } from "rsuite";
 import { Schema } from "schema-typed";
 import { ArticleStatesEnum } from "../../../../generated/graphql";
 import { CreateArticleFormModel } from "./CreateArticleFormLogic";
-import React from "react";
 
 interface Props {
   model: Schema<

@@ -12,6 +12,7 @@
   "dependencies": {
     "@algolia/autocomplete-js": "^1.5.0",
     "@apollo/client": "^3.4.3",
+    "@babel/runtime": "^7.17.9",
     "@graphql-codegen/named-operations-object": "^2.2.0",
     "@meilisearch/instant-meilisearch": "^0.5.9",
     "@rsuite/icons": "^1.0.2",
@@ -28,7 +29,7 @@
     "react-dom": "^17.0.1",
     "react-hook-form": "^7.19.5",
     "react-instantsearch-dom": "^6.15.0",
-    "rsuite": "^5.2.3",
+    "rsuite": "^5.9.0",
     "schema-typed": "^2.0.2",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^2.0.4",

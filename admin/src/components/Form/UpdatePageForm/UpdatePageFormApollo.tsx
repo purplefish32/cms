@@ -1,3 +1,4 @@
+import React from "react";
 import { capitalize } from "underscore.string";
 import {
   PageStatesEnum,
@@ -7,9 +8,6 @@ import {
 import UpdatePageFormLogic, {
   UpdatePageFormModel,
 } from "./UpdatePageFormLogic";
-import React from "react";
-import { FetchResult } from "@apollo/client";
-import { UpdatePageMutation } from "../../../../types";
 
 interface Props {
   postId: string;

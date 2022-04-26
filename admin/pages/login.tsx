@@ -1,8 +1,8 @@
+import router from "next/router";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Button, Form } from "semantic-ui-react";
-import router from "next/router";
 import { useAuth } from "../lib/auth";
-import { useEffect } from "react";
 
 export default function Login() {
   const { signIn } = useAuth();

@@ -1,7 +1,7 @@
-import { Header, Content, Panel, PanelGroup } from "rsuite";
+import React from "react";
+import { Content, Header, Panel, PanelGroup } from "rsuite";
 import CreateArticleFormApollo from "../../src/components/Form/CreateArticleForm/CreateArticleFormApollo";
 import Layout from "../../src/components/Layout";
-import React from "react";
 
 /**
  * ArticleCreatePage: The Article Create Page

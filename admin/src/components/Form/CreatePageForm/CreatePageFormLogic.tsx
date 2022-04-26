@@ -1,6 +1,7 @@
+/* eslint-disable new-cap */
+import React from "react";
 import { Notification, Schema, toaster } from "rsuite";
 import CreatePageFormView from "./CreatePageFormView";
-import React from "react";
 
 export interface CreatePageFormModel {
   title: string;

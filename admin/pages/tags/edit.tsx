@@ -1,9 +1,9 @@
-import { Header, Content, Panel, PanelGroup, FlexboxGrid } from "rsuite";
+import React from "react";
+import { Content, FlexboxGrid, Header, Panel, PanelGroup } from "rsuite";
 import { TaxonomiesEnum } from "../../generated/graphql";
 import TagFormCreate from "../../src/components/Form/TagFormCreate";
 import Layout from "../../src/components/Layout";
 import TermTaxonomiesTable from "../../src/components/TermTaxonomiesTable";
-import React from "react";
 
 /**
  * TagsEditPage: The Tags Edit Page

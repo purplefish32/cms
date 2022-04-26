@@ -1,37 +1,7 @@
-import {
-  Container,
-  Header,
-  Content,
-  Footer,
-  Sidebar,
-  Sidenav,
-  Nav,
-  Dropdown,
-  Navbar,
-} from "rsuite";
-import { Pin, Page, Media } from "@rsuite/icons";
-import { forwardRef, useState } from "react";
+import { Page, Pin } from "@rsuite/icons";
 import Link from "next/link";
-
-// TODO
-const headerStyles = {
-  padding: 18,
-  fontSize: 16,
-  height: 56,
-  background: "#34c3ff",
-  color: " #fff",
-  whiteSpace: "nowrap",
-  overflow: "hidden",
-};
-
-// TODO
-const iconStyles = {
-  width: 56,
-  height: 56,
-  padding: 18,
-  lineHeight: "56px",
-  textAlign: "center",
-};
+import React, { forwardRef, useState } from "react";
+import { Container, Dropdown, Nav, Navbar, Sidebar, Sidenav } from "rsuite";
 
 const NavToggle = ({ expand, onChange }) => {
   return (
@@ -73,23 +43,31 @@ export default function Layout({ children }) {
                 <Dropdown.Item as={MyLink} eventKey="2-1" href="/articles">
                   All Articles
                 </Dropdown.Item>
-                {/* <Dropdown.Item as={MyLink} eventKey="2-2" href="/posts/create">
-                                    Add New
-                                </Dropdown.Item>
-                                <Dropdown.Item as={MyLink} eventKey="2-3" href="/categories/edit">
-                                    Categories
-                                </Dropdown.Item>
-                                <Dropdown.Item as={MyLink} eventKey="2-4" href="/tags/edit">
-                                    Tags
-                                </Dropdown.Item> */}
+                <Dropdown.Item
+                  as={MyLink}
+                  eventKey="2-2"
+                  href="/articles/create"
+                >
+                  Add New
+                </Dropdown.Item>
+                <Dropdown.Item
+                  as={MyLink}
+                  eventKey="2-3"
+                  href="/categories/edit"
+                >
+                  Categories
+                </Dropdown.Item>
+                <Dropdown.Item as={MyLink} eventKey="2-4" href="/tags/edit">
+                  Tags
+                </Dropdown.Item>
               </Dropdown>
               <Dropdown eventKey="4" title="Pages" icon={<Page />}>
                 <Dropdown.Item as={MyLink} eventKey="4-1" href="/pages">
                   All Pages
                 </Dropdown.Item>
-                {/* <Dropdown.Item as={MyLink} eventKey="4-2" href="/pages/create">
-                                    Add New
-                                </Dropdown.Item> */}
+                <Dropdown.Item as={MyLink} eventKey="4-2" href="/pages/create">
+                  Add New
+                </Dropdown.Item>
               </Dropdown>
             </Nav>
           </Sidenav.Body>

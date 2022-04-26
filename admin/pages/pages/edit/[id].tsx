@@ -1,8 +1,8 @@
 import { useRouter } from "next/router";
-import { Content, Header, Panel, PanelGroup } from "rsuite";
-import Layout from "../../../src/components/Layout";
-import UpdatePageFormApollo from "../../../src/components/Form/UpdatePageForm/UpdatePageFormApollo";
 import React from "react";
+import { Content, Header, Panel, PanelGroup } from "rsuite";
+import UpdatePageFormApollo from "../../../src/components/Form/UpdatePageForm/UpdatePageFormApollo";
+import Layout from "../../../src/components/Layout";
 
 /**
  * PageEditPage: The Article Edit Page

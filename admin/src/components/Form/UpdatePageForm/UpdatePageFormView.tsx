@@ -1,10 +1,9 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Button, Form, InputPicker } from "rsuite";
 import { Schema } from "schema-typed";
 import { PageStatesEnum } from "../../../../generated/graphql";
-import { UpdatePageFormModel } from "./UpdatePageFormLogic";
-import React from "react";
 import { RichText } from "../../../Field/rich-text";
+import { UpdatePageFormModel } from "./UpdatePageFormLogic";
 
 interface Props {
   model: Schema<

@@ -1,6 +1,7 @@
+/* eslint-disable new-cap */
+import React from "react";
 import { Notification, Schema, toaster } from "rsuite";
 import UpdateArticleFormView from "./UpdateArticleFormView";
-import React from "react";
 
 export interface UpdateArticleFormModel {
   title: string;

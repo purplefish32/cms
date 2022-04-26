@@ -1,12 +1,11 @@
-import "../styles/globals.css";
+import { ApolloProvider } from "@apollo/client";
 import Head from "next/head";
 import { useEffect } from "react";
-import "semantic-ui-css/semantic.min.css";
-import { AuthProvider, useAuth } from "../lib/auth.js";
-import { ApolloProvider } from "@apollo/client";
-import router from "next/router";
-import { useApollo } from "../lib/apolloClient";
 import "rsuite/dist/rsuite.min.css";
+import "semantic-ui-css/semantic.min.css";
+import { useApollo } from "../lib/apolloClient";
+import { AuthProvider } from "../lib/auth.js";
+import "../styles/globals.css";
 
 export default function App({ Component, pageProps }) {
   useEffect(() => {

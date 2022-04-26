@@ -1,11 +1,11 @@
 import router from "next/router";
+import React from "react";
 import { Content, Panel, PanelGroup } from "rsuite";
 import { Button, Header } from "semantic-ui-react";
-import Layout from "../../src/components/Layout";
 import { ArticleStatesEnum } from "../../generated/graphql";
-import ArticlesTable from "../../src/components/ArticlesTable";
 import ArticleCounter from "../../src/components/ArticleCounter";
-import React from "react";
+import ArticlesTable from "../../src/components/ArticlesTable";
+import Layout from "../../src/components/Layout";
 
 const handleClick = () => {
   router.push("articles/create");

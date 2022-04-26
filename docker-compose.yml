@@ -1,6 +1,6 @@
 version: "3.6"
 
-services:  
+services:
   # pgadmin:
   #   image: dpage/pgadmin4
   #   restart: always
@@ -15,9 +15,9 @@ services:
     restart: unless-stopped
     command: npm run start:debug
     working_dir: /usr/src/app
-    ports: 
+    ports:
       - 4000:3000
-    volumes: 
+    volumes:
       - ./api/:/usr/src/app
       #- /usr/src/app/node_modules
 
@@ -30,7 +30,7 @@ services:
       - meilisearch_data:/data.ms
 
   admin:
-    image: node:15-alpine3.13
+    image: node:16-alpine3.13
     working_dir: /home/node/app
     volumes:
       - ./admin:/home/node/app
@@ -49,7 +49,7 @@ services:
       - db_data:/var/lib/postgresql/data
 
   graphql-engine:
-    image: hasura/graphql-engine:v2.1.0-beta.3.cli-migrations-v3
+    image: hasura/graphql-engine:v2.6.0-beta.2.cli-migrations-v3
     #image: hasura/graphql-engine:latest
     ports:
       - "8080:8080"
@@ -64,7 +64,7 @@ services:
         "jhyu89jiuhyg7678hoijhuytf7ghjiasodibagsdga9dha8os7df97a6sdgh9asudgo7f7g8h1uuoyafsod8pgasipdg8aps9dhaiaisydg8agsd87gasd9oihasd87gas78d"}
       HASURA_GRAPHQL_ENABLE_CONSOLE: "true"
       HASURA_GRAPHQL_UNAUTHORIZED_ROLE: public
-    volumes: 
+    volumes:
       - ./hasura/migrations:/migrations
       - ./hasura/metadata:/metadata
       - ./hasura/config.yaml:/config.yaml
@@ -102,6 +102,5 @@ services:
 
 volumes:
   db_data:
-  db_kong_data:
   minio_data:
   meilisearch_data:

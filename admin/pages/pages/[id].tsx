@@ -1,8 +1,8 @@
-import Layout from "../../src/components/Layout";
 import router, { useRouter } from "next/router";
-import { Header, Content, Panel, PanelGroup, Button } from "rsuite";
 import React from "react";
+import { Button, Content, Header, Panel, PanelGroup } from "rsuite";
 import { usePageQuery } from "../../generated/graphql";
+import Layout from "../../src/components/Layout";
 
 /**
  * PagePage: The Page Page

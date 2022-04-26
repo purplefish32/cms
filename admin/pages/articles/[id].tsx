@@ -1,8 +1,8 @@
 import router, { useRouter } from "next/router";
-import { Header, Content, Panel, PanelGroup, Button } from "rsuite";
+import React from "react";
+import { Button, Content, Header, Panel, PanelGroup } from "rsuite";
 import { useArticleQuery } from "../../generated/graphql";
 import Layout from "../../src/components/Layout";
-import React from "react";
 
 /**
  * ArticlePage: The Article Page

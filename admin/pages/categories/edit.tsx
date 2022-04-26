@@ -1,9 +1,9 @@
+import React from "react";
 import { Content, Header, Panel, PanelGroup } from "rsuite";
 import { TaxonomiesEnum } from "../../generated/graphql";
 import CategoryFromCreate from "../../src/components/Form/CategoryFormCreate";
 import Layout from "../../src/components/Layout";
 import TermTaxonomiesTable from "../../src/components/TermTaxonomiesTable";
-import React from "react";
 
 /**
  * CategoriesEditPage: The Category Edit Page

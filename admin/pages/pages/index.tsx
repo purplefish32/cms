@@ -1,10 +1,10 @@
 import router from "next/router";
-import Layout from "../../src/components/Layout";
-import PagesTable from "../../src/components/PagesTable";
-import { PageStatesEnum } from "../../generated/graphql";
-import { Header, Content, Panel, PanelGroup, Button } from "rsuite";
-import PageCounter from "../../src/components/PageCounter";
 import React from "react";
+import { Button, Content, Header, Panel, PanelGroup } from "rsuite";
+import { PageStatesEnum } from "../../generated/graphql";
+import Layout from "../../src/components/Layout";
+import PageCounter from "../../src/components/PageCounter";
+import PagesTable from "../../src/components/PagesTable";
 
 const handleClick = () => {
   router.push("pages/create");

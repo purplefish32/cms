@@ -1,4 +1,5 @@
 import router from "next/router";
+import React from "react";
 import { capitalize } from "underscore.string";
 import {
   PageStatesEnum,
@@ -8,7 +9,6 @@ import {
 import CreatePageFormLogic, {
   CreatePageFormModel,
 } from "./CreatePageFormLogic";
-import React from "react";
 
 const CreatePageFormApollo = () => {
   const [insertPagesOne] = useCreatePageMutation();

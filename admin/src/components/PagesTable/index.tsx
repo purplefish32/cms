@@ -1,11 +1,10 @@
-import { FunctionComponent } from "react";
-import { usePagesQuery } from "../../../generated/graphql";
 import Link from "next/link";
-import PostDeleteButton from "../PostDeleteButton";
-import { Button, ButtonToolbar } from "rsuite";
 import router from "next/router";
+import React, { FunctionComponent } from "react";
+import { Button, ButtonToolbar } from "rsuite";
 import { Table } from "semantic-ui-react";
-import React from "react";
+import { usePagesQuery } from "../../../generated/graphql";
+import PostDeleteButton from "../PostDeleteButton";
 
 const PostsTable: FunctionComponent = () => {
   const { data, error } = usePagesQuery({
@@ -48,7 +47,7 @@ const PostsTable: FunctionComponent = () => {
                   >
                     Edit
                   </Button>
-                  <PostDeleteButton postId={page.id} />
+                  <PostDeleteButton postId={page.post_id} />
                 </ButtonToolbar>
               </Table.Cell>
             </Table.Row>

@@ -1,8 +1,6 @@
-import React from "react";
-import { useState } from "react";
-import "draft-js/dist/Draft.css";
-
 import { Editor, EditorState } from "draft-js";
+import "draft-js/dist/Draft.css";
+import React, { useState } from "react";
 
 export const RichText = () => {
   const [editorState, setEditorState] = useState(() =>

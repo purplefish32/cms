@@ -1,14 +1,14 @@
 import router from "next/router";
+import React from "react";
 import { capitalize } from "underscore.string";
 import {
   ArticleStatesEnum,
   PostTypesEnum,
-  useCreateArticleMutation,
+  useCreateArticleMutation
 } from "../../../../generated/graphql";
 import CreateArticleFormLogic, {
-  CreateArticleFormModel,
+  CreateArticleFormModel
 } from "./CreateArticleFormLogic";
-import React from "react";
 
 const CreateArticleFormApollo = () => {
   const [insertArticlesOne] = useCreateArticleMutation();
