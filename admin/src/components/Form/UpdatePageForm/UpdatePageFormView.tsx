@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Button, Form, InputPicker } from "rsuite";
 import { Schema } from "schema-typed";
 import { PageStatesEnum } from "../../../../generated/graphql";
-import { RichText } from "../../../Field/rich-text";
 import { UpdatePageFormModel } from "./UpdatePageFormLogic";
 
 interface Props {
@@ -64,9 +63,6 @@ const UpdatePageFormView = ({ model, defaultValues, handleSubmit }: Props) => {
       <Form.Group>
         <Form.ControlLabel>Body</Form.ControlLabel>
         <Form.Control name="body" placeholder="Body" />
-        --
-        <RichText />
-        --
       </Form.Group>
       <Button
         type="submit"

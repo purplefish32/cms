@@ -1,9 +1,11 @@
+/* eslint-disable react/display-name */
 import React, { useState } from "react";
+import { Editor } from "react-draft-wysiwyg";
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { Button, Form, InputPicker } from "rsuite";
 import { Schema } from "schema-typed";
 import { PageStatesEnum } from "../../../../generated/graphql";
 import { CreatePageFormModel } from "./CreatePageFormLogic";
-
 interface Props {
   model: Schema<
     {
@@ -24,6 +26,7 @@ const CreatePageFormView = ({ model, defaultValues, handleSubmit }: Props) => {
   return (
     <Form
       onChange={(formValue) => {
+        console.log("change");
         setFormValue(formValue as CreatePageFormModel);
       }}
       formValue={formValue}
@@ -62,7 +65,7 @@ const CreatePageFormView = ({ model, defaultValues, handleSubmit }: Props) => {
       </Form.Group>
       <Form.Group>
         <Form.ControlLabel>Body</Form.ControlLabel>
-        <Form.Control name="body" placeholder="Body" />
+        <Form.Control name="body" accepter={Editor} />
       </Form.Group>
       <Button
         type="submit"

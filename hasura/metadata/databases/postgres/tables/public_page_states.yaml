@@ -1,0 +1,4 @@
+table:
+  name: page_states
+  schema: public
+is_enum: true

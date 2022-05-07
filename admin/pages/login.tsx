@@ -1,11 +1,12 @@
+/* eslint-disable require-jsdoc */
 import router from "next/router";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Button, Form } from "semantic-ui-react";
-import { useAuth } from "../lib/auth";
+import { useAuth } from "../src/hooks/use-auth";
 
 export default function Login() {
-  const { signIn } = useAuth();
+  const { session, signInEmailPassword } = useAuth();
 
   useEffect(() => {
     register("email", { required: true });
@@ -20,32 +21,18 @@ export default function Login() {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = async (data) => {
+  const onSubmit = async (data: { email: string; password: string }) => {
     const { email, password } = data;
 
-    try {
-      const response = await fetch("http://localhost:3000/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email,
-          password,
-        }),
-      });
-
-      const json = await response.json();
-
-      if (json.jwt_token) {
-        console.log(json);
-        signIn({ email, password });
-        router.push("/");
-      }
-    } catch (e) {
-      console.log(e);
-    }
+    await signInEmailPassword(email, password);
   };
+
+  useEffect(() => {
+    if (session) {
+      console.log(session);
+      router.push("/");
+    }
+  }, [session]);
 
   return (
     <div>

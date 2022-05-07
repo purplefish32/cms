@@ -1,0 +1,10 @@
+table:
+  name: pages
+  schema: public
+object_relationships:
+- name: page_state
+  using:
+    foreign_key_constraint_on: state
+- name: post
+  using:
+    foreign_key_constraint_on: post_id

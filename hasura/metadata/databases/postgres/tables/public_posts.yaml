@@ -9,6 +9,10 @@ array_relationships:
       table:
         name: comments
         schema: public
+delete_permissions:
+- permission:
+    filter: {}
+  role: user
 event_triggers:
 - definition:
     enable_manual: false
@@ -31,30 +35,6 @@ event_triggers:
   - name: secret-header
     value: secret
   name: post-deleted
-  retry_conf:
-    interval_sec: 10
-    num_retries: 0
-    timeout_sec: 60
-  webhook: http://api:3000/hasura/events
-- definition:
-    enable_manual: false
-    update:
-      columns:
-      - meta
-      - slug
-      - status
-      - excerpt
-      - type
-      - created_at
-      - body
-      - id
-      - title
-      - updated_at
-      - author_id
-  headers:
-  - name: secret-header
-    value: secret
-  name: post-updated
   retry_conf:
     interval_sec: 10
     num_retries: 0

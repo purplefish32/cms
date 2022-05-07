@@ -1,17 +1,11 @@
-import { gql } from "@apollo/client";
-import * as Apollo from "@apollo/client";
-import * as ApolloReactHooks from "@apollo/client";
+import { gql } from '@apollo/client';
+import * as Apollo from '@apollo/client';
+import * as ApolloReactHooks from '@apollo/client';
 export type Maybe<T> = T;
-export type Exact<T extends { [key: string]: unknown }> = {
-  [K in keyof T]: T[K];
-};
-export type MakeOptional<T, K extends keyof T> = Omit<T, K> & {
-  [SubKey in K]?: Maybe<T[SubKey]>;
-};
-export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
-  [SubKey in K]: Maybe<T[SubKey]>;
-};
-const defaultOptions = {};
+export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+const defaultOptions =  {}
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -25,78 +19,80 @@ export type Scalars = {
   uuid: any;
 };
 
+
 /** Boolean expression to compare columns of type "Boolean". All fields are combined with logical 'AND'. */
 export type BooleanComparisonExp = {
-  _eq?: Maybe<Scalars["Boolean"]>;
-  _gt?: Maybe<Scalars["Boolean"]>;
-  _gte?: Maybe<Scalars["Boolean"]>;
-  _in?: Maybe<Array<Scalars["Boolean"]>>;
-  _is_null?: Maybe<Scalars["Boolean"]>;
-  _lt?: Maybe<Scalars["Boolean"]>;
-  _lte?: Maybe<Scalars["Boolean"]>;
-  _neq?: Maybe<Scalars["Boolean"]>;
-  _nin?: Maybe<Array<Scalars["Boolean"]>>;
+  _eq?: Maybe<Scalars['Boolean']>;
+  _gt?: Maybe<Scalars['Boolean']>;
+  _gte?: Maybe<Scalars['Boolean']>;
+  _in?: Maybe<Array<Scalars['Boolean']>>;
+  _is_null?: Maybe<Scalars['Boolean']>;
+  _lt?: Maybe<Scalars['Boolean']>;
+  _lte?: Maybe<Scalars['Boolean']>;
+  _neq?: Maybe<Scalars['Boolean']>;
+  _nin?: Maybe<Array<Scalars['Boolean']>>;
 };
 
 /** Boolean expression to compare columns of type "String". All fields are combined with logical 'AND'. */
 export type StringComparisonExp = {
-  _eq?: Maybe<Scalars["String"]>;
-  _gt?: Maybe<Scalars["String"]>;
-  _gte?: Maybe<Scalars["String"]>;
+  _eq?: Maybe<Scalars['String']>;
+  _gt?: Maybe<Scalars['String']>;
+  _gte?: Maybe<Scalars['String']>;
   /** does the column match the given case-insensitive pattern */
-  _ilike?: Maybe<Scalars["String"]>;
-  _in?: Maybe<Array<Scalars["String"]>>;
+  _ilike?: Maybe<Scalars['String']>;
+  _in?: Maybe<Array<Scalars['String']>>;
   /** does the column match the given POSIX regular expression, case insensitive */
-  _iregex?: Maybe<Scalars["String"]>;
-  _is_null?: Maybe<Scalars["Boolean"]>;
+  _iregex?: Maybe<Scalars['String']>;
+  _is_null?: Maybe<Scalars['Boolean']>;
   /** does the column match the given pattern */
-  _like?: Maybe<Scalars["String"]>;
-  _lt?: Maybe<Scalars["String"]>;
-  _lte?: Maybe<Scalars["String"]>;
-  _neq?: Maybe<Scalars["String"]>;
+  _like?: Maybe<Scalars['String']>;
+  _lt?: Maybe<Scalars['String']>;
+  _lte?: Maybe<Scalars['String']>;
+  _neq?: Maybe<Scalars['String']>;
   /** does the column NOT match the given case-insensitive pattern */
-  _nilike?: Maybe<Scalars["String"]>;
-  _nin?: Maybe<Array<Scalars["String"]>>;
+  _nilike?: Maybe<Scalars['String']>;
+  _nin?: Maybe<Array<Scalars['String']>>;
   /** does the column NOT match the given POSIX regular expression, case insensitive */
-  _niregex?: Maybe<Scalars["String"]>;
+  _niregex?: Maybe<Scalars['String']>;
   /** does the column NOT match the given pattern */
-  _nlike?: Maybe<Scalars["String"]>;
+  _nlike?: Maybe<Scalars['String']>;
   /** does the column NOT match the given POSIX regular expression, case sensitive */
-  _nregex?: Maybe<Scalars["String"]>;
+  _nregex?: Maybe<Scalars['String']>;
   /** does the column NOT match the given SQL regular expression */
-  _nsimilar?: Maybe<Scalars["String"]>;
+  _nsimilar?: Maybe<Scalars['String']>;
   /** does the column match the given POSIX regular expression, case sensitive */
-  _regex?: Maybe<Scalars["String"]>;
+  _regex?: Maybe<Scalars['String']>;
   /** does the column match the given SQL regular expression */
-  _similar?: Maybe<Scalars["String"]>;
+  _similar?: Maybe<Scalars['String']>;
 };
 
 /** columns and relationships of "article_states" */
 export type ArticleStates = {
-  __typename?: "article_states";
-  comment: Scalars["String"];
-  value: Scalars["String"];
+  __typename?: 'article_states';
+  comment: Scalars['String'];
+  value: Scalars['String'];
 };
 
 /** aggregated selection of "article_states" */
 export type ArticleStatesAggregate = {
-  __typename?: "article_states_aggregate";
+  __typename?: 'article_states_aggregate';
   aggregate?: Maybe<ArticleStatesAggregateFields>;
   nodes: Array<ArticleStates>;
 };
 
 /** aggregate fields of "article_states" */
 export type ArticleStatesAggregateFields = {
-  __typename?: "article_states_aggregate_fields";
-  count: Scalars["Int"];
+  __typename?: 'article_states_aggregate_fields';
+  count: Scalars['Int'];
   max?: Maybe<ArticleStatesMaxFields>;
   min?: Maybe<ArticleStatesMinFields>;
 };
 
+
 /** aggregate fields of "article_states" */
 export type ArticleStatesAggregateFieldsCountArgs = {
   columns?: Maybe<Array<ArticleStatesSelectColumn>>;
-  distinct?: Maybe<Scalars["Boolean"]>;
+  distinct?: Maybe<Scalars['Boolean']>;
 };
 
 /** Boolean expression to filter rows from the table "article_states". All fields are combined with a logical 'AND'. */
@@ -111,57 +107,57 @@ export type ArticleStatesBoolExp = {
 /** unique or primary key constraints on table "article_states" */
 export enum ArticleStatesConstraint {
   /** unique or primary key constraint */
-  ArticleStatesPkey = "article_states_pkey",
+  ArticleStatesPkey = 'article_states_pkey'
 }
 
 export enum ArticleStatesEnum {
   /** Archived */
-  Archived = "archived",
+  Archived = 'archived',
   /** Draft */
-  Draft = "draft",
+  Draft = 'draft',
   /** Published */
-  Published = "published",
+  Published = 'published'
 }
 
 /** Boolean expression to compare columns of type "article_states_enum". All fields are combined with logical 'AND'. */
 export type ArticleStatesEnumComparisonExp = {
   _eq?: Maybe<ArticleStatesEnum>;
   _in?: Maybe<Array<ArticleStatesEnum>>;
-  _is_null?: Maybe<Scalars["Boolean"]>;
+  _is_null?: Maybe<Scalars['Boolean']>;
   _neq?: Maybe<ArticleStatesEnum>;
   _nin?: Maybe<Array<ArticleStatesEnum>>;
 };
 
 /** input type for inserting data into table "article_states" */
 export type ArticleStatesInsertInput = {
-  comment?: Maybe<Scalars["String"]>;
-  value?: Maybe<Scalars["String"]>;
+  comment?: Maybe<Scalars['String']>;
+  value?: Maybe<Scalars['String']>;
 };
 
 /** aggregate max on columns */
 export type ArticleStatesMaxFields = {
-  __typename?: "article_states_max_fields";
-  comment?: Maybe<Scalars["String"]>;
-  value?: Maybe<Scalars["String"]>;
+  __typename?: 'article_states_max_fields';
+  comment?: Maybe<Scalars['String']>;
+  value?: Maybe<Scalars['String']>;
 };
 
 /** aggregate min on columns */
 export type ArticleStatesMinFields = {
-  __typename?: "article_states_min_fields";
-  comment?: Maybe<Scalars["String"]>;
-  value?: Maybe<Scalars["String"]>;
+  __typename?: 'article_states_min_fields';
+  comment?: Maybe<Scalars['String']>;
+  value?: Maybe<Scalars['String']>;
 };
 
 /** response of any mutation on the table "article_states" */
 export type ArticleStatesMutationResponse = {
-  __typename?: "article_states_mutation_response";
+  __typename?: 'article_states_mutation_response';
   /** number of rows affected by the mutation */
-  affected_rows: Scalars["Int"];
+  affected_rows: Scalars['Int'];
   /** data from the rows affected by the mutation */
   returning: Array<ArticleStates>;
 };
 
-/** on conflict condition type for table "article_states" */
+/** on_conflict condition type for table "article_states" */
 export type ArticleStatesOnConflict = {
   constraint: ArticleStatesConstraint;
   update_columns?: Array<ArticleStatesUpdateColumn>;
@@ -176,61 +172,62 @@ export type ArticleStatesOrderBy = {
 
 /** primary key columns input for table: article_states */
 export type ArticleStatesPkColumnsInput = {
-  value: Scalars["String"];
+  value: Scalars['String'];
 };
 
 /** select columns of table "article_states" */
 export enum ArticleStatesSelectColumn {
   /** column name */
-  Comment = "comment",
+  Comment = 'comment',
   /** column name */
-  Value = "value",
+  Value = 'value'
 }
 
 /** input type for updating data in table "article_states" */
 export type ArticleStatesSetInput = {
-  comment?: Maybe<Scalars["String"]>;
-  value?: Maybe<Scalars["String"]>;
+  comment?: Maybe<Scalars['String']>;
+  value?: Maybe<Scalars['String']>;
 };
 
 /** update columns of table "article_states" */
 export enum ArticleStatesUpdateColumn {
   /** column name */
-  Comment = "comment",
+  Comment = 'comment',
   /** column name */
-  Value = "value",
+  Value = 'value'
 }
 
 /** columns and relationships of "articles" */
 export type Articles = {
-  __typename?: "articles";
-  body?: Maybe<Scalars["String"]>;
-  excerpt?: Maybe<Scalars["String"]>;
+  __typename?: 'articles';
+  body?: Maybe<Scalars['String']>;
+  excerpt?: Maybe<Scalars['String']>;
   /** An object relationship */
   post?: Maybe<Posts>;
-  post_id: Scalars["uuid"];
+  post_id: Scalars['uuid'];
   state: ArticleStatesEnum;
 };
 
 /** aggregated selection of "articles" */
 export type ArticlesAggregate = {
-  __typename?: "articles_aggregate";
+  __typename?: 'articles_aggregate';
   aggregate?: Maybe<ArticlesAggregateFields>;
   nodes: Array<Articles>;
 };
 
 /** aggregate fields of "articles" */
 export type ArticlesAggregateFields = {
-  __typename?: "articles_aggregate_fields";
-  count: Scalars["Int"];
+  __typename?: 'articles_aggregate_fields';
+  count: Scalars['Int'];
   max?: Maybe<ArticlesMaxFields>;
   min?: Maybe<ArticlesMinFields>;
 };
 
+
 /** aggregate fields of "articles" */
 export type ArticlesAggregateFieldsCountArgs = {
   columns?: Maybe<Array<ArticlesSelectColumn>>;
-  distinct?: Maybe<Scalars["Boolean"]>;
+  distinct?: Maybe<Scalars['Boolean']>;
 };
 
 /** Boolean expression to filter rows from the table "articles". All fields are combined with a logical 'AND'. */
@@ -248,44 +245,44 @@ export type ArticlesBoolExp = {
 /** unique or primary key constraints on table "articles" */
 export enum ArticlesConstraint {
   /** unique or primary key constraint */
-  ArticlesPkey = "articles_pkey",
+  ArticlesPkey = 'articles_pkey'
 }
 
 /** input type for inserting data into table "articles" */
 export type ArticlesInsertInput = {
-  body?: Maybe<Scalars["String"]>;
-  excerpt?: Maybe<Scalars["String"]>;
+  body?: Maybe<Scalars['String']>;
+  excerpt?: Maybe<Scalars['String']>;
   post?: Maybe<PostsObjRelInsertInput>;
-  post_id?: Maybe<Scalars["uuid"]>;
+  post_id?: Maybe<Scalars['uuid']>;
   state?: Maybe<ArticleStatesEnum>;
 };
 
 /** aggregate max on columns */
 export type ArticlesMaxFields = {
-  __typename?: "articles_max_fields";
-  body?: Maybe<Scalars["String"]>;
-  excerpt?: Maybe<Scalars["String"]>;
-  post_id?: Maybe<Scalars["uuid"]>;
+  __typename?: 'articles_max_fields';
+  body?: Maybe<Scalars['String']>;
+  excerpt?: Maybe<Scalars['String']>;
+  post_id?: Maybe<Scalars['uuid']>;
 };
 
 /** aggregate min on columns */
 export type ArticlesMinFields = {
-  __typename?: "articles_min_fields";
-  body?: Maybe<Scalars["String"]>;
-  excerpt?: Maybe<Scalars["String"]>;
-  post_id?: Maybe<Scalars["uuid"]>;
+  __typename?: 'articles_min_fields';
+  body?: Maybe<Scalars['String']>;
+  excerpt?: Maybe<Scalars['String']>;
+  post_id?: Maybe<Scalars['uuid']>;
 };
 
 /** response of any mutation on the table "articles" */
 export type ArticlesMutationResponse = {
-  __typename?: "articles_mutation_response";
+  __typename?: 'articles_mutation_response';
   /** number of rows affected by the mutation */
-  affected_rows: Scalars["Int"];
+  affected_rows: Scalars['Int'];
   /** data from the rows affected by the mutation */
   returning: Array<Articles>;
 };
 
-/** on conflict condition type for table "articles" */
+/** on_conflict condition type for table "articles" */
 export type ArticlesOnConflict = {
   constraint: ArticlesConstraint;
   update_columns?: Array<ArticlesUpdateColumn>;
@@ -303,75 +300,76 @@ export type ArticlesOrderBy = {
 
 /** primary key columns input for table: articles */
 export type ArticlesPkColumnsInput = {
-  post_id: Scalars["uuid"];
+  post_id: Scalars['uuid'];
 };
 
 /** select columns of table "articles" */
 export enum ArticlesSelectColumn {
   /** column name */
-  Body = "body",
+  Body = 'body',
   /** column name */
-  Excerpt = "excerpt",
+  Excerpt = 'excerpt',
   /** column name */
-  PostId = "post_id",
+  PostId = 'post_id',
   /** column name */
-  State = "state",
+  State = 'state'
 }
 
 /** input type for updating data in table "articles" */
 export type ArticlesSetInput = {
-  body?: Maybe<Scalars["String"]>;
-  excerpt?: Maybe<Scalars["String"]>;
-  post_id?: Maybe<Scalars["uuid"]>;
+  body?: Maybe<Scalars['String']>;
+  excerpt?: Maybe<Scalars['String']>;
+  post_id?: Maybe<Scalars['uuid']>;
   state?: Maybe<ArticleStatesEnum>;
 };
 
 /** update columns of table "articles" */
 export enum ArticlesUpdateColumn {
   /** column name */
-  Body = "body",
+  Body = 'body',
   /** column name */
-  Excerpt = "excerpt",
+  Excerpt = 'excerpt',
   /** column name */
-  PostId = "post_id",
+  PostId = 'post_id',
   /** column name */
-  State = "state",
+  State = 'state'
 }
 
 /** columns and relationships of "auth.account_providers" */
 export type AuthAccountProviders = {
-  __typename?: "auth_account_providers";
+  __typename?: 'auth_account_providers';
   /** An object relationship */
   account: AuthAccounts;
-  account_id: Scalars["uuid"];
-  auth_provider: Scalars["String"];
-  auth_provider_unique_id: Scalars["String"];
-  created_at: Scalars["timestamptz"];
-  id: Scalars["uuid"];
+  account_id: Scalars['uuid'];
+  auth_provider: Scalars['String'];
+  auth_provider_unique_id: Scalars['String'];
+  created_at: Scalars['timestamptz'];
+  id: Scalars['uuid'];
   /** An object relationship */
   provider: AuthProviders;
-  updated_at: Scalars["timestamptz"];
+  updated_at: Scalars['timestamptz'];
 };
 
 /** aggregated selection of "auth.account_providers" */
 export type AuthAccountProvidersAggregate = {
-  __typename?: "auth_account_providers_aggregate";
+  __typename?: 'auth_account_providers_aggregate';
   aggregate?: Maybe<AuthAccountProvidersAggregateFields>;
   nodes: Array<AuthAccountProviders>;
 };
 
 /** aggregate fields of "auth.account_providers" */
 export type AuthAccountProvidersAggregateFields = {
-  __typename?: "auth_account_providers_aggregate_fields";
-  count: Scalars["Int"];
+  __typename?: 'auth_account_providers_aggregate_fields';
+  count: Scalars['Int'];
   max?: Maybe<AuthAccountProvidersMaxFields>;
   min?: Maybe<AuthAccountProvidersMinFields>;
 };
 
+
 /** aggregate fields of "auth.account_providers" */
 export type AuthAccountProvidersAggregateFieldsCountArgs = {
   columns?: Maybe<Array<AuthAccountProvidersSelectColumn>>;
-  distinct?: Maybe<Scalars["Boolean"]>;
+  distinct?: Maybe<Scalars['Boolean']>;
 };
 
 /** order by aggregate values of table "auth.account_providers" */
@@ -384,7 +382,7 @@ export type AuthAccountProvidersAggregateOrderBy = {
 /** input type for inserting array relation for remote table "auth.account_providers" */
 export type AuthAccountProvidersArrRelInsertInput = {
   data: Array<AuthAccountProvidersInsertInput>;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: Maybe<AuthAccountProvidersOnConflict>;
 };
 
@@ -406,34 +404,34 @@ export type AuthAccountProvidersBoolExp = {
 /** unique or primary key constraints on table "auth.account_providers" */
 export enum AuthAccountProvidersConstraint {
   /** unique or primary key constraint */
-  AccountProvidersAccountIdAuthProviderKey = "account_providers_account_id_auth_provider_key",
+  AccountProvidersAccountIdAuthProviderKey = 'account_providers_account_id_auth_provider_key',
   /** unique or primary key constraint */
-  AccountProvidersAuthProviderAuthProviderUniqueIdKey = "account_providers_auth_provider_auth_provider_unique_id_key",
+  AccountProvidersAuthProviderAuthProviderUniqueIdKey = 'account_providers_auth_provider_auth_provider_unique_id_key',
   /** unique or primary key constraint */
-  AccountProvidersPkey = "account_providers_pkey",
+  AccountProvidersPkey = 'account_providers_pkey'
 }
 
 /** input type for inserting data into table "auth.account_providers" */
 export type AuthAccountProvidersInsertInput = {
   account?: Maybe<AuthAccountsObjRelInsertInput>;
-  account_id?: Maybe<Scalars["uuid"]>;
-  auth_provider?: Maybe<Scalars["String"]>;
-  auth_provider_unique_id?: Maybe<Scalars["String"]>;
-  created_at?: Maybe<Scalars["timestamptz"]>;
-  id?: Maybe<Scalars["uuid"]>;
+  account_id?: Maybe<Scalars['uuid']>;
+  auth_provider?: Maybe<Scalars['String']>;
+  auth_provider_unique_id?: Maybe<Scalars['String']>;
+  created_at?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['uuid']>;
   provider?: Maybe<AuthProvidersObjRelInsertInput>;
-  updated_at?: Maybe<Scalars["timestamptz"]>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
 };
 
 /** aggregate max on columns */
 export type AuthAccountProvidersMaxFields = {
-  __typename?: "auth_account_providers_max_fields";
-  account_id?: Maybe<Scalars["uuid"]>;
-  auth_provider?: Maybe<Scalars["String"]>;
-  auth_provider_unique_id?: Maybe<Scalars["String"]>;
-  created_at?: Maybe<Scalars["timestamptz"]>;
-  id?: Maybe<Scalars["uuid"]>;
-  updated_at?: Maybe<Scalars["timestamptz"]>;
+  __typename?: 'auth_account_providers_max_fields';
+  account_id?: Maybe<Scalars['uuid']>;
+  auth_provider?: Maybe<Scalars['String']>;
+  auth_provider_unique_id?: Maybe<Scalars['String']>;
+  created_at?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['uuid']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
 };
 
 /** order by max() on columns of table "auth.account_providers" */
@@ -448,13 +446,13 @@ export type AuthAccountProvidersMaxOrderBy = {
 
 /** aggregate min on columns */
 export type AuthAccountProvidersMinFields = {
-  __typename?: "auth_account_providers_min_fields";
-  account_id?: Maybe<Scalars["uuid"]>;
-  auth_provider?: Maybe<Scalars["String"]>;
-  auth_provider_unique_id?: Maybe<Scalars["String"]>;
-  created_at?: Maybe<Scalars["timestamptz"]>;
-  id?: Maybe<Scalars["uuid"]>;
-  updated_at?: Maybe<Scalars["timestamptz"]>;
+  __typename?: 'auth_account_providers_min_fields';
+  account_id?: Maybe<Scalars['uuid']>;
+  auth_provider?: Maybe<Scalars['String']>;
+  auth_provider_unique_id?: Maybe<Scalars['String']>;
+  created_at?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['uuid']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
 };
 
 /** order by min() on columns of table "auth.account_providers" */
@@ -469,14 +467,14 @@ export type AuthAccountProvidersMinOrderBy = {
 
 /** response of any mutation on the table "auth.account_providers" */
 export type AuthAccountProvidersMutationResponse = {
-  __typename?: "auth_account_providers_mutation_response";
+  __typename?: 'auth_account_providers_mutation_response';
   /** number of rows affected by the mutation */
-  affected_rows: Scalars["Int"];
+  affected_rows: Scalars['Int'];
   /** data from the rows affected by the mutation */
   returning: Array<AuthAccountProviders>;
 };
 
-/** on conflict condition type for table "auth.account_providers" */
+/** on_conflict condition type for table "auth.account_providers" */
 export type AuthAccountProvidersOnConflict = {
   constraint: AuthAccountProvidersConstraint;
   update_columns?: Array<AuthAccountProvidersUpdateColumn>;
@@ -497,83 +495,84 @@ export type AuthAccountProvidersOrderBy = {
 
 /** primary key columns input for table: auth_account_providers */
 export type AuthAccountProvidersPkColumnsInput = {
-  id: Scalars["uuid"];
+  id: Scalars['uuid'];
 };
 
 /** select columns of table "auth.account_providers" */
 export enum AuthAccountProvidersSelectColumn {
   /** column name */
-  AccountId = "account_id",
+  AccountId = 'account_id',
   /** column name */
-  AuthProvider = "auth_provider",
+  AuthProvider = 'auth_provider',
   /** column name */
-  AuthProviderUniqueId = "auth_provider_unique_id",
+  AuthProviderUniqueId = 'auth_provider_unique_id',
   /** column name */
-  CreatedAt = "created_at",
+  CreatedAt = 'created_at',
   /** column name */
-  Id = "id",
+  Id = 'id',
   /** column name */
-  UpdatedAt = "updated_at",
+  UpdatedAt = 'updated_at'
 }
 
 /** input type for updating data in table "auth.account_providers" */
 export type AuthAccountProvidersSetInput = {
-  account_id?: Maybe<Scalars["uuid"]>;
-  auth_provider?: Maybe<Scalars["String"]>;
-  auth_provider_unique_id?: Maybe<Scalars["String"]>;
-  created_at?: Maybe<Scalars["timestamptz"]>;
-  id?: Maybe<Scalars["uuid"]>;
-  updated_at?: Maybe<Scalars["timestamptz"]>;
+  account_id?: Maybe<Scalars['uuid']>;
+  auth_provider?: Maybe<Scalars['String']>;
+  auth_provider_unique_id?: Maybe<Scalars['String']>;
+  created_at?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['uuid']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
 };
 
 /** update columns of table "auth.account_providers" */
 export enum AuthAccountProvidersUpdateColumn {
   /** column name */
-  AccountId = "account_id",
+  AccountId = 'account_id',
   /** column name */
-  AuthProvider = "auth_provider",
+  AuthProvider = 'auth_provider',
   /** column name */
-  AuthProviderUniqueId = "auth_provider_unique_id",
+  AuthProviderUniqueId = 'auth_provider_unique_id',
   /** column name */
-  CreatedAt = "created_at",
+  CreatedAt = 'created_at',
   /** column name */
-  Id = "id",
+  Id = 'id',
   /** column name */
-  UpdatedAt = "updated_at",
+  UpdatedAt = 'updated_at'
 }
 
 /** columns and relationships of "auth.account_roles" */
 export type AuthAccountRoles = {
-  __typename?: "auth_account_roles";
+  __typename?: 'auth_account_roles';
   /** An object relationship */
   account: AuthAccounts;
-  account_id: Scalars["uuid"];
-  created_at: Scalars["timestamptz"];
-  id: Scalars["uuid"];
-  role: Scalars["String"];
+  account_id: Scalars['uuid'];
+  created_at: Scalars['timestamptz'];
+  id: Scalars['uuid'];
+  role: Scalars['String'];
   /** An object relationship */
   roleByRole: AuthRoles;
 };
 
 /** aggregated selection of "auth.account_roles" */
 export type AuthAccountRolesAggregate = {
-  __typename?: "auth_account_roles_aggregate";
+  __typename?: 'auth_account_roles_aggregate';
   aggregate?: Maybe<AuthAccountRolesAggregateFields>;
   nodes: Array<AuthAccountRoles>;
 };
 
 /** aggregate fields of "auth.account_roles" */
 export type AuthAccountRolesAggregateFields = {
-  __typename?: "auth_account_roles_aggregate_fields";
-  count: Scalars["Int"];
+  __typename?: 'auth_account_roles_aggregate_fields';
+  count: Scalars['Int'];
   max?: Maybe<AuthAccountRolesMaxFields>;
   min?: Maybe<AuthAccountRolesMinFields>;
 };
 
+
 /** aggregate fields of "auth.account_roles" */
 export type AuthAccountRolesAggregateFieldsCountArgs = {
   columns?: Maybe<Array<AuthAccountRolesSelectColumn>>;
-  distinct?: Maybe<Scalars["Boolean"]>;
+  distinct?: Maybe<Scalars['Boolean']>;
 };
 
 /** order by aggregate values of table "auth.account_roles" */
@@ -586,7 +585,7 @@ export type AuthAccountRolesAggregateOrderBy = {
 /** input type for inserting array relation for remote table "auth.account_roles" */
 export type AuthAccountRolesArrRelInsertInput = {
   data: Array<AuthAccountRolesInsertInput>;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: Maybe<AuthAccountRolesOnConflict>;
 };
 
@@ -606,28 +605,28 @@ export type AuthAccountRolesBoolExp = {
 /** unique or primary key constraints on table "auth.account_roles" */
 export enum AuthAccountRolesConstraint {
   /** unique or primary key constraint */
-  AccountRolesPkey = "account_roles_pkey",
+  AccountRolesPkey = 'account_roles_pkey',
   /** unique or primary key constraint */
-  UserRolesAccountIdRoleKey = "user_roles_account_id_role_key",
+  UserRolesAccountIdRoleKey = 'user_roles_account_id_role_key'
 }
 
 /** input type for inserting data into table "auth.account_roles" */
 export type AuthAccountRolesInsertInput = {
   account?: Maybe<AuthAccountsObjRelInsertInput>;
-  account_id?: Maybe<Scalars["uuid"]>;
-  created_at?: Maybe<Scalars["timestamptz"]>;
-  id?: Maybe<Scalars["uuid"]>;
-  role?: Maybe<Scalars["String"]>;
+  account_id?: Maybe<Scalars['uuid']>;
+  created_at?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['uuid']>;
+  role?: Maybe<Scalars['String']>;
   roleByRole?: Maybe<AuthRolesObjRelInsertInput>;
 };
 
 /** aggregate max on columns */
 export type AuthAccountRolesMaxFields = {
-  __typename?: "auth_account_roles_max_fields";
-  account_id?: Maybe<Scalars["uuid"]>;
-  created_at?: Maybe<Scalars["timestamptz"]>;
-  id?: Maybe<Scalars["uuid"]>;
-  role?: Maybe<Scalars["String"]>;
+  __typename?: 'auth_account_roles_max_fields';
+  account_id?: Maybe<Scalars['uuid']>;
+  created_at?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['uuid']>;
+  role?: Maybe<Scalars['String']>;
 };
 
 /** order by max() on columns of table "auth.account_roles" */
@@ -640,11 +639,11 @@ export type AuthAccountRolesMaxOrderBy = {
 
 /** aggregate min on columns */
 export type AuthAccountRolesMinFields = {
-  __typename?: "auth_account_roles_min_fields";
-  account_id?: Maybe<Scalars["uuid"]>;
-  created_at?: Maybe<Scalars["timestamptz"]>;
-  id?: Maybe<Scalars["uuid"]>;
-  role?: Maybe<Scalars["String"]>;
+  __typename?: 'auth_account_roles_min_fields';
+  account_id?: Maybe<Scalars['uuid']>;
+  created_at?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['uuid']>;
+  role?: Maybe<Scalars['String']>;
 };
 
 /** order by min() on columns of table "auth.account_roles" */
@@ -657,14 +656,14 @@ export type AuthAccountRolesMinOrderBy = {
 
 /** response of any mutation on the table "auth.account_roles" */
 export type AuthAccountRolesMutationResponse = {
-  __typename?: "auth_account_roles_mutation_response";
+  __typename?: 'auth_account_roles_mutation_response';
   /** number of rows affected by the mutation */
-  affected_rows: Scalars["Int"];
+  affected_rows: Scalars['Int'];
   /** data from the rows affected by the mutation */
   returning: Array<AuthAccountRoles>;
 };
 
-/** on conflict condition type for table "auth.account_roles" */
+/** on_conflict condition type for table "auth.account_roles" */
 export type AuthAccountRolesOnConflict = {
   constraint: AuthAccountRolesConstraint;
   update_columns?: Array<AuthAccountRolesUpdateColumn>;
@@ -683,44 +682,44 @@ export type AuthAccountRolesOrderBy = {
 
 /** primary key columns input for table: auth_account_roles */
 export type AuthAccountRolesPkColumnsInput = {
-  id: Scalars["uuid"];
+  id: Scalars['uuid'];
 };
 
 /** select columns of table "auth.account_roles" */
 export enum AuthAccountRolesSelectColumn {
   /** column name */
-  AccountId = "account_id",
+  AccountId = 'account_id',
   /** column name */
-  CreatedAt = "created_at",
+  CreatedAt = 'created_at',
   /** column name */
-  Id = "id",
+  Id = 'id',
   /** column name */
-  Role = "role",
+  Role = 'role'
 }
 
 /** input type for updating data in table "auth.account_roles" */
 export type AuthAccountRolesSetInput = {
-  account_id?: Maybe<Scalars["uuid"]>;
-  created_at?: Maybe<Scalars["timestamptz"]>;
-  id?: Maybe<Scalars["uuid"]>;
-  role?: Maybe<Scalars["String"]>;
+  account_id?: Maybe<Scalars['uuid']>;
+  created_at?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['uuid']>;
+  role?: Maybe<Scalars['String']>;
 };
 
 /** update columns of table "auth.account_roles" */
 export enum AuthAccountRolesUpdateColumn {
   /** column name */
-  AccountId = "account_id",
+  AccountId = 'account_id',
   /** column name */
-  CreatedAt = "created_at",
+  CreatedAt = 'created_at',
   /** column name */
-  Id = "id",
+  Id = 'id',
   /** column name */
-  Role = "role",
+  Role = 'role'
 }
 
 /** columns and relationships of "auth.accounts" */
 export type AuthAccounts = {
-  __typename?: "auth_accounts";
+  __typename?: 'auth_accounts';
   /** An array relationship */
   account_providers: Array<AuthAccountProviders>;
   /** An aggregate relationship */
@@ -729,109 +728,117 @@ export type AuthAccounts = {
   account_roles: Array<AuthAccountRoles>;
   /** An aggregate relationship */
   account_roles_aggregate: AuthAccountRolesAggregate;
-  active: Scalars["Boolean"];
-  created_at: Scalars["timestamptz"];
-  custom_register_data?: Maybe<Scalars["jsonb"]>;
-  default_role: Scalars["String"];
-  email?: Maybe<Scalars["citext"]>;
-  id: Scalars["uuid"];
-  is_anonymous: Scalars["Boolean"];
-  mfa_enabled: Scalars["Boolean"];
-  new_email?: Maybe<Scalars["citext"]>;
-  otp_secret?: Maybe<Scalars["String"]>;
-  password_hash?: Maybe<Scalars["String"]>;
+  active: Scalars['Boolean'];
+  created_at: Scalars['timestamptz'];
+  custom_register_data?: Maybe<Scalars['jsonb']>;
+  default_role: Scalars['String'];
+  email?: Maybe<Scalars['citext']>;
+  id: Scalars['uuid'];
+  is_anonymous: Scalars['Boolean'];
+  mfa_enabled: Scalars['Boolean'];
+  new_email?: Maybe<Scalars['citext']>;
+  otp_secret?: Maybe<Scalars['String']>;
+  password_hash?: Maybe<Scalars['String']>;
   /** An array relationship */
   refresh_tokens: Array<AuthRefreshTokens>;
   /** An aggregate relationship */
   refresh_tokens_aggregate: AuthRefreshTokensAggregate;
   /** An object relationship */
   role: AuthRoles;
-  ticket: Scalars["uuid"];
-  ticket_expires_at: Scalars["timestamptz"];
-  updated_at: Scalars["timestamptz"];
+  ticket: Scalars['uuid'];
+  ticket_expires_at: Scalars['timestamptz'];
+  updated_at: Scalars['timestamptz'];
   /** An object relationship */
   user: Users;
-  user_id: Scalars["uuid"];
+  user_id: Scalars['uuid'];
 };
+
 
 /** columns and relationships of "auth.accounts" */
 export type AuthAccountsAccountProvidersArgs = {
   distinct_on?: Maybe<Array<AuthAccountProvidersSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<AuthAccountProvidersOrderBy>>;
   where?: Maybe<AuthAccountProvidersBoolExp>;
 };
+
 
 /** columns and relationships of "auth.accounts" */
 export type AuthAccountsAccountProvidersAggregateArgs = {
   distinct_on?: Maybe<Array<AuthAccountProvidersSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<AuthAccountProvidersOrderBy>>;
   where?: Maybe<AuthAccountProvidersBoolExp>;
 };
 
+
 /** columns and relationships of "auth.accounts" */
 export type AuthAccountsAccountRolesArgs = {
   distinct_on?: Maybe<Array<AuthAccountRolesSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<AuthAccountRolesOrderBy>>;
   where?: Maybe<AuthAccountRolesBoolExp>;
 };
+
 
 /** columns and relationships of "auth.accounts" */
 export type AuthAccountsAccountRolesAggregateArgs = {
   distinct_on?: Maybe<Array<AuthAccountRolesSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<AuthAccountRolesOrderBy>>;
   where?: Maybe<AuthAccountRolesBoolExp>;
 };
 
+
 /** columns and relationships of "auth.accounts" */
 export type AuthAccountsCustomRegisterDataArgs = {
-  path?: Maybe<Scalars["String"]>;
+  path?: Maybe<Scalars['String']>;
 };
+
 
 /** columns and relationships of "auth.accounts" */
 export type AuthAccountsRefreshTokensArgs = {
   distinct_on?: Maybe<Array<AuthRefreshTokensSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<AuthRefreshTokensOrderBy>>;
   where?: Maybe<AuthRefreshTokensBoolExp>;
 };
 
+
 /** columns and relationships of "auth.accounts" */
 export type AuthAccountsRefreshTokensAggregateArgs = {
   distinct_on?: Maybe<Array<AuthRefreshTokensSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<AuthRefreshTokensOrderBy>>;
   where?: Maybe<AuthRefreshTokensBoolExp>;
 };
 
 /** aggregated selection of "auth.accounts" */
 export type AuthAccountsAggregate = {
-  __typename?: "auth_accounts_aggregate";
+  __typename?: 'auth_accounts_aggregate';
   aggregate?: Maybe<AuthAccountsAggregateFields>;
   nodes: Array<AuthAccounts>;
 };
 
 /** aggregate fields of "auth.accounts" */
 export type AuthAccountsAggregateFields = {
-  __typename?: "auth_accounts_aggregate_fields";
-  count: Scalars["Int"];
+  __typename?: 'auth_accounts_aggregate_fields';
+  count: Scalars['Int'];
   max?: Maybe<AuthAccountsMaxFields>;
   min?: Maybe<AuthAccountsMinFields>;
 };
 
+
 /** aggregate fields of "auth.accounts" */
 export type AuthAccountsAggregateFieldsCountArgs = {
   columns?: Maybe<Array<AuthAccountsSelectColumn>>;
-  distinct?: Maybe<Scalars["Boolean"]>;
+  distinct?: Maybe<Scalars['Boolean']>;
 };
 
 /** order by aggregate values of table "auth.accounts" */
@@ -843,13 +850,13 @@ export type AuthAccountsAggregateOrderBy = {
 
 /** append existing jsonb value of filtered columns with new jsonb value */
 export type AuthAccountsAppendInput = {
-  custom_register_data?: Maybe<Scalars["jsonb"]>;
+  custom_register_data?: Maybe<Scalars['jsonb']>;
 };
 
 /** input type for inserting array relation for remote table "auth.accounts" */
 export type AuthAccountsArrRelInsertInput = {
   data: Array<AuthAccountsInsertInput>;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: Maybe<AuthAccountsOnConflict>;
 };
 
@@ -883,68 +890,68 @@ export type AuthAccountsBoolExp = {
 /** unique or primary key constraints on table "auth.accounts" */
 export enum AuthAccountsConstraint {
   /** unique or primary key constraint */
-  AccountsEmailKey = "accounts_email_key",
+  AccountsEmailKey = 'accounts_email_key',
   /** unique or primary key constraint */
-  AccountsNewEmailKey = "accounts_new_email_key",
+  AccountsNewEmailKey = 'accounts_new_email_key',
   /** unique or primary key constraint */
-  AccountsPkey = "accounts_pkey",
+  AccountsPkey = 'accounts_pkey',
   /** unique or primary key constraint */
-  AccountsUserIdKey = "accounts_user_id_key",
+  AccountsUserIdKey = 'accounts_user_id_key'
 }
 
 /** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
 export type AuthAccountsDeleteAtPathInput = {
-  custom_register_data?: Maybe<Array<Scalars["String"]>>;
+  custom_register_data?: Maybe<Array<Scalars['String']>>;
 };
 
 /** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
 export type AuthAccountsDeleteElemInput = {
-  custom_register_data?: Maybe<Scalars["Int"]>;
+  custom_register_data?: Maybe<Scalars['Int']>;
 };
 
 /** delete key/value pair or string element. key/value pairs are matched based on their key value */
 export type AuthAccountsDeleteKeyInput = {
-  custom_register_data?: Maybe<Scalars["String"]>;
+  custom_register_data?: Maybe<Scalars['String']>;
 };
 
 /** input type for inserting data into table "auth.accounts" */
 export type AuthAccountsInsertInput = {
   account_providers?: Maybe<AuthAccountProvidersArrRelInsertInput>;
   account_roles?: Maybe<AuthAccountRolesArrRelInsertInput>;
-  active?: Maybe<Scalars["Boolean"]>;
-  created_at?: Maybe<Scalars["timestamptz"]>;
-  custom_register_data?: Maybe<Scalars["jsonb"]>;
-  default_role?: Maybe<Scalars["String"]>;
-  email?: Maybe<Scalars["citext"]>;
-  id?: Maybe<Scalars["uuid"]>;
-  is_anonymous?: Maybe<Scalars["Boolean"]>;
-  mfa_enabled?: Maybe<Scalars["Boolean"]>;
-  new_email?: Maybe<Scalars["citext"]>;
-  otp_secret?: Maybe<Scalars["String"]>;
-  password_hash?: Maybe<Scalars["String"]>;
+  active?: Maybe<Scalars['Boolean']>;
+  created_at?: Maybe<Scalars['timestamptz']>;
+  custom_register_data?: Maybe<Scalars['jsonb']>;
+  default_role?: Maybe<Scalars['String']>;
+  email?: Maybe<Scalars['citext']>;
+  id?: Maybe<Scalars['uuid']>;
+  is_anonymous?: Maybe<Scalars['Boolean']>;
+  mfa_enabled?: Maybe<Scalars['Boolean']>;
+  new_email?: Maybe<Scalars['citext']>;
+  otp_secret?: Maybe<Scalars['String']>;
+  password_hash?: Maybe<Scalars['String']>;
   refresh_tokens?: Maybe<AuthRefreshTokensArrRelInsertInput>;
   role?: Maybe<AuthRolesObjRelInsertInput>;
-  ticket?: Maybe<Scalars["uuid"]>;
-  ticket_expires_at?: Maybe<Scalars["timestamptz"]>;
-  updated_at?: Maybe<Scalars["timestamptz"]>;
+  ticket?: Maybe<Scalars['uuid']>;
+  ticket_expires_at?: Maybe<Scalars['timestamptz']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
   user?: Maybe<UsersObjRelInsertInput>;
-  user_id?: Maybe<Scalars["uuid"]>;
+  user_id?: Maybe<Scalars['uuid']>;
 };
 
 /** aggregate max on columns */
 export type AuthAccountsMaxFields = {
-  __typename?: "auth_accounts_max_fields";
-  created_at?: Maybe<Scalars["timestamptz"]>;
-  default_role?: Maybe<Scalars["String"]>;
-  email?: Maybe<Scalars["citext"]>;
-  id?: Maybe<Scalars["uuid"]>;
-  new_email?: Maybe<Scalars["citext"]>;
-  otp_secret?: Maybe<Scalars["String"]>;
-  password_hash?: Maybe<Scalars["String"]>;
-  ticket?: Maybe<Scalars["uuid"]>;
-  ticket_expires_at?: Maybe<Scalars["timestamptz"]>;
-  updated_at?: Maybe<Scalars["timestamptz"]>;
-  user_id?: Maybe<Scalars["uuid"]>;
+  __typename?: 'auth_accounts_max_fields';
+  created_at?: Maybe<Scalars['timestamptz']>;
+  default_role?: Maybe<Scalars['String']>;
+  email?: Maybe<Scalars['citext']>;
+  id?: Maybe<Scalars['uuid']>;
+  new_email?: Maybe<Scalars['citext']>;
+  otp_secret?: Maybe<Scalars['String']>;
+  password_hash?: Maybe<Scalars['String']>;
+  ticket?: Maybe<Scalars['uuid']>;
+  ticket_expires_at?: Maybe<Scalars['timestamptz']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+  user_id?: Maybe<Scalars['uuid']>;
 };
 
 /** order by max() on columns of table "auth.accounts" */
@@ -964,18 +971,18 @@ export type AuthAccountsMaxOrderBy = {
 
 /** aggregate min on columns */
 export type AuthAccountsMinFields = {
-  __typename?: "auth_accounts_min_fields";
-  created_at?: Maybe<Scalars["timestamptz"]>;
-  default_role?: Maybe<Scalars["String"]>;
-  email?: Maybe<Scalars["citext"]>;
-  id?: Maybe<Scalars["uuid"]>;
-  new_email?: Maybe<Scalars["citext"]>;
-  otp_secret?: Maybe<Scalars["String"]>;
-  password_hash?: Maybe<Scalars["String"]>;
-  ticket?: Maybe<Scalars["uuid"]>;
-  ticket_expires_at?: Maybe<Scalars["timestamptz"]>;
-  updated_at?: Maybe<Scalars["timestamptz"]>;
-  user_id?: Maybe<Scalars["uuid"]>;
+  __typename?: 'auth_accounts_min_fields';
+  created_at?: Maybe<Scalars['timestamptz']>;
+  default_role?: Maybe<Scalars['String']>;
+  email?: Maybe<Scalars['citext']>;
+  id?: Maybe<Scalars['uuid']>;
+  new_email?: Maybe<Scalars['citext']>;
+  otp_secret?: Maybe<Scalars['String']>;
+  password_hash?: Maybe<Scalars['String']>;
+  ticket?: Maybe<Scalars['uuid']>;
+  ticket_expires_at?: Maybe<Scalars['timestamptz']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+  user_id?: Maybe<Scalars['uuid']>;
 };
 
 /** order by min() on columns of table "auth.accounts" */
@@ -995,9 +1002,9 @@ export type AuthAccountsMinOrderBy = {
 
 /** response of any mutation on the table "auth.accounts" */
 export type AuthAccountsMutationResponse = {
-  __typename?: "auth_accounts_mutation_response";
+  __typename?: 'auth_accounts_mutation_response';
   /** number of rows affected by the mutation */
-  affected_rows: Scalars["Int"];
+  affected_rows: Scalars['Int'];
   /** data from the rows affected by the mutation */
   returning: Array<AuthAccounts>;
 };
@@ -1005,11 +1012,11 @@ export type AuthAccountsMutationResponse = {
 /** input type for inserting object relation for remote table "auth.accounts" */
 export type AuthAccountsObjRelInsertInput = {
   data: AuthAccountsInsertInput;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: Maybe<AuthAccountsOnConflict>;
 };
 
-/** on conflict condition type for table "auth.accounts" */
+/** on_conflict condition type for table "auth.accounts" */
 export type AuthAccountsOnConflict = {
   constraint: AuthAccountsConstraint;
   update_columns?: Array<AuthAccountsUpdateColumn>;
@@ -1042,148 +1049,151 @@ export type AuthAccountsOrderBy = {
 
 /** primary key columns input for table: auth_accounts */
 export type AuthAccountsPkColumnsInput = {
-  id: Scalars["uuid"];
+  id: Scalars['uuid'];
 };
 
 /** prepend existing jsonb value of filtered columns with new jsonb value */
 export type AuthAccountsPrependInput = {
-  custom_register_data?: Maybe<Scalars["jsonb"]>;
+  custom_register_data?: Maybe<Scalars['jsonb']>;
 };
 
 /** select columns of table "auth.accounts" */
 export enum AuthAccountsSelectColumn {
   /** column name */
-  Active = "active",
+  Active = 'active',
   /** column name */
-  CreatedAt = "created_at",
+  CreatedAt = 'created_at',
   /** column name */
-  CustomRegisterData = "custom_register_data",
+  CustomRegisterData = 'custom_register_data',
   /** column name */
-  DefaultRole = "default_role",
+  DefaultRole = 'default_role',
   /** column name */
-  Email = "email",
+  Email = 'email',
   /** column name */
-  Id = "id",
+  Id = 'id',
   /** column name */
-  IsAnonymous = "is_anonymous",
+  IsAnonymous = 'is_anonymous',
   /** column name */
-  MfaEnabled = "mfa_enabled",
+  MfaEnabled = 'mfa_enabled',
   /** column name */
-  NewEmail = "new_email",
+  NewEmail = 'new_email',
   /** column name */
-  OtpSecret = "otp_secret",
+  OtpSecret = 'otp_secret',
   /** column name */
-  PasswordHash = "password_hash",
+  PasswordHash = 'password_hash',
   /** column name */
-  Ticket = "ticket",
+  Ticket = 'ticket',
   /** column name */
-  TicketExpiresAt = "ticket_expires_at",
+  TicketExpiresAt = 'ticket_expires_at',
   /** column name */
-  UpdatedAt = "updated_at",
+  UpdatedAt = 'updated_at',
   /** column name */
-  UserId = "user_id",
+  UserId = 'user_id'
 }
 
 /** input type for updating data in table "auth.accounts" */
 export type AuthAccountsSetInput = {
-  active?: Maybe<Scalars["Boolean"]>;
-  created_at?: Maybe<Scalars["timestamptz"]>;
-  custom_register_data?: Maybe<Scalars["jsonb"]>;
-  default_role?: Maybe<Scalars["String"]>;
-  email?: Maybe<Scalars["citext"]>;
-  id?: Maybe<Scalars["uuid"]>;
-  is_anonymous?: Maybe<Scalars["Boolean"]>;
-  mfa_enabled?: Maybe<Scalars["Boolean"]>;
-  new_email?: Maybe<Scalars["citext"]>;
-  otp_secret?: Maybe<Scalars["String"]>;
-  password_hash?: Maybe<Scalars["String"]>;
-  ticket?: Maybe<Scalars["uuid"]>;
-  ticket_expires_at?: Maybe<Scalars["timestamptz"]>;
-  updated_at?: Maybe<Scalars["timestamptz"]>;
-  user_id?: Maybe<Scalars["uuid"]>;
+  active?: Maybe<Scalars['Boolean']>;
+  created_at?: Maybe<Scalars['timestamptz']>;
+  custom_register_data?: Maybe<Scalars['jsonb']>;
+  default_role?: Maybe<Scalars['String']>;
+  email?: Maybe<Scalars['citext']>;
+  id?: Maybe<Scalars['uuid']>;
+  is_anonymous?: Maybe<Scalars['Boolean']>;
+  mfa_enabled?: Maybe<Scalars['Boolean']>;
+  new_email?: Maybe<Scalars['citext']>;
+  otp_secret?: Maybe<Scalars['String']>;
+  password_hash?: Maybe<Scalars['String']>;
+  ticket?: Maybe<Scalars['uuid']>;
+  ticket_expires_at?: Maybe<Scalars['timestamptz']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+  user_id?: Maybe<Scalars['uuid']>;
 };
 
 /** update columns of table "auth.accounts" */
 export enum AuthAccountsUpdateColumn {
   /** column name */
-  Active = "active",
+  Active = 'active',
   /** column name */
-  CreatedAt = "created_at",
+  CreatedAt = 'created_at',
   /** column name */
-  CustomRegisterData = "custom_register_data",
+  CustomRegisterData = 'custom_register_data',
   /** column name */
-  DefaultRole = "default_role",
+  DefaultRole = 'default_role',
   /** column name */
-  Email = "email",
+  Email = 'email',
   /** column name */
-  Id = "id",
+  Id = 'id',
   /** column name */
-  IsAnonymous = "is_anonymous",
+  IsAnonymous = 'is_anonymous',
   /** column name */
-  MfaEnabled = "mfa_enabled",
+  MfaEnabled = 'mfa_enabled',
   /** column name */
-  NewEmail = "new_email",
+  NewEmail = 'new_email',
   /** column name */
-  OtpSecret = "otp_secret",
+  OtpSecret = 'otp_secret',
   /** column name */
-  PasswordHash = "password_hash",
+  PasswordHash = 'password_hash',
   /** column name */
-  Ticket = "ticket",
+  Ticket = 'ticket',
   /** column name */
-  TicketExpiresAt = "ticket_expires_at",
+  TicketExpiresAt = 'ticket_expires_at',
   /** column name */
-  UpdatedAt = "updated_at",
+  UpdatedAt = 'updated_at',
   /** column name */
-  UserId = "user_id",
+  UserId = 'user_id'
 }
 
 /** columns and relationships of "auth.providers" */
 export type AuthProviders = {
-  __typename?: "auth_providers";
+  __typename?: 'auth_providers';
   /** An array relationship */
   account_providers: Array<AuthAccountProviders>;
   /** An aggregate relationship */
   account_providers_aggregate: AuthAccountProvidersAggregate;
-  provider: Scalars["String"];
+  provider: Scalars['String'];
 };
+
 
 /** columns and relationships of "auth.providers" */
 export type AuthProvidersAccountProvidersArgs = {
   distinct_on?: Maybe<Array<AuthAccountProvidersSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<AuthAccountProvidersOrderBy>>;
   where?: Maybe<AuthAccountProvidersBoolExp>;
 };
 
+
 /** columns and relationships of "auth.providers" */
 export type AuthProvidersAccountProvidersAggregateArgs = {
   distinct_on?: Maybe<Array<AuthAccountProvidersSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<AuthAccountProvidersOrderBy>>;
   where?: Maybe<AuthAccountProvidersBoolExp>;
 };
 
 /** aggregated selection of "auth.providers" */
 export type AuthProvidersAggregate = {
-  __typename?: "auth_providers_aggregate";
+  __typename?: 'auth_providers_aggregate';
   aggregate?: Maybe<AuthProvidersAggregateFields>;
   nodes: Array<AuthProviders>;
 };
 
 /** aggregate fields of "auth.providers" */
 export type AuthProvidersAggregateFields = {
-  __typename?: "auth_providers_aggregate_fields";
-  count: Scalars["Int"];
+  __typename?: 'auth_providers_aggregate_fields';
+  count: Scalars['Int'];
   max?: Maybe<AuthProvidersMaxFields>;
   min?: Maybe<AuthProvidersMinFields>;
 };
 
+
 /** aggregate fields of "auth.providers" */
 export type AuthProvidersAggregateFieldsCountArgs = {
   columns?: Maybe<Array<AuthProvidersSelectColumn>>;
-  distinct?: Maybe<Scalars["Boolean"]>;
+  distinct?: Maybe<Scalars['Boolean']>;
 };
 
 /** Boolean expression to filter rows from the table "auth.providers". All fields are combined with a logical 'AND'. */
@@ -1198,32 +1208,32 @@ export type AuthProvidersBoolExp = {
 /** unique or primary key constraints on table "auth.providers" */
 export enum AuthProvidersConstraint {
   /** unique or primary key constraint */
-  ProvidersPkey = "providers_pkey",
+  ProvidersPkey = 'providers_pkey'
 }
 
 /** input type for inserting data into table "auth.providers" */
 export type AuthProvidersInsertInput = {
   account_providers?: Maybe<AuthAccountProvidersArrRelInsertInput>;
-  provider?: Maybe<Scalars["String"]>;
+  provider?: Maybe<Scalars['String']>;
 };
 
 /** aggregate max on columns */
 export type AuthProvidersMaxFields = {
-  __typename?: "auth_providers_max_fields";
-  provider?: Maybe<Scalars["String"]>;
+  __typename?: 'auth_providers_max_fields';
+  provider?: Maybe<Scalars['String']>;
 };
 
 /** aggregate min on columns */
 export type AuthProvidersMinFields = {
-  __typename?: "auth_providers_min_fields";
-  provider?: Maybe<Scalars["String"]>;
+  __typename?: 'auth_providers_min_fields';
+  provider?: Maybe<Scalars['String']>;
 };
 
 /** response of any mutation on the table "auth.providers" */
 export type AuthProvidersMutationResponse = {
-  __typename?: "auth_providers_mutation_response";
+  __typename?: 'auth_providers_mutation_response';
   /** number of rows affected by the mutation */
-  affected_rows: Scalars["Int"];
+  affected_rows: Scalars['Int'];
   /** data from the rows affected by the mutation */
   returning: Array<AuthProviders>;
 };
@@ -1231,11 +1241,11 @@ export type AuthProvidersMutationResponse = {
 /** input type for inserting object relation for remote table "auth.providers" */
 export type AuthProvidersObjRelInsertInput = {
   data: AuthProvidersInsertInput;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: Maybe<AuthProvidersOnConflict>;
 };
 
-/** on conflict condition type for table "auth.providers" */
+/** on_conflict condition type for table "auth.providers" */
 export type AuthProvidersOnConflict = {
   constraint: AuthProvidersConstraint;
   update_columns?: Array<AuthProvidersUpdateColumn>;
@@ -1250,56 +1260,57 @@ export type AuthProvidersOrderBy = {
 
 /** primary key columns input for table: auth_providers */
 export type AuthProvidersPkColumnsInput = {
-  provider: Scalars["String"];
+  provider: Scalars['String'];
 };
 
 /** select columns of table "auth.providers" */
 export enum AuthProvidersSelectColumn {
   /** column name */
-  Provider = "provider",
+  Provider = 'provider'
 }
 
 /** input type for updating data in table "auth.providers" */
 export type AuthProvidersSetInput = {
-  provider?: Maybe<Scalars["String"]>;
+  provider?: Maybe<Scalars['String']>;
 };
 
 /** update columns of table "auth.providers" */
 export enum AuthProvidersUpdateColumn {
   /** column name */
-  Provider = "provider",
+  Provider = 'provider'
 }
 
 /** columns and relationships of "auth.refresh_tokens" */
 export type AuthRefreshTokens = {
-  __typename?: "auth_refresh_tokens";
+  __typename?: 'auth_refresh_tokens';
   /** An object relationship */
   account: AuthAccounts;
-  account_id: Scalars["uuid"];
-  created_at: Scalars["timestamptz"];
-  expires_at: Scalars["timestamptz"];
-  refresh_token: Scalars["uuid"];
+  account_id: Scalars['uuid'];
+  created_at: Scalars['timestamptz'];
+  expires_at: Scalars['timestamptz'];
+  refresh_token: Scalars['uuid'];
 };
 
 /** aggregated selection of "auth.refresh_tokens" */
 export type AuthRefreshTokensAggregate = {
-  __typename?: "auth_refresh_tokens_aggregate";
+  __typename?: 'auth_refresh_tokens_aggregate';
   aggregate?: Maybe<AuthRefreshTokensAggregateFields>;
   nodes: Array<AuthRefreshTokens>;
 };
 
 /** aggregate fields of "auth.refresh_tokens" */
 export type AuthRefreshTokensAggregateFields = {
-  __typename?: "auth_refresh_tokens_aggregate_fields";
-  count: Scalars["Int"];
+  __typename?: 'auth_refresh_tokens_aggregate_fields';
+  count: Scalars['Int'];
   max?: Maybe<AuthRefreshTokensMaxFields>;
   min?: Maybe<AuthRefreshTokensMinFields>;
 };
 
+
 /** aggregate fields of "auth.refresh_tokens" */
 export type AuthRefreshTokensAggregateFieldsCountArgs = {
   columns?: Maybe<Array<AuthRefreshTokensSelectColumn>>;
-  distinct?: Maybe<Scalars["Boolean"]>;
+  distinct?: Maybe<Scalars['Boolean']>;
 };
 
 /** order by aggregate values of table "auth.refresh_tokens" */
@@ -1312,7 +1323,7 @@ export type AuthRefreshTokensAggregateOrderBy = {
 /** input type for inserting array relation for remote table "auth.refresh_tokens" */
 export type AuthRefreshTokensArrRelInsertInput = {
   data: Array<AuthRefreshTokensInsertInput>;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: Maybe<AuthRefreshTokensOnConflict>;
 };
 
@@ -1331,25 +1342,25 @@ export type AuthRefreshTokensBoolExp = {
 /** unique or primary key constraints on table "auth.refresh_tokens" */
 export enum AuthRefreshTokensConstraint {
   /** unique or primary key constraint */
-  RefreshTokensPkey = "refresh_tokens_pkey",
+  RefreshTokensPkey = 'refresh_tokens_pkey'
 }
 
 /** input type for inserting data into table "auth.refresh_tokens" */
 export type AuthRefreshTokensInsertInput = {
   account?: Maybe<AuthAccountsObjRelInsertInput>;
-  account_id?: Maybe<Scalars["uuid"]>;
-  created_at?: Maybe<Scalars["timestamptz"]>;
-  expires_at?: Maybe<Scalars["timestamptz"]>;
-  refresh_token?: Maybe<Scalars["uuid"]>;
+  account_id?: Maybe<Scalars['uuid']>;
+  created_at?: Maybe<Scalars['timestamptz']>;
+  expires_at?: Maybe<Scalars['timestamptz']>;
+  refresh_token?: Maybe<Scalars['uuid']>;
 };
 
 /** aggregate max on columns */
 export type AuthRefreshTokensMaxFields = {
-  __typename?: "auth_refresh_tokens_max_fields";
-  account_id?: Maybe<Scalars["uuid"]>;
-  created_at?: Maybe<Scalars["timestamptz"]>;
-  expires_at?: Maybe<Scalars["timestamptz"]>;
-  refresh_token?: Maybe<Scalars["uuid"]>;
+  __typename?: 'auth_refresh_tokens_max_fields';
+  account_id?: Maybe<Scalars['uuid']>;
+  created_at?: Maybe<Scalars['timestamptz']>;
+  expires_at?: Maybe<Scalars['timestamptz']>;
+  refresh_token?: Maybe<Scalars['uuid']>;
 };
 
 /** order by max() on columns of table "auth.refresh_tokens" */
@@ -1362,11 +1373,11 @@ export type AuthRefreshTokensMaxOrderBy = {
 
 /** aggregate min on columns */
 export type AuthRefreshTokensMinFields = {
-  __typename?: "auth_refresh_tokens_min_fields";
-  account_id?: Maybe<Scalars["uuid"]>;
-  created_at?: Maybe<Scalars["timestamptz"]>;
-  expires_at?: Maybe<Scalars["timestamptz"]>;
-  refresh_token?: Maybe<Scalars["uuid"]>;
+  __typename?: 'auth_refresh_tokens_min_fields';
+  account_id?: Maybe<Scalars['uuid']>;
+  created_at?: Maybe<Scalars['timestamptz']>;
+  expires_at?: Maybe<Scalars['timestamptz']>;
+  refresh_token?: Maybe<Scalars['uuid']>;
 };
 
 /** order by min() on columns of table "auth.refresh_tokens" */
@@ -1379,14 +1390,14 @@ export type AuthRefreshTokensMinOrderBy = {
 
 /** response of any mutation on the table "auth.refresh_tokens" */
 export type AuthRefreshTokensMutationResponse = {
-  __typename?: "auth_refresh_tokens_mutation_response";
+  __typename?: 'auth_refresh_tokens_mutation_response';
   /** number of rows affected by the mutation */
-  affected_rows: Scalars["Int"];
+  affected_rows: Scalars['Int'];
   /** data from the rows affected by the mutation */
   returning: Array<AuthRefreshTokens>;
 };
 
-/** on conflict condition type for table "auth.refresh_tokens" */
+/** on_conflict condition type for table "auth.refresh_tokens" */
 export type AuthRefreshTokensOnConflict = {
   constraint: AuthRefreshTokensConstraint;
   update_columns?: Array<AuthRefreshTokensUpdateColumn>;
@@ -1404,44 +1415,44 @@ export type AuthRefreshTokensOrderBy = {
 
 /** primary key columns input for table: auth_refresh_tokens */
 export type AuthRefreshTokensPkColumnsInput = {
-  refresh_token: Scalars["uuid"];
+  refresh_token: Scalars['uuid'];
 };
 
 /** select columns of table "auth.refresh_tokens" */
 export enum AuthRefreshTokensSelectColumn {
   /** column name */
-  AccountId = "account_id",
+  AccountId = 'account_id',
   /** column name */
-  CreatedAt = "created_at",
+  CreatedAt = 'created_at',
   /** column name */
-  ExpiresAt = "expires_at",
+  ExpiresAt = 'expires_at',
   /** column name */
-  RefreshToken = "refresh_token",
+  RefreshToken = 'refresh_token'
 }
 
 /** input type for updating data in table "auth.refresh_tokens" */
 export type AuthRefreshTokensSetInput = {
-  account_id?: Maybe<Scalars["uuid"]>;
-  created_at?: Maybe<Scalars["timestamptz"]>;
-  expires_at?: Maybe<Scalars["timestamptz"]>;
-  refresh_token?: Maybe<Scalars["uuid"]>;
+  account_id?: Maybe<Scalars['uuid']>;
+  created_at?: Maybe<Scalars['timestamptz']>;
+  expires_at?: Maybe<Scalars['timestamptz']>;
+  refresh_token?: Maybe<Scalars['uuid']>;
 };
 
 /** update columns of table "auth.refresh_tokens" */
 export enum AuthRefreshTokensUpdateColumn {
   /** column name */
-  AccountId = "account_id",
+  AccountId = 'account_id',
   /** column name */
-  CreatedAt = "created_at",
+  CreatedAt = 'created_at',
   /** column name */
-  ExpiresAt = "expires_at",
+  ExpiresAt = 'expires_at',
   /** column name */
-  RefreshToken = "refresh_token",
+  RefreshToken = 'refresh_token'
 }
 
 /** columns and relationships of "auth.roles" */
 export type AuthRoles = {
-  __typename?: "auth_roles";
+  __typename?: 'auth_roles';
   /** An array relationship */
   account_roles: Array<AuthAccountRoles>;
   /** An aggregate relationship */
@@ -1450,64 +1461,69 @@ export type AuthRoles = {
   accounts: Array<AuthAccounts>;
   /** An aggregate relationship */
   accounts_aggregate: AuthAccountsAggregate;
-  role: Scalars["String"];
+  role: Scalars['String'];
 };
+
 
 /** columns and relationships of "auth.roles" */
 export type AuthRolesAccountRolesArgs = {
   distinct_on?: Maybe<Array<AuthAccountRolesSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<AuthAccountRolesOrderBy>>;
   where?: Maybe<AuthAccountRolesBoolExp>;
 };
+
 
 /** columns and relationships of "auth.roles" */
 export type AuthRolesAccountRolesAggregateArgs = {
   distinct_on?: Maybe<Array<AuthAccountRolesSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<AuthAccountRolesOrderBy>>;
   where?: Maybe<AuthAccountRolesBoolExp>;
 };
 
+
 /** columns and relationships of "auth.roles" */
 export type AuthRolesAccountsArgs = {
   distinct_on?: Maybe<Array<AuthAccountsSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<AuthAccountsOrderBy>>;
   where?: Maybe<AuthAccountsBoolExp>;
 };
 
+
 /** columns and relationships of "auth.roles" */
 export type AuthRolesAccountsAggregateArgs = {
   distinct_on?: Maybe<Array<AuthAccountsSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<AuthAccountsOrderBy>>;
   where?: Maybe<AuthAccountsBoolExp>;
 };
 
 /** aggregated selection of "auth.roles" */
 export type AuthRolesAggregate = {
-  __typename?: "auth_roles_aggregate";
+  __typename?: 'auth_roles_aggregate';
   aggregate?: Maybe<AuthRolesAggregateFields>;
   nodes: Array<AuthRoles>;
 };
 
 /** aggregate fields of "auth.roles" */
 export type AuthRolesAggregateFields = {
-  __typename?: "auth_roles_aggregate_fields";
-  count: Scalars["Int"];
+  __typename?: 'auth_roles_aggregate_fields';
+  count: Scalars['Int'];
   max?: Maybe<AuthRolesMaxFields>;
   min?: Maybe<AuthRolesMinFields>;
 };
 
+
 /** aggregate fields of "auth.roles" */
 export type AuthRolesAggregateFieldsCountArgs = {
   columns?: Maybe<Array<AuthRolesSelectColumn>>;
-  distinct?: Maybe<Scalars["Boolean"]>;
+  distinct?: Maybe<Scalars['Boolean']>;
 };
 
 /** Boolean expression to filter rows from the table "auth.roles". All fields are combined with a logical 'AND'. */
@@ -1523,33 +1539,33 @@ export type AuthRolesBoolExp = {
 /** unique or primary key constraints on table "auth.roles" */
 export enum AuthRolesConstraint {
   /** unique or primary key constraint */
-  RolesPkey = "roles_pkey",
+  RolesPkey = 'roles_pkey'
 }
 
 /** input type for inserting data into table "auth.roles" */
 export type AuthRolesInsertInput = {
   account_roles?: Maybe<AuthAccountRolesArrRelInsertInput>;
   accounts?: Maybe<AuthAccountsArrRelInsertInput>;
-  role?: Maybe<Scalars["String"]>;
+  role?: Maybe<Scalars['String']>;
 };
 
 /** aggregate max on columns */
 export type AuthRolesMaxFields = {
-  __typename?: "auth_roles_max_fields";
-  role?: Maybe<Scalars["String"]>;
+  __typename?: 'auth_roles_max_fields';
+  role?: Maybe<Scalars['String']>;
 };
 
 /** aggregate min on columns */
 export type AuthRolesMinFields = {
-  __typename?: "auth_roles_min_fields";
-  role?: Maybe<Scalars["String"]>;
+  __typename?: 'auth_roles_min_fields';
+  role?: Maybe<Scalars['String']>;
 };
 
 /** response of any mutation on the table "auth.roles" */
 export type AuthRolesMutationResponse = {
-  __typename?: "auth_roles_mutation_response";
+  __typename?: 'auth_roles_mutation_response';
   /** number of rows affected by the mutation */
-  affected_rows: Scalars["Int"];
+  affected_rows: Scalars['Int'];
   /** data from the rows affected by the mutation */
   returning: Array<AuthRoles>;
 };
@@ -1557,11 +1573,11 @@ export type AuthRolesMutationResponse = {
 /** input type for inserting object relation for remote table "auth.roles" */
 export type AuthRolesObjRelInsertInput = {
   data: AuthRolesInsertInput;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: Maybe<AuthRolesOnConflict>;
 };
 
-/** on conflict condition type for table "auth.roles" */
+/** on_conflict condition type for table "auth.roles" */
 export type AuthRolesOnConflict = {
   constraint: AuthRolesConstraint;
   update_columns?: Array<AuthRolesUpdateColumn>;
@@ -1577,123 +1593,128 @@ export type AuthRolesOrderBy = {
 
 /** primary key columns input for table: auth_roles */
 export type AuthRolesPkColumnsInput = {
-  role: Scalars["String"];
+  role: Scalars['String'];
 };
 
 /** select columns of table "auth.roles" */
 export enum AuthRolesSelectColumn {
   /** column name */
-  Role = "role",
+  Role = 'role'
 }
 
 /** input type for updating data in table "auth.roles" */
 export type AuthRolesSetInput = {
-  role?: Maybe<Scalars["String"]>;
+  role?: Maybe<Scalars['String']>;
 };
 
 /** update columns of table "auth.roles" */
 export enum AuthRolesUpdateColumn {
   /** column name */
-  Role = "role",
+  Role = 'role'
 }
+
 
 /** Boolean expression to compare columns of type "citext". All fields are combined with logical 'AND'. */
 export type CitextComparisonExp = {
-  _eq?: Maybe<Scalars["citext"]>;
-  _gt?: Maybe<Scalars["citext"]>;
-  _gte?: Maybe<Scalars["citext"]>;
+  _eq?: Maybe<Scalars['citext']>;
+  _gt?: Maybe<Scalars['citext']>;
+  _gte?: Maybe<Scalars['citext']>;
   /** does the column match the given case-insensitive pattern */
-  _ilike?: Maybe<Scalars["citext"]>;
-  _in?: Maybe<Array<Scalars["citext"]>>;
+  _ilike?: Maybe<Scalars['citext']>;
+  _in?: Maybe<Array<Scalars['citext']>>;
   /** does the column match the given POSIX regular expression, case insensitive */
-  _iregex?: Maybe<Scalars["citext"]>;
-  _is_null?: Maybe<Scalars["Boolean"]>;
+  _iregex?: Maybe<Scalars['citext']>;
+  _is_null?: Maybe<Scalars['Boolean']>;
   /** does the column match the given pattern */
-  _like?: Maybe<Scalars["citext"]>;
-  _lt?: Maybe<Scalars["citext"]>;
-  _lte?: Maybe<Scalars["citext"]>;
-  _neq?: Maybe<Scalars["citext"]>;
+  _like?: Maybe<Scalars['citext']>;
+  _lt?: Maybe<Scalars['citext']>;
+  _lte?: Maybe<Scalars['citext']>;
+  _neq?: Maybe<Scalars['citext']>;
   /** does the column NOT match the given case-insensitive pattern */
-  _nilike?: Maybe<Scalars["citext"]>;
-  _nin?: Maybe<Array<Scalars["citext"]>>;
+  _nilike?: Maybe<Scalars['citext']>;
+  _nin?: Maybe<Array<Scalars['citext']>>;
   /** does the column NOT match the given POSIX regular expression, case insensitive */
-  _niregex?: Maybe<Scalars["citext"]>;
+  _niregex?: Maybe<Scalars['citext']>;
   /** does the column NOT match the given pattern */
-  _nlike?: Maybe<Scalars["citext"]>;
+  _nlike?: Maybe<Scalars['citext']>;
   /** does the column NOT match the given POSIX regular expression, case sensitive */
-  _nregex?: Maybe<Scalars["citext"]>;
+  _nregex?: Maybe<Scalars['citext']>;
   /** does the column NOT match the given SQL regular expression */
-  _nsimilar?: Maybe<Scalars["citext"]>;
+  _nsimilar?: Maybe<Scalars['citext']>;
   /** does the column match the given POSIX regular expression, case sensitive */
-  _regex?: Maybe<Scalars["citext"]>;
+  _regex?: Maybe<Scalars['citext']>;
   /** does the column match the given SQL regular expression */
-  _similar?: Maybe<Scalars["citext"]>;
+  _similar?: Maybe<Scalars['citext']>;
 };
 
 /** columns and relationships of "comments" */
 export type Comments = {
-  __typename?: "comments";
-  author_id?: Maybe<Scalars["uuid"]>;
+  __typename?: 'comments';
+  author_id?: Maybe<Scalars['uuid']>;
   /** An object relationship */
   comment?: Maybe<Comments>;
   /** An array relationship */
   comments: Array<Comments>;
   /** An aggregate relationship */
   comments_aggregate: CommentsAggregate;
-  content?: Maybe<Scalars["String"]>;
-  created_at?: Maybe<Scalars["timestamptz"]>;
-  id: Scalars["uuid"];
-  meta?: Maybe<Scalars["jsonb"]>;
-  parent_id?: Maybe<Scalars["uuid"]>;
+  content?: Maybe<Scalars['String']>;
+  created_at?: Maybe<Scalars['timestamptz']>;
+  id: Scalars['uuid'];
+  meta?: Maybe<Scalars['jsonb']>;
+  parent_id?: Maybe<Scalars['uuid']>;
   /** An object relationship */
   post: Posts;
-  post_id: Scalars["uuid"];
-  status?: Maybe<Scalars["String"]>;
-  updated_at?: Maybe<Scalars["timestamptz"]>;
+  post_id: Scalars['uuid'];
+  status?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
 };
+
 
 /** columns and relationships of "comments" */
 export type CommentsCommentsArgs = {
   distinct_on?: Maybe<Array<CommentsSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<CommentsOrderBy>>;
   where?: Maybe<CommentsBoolExp>;
 };
+
 
 /** columns and relationships of "comments" */
 export type CommentsCommentsAggregateArgs = {
   distinct_on?: Maybe<Array<CommentsSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<CommentsOrderBy>>;
   where?: Maybe<CommentsBoolExp>;
 };
 
+
 /** columns and relationships of "comments" */
 export type CommentsMetaArgs = {
-  path?: Maybe<Scalars["String"]>;
+  path?: Maybe<Scalars['String']>;
 };
 
 /** aggregated selection of "comments" */
 export type CommentsAggregate = {
-  __typename?: "comments_aggregate";
+  __typename?: 'comments_aggregate';
   aggregate?: Maybe<CommentsAggregateFields>;
   nodes: Array<Comments>;
 };
 
 /** aggregate fields of "comments" */
 export type CommentsAggregateFields = {
-  __typename?: "comments_aggregate_fields";
-  count: Scalars["Int"];
+  __typename?: 'comments_aggregate_fields';
+  count: Scalars['Int'];
   max?: Maybe<CommentsMaxFields>;
   min?: Maybe<CommentsMinFields>;
 };
 
+
 /** aggregate fields of "comments" */
 export type CommentsAggregateFieldsCountArgs = {
   columns?: Maybe<Array<CommentsSelectColumn>>;
-  distinct?: Maybe<Scalars["Boolean"]>;
+  distinct?: Maybe<Scalars['Boolean']>;
 };
 
 /** order by aggregate values of table "comments" */
@@ -1705,13 +1726,13 @@ export type CommentsAggregateOrderBy = {
 
 /** append existing jsonb value of filtered columns with new jsonb value */
 export type CommentsAppendInput = {
-  meta?: Maybe<Scalars["jsonb"]>;
+  meta?: Maybe<Scalars['jsonb']>;
 };
 
 /** input type for inserting array relation for remote table "comments" */
 export type CommentsArrRelInsertInput = {
   data: Array<CommentsInsertInput>;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: Maybe<CommentsOnConflict>;
 };
 
@@ -1737,51 +1758,51 @@ export type CommentsBoolExp = {
 /** unique or primary key constraints on table "comments" */
 export enum CommentsConstraint {
   /** unique or primary key constraint */
-  CommentsPkey = "comments_pkey",
+  CommentsPkey = 'comments_pkey'
 }
 
 /** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
 export type CommentsDeleteAtPathInput = {
-  meta?: Maybe<Array<Scalars["String"]>>;
+  meta?: Maybe<Array<Scalars['String']>>;
 };
 
 /** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
 export type CommentsDeleteElemInput = {
-  meta?: Maybe<Scalars["Int"]>;
+  meta?: Maybe<Scalars['Int']>;
 };
 
 /** delete key/value pair or string element. key/value pairs are matched based on their key value */
 export type CommentsDeleteKeyInput = {
-  meta?: Maybe<Scalars["String"]>;
+  meta?: Maybe<Scalars['String']>;
 };
 
 /** input type for inserting data into table "comments" */
 export type CommentsInsertInput = {
-  author_id?: Maybe<Scalars["uuid"]>;
+  author_id?: Maybe<Scalars['uuid']>;
   comment?: Maybe<CommentsObjRelInsertInput>;
   comments?: Maybe<CommentsArrRelInsertInput>;
-  content?: Maybe<Scalars["String"]>;
-  created_at?: Maybe<Scalars["timestamptz"]>;
-  id?: Maybe<Scalars["uuid"]>;
-  meta?: Maybe<Scalars["jsonb"]>;
-  parent_id?: Maybe<Scalars["uuid"]>;
+  content?: Maybe<Scalars['String']>;
+  created_at?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['uuid']>;
+  meta?: Maybe<Scalars['jsonb']>;
+  parent_id?: Maybe<Scalars['uuid']>;
   post?: Maybe<PostsObjRelInsertInput>;
-  post_id?: Maybe<Scalars["uuid"]>;
-  status?: Maybe<Scalars["String"]>;
-  updated_at?: Maybe<Scalars["timestamptz"]>;
+  post_id?: Maybe<Scalars['uuid']>;
+  status?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
 };
 
 /** aggregate max on columns */
 export type CommentsMaxFields = {
-  __typename?: "comments_max_fields";
-  author_id?: Maybe<Scalars["uuid"]>;
-  content?: Maybe<Scalars["String"]>;
-  created_at?: Maybe<Scalars["timestamptz"]>;
-  id?: Maybe<Scalars["uuid"]>;
-  parent_id?: Maybe<Scalars["uuid"]>;
-  post_id?: Maybe<Scalars["uuid"]>;
-  status?: Maybe<Scalars["String"]>;
-  updated_at?: Maybe<Scalars["timestamptz"]>;
+  __typename?: 'comments_max_fields';
+  author_id?: Maybe<Scalars['uuid']>;
+  content?: Maybe<Scalars['String']>;
+  created_at?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['uuid']>;
+  parent_id?: Maybe<Scalars['uuid']>;
+  post_id?: Maybe<Scalars['uuid']>;
+  status?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
 };
 
 /** order by max() on columns of table "comments" */
@@ -1798,15 +1819,15 @@ export type CommentsMaxOrderBy = {
 
 /** aggregate min on columns */
 export type CommentsMinFields = {
-  __typename?: "comments_min_fields";
-  author_id?: Maybe<Scalars["uuid"]>;
-  content?: Maybe<Scalars["String"]>;
-  created_at?: Maybe<Scalars["timestamptz"]>;
-  id?: Maybe<Scalars["uuid"]>;
-  parent_id?: Maybe<Scalars["uuid"]>;
-  post_id?: Maybe<Scalars["uuid"]>;
-  status?: Maybe<Scalars["String"]>;
-  updated_at?: Maybe<Scalars["timestamptz"]>;
+  __typename?: 'comments_min_fields';
+  author_id?: Maybe<Scalars['uuid']>;
+  content?: Maybe<Scalars['String']>;
+  created_at?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['uuid']>;
+  parent_id?: Maybe<Scalars['uuid']>;
+  post_id?: Maybe<Scalars['uuid']>;
+  status?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
 };
 
 /** order by min() on columns of table "comments" */
@@ -1823,9 +1844,9 @@ export type CommentsMinOrderBy = {
 
 /** response of any mutation on the table "comments" */
 export type CommentsMutationResponse = {
-  __typename?: "comments_mutation_response";
+  __typename?: 'comments_mutation_response';
   /** number of rows affected by the mutation */
-  affected_rows: Scalars["Int"];
+  affected_rows: Scalars['Int'];
   /** data from the rows affected by the mutation */
   returning: Array<Comments>;
 };
@@ -1833,11 +1854,11 @@ export type CommentsMutationResponse = {
 /** input type for inserting object relation for remote table "comments" */
 export type CommentsObjRelInsertInput = {
   data: CommentsInsertInput;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: Maybe<CommentsOnConflict>;
 };
 
-/** on conflict condition type for table "comments" */
+/** on_conflict condition type for table "comments" */
 export type CommentsOnConflict = {
   constraint: CommentsConstraint;
   update_columns?: Array<CommentsUpdateColumn>;
@@ -1862,97 +1883,103 @@ export type CommentsOrderBy = {
 
 /** primary key columns input for table: comments */
 export type CommentsPkColumnsInput = {
-  id: Scalars["uuid"];
+  id: Scalars['uuid'];
 };
 
 /** prepend existing jsonb value of filtered columns with new jsonb value */
 export type CommentsPrependInput = {
-  meta?: Maybe<Scalars["jsonb"]>;
+  meta?: Maybe<Scalars['jsonb']>;
 };
 
 /** select columns of table "comments" */
 export enum CommentsSelectColumn {
   /** column name */
-  AuthorId = "author_id",
+  AuthorId = 'author_id',
   /** column name */
-  Content = "content",
+  Content = 'content',
   /** column name */
-  CreatedAt = "created_at",
+  CreatedAt = 'created_at',
   /** column name */
-  Id = "id",
+  Id = 'id',
   /** column name */
-  Meta = "meta",
+  Meta = 'meta',
   /** column name */
-  ParentId = "parent_id",
+  ParentId = 'parent_id',
   /** column name */
-  PostId = "post_id",
+  PostId = 'post_id',
   /** column name */
-  Status = "status",
+  Status = 'status',
   /** column name */
-  UpdatedAt = "updated_at",
+  UpdatedAt = 'updated_at'
 }
 
 /** input type for updating data in table "comments" */
 export type CommentsSetInput = {
-  author_id?: Maybe<Scalars["uuid"]>;
-  content?: Maybe<Scalars["String"]>;
-  created_at?: Maybe<Scalars["timestamptz"]>;
-  id?: Maybe<Scalars["uuid"]>;
-  meta?: Maybe<Scalars["jsonb"]>;
-  parent_id?: Maybe<Scalars["uuid"]>;
-  post_id?: Maybe<Scalars["uuid"]>;
-  status?: Maybe<Scalars["String"]>;
-  updated_at?: Maybe<Scalars["timestamptz"]>;
+  author_id?: Maybe<Scalars['uuid']>;
+  content?: Maybe<Scalars['String']>;
+  created_at?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['uuid']>;
+  meta?: Maybe<Scalars['jsonb']>;
+  parent_id?: Maybe<Scalars['uuid']>;
+  post_id?: Maybe<Scalars['uuid']>;
+  status?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
 };
 
 /** update columns of table "comments" */
 export enum CommentsUpdateColumn {
   /** column name */
-  AuthorId = "author_id",
+  AuthorId = 'author_id',
   /** column name */
-  Content = "content",
+  Content = 'content',
   /** column name */
-  CreatedAt = "created_at",
+  CreatedAt = 'created_at',
   /** column name */
-  Id = "id",
+  Id = 'id',
   /** column name */
-  Meta = "meta",
+  Meta = 'meta',
   /** column name */
-  ParentId = "parent_id",
+  ParentId = 'parent_id',
   /** column name */
-  PostId = "post_id",
+  PostId = 'post_id',
   /** column name */
-  Status = "status",
+  Status = 'status',
   /** column name */
-  UpdatedAt = "updated_at",
+  UpdatedAt = 'updated_at'
 }
+
+
+export type JsonbCastExp = {
+  String?: Maybe<StringComparisonExp>;
+};
 
 /** Boolean expression to compare columns of type "jsonb". All fields are combined with logical 'AND'. */
 export type JsonbComparisonExp = {
+  _cast?: Maybe<JsonbCastExp>;
   /** is the column contained in the given json value */
-  _contained_in?: Maybe<Scalars["jsonb"]>;
+  _contained_in?: Maybe<Scalars['jsonb']>;
   /** does the column contain the given json value at the top level */
-  _contains?: Maybe<Scalars["jsonb"]>;
-  _eq?: Maybe<Scalars["jsonb"]>;
-  _gt?: Maybe<Scalars["jsonb"]>;
-  _gte?: Maybe<Scalars["jsonb"]>;
+  _contains?: Maybe<Scalars['jsonb']>;
+  _eq?: Maybe<Scalars['jsonb']>;
+  _gt?: Maybe<Scalars['jsonb']>;
+  _gte?: Maybe<Scalars['jsonb']>;
   /** does the string exist as a top-level key in the column */
-  _has_key?: Maybe<Scalars["String"]>;
+  _has_key?: Maybe<Scalars['String']>;
   /** do all of these strings exist as top-level keys in the column */
-  _has_keys_all?: Maybe<Array<Scalars["String"]>>;
+  _has_keys_all?: Maybe<Array<Scalars['String']>>;
   /** do any of these strings exist as top-level keys in the column */
-  _has_keys_any?: Maybe<Array<Scalars["String"]>>;
-  _in?: Maybe<Array<Scalars["jsonb"]>>;
-  _is_null?: Maybe<Scalars["Boolean"]>;
-  _lt?: Maybe<Scalars["jsonb"]>;
-  _lte?: Maybe<Scalars["jsonb"]>;
-  _neq?: Maybe<Scalars["jsonb"]>;
-  _nin?: Maybe<Array<Scalars["jsonb"]>>;
+  _has_keys_any?: Maybe<Array<Scalars['String']>>;
+  _in?: Maybe<Array<Scalars['jsonb']>>;
+  _is_null?: Maybe<Scalars['Boolean']>;
+  _lt?: Maybe<Scalars['jsonb']>;
+  _lte?: Maybe<Scalars['jsonb']>;
+  _neq?: Maybe<Scalars['jsonb']>;
+  _nin?: Maybe<Array<Scalars['jsonb']>>;
 };
 
 /** mutation root */
 export type MutationRoot = {
-  __typename?: "mutation_root";
+  __typename?: 'mutation_root';
   /** delete data from the table: "article_states" */
   delete_article_states?: Maybe<ArticleStatesMutationResponse>;
   /** delete single row from the table: "article_states" */
@@ -2171,185 +2198,222 @@ export type MutationRoot = {
   update_users_by_pk?: Maybe<Users>;
 };
 
+
 /** mutation root */
 export type MutationRootDeleteArticleStatesArgs = {
   where: ArticleStatesBoolExp;
 };
 
+
 /** mutation root */
 export type MutationRootDeleteArticleStatesByPkArgs = {
-  value: Scalars["String"];
+  value: Scalars['String'];
 };
+
 
 /** mutation root */
 export type MutationRootDeleteArticlesArgs = {
   where: ArticlesBoolExp;
 };
 
+
 /** mutation root */
 export type MutationRootDeleteArticlesByPkArgs = {
-  post_id: Scalars["uuid"];
+  post_id: Scalars['uuid'];
 };
+
 
 /** mutation root */
 export type MutationRootDeleteAuthAccountProvidersArgs = {
   where: AuthAccountProvidersBoolExp;
 };
 
+
 /** mutation root */
 export type MutationRootDeleteAuthAccountProvidersByPkArgs = {
-  id: Scalars["uuid"];
+  id: Scalars['uuid'];
 };
+
 
 /** mutation root */
 export type MutationRootDeleteAuthAccountRolesArgs = {
   where: AuthAccountRolesBoolExp;
 };
 
+
 /** mutation root */
 export type MutationRootDeleteAuthAccountRolesByPkArgs = {
-  id: Scalars["uuid"];
+  id: Scalars['uuid'];
 };
+
 
 /** mutation root */
 export type MutationRootDeleteAuthAccountsArgs = {
   where: AuthAccountsBoolExp;
 };
 
+
 /** mutation root */
 export type MutationRootDeleteAuthAccountsByPkArgs = {
-  id: Scalars["uuid"];
+  id: Scalars['uuid'];
 };
+
 
 /** mutation root */
 export type MutationRootDeleteAuthProvidersArgs = {
   where: AuthProvidersBoolExp;
 };
 
+
 /** mutation root */
 export type MutationRootDeleteAuthProvidersByPkArgs = {
-  provider: Scalars["String"];
+  provider: Scalars['String'];
 };
+
 
 /** mutation root */
 export type MutationRootDeleteAuthRefreshTokensArgs = {
   where: AuthRefreshTokensBoolExp;
 };
 
+
 /** mutation root */
 export type MutationRootDeleteAuthRefreshTokensByPkArgs = {
-  refresh_token: Scalars["uuid"];
+  refresh_token: Scalars['uuid'];
 };
+
 
 /** mutation root */
 export type MutationRootDeleteAuthRolesArgs = {
   where: AuthRolesBoolExp;
 };
 
+
 /** mutation root */
 export type MutationRootDeleteAuthRolesByPkArgs = {
-  role: Scalars["String"];
+  role: Scalars['String'];
 };
+
 
 /** mutation root */
 export type MutationRootDeleteCommentsArgs = {
   where: CommentsBoolExp;
 };
 
+
 /** mutation root */
 export type MutationRootDeleteCommentsByPkArgs = {
-  id: Scalars["uuid"];
+  id: Scalars['uuid'];
 };
+
 
 /** mutation root */
 export type MutationRootDeletePageStatesArgs = {
   where: PageStatesBoolExp;
 };
 
+
 /** mutation root */
 export type MutationRootDeletePageStatesByPkArgs = {
-  value: Scalars["String"];
+  value: Scalars['String'];
 };
+
 
 /** mutation root */
 export type MutationRootDeletePagesArgs = {
   where: PagesBoolExp;
 };
 
+
 /** mutation root */
 export type MutationRootDeletePagesByPkArgs = {
-  post_id: Scalars["uuid"];
+  post_id: Scalars['uuid'];
 };
+
 
 /** mutation root */
 export type MutationRootDeletePostTypesArgs = {
   where: PostTypesBoolExp;
 };
 
+
 /** mutation root */
 export type MutationRootDeletePostTypesByPkArgs = {
-  value: Scalars["String"];
+  value: Scalars['String'];
 };
+
 
 /** mutation root */
 export type MutationRootDeletePostsArgs = {
   where: PostsBoolExp;
 };
 
+
 /** mutation root */
 export type MutationRootDeletePostsByPkArgs = {
-  id: Scalars["uuid"];
+  id: Scalars['uuid'];
 };
+
 
 /** mutation root */
 export type MutationRootDeleteTaxonomiesArgs = {
   where: TaxonomiesBoolExp;
 };
 
+
 /** mutation root */
 export type MutationRootDeleteTaxonomiesByPkArgs = {
-  taxonomy: Scalars["String"];
+  taxonomy: Scalars['String'];
 };
+
 
 /** mutation root */
 export type MutationRootDeleteTermRelationshipsArgs = {
   where: TermRelationshipsBoolExp;
 };
 
+
 /** mutation root */
 export type MutationRootDeleteTermRelationshipsByPkArgs = {
-  id: Scalars["uuid"];
+  id: Scalars['uuid'];
 };
+
 
 /** mutation root */
 export type MutationRootDeleteTermTaxonomiesArgs = {
   where: TermTaxonomiesBoolExp;
 };
 
+
 /** mutation root */
 export type MutationRootDeleteTermTaxonomiesByPkArgs = {
-  term_slug: Scalars["String"];
+  term_slug: Scalars['String'];
 };
+
 
 /** mutation root */
 export type MutationRootDeleteTermsArgs = {
   where: TermsBoolExp;
 };
 
+
 /** mutation root */
 export type MutationRootDeleteTermsByPkArgs = {
-  slug: Scalars["String"];
+  slug: Scalars['String'];
 };
+
 
 /** mutation root */
 export type MutationRootDeleteUsersArgs = {
   where: UsersBoolExp;
 };
 
+
 /** mutation root */
 export type MutationRootDeleteUsersByPkArgs = {
-  id: Scalars["uuid"];
+  id: Scalars['uuid'];
 };
+
 
 /** mutation root */
 export type MutationRootInsertArticleStatesArgs = {
@@ -2357,11 +2421,13 @@ export type MutationRootInsertArticleStatesArgs = {
   on_conflict?: Maybe<ArticleStatesOnConflict>;
 };
 
+
 /** mutation root */
 export type MutationRootInsertArticleStatesOneArgs = {
   object: ArticleStatesInsertInput;
   on_conflict?: Maybe<ArticleStatesOnConflict>;
 };
+
 
 /** mutation root */
 export type MutationRootInsertArticlesArgs = {
@@ -2369,11 +2435,13 @@ export type MutationRootInsertArticlesArgs = {
   on_conflict?: Maybe<ArticlesOnConflict>;
 };
 
+
 /** mutation root */
 export type MutationRootInsertArticlesOneArgs = {
   object: ArticlesInsertInput;
   on_conflict?: Maybe<ArticlesOnConflict>;
 };
+
 
 /** mutation root */
 export type MutationRootInsertAuthAccountProvidersArgs = {
@@ -2381,11 +2449,13 @@ export type MutationRootInsertAuthAccountProvidersArgs = {
   on_conflict?: Maybe<AuthAccountProvidersOnConflict>;
 };
 
+
 /** mutation root */
 export type MutationRootInsertAuthAccountProvidersOneArgs = {
   object: AuthAccountProvidersInsertInput;
   on_conflict?: Maybe<AuthAccountProvidersOnConflict>;
 };
+
 
 /** mutation root */
 export type MutationRootInsertAuthAccountRolesArgs = {
@@ -2393,11 +2463,13 @@ export type MutationRootInsertAuthAccountRolesArgs = {
   on_conflict?: Maybe<AuthAccountRolesOnConflict>;
 };
 
+
 /** mutation root */
 export type MutationRootInsertAuthAccountRolesOneArgs = {
   object: AuthAccountRolesInsertInput;
   on_conflict?: Maybe<AuthAccountRolesOnConflict>;
 };
+
 
 /** mutation root */
 export type MutationRootInsertAuthAccountsArgs = {
@@ -2405,11 +2477,13 @@ export type MutationRootInsertAuthAccountsArgs = {
   on_conflict?: Maybe<AuthAccountsOnConflict>;
 };
 
+
 /** mutation root */
 export type MutationRootInsertAuthAccountsOneArgs = {
   object: AuthAccountsInsertInput;
   on_conflict?: Maybe<AuthAccountsOnConflict>;
 };
+
 
 /** mutation root */
 export type MutationRootInsertAuthProvidersArgs = {
@@ -2417,11 +2491,13 @@ export type MutationRootInsertAuthProvidersArgs = {
   on_conflict?: Maybe<AuthProvidersOnConflict>;
 };
 
+
 /** mutation root */
 export type MutationRootInsertAuthProvidersOneArgs = {
   object: AuthProvidersInsertInput;
   on_conflict?: Maybe<AuthProvidersOnConflict>;
 };
+
 
 /** mutation root */
 export type MutationRootInsertAuthRefreshTokensArgs = {
@@ -2429,11 +2505,13 @@ export type MutationRootInsertAuthRefreshTokensArgs = {
   on_conflict?: Maybe<AuthRefreshTokensOnConflict>;
 };
 
+
 /** mutation root */
 export type MutationRootInsertAuthRefreshTokensOneArgs = {
   object: AuthRefreshTokensInsertInput;
   on_conflict?: Maybe<AuthRefreshTokensOnConflict>;
 };
+
 
 /** mutation root */
 export type MutationRootInsertAuthRolesArgs = {
@@ -2441,11 +2519,13 @@ export type MutationRootInsertAuthRolesArgs = {
   on_conflict?: Maybe<AuthRolesOnConflict>;
 };
 
+
 /** mutation root */
 export type MutationRootInsertAuthRolesOneArgs = {
   object: AuthRolesInsertInput;
   on_conflict?: Maybe<AuthRolesOnConflict>;
 };
+
 
 /** mutation root */
 export type MutationRootInsertCommentsArgs = {
@@ -2453,11 +2533,13 @@ export type MutationRootInsertCommentsArgs = {
   on_conflict?: Maybe<CommentsOnConflict>;
 };
 
+
 /** mutation root */
 export type MutationRootInsertCommentsOneArgs = {
   object: CommentsInsertInput;
   on_conflict?: Maybe<CommentsOnConflict>;
 };
+
 
 /** mutation root */
 export type MutationRootInsertPageStatesArgs = {
@@ -2465,11 +2547,13 @@ export type MutationRootInsertPageStatesArgs = {
   on_conflict?: Maybe<PageStatesOnConflict>;
 };
 
+
 /** mutation root */
 export type MutationRootInsertPageStatesOneArgs = {
   object: PageStatesInsertInput;
   on_conflict?: Maybe<PageStatesOnConflict>;
 };
+
 
 /** mutation root */
 export type MutationRootInsertPagesArgs = {
@@ -2477,11 +2561,13 @@ export type MutationRootInsertPagesArgs = {
   on_conflict?: Maybe<PagesOnConflict>;
 };
 
+
 /** mutation root */
 export type MutationRootInsertPagesOneArgs = {
   object: PagesInsertInput;
   on_conflict?: Maybe<PagesOnConflict>;
 };
+
 
 /** mutation root */
 export type MutationRootInsertPostTypesArgs = {
@@ -2489,11 +2575,13 @@ export type MutationRootInsertPostTypesArgs = {
   on_conflict?: Maybe<PostTypesOnConflict>;
 };
 
+
 /** mutation root */
 export type MutationRootInsertPostTypesOneArgs = {
   object: PostTypesInsertInput;
   on_conflict?: Maybe<PostTypesOnConflict>;
 };
+
 
 /** mutation root */
 export type MutationRootInsertPostsArgs = {
@@ -2501,11 +2589,13 @@ export type MutationRootInsertPostsArgs = {
   on_conflict?: Maybe<PostsOnConflict>;
 };
 
+
 /** mutation root */
 export type MutationRootInsertPostsOneArgs = {
   object: PostsInsertInput;
   on_conflict?: Maybe<PostsOnConflict>;
 };
+
 
 /** mutation root */
 export type MutationRootInsertTaxonomiesArgs = {
@@ -2513,11 +2603,13 @@ export type MutationRootInsertTaxonomiesArgs = {
   on_conflict?: Maybe<TaxonomiesOnConflict>;
 };
 
+
 /** mutation root */
 export type MutationRootInsertTaxonomiesOneArgs = {
   object: TaxonomiesInsertInput;
   on_conflict?: Maybe<TaxonomiesOnConflict>;
 };
+
 
 /** mutation root */
 export type MutationRootInsertTermRelationshipsArgs = {
@@ -2525,11 +2617,13 @@ export type MutationRootInsertTermRelationshipsArgs = {
   on_conflict?: Maybe<TermRelationshipsOnConflict>;
 };
 
+
 /** mutation root */
 export type MutationRootInsertTermRelationshipsOneArgs = {
   object: TermRelationshipsInsertInput;
   on_conflict?: Maybe<TermRelationshipsOnConflict>;
 };
+
 
 /** mutation root */
 export type MutationRootInsertTermTaxonomiesArgs = {
@@ -2537,11 +2631,13 @@ export type MutationRootInsertTermTaxonomiesArgs = {
   on_conflict?: Maybe<TermTaxonomiesOnConflict>;
 };
 
+
 /** mutation root */
 export type MutationRootInsertTermTaxonomiesOneArgs = {
   object: TermTaxonomiesInsertInput;
   on_conflict?: Maybe<TermTaxonomiesOnConflict>;
 };
+
 
 /** mutation root */
 export type MutationRootInsertTermsArgs = {
@@ -2549,11 +2645,13 @@ export type MutationRootInsertTermsArgs = {
   on_conflict?: Maybe<TermsOnConflict>;
 };
 
+
 /** mutation root */
 export type MutationRootInsertTermsOneArgs = {
   object: TermsInsertInput;
   on_conflict?: Maybe<TermsOnConflict>;
 };
+
 
 /** mutation root */
 export type MutationRootInsertUsersArgs = {
@@ -2561,11 +2659,13 @@ export type MutationRootInsertUsersArgs = {
   on_conflict?: Maybe<UsersOnConflict>;
 };
 
+
 /** mutation root */
 export type MutationRootInsertUsersOneArgs = {
   object: UsersInsertInput;
   on_conflict?: Maybe<UsersOnConflict>;
 };
+
 
 /** mutation root */
 export type MutationRootUpdateArticleStatesArgs = {
@@ -2573,11 +2673,13 @@ export type MutationRootUpdateArticleStatesArgs = {
   where: ArticleStatesBoolExp;
 };
 
+
 /** mutation root */
 export type MutationRootUpdateArticleStatesByPkArgs = {
   _set?: Maybe<ArticleStatesSetInput>;
   pk_columns: ArticleStatesPkColumnsInput;
 };
+
 
 /** mutation root */
 export type MutationRootUpdateArticlesArgs = {
@@ -2585,11 +2687,13 @@ export type MutationRootUpdateArticlesArgs = {
   where: ArticlesBoolExp;
 };
 
+
 /** mutation root */
 export type MutationRootUpdateArticlesByPkArgs = {
   _set?: Maybe<ArticlesSetInput>;
   pk_columns: ArticlesPkColumnsInput;
 };
+
 
 /** mutation root */
 export type MutationRootUpdateAuthAccountProvidersArgs = {
@@ -2597,11 +2701,13 @@ export type MutationRootUpdateAuthAccountProvidersArgs = {
   where: AuthAccountProvidersBoolExp;
 };
 
+
 /** mutation root */
 export type MutationRootUpdateAuthAccountProvidersByPkArgs = {
   _set?: Maybe<AuthAccountProvidersSetInput>;
   pk_columns: AuthAccountProvidersPkColumnsInput;
 };
+
 
 /** mutation root */
 export type MutationRootUpdateAuthAccountRolesArgs = {
@@ -2609,11 +2715,13 @@ export type MutationRootUpdateAuthAccountRolesArgs = {
   where: AuthAccountRolesBoolExp;
 };
 
+
 /** mutation root */
 export type MutationRootUpdateAuthAccountRolesByPkArgs = {
   _set?: Maybe<AuthAccountRolesSetInput>;
   pk_columns: AuthAccountRolesPkColumnsInput;
 };
+
 
 /** mutation root */
 export type MutationRootUpdateAuthAccountsArgs = {
@@ -2626,6 +2734,7 @@ export type MutationRootUpdateAuthAccountsArgs = {
   where: AuthAccountsBoolExp;
 };
 
+
 /** mutation root */
 export type MutationRootUpdateAuthAccountsByPkArgs = {
   _append?: Maybe<AuthAccountsAppendInput>;
@@ -2637,11 +2746,13 @@ export type MutationRootUpdateAuthAccountsByPkArgs = {
   pk_columns: AuthAccountsPkColumnsInput;
 };
 
+
 /** mutation root */
 export type MutationRootUpdateAuthProvidersArgs = {
   _set?: Maybe<AuthProvidersSetInput>;
   where: AuthProvidersBoolExp;
 };
+
 
 /** mutation root */
 export type MutationRootUpdateAuthProvidersByPkArgs = {
@@ -2649,11 +2760,13 @@ export type MutationRootUpdateAuthProvidersByPkArgs = {
   pk_columns: AuthProvidersPkColumnsInput;
 };
 
+
 /** mutation root */
 export type MutationRootUpdateAuthRefreshTokensArgs = {
   _set?: Maybe<AuthRefreshTokensSetInput>;
   where: AuthRefreshTokensBoolExp;
 };
+
 
 /** mutation root */
 export type MutationRootUpdateAuthRefreshTokensByPkArgs = {
@@ -2661,17 +2774,20 @@ export type MutationRootUpdateAuthRefreshTokensByPkArgs = {
   pk_columns: AuthRefreshTokensPkColumnsInput;
 };
 
+
 /** mutation root */
 export type MutationRootUpdateAuthRolesArgs = {
   _set?: Maybe<AuthRolesSetInput>;
   where: AuthRolesBoolExp;
 };
 
+
 /** mutation root */
 export type MutationRootUpdateAuthRolesByPkArgs = {
   _set?: Maybe<AuthRolesSetInput>;
   pk_columns: AuthRolesPkColumnsInput;
 };
+
 
 /** mutation root */
 export type MutationRootUpdateCommentsArgs = {
@@ -2684,6 +2800,7 @@ export type MutationRootUpdateCommentsArgs = {
   where: CommentsBoolExp;
 };
 
+
 /** mutation root */
 export type MutationRootUpdateCommentsByPkArgs = {
   _append?: Maybe<CommentsAppendInput>;
@@ -2695,11 +2812,13 @@ export type MutationRootUpdateCommentsByPkArgs = {
   pk_columns: CommentsPkColumnsInput;
 };
 
+
 /** mutation root */
 export type MutationRootUpdatePageStatesArgs = {
   _set?: Maybe<PageStatesSetInput>;
   where: PageStatesBoolExp;
 };
+
 
 /** mutation root */
 export type MutationRootUpdatePageStatesByPkArgs = {
@@ -2707,11 +2826,13 @@ export type MutationRootUpdatePageStatesByPkArgs = {
   pk_columns: PageStatesPkColumnsInput;
 };
 
+
 /** mutation root */
 export type MutationRootUpdatePagesArgs = {
   _set?: Maybe<PagesSetInput>;
   where: PagesBoolExp;
 };
+
 
 /** mutation root */
 export type MutationRootUpdatePagesByPkArgs = {
@@ -2719,11 +2840,13 @@ export type MutationRootUpdatePagesByPkArgs = {
   pk_columns: PagesPkColumnsInput;
 };
 
+
 /** mutation root */
 export type MutationRootUpdatePostTypesArgs = {
   _set?: Maybe<PostTypesSetInput>;
   where: PostTypesBoolExp;
 };
+
 
 /** mutation root */
 export type MutationRootUpdatePostTypesByPkArgs = {
@@ -2731,11 +2854,13 @@ export type MutationRootUpdatePostTypesByPkArgs = {
   pk_columns: PostTypesPkColumnsInput;
 };
 
+
 /** mutation root */
 export type MutationRootUpdatePostsArgs = {
   _set?: Maybe<PostsSetInput>;
   where: PostsBoolExp;
 };
+
 
 /** mutation root */
 export type MutationRootUpdatePostsByPkArgs = {
@@ -2743,11 +2868,13 @@ export type MutationRootUpdatePostsByPkArgs = {
   pk_columns: PostsPkColumnsInput;
 };
 
+
 /** mutation root */
 export type MutationRootUpdateTaxonomiesArgs = {
   _set?: Maybe<TaxonomiesSetInput>;
   where: TaxonomiesBoolExp;
 };
+
 
 /** mutation root */
 export type MutationRootUpdateTaxonomiesByPkArgs = {
@@ -2755,11 +2882,13 @@ export type MutationRootUpdateTaxonomiesByPkArgs = {
   pk_columns: TaxonomiesPkColumnsInput;
 };
 
+
 /** mutation root */
 export type MutationRootUpdateTermRelationshipsArgs = {
   _set?: Maybe<TermRelationshipsSetInput>;
   where: TermRelationshipsBoolExp;
 };
+
 
 /** mutation root */
 export type MutationRootUpdateTermRelationshipsByPkArgs = {
@@ -2767,11 +2896,13 @@ export type MutationRootUpdateTermRelationshipsByPkArgs = {
   pk_columns: TermRelationshipsPkColumnsInput;
 };
 
+
 /** mutation root */
 export type MutationRootUpdateTermTaxonomiesArgs = {
   _set?: Maybe<TermTaxonomiesSetInput>;
   where: TermTaxonomiesBoolExp;
 };
+
 
 /** mutation root */
 export type MutationRootUpdateTermTaxonomiesByPkArgs = {
@@ -2779,17 +2910,20 @@ export type MutationRootUpdateTermTaxonomiesByPkArgs = {
   pk_columns: TermTaxonomiesPkColumnsInput;
 };
 
+
 /** mutation root */
 export type MutationRootUpdateTermsArgs = {
   _set?: Maybe<TermsSetInput>;
   where: TermsBoolExp;
 };
 
+
 /** mutation root */
 export type MutationRootUpdateTermsByPkArgs = {
   _set?: Maybe<TermsSetInput>;
   pk_columns: TermsPkColumnsInput;
 };
+
 
 /** mutation root */
 export type MutationRootUpdateUsersArgs = {
@@ -2801,6 +2935,7 @@ export type MutationRootUpdateUsersArgs = {
   _set?: Maybe<UsersSetInput>;
   where: UsersBoolExp;
 };
+
 
 /** mutation root */
 export type MutationRootUpdateUsersByPkArgs = {
@@ -2816,45 +2951,46 @@ export type MutationRootUpdateUsersByPkArgs = {
 /** column ordering options */
 export enum OrderBy {
   /** in ascending order, nulls last */
-  Asc = "asc",
+  Asc = 'asc',
   /** in ascending order, nulls first */
-  AscNullsFirst = "asc_nulls_first",
+  AscNullsFirst = 'asc_nulls_first',
   /** in ascending order, nulls last */
-  AscNullsLast = "asc_nulls_last",
+  AscNullsLast = 'asc_nulls_last',
   /** in descending order, nulls first */
-  Desc = "desc",
+  Desc = 'desc',
   /** in descending order, nulls first */
-  DescNullsFirst = "desc_nulls_first",
+  DescNullsFirst = 'desc_nulls_first',
   /** in descending order, nulls last */
-  DescNullsLast = "desc_nulls_last",
+  DescNullsLast = 'desc_nulls_last'
 }
 
 /** columns and relationships of "page_states" */
 export type PageStates = {
-  __typename?: "page_states";
-  comment: Scalars["String"];
-  value: Scalars["String"];
+  __typename?: 'page_states';
+  comment: Scalars['String'];
+  value: Scalars['String'];
 };
 
 /** aggregated selection of "page_states" */
 export type PageStatesAggregate = {
-  __typename?: "page_states_aggregate";
+  __typename?: 'page_states_aggregate';
   aggregate?: Maybe<PageStatesAggregateFields>;
   nodes: Array<PageStates>;
 };
 
 /** aggregate fields of "page_states" */
 export type PageStatesAggregateFields = {
-  __typename?: "page_states_aggregate_fields";
-  count: Scalars["Int"];
+  __typename?: 'page_states_aggregate_fields';
+  count: Scalars['Int'];
   max?: Maybe<PageStatesMaxFields>;
   min?: Maybe<PageStatesMinFields>;
 };
 
+
 /** aggregate fields of "page_states" */
 export type PageStatesAggregateFieldsCountArgs = {
   columns?: Maybe<Array<PageStatesSelectColumn>>;
-  distinct?: Maybe<Scalars["Boolean"]>;
+  distinct?: Maybe<Scalars['Boolean']>;
 };
 
 /** Boolean expression to filter rows from the table "page_states". All fields are combined with a logical 'AND'. */
@@ -2869,50 +3005,50 @@ export type PageStatesBoolExp = {
 /** unique or primary key constraints on table "page_states" */
 export enum PageStatesConstraint {
   /** unique or primary key constraint */
-  PageStatesPkey = "page_states_pkey",
+  PageStatesPkey = 'page_states_pkey'
 }
 
 export enum PageStatesEnum {
   /** Draft */
-  Draft = "draft",
+  Draft = 'draft',
   /** Published */
-  Published = "published",
+  Published = 'published'
 }
 
 /** Boolean expression to compare columns of type "page_states_enum". All fields are combined with logical 'AND'. */
 export type PageStatesEnumComparisonExp = {
   _eq?: Maybe<PageStatesEnum>;
   _in?: Maybe<Array<PageStatesEnum>>;
-  _is_null?: Maybe<Scalars["Boolean"]>;
+  _is_null?: Maybe<Scalars['Boolean']>;
   _neq?: Maybe<PageStatesEnum>;
   _nin?: Maybe<Array<PageStatesEnum>>;
 };
 
 /** input type for inserting data into table "page_states" */
 export type PageStatesInsertInput = {
-  comment?: Maybe<Scalars["String"]>;
-  value?: Maybe<Scalars["String"]>;
+  comment?: Maybe<Scalars['String']>;
+  value?: Maybe<Scalars['String']>;
 };
 
 /** aggregate max on columns */
 export type PageStatesMaxFields = {
-  __typename?: "page_states_max_fields";
-  comment?: Maybe<Scalars["String"]>;
-  value?: Maybe<Scalars["String"]>;
+  __typename?: 'page_states_max_fields';
+  comment?: Maybe<Scalars['String']>;
+  value?: Maybe<Scalars['String']>;
 };
 
 /** aggregate min on columns */
 export type PageStatesMinFields = {
-  __typename?: "page_states_min_fields";
-  comment?: Maybe<Scalars["String"]>;
-  value?: Maybe<Scalars["String"]>;
+  __typename?: 'page_states_min_fields';
+  comment?: Maybe<Scalars['String']>;
+  value?: Maybe<Scalars['String']>;
 };
 
 /** response of any mutation on the table "page_states" */
 export type PageStatesMutationResponse = {
-  __typename?: "page_states_mutation_response";
+  __typename?: 'page_states_mutation_response';
   /** number of rows affected by the mutation */
-  affected_rows: Scalars["Int"];
+  affected_rows: Scalars['Int'];
   /** data from the rows affected by the mutation */
   returning: Array<PageStates>;
 };
@@ -2920,11 +3056,11 @@ export type PageStatesMutationResponse = {
 /** input type for inserting object relation for remote table "page_states" */
 export type PageStatesObjRelInsertInput = {
   data: PageStatesInsertInput;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: Maybe<PageStatesOnConflict>;
 };
 
-/** on conflict condition type for table "page_states" */
+/** on_conflict condition type for table "page_states" */
 export type PageStatesOnConflict = {
   constraint: PageStatesConstraint;
   update_columns?: Array<PageStatesUpdateColumn>;
@@ -2939,63 +3075,64 @@ export type PageStatesOrderBy = {
 
 /** primary key columns input for table: page_states */
 export type PageStatesPkColumnsInput = {
-  value: Scalars["String"];
+  value: Scalars['String'];
 };
 
 /** select columns of table "page_states" */
 export enum PageStatesSelectColumn {
   /** column name */
-  Comment = "comment",
+  Comment = 'comment',
   /** column name */
-  Value = "value",
+  Value = 'value'
 }
 
 /** input type for updating data in table "page_states" */
 export type PageStatesSetInput = {
-  comment?: Maybe<Scalars["String"]>;
-  value?: Maybe<Scalars["String"]>;
+  comment?: Maybe<Scalars['String']>;
+  value?: Maybe<Scalars['String']>;
 };
 
 /** update columns of table "page_states" */
 export enum PageStatesUpdateColumn {
   /** column name */
-  Comment = "comment",
+  Comment = 'comment',
   /** column name */
-  Value = "value",
+  Value = 'value'
 }
 
 /** columns and relationships of "pages" */
 export type Pages = {
-  __typename?: "pages";
-  body?: Maybe<Scalars["String"]>;
-  id: Scalars["uuid"];
+  __typename?: 'pages';
+  body?: Maybe<Scalars['String']>;
+  id: Scalars['uuid'];
   /** An object relationship */
   page_state: PageStates;
   /** An object relationship */
   post: Posts;
-  post_id: Scalars["uuid"];
+  post_id: Scalars['uuid'];
   state: PageStatesEnum;
 };
 
 /** aggregated selection of "pages" */
 export type PagesAggregate = {
-  __typename?: "pages_aggregate";
+  __typename?: 'pages_aggregate';
   aggregate?: Maybe<PagesAggregateFields>;
   nodes: Array<Pages>;
 };
 
 /** aggregate fields of "pages" */
 export type PagesAggregateFields = {
-  __typename?: "pages_aggregate_fields";
-  count: Scalars["Int"];
+  __typename?: 'pages_aggregate_fields';
+  count: Scalars['Int'];
   max?: Maybe<PagesMaxFields>;
   min?: Maybe<PagesMinFields>;
 };
 
+
 /** aggregate fields of "pages" */
 export type PagesAggregateFieldsCountArgs = {
   columns?: Maybe<Array<PagesSelectColumn>>;
-  distinct?: Maybe<Scalars["Boolean"]>;
+  distinct?: Maybe<Scalars['Boolean']>;
 };
 
 /** Boolean expression to filter rows from the table "pages". All fields are combined with a logical 'AND'. */
@@ -3014,45 +3151,45 @@ export type PagesBoolExp = {
 /** unique or primary key constraints on table "pages" */
 export enum PagesConstraint {
   /** unique or primary key constraint */
-  PagesPkey = "pages_pkey",
+  PagesPkey = 'pages_pkey'
 }
 
 /** input type for inserting data into table "pages" */
 export type PagesInsertInput = {
-  body?: Maybe<Scalars["String"]>;
-  id?: Maybe<Scalars["uuid"]>;
+  body?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['uuid']>;
   page_state?: Maybe<PageStatesObjRelInsertInput>;
   post?: Maybe<PostsObjRelInsertInput>;
-  post_id?: Maybe<Scalars["uuid"]>;
+  post_id?: Maybe<Scalars['uuid']>;
   state?: Maybe<PageStatesEnum>;
 };
 
 /** aggregate max on columns */
 export type PagesMaxFields = {
-  __typename?: "pages_max_fields";
-  body?: Maybe<Scalars["String"]>;
-  id?: Maybe<Scalars["uuid"]>;
-  post_id?: Maybe<Scalars["uuid"]>;
+  __typename?: 'pages_max_fields';
+  body?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['uuid']>;
+  post_id?: Maybe<Scalars['uuid']>;
 };
 
 /** aggregate min on columns */
 export type PagesMinFields = {
-  __typename?: "pages_min_fields";
-  body?: Maybe<Scalars["String"]>;
-  id?: Maybe<Scalars["uuid"]>;
-  post_id?: Maybe<Scalars["uuid"]>;
+  __typename?: 'pages_min_fields';
+  body?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['uuid']>;
+  post_id?: Maybe<Scalars['uuid']>;
 };
 
 /** response of any mutation on the table "pages" */
 export type PagesMutationResponse = {
-  __typename?: "pages_mutation_response";
+  __typename?: 'pages_mutation_response';
   /** number of rows affected by the mutation */
-  affected_rows: Scalars["Int"];
+  affected_rows: Scalars['Int'];
   /** data from the rows affected by the mutation */
   returning: Array<Pages>;
 };
 
-/** on conflict condition type for table "pages" */
+/** on_conflict condition type for table "pages" */
 export type PagesOnConflict = {
   constraint: PagesConstraint;
   update_columns?: Array<PagesUpdateColumn>;
@@ -3071,67 +3208,68 @@ export type PagesOrderBy = {
 
 /** primary key columns input for table: pages */
 export type PagesPkColumnsInput = {
-  post_id: Scalars["uuid"];
+  post_id: Scalars['uuid'];
 };
 
 /** select columns of table "pages" */
 export enum PagesSelectColumn {
   /** column name */
-  Body = "body",
+  Body = 'body',
   /** column name */
-  Id = "id",
+  Id = 'id',
   /** column name */
-  PostId = "post_id",
+  PostId = 'post_id',
   /** column name */
-  State = "state",
+  State = 'state'
 }
 
 /** input type for updating data in table "pages" */
 export type PagesSetInput = {
-  body?: Maybe<Scalars["String"]>;
-  id?: Maybe<Scalars["uuid"]>;
-  post_id?: Maybe<Scalars["uuid"]>;
+  body?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['uuid']>;
+  post_id?: Maybe<Scalars['uuid']>;
   state?: Maybe<PageStatesEnum>;
 };
 
 /** update columns of table "pages" */
 export enum PagesUpdateColumn {
   /** column name */
-  Body = "body",
+  Body = 'body',
   /** column name */
-  Id = "id",
+  Id = 'id',
   /** column name */
-  PostId = "post_id",
+  PostId = 'post_id',
   /** column name */
-  State = "state",
+  State = 'state'
 }
 
 /** columns and relationships of "post_types" */
 export type PostTypes = {
-  __typename?: "post_types";
-  comment: Scalars["String"];
-  value: Scalars["String"];
+  __typename?: 'post_types';
+  comment: Scalars['String'];
+  value: Scalars['String'];
 };
 
 /** aggregated selection of "post_types" */
 export type PostTypesAggregate = {
-  __typename?: "post_types_aggregate";
+  __typename?: 'post_types_aggregate';
   aggregate?: Maybe<PostTypesAggregateFields>;
   nodes: Array<PostTypes>;
 };
 
 /** aggregate fields of "post_types" */
 export type PostTypesAggregateFields = {
-  __typename?: "post_types_aggregate_fields";
-  count: Scalars["Int"];
+  __typename?: 'post_types_aggregate_fields';
+  count: Scalars['Int'];
   max?: Maybe<PostTypesMaxFields>;
   min?: Maybe<PostTypesMinFields>;
 };
 
+
 /** aggregate fields of "post_types" */
 export type PostTypesAggregateFieldsCountArgs = {
   columns?: Maybe<Array<PostTypesSelectColumn>>;
-  distinct?: Maybe<Scalars["Boolean"]>;
+  distinct?: Maybe<Scalars['Boolean']>;
 };
 
 /** Boolean expression to filter rows from the table "post_types". All fields are combined with a logical 'AND'. */
@@ -3146,57 +3284,55 @@ export type PostTypesBoolExp = {
 /** unique or primary key constraints on table "post_types" */
 export enum PostTypesConstraint {
   /** unique or primary key constraint */
-  PostTypesPkey = "post_types_pkey",
+  PostTypesPkey = 'post_types_pkey'
 }
 
 export enum PostTypesEnum {
   /** Article */
-  Article = "article",
+  Article = 'article',
   /** Page */
-  Page = "page",
-  /** Post */
-  Post = "post",
+  Page = 'page'
 }
 
 /** Boolean expression to compare columns of type "post_types_enum". All fields are combined with logical 'AND'. */
 export type PostTypesEnumComparisonExp = {
   _eq?: Maybe<PostTypesEnum>;
   _in?: Maybe<Array<PostTypesEnum>>;
-  _is_null?: Maybe<Scalars["Boolean"]>;
+  _is_null?: Maybe<Scalars['Boolean']>;
   _neq?: Maybe<PostTypesEnum>;
   _nin?: Maybe<Array<PostTypesEnum>>;
 };
 
 /** input type for inserting data into table "post_types" */
 export type PostTypesInsertInput = {
-  comment?: Maybe<Scalars["String"]>;
-  value?: Maybe<Scalars["String"]>;
+  comment?: Maybe<Scalars['String']>;
+  value?: Maybe<Scalars['String']>;
 };
 
 /** aggregate max on columns */
 export type PostTypesMaxFields = {
-  __typename?: "post_types_max_fields";
-  comment?: Maybe<Scalars["String"]>;
-  value?: Maybe<Scalars["String"]>;
+  __typename?: 'post_types_max_fields';
+  comment?: Maybe<Scalars['String']>;
+  value?: Maybe<Scalars['String']>;
 };
 
 /** aggregate min on columns */
 export type PostTypesMinFields = {
-  __typename?: "post_types_min_fields";
-  comment?: Maybe<Scalars["String"]>;
-  value?: Maybe<Scalars["String"]>;
+  __typename?: 'post_types_min_fields';
+  comment?: Maybe<Scalars['String']>;
+  value?: Maybe<Scalars['String']>;
 };
 
 /** response of any mutation on the table "post_types" */
 export type PostTypesMutationResponse = {
-  __typename?: "post_types_mutation_response";
+  __typename?: 'post_types_mutation_response';
   /** number of rows affected by the mutation */
-  affected_rows: Scalars["Int"];
+  affected_rows: Scalars['Int'];
   /** data from the rows affected by the mutation */
   returning: Array<PostTypes>;
 };
 
-/** on conflict condition type for table "post_types" */
+/** on_conflict condition type for table "post_types" */
 export type PostTypesOnConflict = {
   constraint: PostTypesConstraint;
   update_columns?: Array<PostTypesUpdateColumn>;
@@ -3211,84 +3347,87 @@ export type PostTypesOrderBy = {
 
 /** primary key columns input for table: post_types */
 export type PostTypesPkColumnsInput = {
-  value: Scalars["String"];
+  value: Scalars['String'];
 };
 
 /** select columns of table "post_types" */
 export enum PostTypesSelectColumn {
   /** column name */
-  Comment = "comment",
+  Comment = 'comment',
   /** column name */
-  Value = "value",
+  Value = 'value'
 }
 
 /** input type for updating data in table "post_types" */
 export type PostTypesSetInput = {
-  comment?: Maybe<Scalars["String"]>;
-  value?: Maybe<Scalars["String"]>;
+  comment?: Maybe<Scalars['String']>;
+  value?: Maybe<Scalars['String']>;
 };
 
 /** update columns of table "post_types" */
 export enum PostTypesUpdateColumn {
   /** column name */
-  Comment = "comment",
+  Comment = 'comment',
   /** column name */
-  Value = "value",
+  Value = 'value'
 }
 
 /** columns and relationships of "posts" */
 export type Posts = {
-  __typename?: "posts";
+  __typename?: 'posts';
   /** An array relationship */
   comments: Array<Comments>;
   /** An aggregate relationship */
   comments_aggregate: CommentsAggregate;
-  created_at?: Maybe<Scalars["timestamptz"]>;
-  description?: Maybe<Scalars["String"]>;
-  id: Scalars["uuid"];
-  slug: Scalars["String"];
-  title: Scalars["String"];
+  created_at?: Maybe<Scalars['timestamptz']>;
+  description?: Maybe<Scalars['String']>;
+  id: Scalars['uuid'];
+  slug: Scalars['String'];
+  title: Scalars['String'];
   type?: Maybe<PostTypesEnum>;
-  updated_at?: Maybe<Scalars["timestamptz"]>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
 };
+
 
 /** columns and relationships of "posts" */
 export type PostsCommentsArgs = {
   distinct_on?: Maybe<Array<CommentsSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<CommentsOrderBy>>;
   where?: Maybe<CommentsBoolExp>;
 };
 
+
 /** columns and relationships of "posts" */
 export type PostsCommentsAggregateArgs = {
   distinct_on?: Maybe<Array<CommentsSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<CommentsOrderBy>>;
   where?: Maybe<CommentsBoolExp>;
 };
 
 /** aggregated selection of "posts" */
 export type PostsAggregate = {
-  __typename?: "posts_aggregate";
+  __typename?: 'posts_aggregate';
   aggregate?: Maybe<PostsAggregateFields>;
   nodes: Array<Posts>;
 };
 
 /** aggregate fields of "posts" */
 export type PostsAggregateFields = {
-  __typename?: "posts_aggregate_fields";
-  count: Scalars["Int"];
+  __typename?: 'posts_aggregate_fields';
+  count: Scalars['Int'];
   max?: Maybe<PostsMaxFields>;
   min?: Maybe<PostsMinFields>;
 };
 
+
 /** aggregate fields of "posts" */
 export type PostsAggregateFieldsCountArgs = {
   columns?: Maybe<Array<PostsSelectColumn>>;
-  distinct?: Maybe<Scalars["Boolean"]>;
+  distinct?: Maybe<Scalars['Boolean']>;
 };
 
 /** Boolean expression to filter rows from the table "posts". All fields are combined with a logical 'AND'. */
@@ -3309,50 +3448,50 @@ export type PostsBoolExp = {
 /** unique or primary key constraints on table "posts" */
 export enum PostsConstraint {
   /** unique or primary key constraint */
-  PostsPkey = "posts_pkey",
+  PostsPkey = 'posts_pkey',
   /** unique or primary key constraint */
-  PostsSlugKey = "posts_slug_key",
+  PostsSlugKey = 'posts_slug_key'
 }
 
 /** input type for inserting data into table "posts" */
 export type PostsInsertInput = {
   comments?: Maybe<CommentsArrRelInsertInput>;
-  created_at?: Maybe<Scalars["timestamptz"]>;
-  description?: Maybe<Scalars["String"]>;
-  id?: Maybe<Scalars["uuid"]>;
-  slug?: Maybe<Scalars["String"]>;
-  title?: Maybe<Scalars["String"]>;
+  created_at?: Maybe<Scalars['timestamptz']>;
+  description?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['uuid']>;
+  slug?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
   type?: Maybe<PostTypesEnum>;
-  updated_at?: Maybe<Scalars["timestamptz"]>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
 };
 
 /** aggregate max on columns */
 export type PostsMaxFields = {
-  __typename?: "posts_max_fields";
-  created_at?: Maybe<Scalars["timestamptz"]>;
-  description?: Maybe<Scalars["String"]>;
-  id?: Maybe<Scalars["uuid"]>;
-  slug?: Maybe<Scalars["String"]>;
-  title?: Maybe<Scalars["String"]>;
-  updated_at?: Maybe<Scalars["timestamptz"]>;
+  __typename?: 'posts_max_fields';
+  created_at?: Maybe<Scalars['timestamptz']>;
+  description?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['uuid']>;
+  slug?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
 };
 
 /** aggregate min on columns */
 export type PostsMinFields = {
-  __typename?: "posts_min_fields";
-  created_at?: Maybe<Scalars["timestamptz"]>;
-  description?: Maybe<Scalars["String"]>;
-  id?: Maybe<Scalars["uuid"]>;
-  slug?: Maybe<Scalars["String"]>;
-  title?: Maybe<Scalars["String"]>;
-  updated_at?: Maybe<Scalars["timestamptz"]>;
+  __typename?: 'posts_min_fields';
+  created_at?: Maybe<Scalars['timestamptz']>;
+  description?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['uuid']>;
+  slug?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
 };
 
 /** response of any mutation on the table "posts" */
 export type PostsMutationResponse = {
-  __typename?: "posts_mutation_response";
+  __typename?: 'posts_mutation_response';
   /** number of rows affected by the mutation */
-  affected_rows: Scalars["Int"];
+  affected_rows: Scalars['Int'];
   /** data from the rows affected by the mutation */
   returning: Array<Posts>;
 };
@@ -3360,11 +3499,11 @@ export type PostsMutationResponse = {
 /** input type for inserting object relation for remote table "posts" */
 export type PostsObjRelInsertInput = {
   data: PostsInsertInput;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: Maybe<PostsOnConflict>;
 };
 
-/** on conflict condition type for table "posts" */
+/** on_conflict condition type for table "posts" */
 export type PostsOnConflict = {
   constraint: PostsConstraint;
   update_columns?: Array<PostsUpdateColumn>;
@@ -3385,58 +3524,58 @@ export type PostsOrderBy = {
 
 /** primary key columns input for table: posts */
 export type PostsPkColumnsInput = {
-  id: Scalars["uuid"];
+  id: Scalars['uuid'];
 };
 
 /** select columns of table "posts" */
 export enum PostsSelectColumn {
   /** column name */
-  CreatedAt = "created_at",
+  CreatedAt = 'created_at',
   /** column name */
-  Description = "description",
+  Description = 'description',
   /** column name */
-  Id = "id",
+  Id = 'id',
   /** column name */
-  Slug = "slug",
+  Slug = 'slug',
   /** column name */
-  Title = "title",
+  Title = 'title',
   /** column name */
-  Type = "type",
+  Type = 'type',
   /** column name */
-  UpdatedAt = "updated_at",
+  UpdatedAt = 'updated_at'
 }
 
 /** input type for updating data in table "posts" */
 export type PostsSetInput = {
-  created_at?: Maybe<Scalars["timestamptz"]>;
-  description?: Maybe<Scalars["String"]>;
-  id?: Maybe<Scalars["uuid"]>;
-  slug?: Maybe<Scalars["String"]>;
-  title?: Maybe<Scalars["String"]>;
+  created_at?: Maybe<Scalars['timestamptz']>;
+  description?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['uuid']>;
+  slug?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
   type?: Maybe<PostTypesEnum>;
-  updated_at?: Maybe<Scalars["timestamptz"]>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
 };
 
 /** update columns of table "posts" */
 export enum PostsUpdateColumn {
   /** column name */
-  CreatedAt = "created_at",
+  CreatedAt = 'created_at',
   /** column name */
-  Description = "description",
+  Description = 'description',
   /** column name */
-  Id = "id",
+  Id = 'id',
   /** column name */
-  Slug = "slug",
+  Slug = 'slug',
   /** column name */
-  Title = "title",
+  Title = 'title',
   /** column name */
-  Type = "type",
+  Type = 'type',
   /** column name */
-  UpdatedAt = "updated_at",
+  UpdatedAt = 'updated_at'
 }
 
 export type QueryRoot = {
-  __typename?: "query_root";
+  __typename?: 'query_root';
   /** fetch data from the table: "article_states" */
   article_states: Array<ArticleStates>;
   /** fetch aggregated fields from the table: "article_states" */
@@ -3527,7 +3666,7 @@ export type QueryRoot = {
   term_relationships_aggregate: TermRelationshipsAggregate;
   /** fetch data from the table: "term_relationships" using primary key columns */
   term_relationships_by_pk?: Maybe<TermRelationships>;
-  /** fetch data from the table: "term_taxonomies" */
+  /** An array relationship */
   term_taxonomies: Array<TermTaxonomies>;
   /** An aggregate relationship */
   term_taxonomies_aggregate: TermTaxonomiesAggregate;
@@ -3550,385 +3689,441 @@ export type QueryRoot = {
   /** fetch data from the table: "users" using primary key columns */
   users_by_pk?: Maybe<Users>;
 };
+
 
 export type QueryRootArticleStatesArgs = {
   distinct_on?: Maybe<Array<ArticleStatesSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<ArticleStatesOrderBy>>;
   where?: Maybe<ArticleStatesBoolExp>;
 };
+
 
 export type QueryRootArticleStatesAggregateArgs = {
   distinct_on?: Maybe<Array<ArticleStatesSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<ArticleStatesOrderBy>>;
   where?: Maybe<ArticleStatesBoolExp>;
 };
 
+
 export type QueryRootArticleStatesByPkArgs = {
-  value: Scalars["String"];
+  value: Scalars['String'];
 };
+
 
 export type QueryRootArticlesArgs = {
   distinct_on?: Maybe<Array<ArticlesSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<ArticlesOrderBy>>;
   where?: Maybe<ArticlesBoolExp>;
 };
+
 
 export type QueryRootArticlesAggregateArgs = {
   distinct_on?: Maybe<Array<ArticlesSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<ArticlesOrderBy>>;
   where?: Maybe<ArticlesBoolExp>;
 };
 
+
 export type QueryRootArticlesByPkArgs = {
-  post_id: Scalars["uuid"];
+  post_id: Scalars['uuid'];
 };
+
 
 export type QueryRootAuthAccountProvidersArgs = {
   distinct_on?: Maybe<Array<AuthAccountProvidersSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<AuthAccountProvidersOrderBy>>;
   where?: Maybe<AuthAccountProvidersBoolExp>;
 };
+
 
 export type QueryRootAuthAccountProvidersAggregateArgs = {
   distinct_on?: Maybe<Array<AuthAccountProvidersSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<AuthAccountProvidersOrderBy>>;
   where?: Maybe<AuthAccountProvidersBoolExp>;
 };
 
+
 export type QueryRootAuthAccountProvidersByPkArgs = {
-  id: Scalars["uuid"];
+  id: Scalars['uuid'];
 };
+
 
 export type QueryRootAuthAccountRolesArgs = {
   distinct_on?: Maybe<Array<AuthAccountRolesSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<AuthAccountRolesOrderBy>>;
   where?: Maybe<AuthAccountRolesBoolExp>;
 };
+
 
 export type QueryRootAuthAccountRolesAggregateArgs = {
   distinct_on?: Maybe<Array<AuthAccountRolesSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<AuthAccountRolesOrderBy>>;
   where?: Maybe<AuthAccountRolesBoolExp>;
 };
 
+
 export type QueryRootAuthAccountRolesByPkArgs = {
-  id: Scalars["uuid"];
+  id: Scalars['uuid'];
 };
+
 
 export type QueryRootAuthAccountsArgs = {
   distinct_on?: Maybe<Array<AuthAccountsSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<AuthAccountsOrderBy>>;
   where?: Maybe<AuthAccountsBoolExp>;
 };
+
 
 export type QueryRootAuthAccountsAggregateArgs = {
   distinct_on?: Maybe<Array<AuthAccountsSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<AuthAccountsOrderBy>>;
   where?: Maybe<AuthAccountsBoolExp>;
 };
 
+
 export type QueryRootAuthAccountsByPkArgs = {
-  id: Scalars["uuid"];
+  id: Scalars['uuid'];
 };
+
 
 export type QueryRootAuthProvidersArgs = {
   distinct_on?: Maybe<Array<AuthProvidersSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<AuthProvidersOrderBy>>;
   where?: Maybe<AuthProvidersBoolExp>;
 };
+
 
 export type QueryRootAuthProvidersAggregateArgs = {
   distinct_on?: Maybe<Array<AuthProvidersSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<AuthProvidersOrderBy>>;
   where?: Maybe<AuthProvidersBoolExp>;
 };
 
+
 export type QueryRootAuthProvidersByPkArgs = {
-  provider: Scalars["String"];
+  provider: Scalars['String'];
 };
+
 
 export type QueryRootAuthRefreshTokensArgs = {
   distinct_on?: Maybe<Array<AuthRefreshTokensSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<AuthRefreshTokensOrderBy>>;
   where?: Maybe<AuthRefreshTokensBoolExp>;
 };
+
 
 export type QueryRootAuthRefreshTokensAggregateArgs = {
   distinct_on?: Maybe<Array<AuthRefreshTokensSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<AuthRefreshTokensOrderBy>>;
   where?: Maybe<AuthRefreshTokensBoolExp>;
 };
 
+
 export type QueryRootAuthRefreshTokensByPkArgs = {
-  refresh_token: Scalars["uuid"];
+  refresh_token: Scalars['uuid'];
 };
+
 
 export type QueryRootAuthRolesArgs = {
   distinct_on?: Maybe<Array<AuthRolesSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<AuthRolesOrderBy>>;
   where?: Maybe<AuthRolesBoolExp>;
 };
+
 
 export type QueryRootAuthRolesAggregateArgs = {
   distinct_on?: Maybe<Array<AuthRolesSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<AuthRolesOrderBy>>;
   where?: Maybe<AuthRolesBoolExp>;
 };
 
+
 export type QueryRootAuthRolesByPkArgs = {
-  role: Scalars["String"];
+  role: Scalars['String'];
 };
+
 
 export type QueryRootCommentsArgs = {
   distinct_on?: Maybe<Array<CommentsSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<CommentsOrderBy>>;
   where?: Maybe<CommentsBoolExp>;
 };
+
 
 export type QueryRootCommentsAggregateArgs = {
   distinct_on?: Maybe<Array<CommentsSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<CommentsOrderBy>>;
   where?: Maybe<CommentsBoolExp>;
 };
 
+
 export type QueryRootCommentsByPkArgs = {
-  id: Scalars["uuid"];
+  id: Scalars['uuid'];
 };
+
 
 export type QueryRootPageStatesArgs = {
   distinct_on?: Maybe<Array<PageStatesSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<PageStatesOrderBy>>;
   where?: Maybe<PageStatesBoolExp>;
 };
+
 
 export type QueryRootPageStatesAggregateArgs = {
   distinct_on?: Maybe<Array<PageStatesSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<PageStatesOrderBy>>;
   where?: Maybe<PageStatesBoolExp>;
 };
 
+
 export type QueryRootPageStatesByPkArgs = {
-  value: Scalars["String"];
+  value: Scalars['String'];
 };
+
 
 export type QueryRootPagesArgs = {
   distinct_on?: Maybe<Array<PagesSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<PagesOrderBy>>;
   where?: Maybe<PagesBoolExp>;
 };
+
 
 export type QueryRootPagesAggregateArgs = {
   distinct_on?: Maybe<Array<PagesSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<PagesOrderBy>>;
   where?: Maybe<PagesBoolExp>;
 };
 
+
 export type QueryRootPagesByPkArgs = {
-  post_id: Scalars["uuid"];
+  post_id: Scalars['uuid'];
 };
+
 
 export type QueryRootPostTypesArgs = {
   distinct_on?: Maybe<Array<PostTypesSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<PostTypesOrderBy>>;
   where?: Maybe<PostTypesBoolExp>;
 };
+
 
 export type QueryRootPostTypesAggregateArgs = {
   distinct_on?: Maybe<Array<PostTypesSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<PostTypesOrderBy>>;
   where?: Maybe<PostTypesBoolExp>;
 };
 
+
 export type QueryRootPostTypesByPkArgs = {
-  value: Scalars["String"];
+  value: Scalars['String'];
 };
+
 
 export type QueryRootPostsArgs = {
   distinct_on?: Maybe<Array<PostsSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<PostsOrderBy>>;
   where?: Maybe<PostsBoolExp>;
 };
+
 
 export type QueryRootPostsAggregateArgs = {
   distinct_on?: Maybe<Array<PostsSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<PostsOrderBy>>;
   where?: Maybe<PostsBoolExp>;
 };
 
+
 export type QueryRootPostsByPkArgs = {
-  id: Scalars["uuid"];
+  id: Scalars['uuid'];
 };
+
 
 export type QueryRootTaxonomiesArgs = {
   distinct_on?: Maybe<Array<TaxonomiesSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<TaxonomiesOrderBy>>;
   where?: Maybe<TaxonomiesBoolExp>;
 };
+
 
 export type QueryRootTaxonomiesAggregateArgs = {
   distinct_on?: Maybe<Array<TaxonomiesSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<TaxonomiesOrderBy>>;
   where?: Maybe<TaxonomiesBoolExp>;
 };
 
+
 export type QueryRootTaxonomiesByPkArgs = {
-  taxonomy: Scalars["String"];
+  taxonomy: Scalars['String'];
 };
+
 
 export type QueryRootTermRelationshipsArgs = {
   distinct_on?: Maybe<Array<TermRelationshipsSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<TermRelationshipsOrderBy>>;
   where?: Maybe<TermRelationshipsBoolExp>;
 };
+
 
 export type QueryRootTermRelationshipsAggregateArgs = {
   distinct_on?: Maybe<Array<TermRelationshipsSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<TermRelationshipsOrderBy>>;
   where?: Maybe<TermRelationshipsBoolExp>;
 };
 
+
 export type QueryRootTermRelationshipsByPkArgs = {
-  id: Scalars["uuid"];
+  id: Scalars['uuid'];
 };
+
 
 export type QueryRootTermTaxonomiesArgs = {
   distinct_on?: Maybe<Array<TermTaxonomiesSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<TermTaxonomiesOrderBy>>;
   where?: Maybe<TermTaxonomiesBoolExp>;
 };
+
 
 export type QueryRootTermTaxonomiesAggregateArgs = {
   distinct_on?: Maybe<Array<TermTaxonomiesSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<TermTaxonomiesOrderBy>>;
   where?: Maybe<TermTaxonomiesBoolExp>;
 };
 
+
 export type QueryRootTermTaxonomiesByPkArgs = {
-  term_slug: Scalars["String"];
+  term_slug: Scalars['String'];
 };
+
 
 export type QueryRootTermTaxonomiesTreeArgs = {
   distinct_on?: Maybe<Array<TermTaxonomiesTreeSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<TermTaxonomiesTreeOrderBy>>;
   where?: Maybe<TermTaxonomiesTreeBoolExp>;
 };
+
 
 export type QueryRootTermTaxonomiesTreeAggregateArgs = {
   distinct_on?: Maybe<Array<TermTaxonomiesTreeSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<TermTaxonomiesTreeOrderBy>>;
   where?: Maybe<TermTaxonomiesTreeBoolExp>;
 };
 
+
 export type QueryRootTermsArgs = {
   distinct_on?: Maybe<Array<TermsSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<TermsOrderBy>>;
   where?: Maybe<TermsBoolExp>;
 };
+
 
 export type QueryRootTermsAggregateArgs = {
   distinct_on?: Maybe<Array<TermsSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<TermsOrderBy>>;
   where?: Maybe<TermsBoolExp>;
 };
 
+
 export type QueryRootTermsByPkArgs = {
-  slug: Scalars["String"];
+  slug: Scalars['String'];
 };
+
 
 export type QueryRootUsersArgs = {
   distinct_on?: Maybe<Array<UsersSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<UsersOrderBy>>;
   where?: Maybe<UsersBoolExp>;
 };
+
 
 export type QueryRootUsersAggregateArgs = {
   distinct_on?: Maybe<Array<UsersSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<UsersOrderBy>>;
   where?: Maybe<UsersBoolExp>;
 };
 
+
 export type QueryRootUsersByPkArgs = {
-  id: Scalars["uuid"];
+  id: Scalars['uuid'];
 };
 
 export type SubscriptionRoot = {
-  __typename?: "subscription_root";
+  __typename?: 'subscription_root';
   /** fetch data from the table: "article_states" */
   article_states: Array<ArticleStates>;
   /** fetch aggregated fields from the table: "article_states" */
@@ -4019,7 +4214,7 @@ export type SubscriptionRoot = {
   term_relationships_aggregate: TermRelationshipsAggregate;
   /** fetch data from the table: "term_relationships" using primary key columns */
   term_relationships_by_pk?: Maybe<TermRelationships>;
-  /** fetch data from the table: "term_taxonomies" */
+  /** An array relationship */
   term_taxonomies: Array<TermTaxonomies>;
   /** An aggregate relationship */
   term_taxonomies_aggregate: TermTaxonomiesAggregate;
@@ -4043,429 +4238,488 @@ export type SubscriptionRoot = {
   users_by_pk?: Maybe<Users>;
 };
 
+
 export type SubscriptionRootArticleStatesArgs = {
   distinct_on?: Maybe<Array<ArticleStatesSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<ArticleStatesOrderBy>>;
   where?: Maybe<ArticleStatesBoolExp>;
 };
+
 
 export type SubscriptionRootArticleStatesAggregateArgs = {
   distinct_on?: Maybe<Array<ArticleStatesSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<ArticleStatesOrderBy>>;
   where?: Maybe<ArticleStatesBoolExp>;
 };
 
+
 export type SubscriptionRootArticleStatesByPkArgs = {
-  value: Scalars["String"];
+  value: Scalars['String'];
 };
+
 
 export type SubscriptionRootArticlesArgs = {
   distinct_on?: Maybe<Array<ArticlesSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<ArticlesOrderBy>>;
   where?: Maybe<ArticlesBoolExp>;
 };
+
 
 export type SubscriptionRootArticlesAggregateArgs = {
   distinct_on?: Maybe<Array<ArticlesSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<ArticlesOrderBy>>;
   where?: Maybe<ArticlesBoolExp>;
 };
 
+
 export type SubscriptionRootArticlesByPkArgs = {
-  post_id: Scalars["uuid"];
+  post_id: Scalars['uuid'];
 };
+
 
 export type SubscriptionRootAuthAccountProvidersArgs = {
   distinct_on?: Maybe<Array<AuthAccountProvidersSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<AuthAccountProvidersOrderBy>>;
   where?: Maybe<AuthAccountProvidersBoolExp>;
 };
+
 
 export type SubscriptionRootAuthAccountProvidersAggregateArgs = {
   distinct_on?: Maybe<Array<AuthAccountProvidersSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<AuthAccountProvidersOrderBy>>;
   where?: Maybe<AuthAccountProvidersBoolExp>;
 };
 
+
 export type SubscriptionRootAuthAccountProvidersByPkArgs = {
-  id: Scalars["uuid"];
+  id: Scalars['uuid'];
 };
+
 
 export type SubscriptionRootAuthAccountRolesArgs = {
   distinct_on?: Maybe<Array<AuthAccountRolesSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<AuthAccountRolesOrderBy>>;
   where?: Maybe<AuthAccountRolesBoolExp>;
 };
+
 
 export type SubscriptionRootAuthAccountRolesAggregateArgs = {
   distinct_on?: Maybe<Array<AuthAccountRolesSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<AuthAccountRolesOrderBy>>;
   where?: Maybe<AuthAccountRolesBoolExp>;
 };
 
+
 export type SubscriptionRootAuthAccountRolesByPkArgs = {
-  id: Scalars["uuid"];
+  id: Scalars['uuid'];
 };
+
 
 export type SubscriptionRootAuthAccountsArgs = {
   distinct_on?: Maybe<Array<AuthAccountsSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<AuthAccountsOrderBy>>;
   where?: Maybe<AuthAccountsBoolExp>;
 };
+
 
 export type SubscriptionRootAuthAccountsAggregateArgs = {
   distinct_on?: Maybe<Array<AuthAccountsSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<AuthAccountsOrderBy>>;
   where?: Maybe<AuthAccountsBoolExp>;
 };
 
+
 export type SubscriptionRootAuthAccountsByPkArgs = {
-  id: Scalars["uuid"];
+  id: Scalars['uuid'];
 };
+
 
 export type SubscriptionRootAuthProvidersArgs = {
   distinct_on?: Maybe<Array<AuthProvidersSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<AuthProvidersOrderBy>>;
   where?: Maybe<AuthProvidersBoolExp>;
 };
+
 
 export type SubscriptionRootAuthProvidersAggregateArgs = {
   distinct_on?: Maybe<Array<AuthProvidersSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<AuthProvidersOrderBy>>;
   where?: Maybe<AuthProvidersBoolExp>;
 };
 
+
 export type SubscriptionRootAuthProvidersByPkArgs = {
-  provider: Scalars["String"];
+  provider: Scalars['String'];
 };
+
 
 export type SubscriptionRootAuthRefreshTokensArgs = {
   distinct_on?: Maybe<Array<AuthRefreshTokensSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<AuthRefreshTokensOrderBy>>;
   where?: Maybe<AuthRefreshTokensBoolExp>;
 };
+
 
 export type SubscriptionRootAuthRefreshTokensAggregateArgs = {
   distinct_on?: Maybe<Array<AuthRefreshTokensSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<AuthRefreshTokensOrderBy>>;
   where?: Maybe<AuthRefreshTokensBoolExp>;
 };
 
+
 export type SubscriptionRootAuthRefreshTokensByPkArgs = {
-  refresh_token: Scalars["uuid"];
+  refresh_token: Scalars['uuid'];
 };
+
 
 export type SubscriptionRootAuthRolesArgs = {
   distinct_on?: Maybe<Array<AuthRolesSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<AuthRolesOrderBy>>;
   where?: Maybe<AuthRolesBoolExp>;
 };
+
 
 export type SubscriptionRootAuthRolesAggregateArgs = {
   distinct_on?: Maybe<Array<AuthRolesSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<AuthRolesOrderBy>>;
   where?: Maybe<AuthRolesBoolExp>;
 };
 
+
 export type SubscriptionRootAuthRolesByPkArgs = {
-  role: Scalars["String"];
+  role: Scalars['String'];
 };
+
 
 export type SubscriptionRootCommentsArgs = {
   distinct_on?: Maybe<Array<CommentsSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<CommentsOrderBy>>;
   where?: Maybe<CommentsBoolExp>;
 };
+
 
 export type SubscriptionRootCommentsAggregateArgs = {
   distinct_on?: Maybe<Array<CommentsSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<CommentsOrderBy>>;
   where?: Maybe<CommentsBoolExp>;
 };
 
+
 export type SubscriptionRootCommentsByPkArgs = {
-  id: Scalars["uuid"];
+  id: Scalars['uuid'];
 };
+
 
 export type SubscriptionRootPageStatesArgs = {
   distinct_on?: Maybe<Array<PageStatesSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<PageStatesOrderBy>>;
   where?: Maybe<PageStatesBoolExp>;
 };
+
 
 export type SubscriptionRootPageStatesAggregateArgs = {
   distinct_on?: Maybe<Array<PageStatesSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<PageStatesOrderBy>>;
   where?: Maybe<PageStatesBoolExp>;
 };
 
+
 export type SubscriptionRootPageStatesByPkArgs = {
-  value: Scalars["String"];
+  value: Scalars['String'];
 };
+
 
 export type SubscriptionRootPagesArgs = {
   distinct_on?: Maybe<Array<PagesSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<PagesOrderBy>>;
   where?: Maybe<PagesBoolExp>;
 };
+
 
 export type SubscriptionRootPagesAggregateArgs = {
   distinct_on?: Maybe<Array<PagesSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<PagesOrderBy>>;
   where?: Maybe<PagesBoolExp>;
 };
 
+
 export type SubscriptionRootPagesByPkArgs = {
-  post_id: Scalars["uuid"];
+  post_id: Scalars['uuid'];
 };
+
 
 export type SubscriptionRootPostTypesArgs = {
   distinct_on?: Maybe<Array<PostTypesSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<PostTypesOrderBy>>;
   where?: Maybe<PostTypesBoolExp>;
 };
+
 
 export type SubscriptionRootPostTypesAggregateArgs = {
   distinct_on?: Maybe<Array<PostTypesSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<PostTypesOrderBy>>;
   where?: Maybe<PostTypesBoolExp>;
 };
 
+
 export type SubscriptionRootPostTypesByPkArgs = {
-  value: Scalars["String"];
+  value: Scalars['String'];
 };
+
 
 export type SubscriptionRootPostsArgs = {
   distinct_on?: Maybe<Array<PostsSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<PostsOrderBy>>;
   where?: Maybe<PostsBoolExp>;
 };
+
 
 export type SubscriptionRootPostsAggregateArgs = {
   distinct_on?: Maybe<Array<PostsSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<PostsOrderBy>>;
   where?: Maybe<PostsBoolExp>;
 };
 
+
 export type SubscriptionRootPostsByPkArgs = {
-  id: Scalars["uuid"];
+  id: Scalars['uuid'];
 };
+
 
 export type SubscriptionRootTaxonomiesArgs = {
   distinct_on?: Maybe<Array<TaxonomiesSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<TaxonomiesOrderBy>>;
   where?: Maybe<TaxonomiesBoolExp>;
 };
+
 
 export type SubscriptionRootTaxonomiesAggregateArgs = {
   distinct_on?: Maybe<Array<TaxonomiesSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<TaxonomiesOrderBy>>;
   where?: Maybe<TaxonomiesBoolExp>;
 };
 
+
 export type SubscriptionRootTaxonomiesByPkArgs = {
-  taxonomy: Scalars["String"];
+  taxonomy: Scalars['String'];
 };
+
 
 export type SubscriptionRootTermRelationshipsArgs = {
   distinct_on?: Maybe<Array<TermRelationshipsSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<TermRelationshipsOrderBy>>;
   where?: Maybe<TermRelationshipsBoolExp>;
 };
+
 
 export type SubscriptionRootTermRelationshipsAggregateArgs = {
   distinct_on?: Maybe<Array<TermRelationshipsSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<TermRelationshipsOrderBy>>;
   where?: Maybe<TermRelationshipsBoolExp>;
 };
 
+
 export type SubscriptionRootTermRelationshipsByPkArgs = {
-  id: Scalars["uuid"];
+  id: Scalars['uuid'];
 };
+
 
 export type SubscriptionRootTermTaxonomiesArgs = {
   distinct_on?: Maybe<Array<TermTaxonomiesSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<TermTaxonomiesOrderBy>>;
   where?: Maybe<TermTaxonomiesBoolExp>;
 };
+
 
 export type SubscriptionRootTermTaxonomiesAggregateArgs = {
   distinct_on?: Maybe<Array<TermTaxonomiesSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<TermTaxonomiesOrderBy>>;
   where?: Maybe<TermTaxonomiesBoolExp>;
 };
 
+
 export type SubscriptionRootTermTaxonomiesByPkArgs = {
-  term_slug: Scalars["String"];
+  term_slug: Scalars['String'];
 };
+
 
 export type SubscriptionRootTermTaxonomiesTreeArgs = {
   distinct_on?: Maybe<Array<TermTaxonomiesTreeSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<TermTaxonomiesTreeOrderBy>>;
   where?: Maybe<TermTaxonomiesTreeBoolExp>;
 };
+
 
 export type SubscriptionRootTermTaxonomiesTreeAggregateArgs = {
   distinct_on?: Maybe<Array<TermTaxonomiesTreeSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<TermTaxonomiesTreeOrderBy>>;
   where?: Maybe<TermTaxonomiesTreeBoolExp>;
 };
 
+
 export type SubscriptionRootTermsArgs = {
   distinct_on?: Maybe<Array<TermsSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<TermsOrderBy>>;
   where?: Maybe<TermsBoolExp>;
 };
+
 
 export type SubscriptionRootTermsAggregateArgs = {
   distinct_on?: Maybe<Array<TermsSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<TermsOrderBy>>;
   where?: Maybe<TermsBoolExp>;
 };
 
+
 export type SubscriptionRootTermsByPkArgs = {
-  slug: Scalars["String"];
+  slug: Scalars['String'];
 };
+
 
 export type SubscriptionRootUsersArgs = {
   distinct_on?: Maybe<Array<UsersSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<UsersOrderBy>>;
   where?: Maybe<UsersBoolExp>;
 };
+
 
 export type SubscriptionRootUsersAggregateArgs = {
   distinct_on?: Maybe<Array<UsersSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<UsersOrderBy>>;
   where?: Maybe<UsersBoolExp>;
 };
 
+
 export type SubscriptionRootUsersByPkArgs = {
-  id: Scalars["uuid"];
+  id: Scalars['uuid'];
 };
 
 /** columns and relationships of "taxonomies" */
 export type Taxonomies = {
-  __typename?: "taxonomies";
-  taxonomy: Scalars["String"];
-  /** fetch data from the table: "term_taxonomies" */
+  __typename?: 'taxonomies';
+  taxonomy: Scalars['String'];
+  /** An array relationship */
   term_taxonomies: Array<TermTaxonomies>;
   /** An aggregate relationship */
   term_taxonomies_aggregate: TermTaxonomiesAggregate;
 };
 
+
 /** columns and relationships of "taxonomies" */
 export type TaxonomiesTermTaxonomiesArgs = {
   distinct_on?: Maybe<Array<TermTaxonomiesSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<TermTaxonomiesOrderBy>>;
   where?: Maybe<TermTaxonomiesBoolExp>;
 };
 
+
 /** columns and relationships of "taxonomies" */
 export type TaxonomiesTermTaxonomiesAggregateArgs = {
   distinct_on?: Maybe<Array<TermTaxonomiesSelectColumn>>;
-  limit?: Maybe<Scalars["Int"]>;
-  offset?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<TermTaxonomiesOrderBy>>;
   where?: Maybe<TermTaxonomiesBoolExp>;
 };
 
 /** aggregated selection of "taxonomies" */
 export type TaxonomiesAggregate = {
-  __typename?: "taxonomies_aggregate";
+  __typename?: 'taxonomies_aggregate';
   aggregate?: Maybe<TaxonomiesAggregateFields>;
   nodes: Array<Taxonomies>;
 };
 
 /** aggregate fields of "taxonomies" */
 export type TaxonomiesAggregateFields = {
-  __typename?: "taxonomies_aggregate_fields";
-  count: Scalars["Int"];
+  __typename?: 'taxonomies_aggregate_fields';
+  count: Scalars['Int'];
   max?: Maybe<TaxonomiesMaxFields>;
   min?: Maybe<TaxonomiesMinFields>;
 };
 
+
 /** aggregate fields of "taxonomies" */
 export type TaxonomiesAggregateFieldsCountArgs = {
   columns?: Maybe<Array<TaxonomiesSelectColumn>>;
-  distinct?: Maybe<Scalars["Boolean"]>;
+  distinct?: Maybe<Scalars['Boolean']>;
 };
 
 /** Boolean expression to filter rows from the table "taxonomies". All fields are combined with a logical 'AND'. */
@@ -4480,48 +4734,48 @@ export type TaxonomiesBoolExp = {
 /** unique or primary key constraints on table "taxonomies" */
 export enum TaxonomiesConstraint {
   /** unique or primary key constraint */
-  TaxonomiesPkey = "taxonomies_pkey",
+  TaxonomiesPkey = 'taxonomies_pkey',
   /** unique or primary key constraint */
-  TaxonomiesTaxonomyKey = "taxonomies_taxonomy_key",
+  TaxonomiesTaxonomyKey = 'taxonomies_taxonomy_key'
 }
 
 export enum TaxonomiesEnum {
-  Categories = "categories",
-  Tags = "tags",
+  Categories = 'categories',
+  Tags = 'tags'
 }
 
 /** Boolean expression to compare columns of type "taxonomies_enum". All fields are combined with logical 'AND'. */
 export type TaxonomiesEnumComparisonExp = {
   _eq?: Maybe<TaxonomiesEnum>;
   _in?: Maybe<Array<TaxonomiesEnum>>;
-  _is_null?: Maybe<Scalars["Boolean"]>;
+  _is_null?: Maybe<Scalars['Boolean']>;
   _neq?: Maybe<TaxonomiesEnum>;
   _nin?: Maybe<Array<TaxonomiesEnum>>;
 };
 
 /** input type for inserting data into table "taxonomies" */
 export type TaxonomiesInsertInput = {
-  taxonomy?: Maybe<Scalars["String"]>;
+  taxonomy?: Maybe<Scalars['String']>;
   term_taxonomies?: Maybe<TermTaxonomiesArrRelInsertInput>;
 };
 
 /** aggregate max on columns */
 export type TaxonomiesMaxFields = {
-  __typename?: "taxonomies_max_fields";
-  taxonomy?: Maybe<Scalars["String"]>;
+  __typename?: 'taxonomies_max_fields';
+  taxonomy?: Maybe<Scalars['String']>;
 };
 
 /** aggregate min on columns */
 export type TaxonomiesMinFields = {
-  __typename?: "taxonomies_min_fields";
-  taxonomy?: Maybe<Scalars["String"]>;
+  __typename?: 'taxonomies_min_fields';
+  taxonomy?: Maybe<Scalars['String']>;
 };
 
 /** response of any mutation on the table "taxonomies" */
 export type TaxonomiesMutationResponse = {
-  __typename?: "taxonomies_mutation_response";
+  __typename?: 'taxonomies_mutation_response';
   /** number of rows affected by the mutation */
-  affected_rows: Scalars["Int"];
+  affected_rows: Scalars['Int'];
   /** data from the rows affected by the mutation */
   returning: Array<Taxonomies>;
 };
@@ -4529,11 +4783,11 @@ export type TaxonomiesMutationResponse = {
 /** input type for inserting object relation for remote table "taxonomies" */
 export type TaxonomiesObjRelInsertInput = {
   data: TaxonomiesInsertInput;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: Maybe<TaxonomiesOnConflict>;
 };
 
-/** on conflict condition type for table "taxonomies" */
+/** on_conflict condition type for table "taxonomies" */
 export type TaxonomiesOnConflict = {
   constraint: TaxonomiesConstraint;
   update_columns?: Array<TaxonomiesUpdateColumn>;
@@ -4548,31 +4802,31 @@ export type TaxonomiesOrderBy = {
 
 /** primary key columns input for table: taxonomies */
 export type TaxonomiesPkColumnsInput = {
-  taxonomy: Scalars["String"];
+  taxonomy: Scalars['String'];
 };
 
 /** select columns of table "taxonomies" */
 export enum TaxonomiesSelectColumn {
   /** column name */
-  Taxonomy = "taxonomy",
+  Taxonomy = 'taxonomy'
 }
 
 /** input type for updating data in table "taxonomies" */
 export type TaxonomiesSetInput = {
-  taxonomy?: Maybe<Scalars["String"]>;
+  taxonomy?: Maybe<Scalars['String']>;
 };
 
 /** update columns of table "taxonomies" */
 export enum TaxonomiesUpdateColumn {
   /** column name */
-  Taxonomy = "taxonomy",
+  Taxonomy = 'taxonomy'
 }
 
 /** columns and relationships of "term_relationships" */
 export type TermRelationships = {
-  __typename?: "term_relationships";
-  id: Scalars["uuid"];
-  object_id: Scalars["uuid"];
+  __typename?: 'term_relationships';
+  id: Scalars['uuid'];
+  object_id: Scalars['uuid'];
   /** An object relationship */
   post?: Maybe<Posts>;
   /** An object relationship */
@@ -4581,23 +4835,24 @@ export type TermRelationships = {
 
 /** aggregated selection of "term_relationships" */
 export type TermRelationshipsAggregate = {
-  __typename?: "term_relationships_aggregate";
+  __typename?: 'term_relationships_aggregate';
   aggregate?: Maybe<TermRelationshipsAggregateFields>;
   nodes: Array<TermRelationships>;
 };
 
 /** aggregate fields of "term_relationships" */
 export type TermRelationshipsAggregateFields = {
-  __typename?: "term_relationships_aggregate_fields";
-  count: Scalars["Int"];
+  __typename?: 'term_relationships_aggregate_fields';
+  count: Scalars['Int'];
   max?: Maybe<TermRelationshipsMaxFields>;
   min?: Maybe<TermRelationshipsMinFields>;
 };
 
+
 /** aggregate fields of "term_relationships" */
 export type TermRelationshipsAggregateFieldsCountArgs = {
   columns?: Maybe<Array<TermRelationshipsSelectColumn>>;
-  distinct?: Maybe<Scalars["Boolean"]>;
+  distinct?: Maybe<Scalars['Boolean']>;
 };
 
 /** Boolean expression to filter rows from the table "term_relationships". All fields are combined with a logical 'AND'. */
@@ -4614,41 +4869,41 @@ export type TermRelationshipsBoolExp = {
 /** unique or primary key constraints on table "term_relationships" */
 export enum TermRelationshipsConstraint {
   /** unique or primary key constraint */
-  PostTermsPkey = "post_terms_pkey",
+  PostTermsPkey = 'post_terms_pkey'
 }
 
 /** input type for inserting data into table "term_relationships" */
 export type TermRelationshipsInsertInput = {
-  id?: Maybe<Scalars["uuid"]>;
-  object_id?: Maybe<Scalars["uuid"]>;
+  id?: Maybe<Scalars['uuid']>;
+  object_id?: Maybe<Scalars['uuid']>;
   post?: Maybe<PostsObjRelInsertInput>;
   user?: Maybe<UsersObjRelInsertInput>;
 };
 
 /** aggregate max on columns */
 export type TermRelationshipsMaxFields = {
-  __typename?: "term_relationships_max_fields";
-  id?: Maybe<Scalars["uuid"]>;
-  object_id?: Maybe<Scalars["uuid"]>;
+  __typename?: 'term_relationships_max_fields';
+  id?: Maybe<Scalars['uuid']>;
+  object_id?: Maybe<Scalars['uuid']>;
 };
 
 /** aggregate min on columns */
 export type TermRelationshipsMinFields = {
-  __typename?: "term_relationships_min_fields";
-  id?: Maybe<Scalars["uuid"]>;
-  object_id?: Maybe<Scalars["uuid"]>;
+  __typename?: 'term_relationships_min_fields';
+  id?: Maybe<Scalars['uuid']>;
+  object_id?: Maybe<Scalars['uuid']>;
 };
 
 /** response of any mutation on the table "term_relationships" */
 export type TermRelationshipsMutationResponse = {
-  __typename?: "term_relationships_mutation_response";
+  __typename?: 'term_relationships_mutation_response';
   /** number of rows affected by the mutation */
-  affected_rows: Scalars["Int"];
+  affected_rows: Scalars['Int'];
   /** data from the rows affected by the mutation */
   returning: Array<TermRelationships>;
 };
 
-/** on conflict condition type for table "term_relationships" */
+/** on_conflict condition type for table "term_relationships" */
 export type TermRelationshipsOnConflict = {
   constraint: TermRelationshipsConstraint;
   update_columns?: Array<TermRelationshipsUpdateColumn>;
@@ -4665,66 +4920,67 @@ export type TermRelationshipsOrderBy = {
 
 /** primary key columns input for table: term_relationships */
 export type TermRelationshipsPkColumnsInput = {
-  id: Scalars["uuid"];
+  id: Scalars['uuid'];
 };
 
 /** select columns of table "term_relationships" */
 export enum TermRelationshipsSelectColumn {
   /** column name */
-  Id = "id",
+  Id = 'id',
   /** column name */
-  ObjectId = "object_id",
+  ObjectId = 'object_id'
 }
 
 /** input type for updating data in table "term_relationships" */
 export type TermRelationshipsSetInput = {
-  id?: Maybe<Scalars["uuid"]>;
-  object_id?: Maybe<Scalars["uuid"]>;
+  id?: Maybe<Scalars['uuid']>;
+  object_id?: Maybe<Scalars['uuid']>;
 };
 
 /** update columns of table "term_relationships" */
 export enum TermRelationshipsUpdateColumn {
   /** column name */
-  Id = "id",
+  Id = 'id',
   /** column name */
-  ObjectId = "object_id",
+  ObjectId = 'object_id'
 }
 
 /** columns and relationships of "term_taxonomies" */
 export type TermTaxonomies = {
-  __typename?: "term_taxonomies";
-  created_at: Scalars["timestamptz"];
-  description?: Maybe<Scalars["String"]>;
-  id: Scalars["uuid"];
-  parent_slug?: Maybe<Scalars["String"]>;
+  __typename?: 'term_taxonomies';
+  created_at: Scalars['timestamptz'];
+  description?: Maybe<Scalars['String']>;
+  id: Scalars['uuid'];
+  parent_slug?: Maybe<Scalars['String']>;
   taxonomy: TaxonomiesEnum;
   /** An object relationship */
   taxonomyByTaxonomy: Taxonomies;
   /** An object relationship */
   term: Terms;
-  term_slug: Scalars["String"];
-  updated_at: Scalars["timestamptz"];
+  term_slug: Scalars['String'];
+  updated_at: Scalars['timestamptz'];
 };
 
 /** aggregated selection of "term_taxonomies" */
 export type TermTaxonomiesAggregate = {
-  __typename?: "term_taxonomies_aggregate";
+  __typename?: 'term_taxonomies_aggregate';
   aggregate?: Maybe<TermTaxonomiesAggregateFields>;
   nodes: Array<TermTaxonomies>;
 };
 
 /** aggregate fields of "term_taxonomies" */
 export type TermTaxonomiesAggregateFields = {
-  __typename?: "term_taxonomies_aggregate_fields";
-  count: Scalars["Int"];
+  __typename?: 'term_taxonomies_aggregate_fields';
+  count: Scalars['Int'];
   max?: Maybe<TermTaxonomiesMaxFields>;
   min?: Maybe<TermTaxonomiesMinFields>;
 };
 
+
 /** aggregate fields of "term_taxonomies" */
 export type TermTaxonomiesAggregateFieldsCountArgs = {
   columns?: Maybe<Array<TermTaxonomiesSelectColumn>>;
-  distinct?: Maybe<Scalars["Boolean"]>;
+  distinct?: Maybe<Scalars['Boolean']>;
 };
 
 /** order by aggregate values of table "term_taxonomies" */
@@ -4737,7 +4993,7 @@ export type TermTaxonomiesAggregateOrderBy = {
 /** input type for inserting array relation for remote table "term_taxonomies" */
 export type TermTaxonomiesArrRelInsertInput = {
   data: Array<TermTaxonomiesInsertInput>;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: Maybe<TermTaxonomiesOnConflict>;
 };
 
@@ -4760,31 +5016,31 @@ export type TermTaxonomiesBoolExp = {
 /** unique or primary key constraints on table "term_taxonomies" */
 export enum TermTaxonomiesConstraint {
   /** unique or primary key constraint */
-  TermTaxonomiesPkey = "term_taxonomies_pkey",
+  TermTaxonomiesPkey = 'term_taxonomies_pkey'
 }
 
 /** input type for inserting data into table "term_taxonomies" */
 export type TermTaxonomiesInsertInput = {
-  created_at?: Maybe<Scalars["timestamptz"]>;
-  description?: Maybe<Scalars["String"]>;
-  id?: Maybe<Scalars["uuid"]>;
-  parent_slug?: Maybe<Scalars["String"]>;
+  created_at?: Maybe<Scalars['timestamptz']>;
+  description?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['uuid']>;
+  parent_slug?: Maybe<Scalars['String']>;
   taxonomy?: Maybe<TaxonomiesEnum>;
   taxonomyByTaxonomy?: Maybe<TaxonomiesObjRelInsertInput>;
   term?: Maybe<TermsObjRelInsertInput>;
-  term_slug?: Maybe<Scalars["String"]>;
-  updated_at?: Maybe<Scalars["timestamptz"]>;
+  term_slug?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
 };
 
 /** aggregate max on columns */
 export type TermTaxonomiesMaxFields = {
-  __typename?: "term_taxonomies_max_fields";
-  created_at?: Maybe<Scalars["timestamptz"]>;
-  description?: Maybe<Scalars["String"]>;
-  id?: Maybe<Scalars["uuid"]>;
-  parent_slug?: Maybe<Scalars["String"]>;
-  term_slug?: Maybe<Scalars["String"]>;
-  updated_at?: Maybe<Scalars["timestamptz"]>;
+  __typename?: 'term_taxonomies_max_fields';
+  created_at?: Maybe<Scalars['timestamptz']>;
+  description?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['uuid']>;
+  parent_slug?: Maybe<Scalars['String']>;
+  term_slug?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
 };
 
 /** order by max() on columns of table "term_taxonomies" */
@@ -4799,13 +5055,13 @@ export type TermTaxonomiesMaxOrderBy = {
 
 /** aggregate min on columns */
 export type TermTaxonomiesMinFields = {
-  __typename?: "term_taxonomies_min_fields";
-  created_at?: Maybe<Scalars["timestamptz"]>;
-  description?: Maybe<Scalars["String"]>;
-  id?: Maybe<Scalars["uuid"]>;
-  parent_slug?: Maybe<Scalars["String"]>;
-  term_slug?: Maybe<Scalars["String"]>;
-  updated_at?: Maybe<Scalars["timestamptz"]>;
+  __typename?: 'term_taxonomies_min_fields';
+  created_at?: Maybe<Scalars['timestamptz']>;
+  description?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['uuid']>;
+  parent_slug?: Maybe<Scalars['String']>;
+  term_slug?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
 };
 
 /** order by min() on columns of table "term_taxonomies" */
@@ -4820,14 +5076,14 @@ export type TermTaxonomiesMinOrderBy = {
 
 /** response of any mutation on the table "term_taxonomies" */
 export type TermTaxonomiesMutationResponse = {
-  __typename?: "term_taxonomies_mutation_response";
+  __typename?: 'term_taxonomies_mutation_response';
   /** number of rows affected by the mutation */
-  affected_rows: Scalars["Int"];
+  affected_rows: Scalars['Int'];
   /** data from the rows affected by the mutation */
   returning: Array<TermTaxonomies>;
 };
 
-/** on conflict condition type for table "term_taxonomies" */
+/** on_conflict condition type for table "term_taxonomies" */
 export type TermTaxonomiesOnConflict = {
   constraint: TermTaxonomiesConstraint;
   update_columns?: Array<TermTaxonomiesUpdateColumn>;
@@ -4849,66 +5105,67 @@ export type TermTaxonomiesOrderBy = {
 
 /** primary key columns input for table: term_taxonomies */
 export type TermTaxonomiesPkColumnsInput = {
-  term_slug: Scalars["String"];
+  term_slug: Scalars['String'];
 };
 
 /** select columns of table "term_taxonomies" */
 export enum TermTaxonomiesSelectColumn {
   /** column name */
-  CreatedAt = "created_at",
+  CreatedAt = 'created_at',
   /** column name */
-  Description = "description",
+  Description = 'description',
   /** column name */
-  Id = "id",
+  Id = 'id',
   /** column name */
-  ParentSlug = "parent_slug",
+  ParentSlug = 'parent_slug',
   /** column name */
-  Taxonomy = "taxonomy",
+  Taxonomy = 'taxonomy',
   /** column name */
-  TermSlug = "term_slug",
+  TermSlug = 'term_slug',
   /** column name */
-  UpdatedAt = "updated_at",
+  UpdatedAt = 'updated_at'
 }
 
 /** input type for updating data in table "term_taxonomies" */
 export type TermTaxonomiesSetInput = {
-  created_at?: Maybe<Scalars["timestamptz"]>;
-  description?: Maybe<Scalars["String"]>;
-  id?: Maybe<Scalars["uuid"]>;
-  parent_slug?: Maybe<Scalars["String"]>;
+  created_at?: Maybe<Scalars['timestamptz']>;
+  description?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['uuid']>;
+  parent_slug?: Maybe<Scalars['String']>;
   taxonomy?: Maybe<TaxonomiesEnum>;
-  term_slug?: Maybe<Scalars["String"]>;
-  updated_at?: Maybe<Scalars["timestamptz"]>;
+  term_slug?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
 };
 
 /** columns and relationships of "term_taxonomies_tree" */
 export type TermTaxonomiesTree = {
-  __typename?: "term_taxonomies_tree";
-  name?: Maybe<Scalars["String"]>;
-  parent_slug?: Maybe<Scalars["String"]>;
-  slug?: Maybe<Scalars["String"]>;
-  taxonomy?: Maybe<Scalars["String"]>;
+  __typename?: 'term_taxonomies_tree';
+  name?: Maybe<Scalars['String']>;
+  parent_slug?: Maybe<Scalars['String']>;
+  slug?: Maybe<Scalars['String']>;
+  taxonomy?: Maybe<Scalars['String']>;
 };
 
 /** aggregated selection of "term_taxonomies_tree" */
 export type TermTaxonomiesTreeAggregate = {
-  __typename?: "term_taxonomies_tree_aggregate";
+  __typename?: 'term_taxonomies_tree_aggregate';
   aggregate?: Maybe<TermTaxonomiesTreeAggregateFields>;
   nodes: Array<TermTaxonomiesTree>;
 };
 
 /** aggregate fields of "term_taxonomies_tree" */
 export type TermTaxonomiesTreeAggregateFields = {
-  __typename?: "term_taxonomies_tree_aggregate_fields";
-  count: Scalars["Int"];
+  __typename?: 'term_taxonomies_tree_aggregate_fields';
+  count: Scalars['Int'];
   max?: Maybe<TermTaxonomiesTreeMaxFields>;
   min?: Maybe<TermTaxonomiesTreeMinFields>;
 };
 
+
 /** aggregate fields of "term_taxonomies_tree" */
 export type TermTaxonomiesTreeAggregateFieldsCountArgs = {
   columns?: Maybe<Array<TermTaxonomiesTreeSelectColumn>>;
-  distinct?: Maybe<Scalars["Boolean"]>;
+  distinct?: Maybe<Scalars['Boolean']>;
 };
 
 /** Boolean expression to filter rows from the table "term_taxonomies_tree". All fields are combined with a logical 'AND'. */
@@ -4924,20 +5181,20 @@ export type TermTaxonomiesTreeBoolExp = {
 
 /** aggregate max on columns */
 export type TermTaxonomiesTreeMaxFields = {
-  __typename?: "term_taxonomies_tree_max_fields";
-  name?: Maybe<Scalars["String"]>;
-  parent_slug?: Maybe<Scalars["String"]>;
-  slug?: Maybe<Scalars["String"]>;
-  taxonomy?: Maybe<Scalars["String"]>;
+  __typename?: 'term_taxonomies_tree_max_fields';
+  name?: Maybe<Scalars['String']>;
+  parent_slug?: Maybe<Scalars['String']>;
+  slug?: Maybe<Scalars['String']>;
+  taxonomy?: Maybe<Scalars['String']>;
 };
 
 /** aggregate min on columns */
 export type TermTaxonomiesTreeMinFields = {
-  __typename?: "term_taxonomies_tree_min_fields";
-  name?: Maybe<Scalars["String"]>;
-  parent_slug?: Maybe<Scalars["String"]>;
-  slug?: Maybe<Scalars["String"]>;
-  taxonomy?: Maybe<Scalars["String"]>;
+  __typename?: 'term_taxonomies_tree_min_fields';
+  name?: Maybe<Scalars['String']>;
+  parent_slug?: Maybe<Scalars['String']>;
+  slug?: Maybe<Scalars['String']>;
+  taxonomy?: Maybe<Scalars['String']>;
 };
 
 /** Ordering options when selecting data from "term_taxonomies_tree". */
@@ -4951,62 +5208,63 @@ export type TermTaxonomiesTreeOrderBy = {
 /** select columns of table "term_taxonomies_tree" */
 export enum TermTaxonomiesTreeSelectColumn {
   /** column name */
-  Name = "name",
+  Name = 'name',
   /** column name */
-  ParentSlug = "parent_slug",
+  ParentSlug = 'parent_slug',
   /** column name */
-  Slug = "slug",
+  Slug = 'slug',
   /** column name */
-  Taxonomy = "taxonomy",
+  Taxonomy = 'taxonomy'
 }
 
 /** update columns of table "term_taxonomies" */
 export enum TermTaxonomiesUpdateColumn {
   /** column name */
-  CreatedAt = "created_at",
+  CreatedAt = 'created_at',
   /** column name */
-  Description = "description",
+  Description = 'description',
   /** column name */
-  Id = "id",
+  Id = 'id',
   /** column name */
-  ParentSlug = "parent_slug",
+  ParentSlug = 'parent_slug',
   /** column name */
-  Taxonomy = "taxonomy",
+  Taxonomy = 'taxonomy',
   /** column name */
-  TermSlug = "term_slug",
+  TermSlug = 'term_slug',
   /** column name */
-  UpdatedAt = "updated_at",
+  UpdatedAt = 'updated_at'
 }
 
 /** columns and relationships of "terms" */
 export type Terms = {
-  __typename?: "terms";
-  created_at?: Maybe<Scalars["timestamptz"]>;
-  id: Scalars["uuid"];
-  name: Scalars["String"];
-  slug: Scalars["String"];
-  updated_at?: Maybe<Scalars["timestamptz"]>;
+  __typename?: 'terms';
+  created_at?: Maybe<Scalars['timestamptz']>;
+  id: Scalars['uuid'];
+  name: Scalars['String'];
+  slug: Scalars['String'];
+  updated_at?: Maybe<Scalars['timestamptz']>;
 };
 
 /** aggregated selection of "terms" */
 export type TermsAggregate = {
-  __typename?: "terms_aggregate";
+  __typename?: 'terms_aggregate';
   aggregate?: Maybe<TermsAggregateFields>;
   nodes: Array<Terms>;
 };
 
 /** aggregate fields of "terms" */
 export type TermsAggregateFields = {
-  __typename?: "terms_aggregate_fields";
-  count: Scalars["Int"];
+  __typename?: 'terms_aggregate_fields';
+  count: Scalars['Int'];
   max?: Maybe<TermsMaxFields>;
   min?: Maybe<TermsMinFields>;
 };
 
+
 /** aggregate fields of "terms" */
 export type TermsAggregateFieldsCountArgs = {
   columns?: Maybe<Array<TermsSelectColumn>>;
-  distinct?: Maybe<Scalars["Boolean"]>;
+  distinct?: Maybe<Scalars['Boolean']>;
 };
 
 /** Boolean expression to filter rows from the table "terms". All fields are combined with a logical 'AND'. */
@@ -5024,45 +5282,45 @@ export type TermsBoolExp = {
 /** unique or primary key constraints on table "terms" */
 export enum TermsConstraint {
   /** unique or primary key constraint */
-  TermsPkey = "terms_pkey",
+  TermsPkey = 'terms_pkey',
   /** unique or primary key constraint */
-  TermsSlugKey = "terms_slug_key",
+  TermsSlugKey = 'terms_slug_key'
 }
 
 /** input type for inserting data into table "terms" */
 export type TermsInsertInput = {
-  created_at?: Maybe<Scalars["timestamptz"]>;
-  id?: Maybe<Scalars["uuid"]>;
-  name?: Maybe<Scalars["String"]>;
-  slug?: Maybe<Scalars["String"]>;
-  updated_at?: Maybe<Scalars["timestamptz"]>;
+  created_at?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['uuid']>;
+  name?: Maybe<Scalars['String']>;
+  slug?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
 };
 
 /** aggregate max on columns */
 export type TermsMaxFields = {
-  __typename?: "terms_max_fields";
-  created_at?: Maybe<Scalars["timestamptz"]>;
-  id?: Maybe<Scalars["uuid"]>;
-  name?: Maybe<Scalars["String"]>;
-  slug?: Maybe<Scalars["String"]>;
-  updated_at?: Maybe<Scalars["timestamptz"]>;
+  __typename?: 'terms_max_fields';
+  created_at?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['uuid']>;
+  name?: Maybe<Scalars['String']>;
+  slug?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
 };
 
 /** aggregate min on columns */
 export type TermsMinFields = {
-  __typename?: "terms_min_fields";
-  created_at?: Maybe<Scalars["timestamptz"]>;
-  id?: Maybe<Scalars["uuid"]>;
-  name?: Maybe<Scalars["String"]>;
-  slug?: Maybe<Scalars["String"]>;
-  updated_at?: Maybe<Scalars["timestamptz"]>;
+  __typename?: 'terms_min_fields';
+  created_at?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['uuid']>;
+  name?: Maybe<Scalars['String']>;
+  slug?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
 };
 
 /** response of any mutation on the table "terms" */
 export type TermsMutationResponse = {
-  __typename?: "terms_mutation_response";
+  __typename?: 'terms_mutation_response';
   /** number of rows affected by the mutation */
-  affected_rows: Scalars["Int"];
+  affected_rows: Scalars['Int'];
   /** data from the rows affected by the mutation */
   returning: Array<Terms>;
 };
@@ -5070,11 +5328,11 @@ export type TermsMutationResponse = {
 /** input type for inserting object relation for remote table "terms" */
 export type TermsObjRelInsertInput = {
   data: TermsInsertInput;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: Maybe<TermsOnConflict>;
 };
 
-/** on conflict condition type for table "terms" */
+/** on_conflict condition type for table "terms" */
 export type TermsOnConflict = {
   constraint: TermsConstraint;
   update_columns?: Array<TermsUpdateColumn>;
@@ -5092,99 +5350,102 @@ export type TermsOrderBy = {
 
 /** primary key columns input for table: terms */
 export type TermsPkColumnsInput = {
-  slug: Scalars["String"];
+  slug: Scalars['String'];
 };
 
 /** select columns of table "terms" */
 export enum TermsSelectColumn {
   /** column name */
-  CreatedAt = "created_at",
+  CreatedAt = 'created_at',
   /** column name */
-  Id = "id",
+  Id = 'id',
   /** column name */
-  Name = "name",
+  Name = 'name',
   /** column name */
-  Slug = "slug",
+  Slug = 'slug',
   /** column name */
-  UpdatedAt = "updated_at",
+  UpdatedAt = 'updated_at'
 }
 
 /** input type for updating data in table "terms" */
 export type TermsSetInput = {
-  created_at?: Maybe<Scalars["timestamptz"]>;
-  id?: Maybe<Scalars["uuid"]>;
-  name?: Maybe<Scalars["String"]>;
-  slug?: Maybe<Scalars["String"]>;
-  updated_at?: Maybe<Scalars["timestamptz"]>;
+  created_at?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['uuid']>;
+  name?: Maybe<Scalars['String']>;
+  slug?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
 };
 
 /** update columns of table "terms" */
 export enum TermsUpdateColumn {
   /** column name */
-  CreatedAt = "created_at",
+  CreatedAt = 'created_at',
   /** column name */
-  Id = "id",
+  Id = 'id',
   /** column name */
-  Name = "name",
+  Name = 'name',
   /** column name */
-  Slug = "slug",
+  Slug = 'slug',
   /** column name */
-  UpdatedAt = "updated_at",
+  UpdatedAt = 'updated_at'
 }
+
 
 /** Boolean expression to compare columns of type "timestamptz". All fields are combined with logical 'AND'. */
 export type TimestamptzComparisonExp = {
-  _eq?: Maybe<Scalars["timestamptz"]>;
-  _gt?: Maybe<Scalars["timestamptz"]>;
-  _gte?: Maybe<Scalars["timestamptz"]>;
-  _in?: Maybe<Array<Scalars["timestamptz"]>>;
-  _is_null?: Maybe<Scalars["Boolean"]>;
-  _lt?: Maybe<Scalars["timestamptz"]>;
-  _lte?: Maybe<Scalars["timestamptz"]>;
-  _neq?: Maybe<Scalars["timestamptz"]>;
-  _nin?: Maybe<Array<Scalars["timestamptz"]>>;
+  _eq?: Maybe<Scalars['timestamptz']>;
+  _gt?: Maybe<Scalars['timestamptz']>;
+  _gte?: Maybe<Scalars['timestamptz']>;
+  _in?: Maybe<Array<Scalars['timestamptz']>>;
+  _is_null?: Maybe<Scalars['Boolean']>;
+  _lt?: Maybe<Scalars['timestamptz']>;
+  _lte?: Maybe<Scalars['timestamptz']>;
+  _neq?: Maybe<Scalars['timestamptz']>;
+  _nin?: Maybe<Array<Scalars['timestamptz']>>;
 };
 
 /** columns and relationships of "users" */
 export type Users = {
-  __typename?: "users";
-  avatar_url?: Maybe<Scalars["String"]>;
-  created_at: Scalars["timestamptz"];
-  display_name?: Maybe<Scalars["String"]>;
-  id: Scalars["uuid"];
-  meta?: Maybe<Scalars["jsonb"]>;
-  updated_at: Scalars["timestamptz"];
+  __typename?: 'users';
+  avatar_url?: Maybe<Scalars['String']>;
+  created_at: Scalars['timestamptz'];
+  display_name?: Maybe<Scalars['String']>;
+  id: Scalars['uuid'];
+  meta?: Maybe<Scalars['jsonb']>;
+  updated_at: Scalars['timestamptz'];
 };
+
 
 /** columns and relationships of "users" */
 export type UsersMetaArgs = {
-  path?: Maybe<Scalars["String"]>;
+  path?: Maybe<Scalars['String']>;
 };
 
 /** aggregated selection of "users" */
 export type UsersAggregate = {
-  __typename?: "users_aggregate";
+  __typename?: 'users_aggregate';
   aggregate?: Maybe<UsersAggregateFields>;
   nodes: Array<Users>;
 };
 
 /** aggregate fields of "users" */
 export type UsersAggregateFields = {
-  __typename?: "users_aggregate_fields";
-  count: Scalars["Int"];
+  __typename?: 'users_aggregate_fields';
+  count: Scalars['Int'];
   max?: Maybe<UsersMaxFields>;
   min?: Maybe<UsersMinFields>;
 };
 
+
 /** aggregate fields of "users" */
 export type UsersAggregateFieldsCountArgs = {
   columns?: Maybe<Array<UsersSelectColumn>>;
-  distinct?: Maybe<Scalars["Boolean"]>;
+  distinct?: Maybe<Scalars['Boolean']>;
 };
 
 /** append existing jsonb value of filtered columns with new jsonb value */
 export type UsersAppendInput = {
-  meta?: Maybe<Scalars["jsonb"]>;
+  meta?: Maybe<Scalars['jsonb']>;
 };
 
 /** Boolean expression to filter rows from the table "users". All fields are combined with a logical 'AND'. */
@@ -5203,59 +5464,59 @@ export type UsersBoolExp = {
 /** unique or primary key constraints on table "users" */
 export enum UsersConstraint {
   /** unique or primary key constraint */
-  UsersPkey = "users_pkey",
+  UsersPkey = 'users_pkey'
 }
 
 /** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
 export type UsersDeleteAtPathInput = {
-  meta?: Maybe<Array<Scalars["String"]>>;
+  meta?: Maybe<Array<Scalars['String']>>;
 };
 
 /** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
 export type UsersDeleteElemInput = {
-  meta?: Maybe<Scalars["Int"]>;
+  meta?: Maybe<Scalars['Int']>;
 };
 
 /** delete key/value pair or string element. key/value pairs are matched based on their key value */
 export type UsersDeleteKeyInput = {
-  meta?: Maybe<Scalars["String"]>;
+  meta?: Maybe<Scalars['String']>;
 };
 
 /** input type for inserting data into table "users" */
 export type UsersInsertInput = {
-  avatar_url?: Maybe<Scalars["String"]>;
-  created_at?: Maybe<Scalars["timestamptz"]>;
-  display_name?: Maybe<Scalars["String"]>;
-  id?: Maybe<Scalars["uuid"]>;
-  meta?: Maybe<Scalars["jsonb"]>;
-  updated_at?: Maybe<Scalars["timestamptz"]>;
+  avatar_url?: Maybe<Scalars['String']>;
+  created_at?: Maybe<Scalars['timestamptz']>;
+  display_name?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['uuid']>;
+  meta?: Maybe<Scalars['jsonb']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
 };
 
 /** aggregate max on columns */
 export type UsersMaxFields = {
-  __typename?: "users_max_fields";
-  avatar_url?: Maybe<Scalars["String"]>;
-  created_at?: Maybe<Scalars["timestamptz"]>;
-  display_name?: Maybe<Scalars["String"]>;
-  id?: Maybe<Scalars["uuid"]>;
-  updated_at?: Maybe<Scalars["timestamptz"]>;
+  __typename?: 'users_max_fields';
+  avatar_url?: Maybe<Scalars['String']>;
+  created_at?: Maybe<Scalars['timestamptz']>;
+  display_name?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['uuid']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
 };
 
 /** aggregate min on columns */
 export type UsersMinFields = {
-  __typename?: "users_min_fields";
-  avatar_url?: Maybe<Scalars["String"]>;
-  created_at?: Maybe<Scalars["timestamptz"]>;
-  display_name?: Maybe<Scalars["String"]>;
-  id?: Maybe<Scalars["uuid"]>;
-  updated_at?: Maybe<Scalars["timestamptz"]>;
+  __typename?: 'users_min_fields';
+  avatar_url?: Maybe<Scalars['String']>;
+  created_at?: Maybe<Scalars['timestamptz']>;
+  display_name?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['uuid']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
 };
 
 /** response of any mutation on the table "users" */
 export type UsersMutationResponse = {
-  __typename?: "users_mutation_response";
+  __typename?: 'users_mutation_response';
   /** number of rows affected by the mutation */
-  affected_rows: Scalars["Int"];
+  affected_rows: Scalars['Int'];
   /** data from the rows affected by the mutation */
   returning: Array<Users>;
 };
@@ -5263,11 +5524,11 @@ export type UsersMutationResponse = {
 /** input type for inserting object relation for remote table "users" */
 export type UsersObjRelInsertInput = {
   data: UsersInsertInput;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: Maybe<UsersOnConflict>;
 };
 
-/** on conflict condition type for table "users" */
+/** on_conflict condition type for table "users" */
 export type UsersOnConflict = {
   constraint: UsersConstraint;
   update_columns?: Array<UsersUpdateColumn>;
@@ -5286,121 +5547,137 @@ export type UsersOrderBy = {
 
 /** primary key columns input for table: users */
 export type UsersPkColumnsInput = {
-  id: Scalars["uuid"];
+  id: Scalars['uuid'];
 };
 
 /** prepend existing jsonb value of filtered columns with new jsonb value */
 export type UsersPrependInput = {
-  meta?: Maybe<Scalars["jsonb"]>;
+  meta?: Maybe<Scalars['jsonb']>;
 };
 
 /** select columns of table "users" */
 export enum UsersSelectColumn {
   /** column name */
-  AvatarUrl = "avatar_url",
+  AvatarUrl = 'avatar_url',
   /** column name */
-  CreatedAt = "created_at",
+  CreatedAt = 'created_at',
   /** column name */
-  DisplayName = "display_name",
+  DisplayName = 'display_name',
   /** column name */
-  Id = "id",
+  Id = 'id',
   /** column name */
-  Meta = "meta",
+  Meta = 'meta',
   /** column name */
-  UpdatedAt = "updated_at",
+  UpdatedAt = 'updated_at'
 }
 
 /** input type for updating data in table "users" */
 export type UsersSetInput = {
-  avatar_url?: Maybe<Scalars["String"]>;
-  created_at?: Maybe<Scalars["timestamptz"]>;
-  display_name?: Maybe<Scalars["String"]>;
-  id?: Maybe<Scalars["uuid"]>;
-  meta?: Maybe<Scalars["jsonb"]>;
-  updated_at?: Maybe<Scalars["timestamptz"]>;
+  avatar_url?: Maybe<Scalars['String']>;
+  created_at?: Maybe<Scalars['timestamptz']>;
+  display_name?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['uuid']>;
+  meta?: Maybe<Scalars['jsonb']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
 };
 
 /** update columns of table "users" */
 export enum UsersUpdateColumn {
   /** column name */
-  AvatarUrl = "avatar_url",
+  AvatarUrl = 'avatar_url',
   /** column name */
-  CreatedAt = "created_at",
+  CreatedAt = 'created_at',
   /** column name */
-  DisplayName = "display_name",
+  DisplayName = 'display_name',
   /** column name */
-  Id = "id",
+  Id = 'id',
   /** column name */
-  Meta = "meta",
+  Meta = 'meta',
   /** column name */
-  UpdatedAt = "updated_at",
+  UpdatedAt = 'updated_at'
 }
+
 
 /** Boolean expression to compare columns of type "uuid". All fields are combined with logical 'AND'. */
 export type UuidComparisonExp = {
-  _eq?: Maybe<Scalars["uuid"]>;
-  _gt?: Maybe<Scalars["uuid"]>;
-  _gte?: Maybe<Scalars["uuid"]>;
-  _in?: Maybe<Array<Scalars["uuid"]>>;
-  _is_null?: Maybe<Scalars["Boolean"]>;
-  _lt?: Maybe<Scalars["uuid"]>;
-  _lte?: Maybe<Scalars["uuid"]>;
-  _neq?: Maybe<Scalars["uuid"]>;
-  _nin?: Maybe<Array<Scalars["uuid"]>>;
+  _eq?: Maybe<Scalars['uuid']>;
+  _gt?: Maybe<Scalars['uuid']>;
+  _gte?: Maybe<Scalars['uuid']>;
+  _in?: Maybe<Array<Scalars['uuid']>>;
+  _is_null?: Maybe<Scalars['Boolean']>;
+  _lt?: Maybe<Scalars['uuid']>;
+  _lte?: Maybe<Scalars['uuid']>;
+  _neq?: Maybe<Scalars['uuid']>;
+  _nin?: Maybe<Array<Scalars['uuid']>>;
 };
 
 export type CreateArticleMutationVariables = Exact<{
   object: ArticlesInsertInput;
 }>;
 
-export type CreateArticleMutation = { __typename?: "mutation_root" } & {
-  insert_articles_one?: Maybe<
-    { __typename: "articles" } & Pick<Articles, "post_id">
-  >;
-};
+
+export type CreateArticleMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_articles_one?: Maybe<(
+    { __typename: 'articles' }
+    & Pick<Articles, 'post_id'>
+  )> }
+);
 
 export type CreatePageMutationVariables = Exact<{
   object: PagesInsertInput;
 }>;
 
-export type CreatePageMutation = { __typename?: "mutation_root" } & {
-  insert_pages_one?: Maybe<{ __typename: "pages" } & Pick<Pages, "id">>;
-};
+
+export type CreatePageMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_pages_one?: Maybe<(
+    { __typename: 'pages' }
+    & Pick<Pages, 'id'>
+  )> }
+);
 
 export type CreateTermMutationVariables = Exact<{
   object: TermsInsertInput;
 }>;
 
-export type CreateTermMutation = { __typename?: "mutation_root" } & {
-  insert_terms_one?: Maybe<{ __typename: "terms" } & Pick<Terms, "slug">>;
-};
+
+export type CreateTermMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_terms_one?: Maybe<(
+    { __typename: 'terms' }
+    & Pick<Terms, 'slug'>
+  )> }
+);
 
 export type CreateTermTaxonomyMutationVariables = Exact<{
   objects: Array<TermTaxonomiesInsertInput> | TermTaxonomiesInsertInput;
 }>;
 
-export type CreateTermTaxonomyMutation = { __typename?: "mutation_root" } & {
-  insert_term_taxonomies?: Maybe<
-    { __typename: "term_taxonomies_mutation_response" } & {
-      returning: Array<
-        { __typename: "term_taxonomies" } & Pick<TermTaxonomies, "term_slug">
-      >;
-    }
-  >;
-};
+
+export type CreateTermTaxonomyMutation = (
+  { __typename?: 'mutation_root' }
+  & { insert_term_taxonomies?: Maybe<(
+    { __typename: 'term_taxonomies_mutation_response' }
+    & { returning: Array<(
+      { __typename: 'term_taxonomies' }
+      & Pick<TermTaxonomies, 'term_slug'>
+    )> }
+  )> }
+);
 
 export type DeletePostMutationVariables = Exact<{
   where: PostsBoolExp;
 }>;
 
-export type DeletePostMutation = { __typename?: "mutation_root" } & {
-  delete_posts?: Maybe<
-    { __typename: "posts_mutation_response" } & Pick<
-      PostsMutationResponse,
-      "affected_rows"
-    >
-  >;
-};
+
+export type DeletePostMutation = (
+  { __typename?: 'mutation_root' }
+  & { delete_posts?: Maybe<(
+    { __typename: 'posts_mutation_response' }
+    & Pick<PostsMutationResponse, 'affected_rows'>
+  )> }
+);
 
 export type UpdateArticleMutationVariables = Exact<{
   articles_pk_columns: ArticlesPkColumnsInput;
@@ -5409,12 +5686,17 @@ export type UpdateArticleMutationVariables = Exact<{
   posts_set?: Maybe<PostsSetInput>;
 }>;
 
-export type UpdateArticleMutation = { __typename?: "mutation_root" } & {
-  update_articles_by_pk?: Maybe<
-    { __typename: "articles" } & Pick<Articles, "post_id">
-  >;
-  update_posts_by_pk?: Maybe<{ __typename: "posts" } & Pick<Posts, "id">>;
-};
+
+export type UpdateArticleMutation = (
+  { __typename?: 'mutation_root' }
+  & { update_articles_by_pk?: Maybe<(
+    { __typename: 'articles' }
+    & Pick<Articles, 'post_id'>
+  )>, update_posts_by_pk?: Maybe<(
+    { __typename: 'posts' }
+    & Pick<Posts, 'id'>
+  )> }
+);
 
 export type UpdatePageMutationVariables = Exact<{
   pages_pk_columns: PagesPkColumnsInput;
@@ -5423,155 +5705,172 @@ export type UpdatePageMutationVariables = Exact<{
   posts_set?: Maybe<PostsSetInput>;
 }>;
 
-export type UpdatePageMutation = { __typename?: "mutation_root" } & {
-  update_pages_by_pk?: Maybe<{ __typename: "pages" } & Pick<Pages, "post_id">>;
-  update_posts_by_pk?: Maybe<{ __typename: "posts" } & Pick<Posts, "id">>;
-};
+
+export type UpdatePageMutation = (
+  { __typename?: 'mutation_root' }
+  & { update_pages_by_pk?: Maybe<(
+    { __typename: 'pages' }
+    & Pick<Pages, 'post_id'>
+  )>, update_posts_by_pk?: Maybe<(
+    { __typename: 'posts' }
+    & Pick<Posts, 'id'>
+  )> }
+);
 
 export type UpdatePostMutationVariables = Exact<{
   pk_columns: PostsPkColumnsInput;
   _set?: Maybe<PostsSetInput>;
 }>;
 
-export type UpdatePostMutation = { __typename?: "mutation_root" } & {
-  update_posts_by_pk?: Maybe<{ __typename: "posts" } & Pick<Posts, "id">>;
-};
+
+export type UpdatePostMutation = (
+  { __typename?: 'mutation_root' }
+  & { update_posts_by_pk?: Maybe<(
+    { __typename: 'posts' }
+    & Pick<Posts, 'id'>
+  )> }
+);
 
 export type ArticleQueryVariables = Exact<{
-  uuid: Scalars["uuid"];
+  uuid: Scalars['uuid'];
 }>;
 
-export type ArticleQuery = { __typename?: "query_root" } & {
-  articles_by_pk?: Maybe<
-    { __typename: "articles" } & Pick<
-      Articles,
-      "post_id" | "body" | "excerpt" | "state"
-    > & {
-        post?: Maybe<
-          { __typename: "posts" } & Pick<
-            Posts,
-            "title" | "description" | "slug"
-          >
-        >;
-      }
-  >;
-};
+
+export type ArticleQuery = (
+  { __typename?: 'query_root' }
+  & { articles_by_pk?: Maybe<(
+    { __typename: 'articles' }
+    & Pick<Articles, 'post_id' | 'body' | 'excerpt' | 'state'>
+    & { post?: Maybe<(
+      { __typename: 'posts' }
+      & Pick<Posts, 'title' | 'description' | 'slug'>
+    )> }
+  )> }
+);
 
 export type ArticlesQueryVariables = Exact<{
   where?: Maybe<ArticlesBoolExp>;
 }>;
 
-export type ArticlesQuery = { __typename?: "query_root" } & {
-  articles: Array<
-    { __typename: "articles" } & Pick<Articles, "post_id" | "state"> & {
-        post?: Maybe<
-          { __typename: "posts" } & Pick<
-            Posts,
-            "title" | "type" | "slug" | "created_at"
-          >
-        >;
-      }
-  >;
-};
+
+export type ArticlesQuery = (
+  { __typename?: 'query_root' }
+  & { articles: Array<(
+    { __typename: 'articles' }
+    & Pick<Articles, 'post_id' | 'state'>
+    & { post?: Maybe<(
+      { __typename: 'posts' }
+      & Pick<Posts, 'title' | 'type' | 'slug' | 'created_at'>
+    )> }
+  )> }
+);
 
 export type ArticlesAggregateQueryVariables = Exact<{
   where?: Maybe<ArticlesBoolExp>;
 }>;
 
-export type ArticlesAggregateQuery = { __typename?: "query_root" } & {
-  articles_aggregate: { __typename?: "articles_aggregate" } & {
-    aggregate?: Maybe<
-      { __typename: "articles_aggregate_fields" } & Pick<
-        ArticlesAggregateFields,
-        "count"
-      >
-    >;
-  };
-};
+
+export type ArticlesAggregateQuery = (
+  { __typename?: 'query_root' }
+  & { articles_aggregate: (
+    { __typename?: 'articles_aggregate' }
+    & { aggregate?: Maybe<(
+      { __typename: 'articles_aggregate_fields' }
+      & Pick<ArticlesAggregateFields, 'count'>
+    )> }
+  ) }
+);
 
 export type PageQueryVariables = Exact<{
-  uuid: Scalars["uuid"];
+  uuid: Scalars['uuid'];
 }>;
 
-export type PageQuery = { __typename?: "query_root" } & {
-  pages_by_pk?: Maybe<
-    { __typename: "pages" } & Pick<Pages, "post_id" | "body" | "state"> & {
-        post: { __typename: "posts" } & Pick<
-          Posts,
-          "title" | "description" | "slug"
-        >;
-      }
-  >;
-};
+
+export type PageQuery = (
+  { __typename?: 'query_root' }
+  & { pages_by_pk?: Maybe<(
+    { __typename: 'pages' }
+    & Pick<Pages, 'post_id' | 'body' | 'state'>
+    & { post: (
+      { __typename: 'posts' }
+      & Pick<Posts, 'title' | 'description' | 'slug'>
+    ) }
+  )> }
+);
 
 export type PagesQueryVariables = Exact<{
   where?: Maybe<PagesBoolExp>;
 }>;
 
-export type PagesQuery = { __typename?: "query_root" } & {
-  pages: Array<
-    { __typename: "pages" } & Pick<Pages, "post_id" | "body"> & {
-        post: { __typename: "posts" } & Pick<
-          Posts,
-          "title" | "type" | "slug" | "created_at"
-        >;
-      }
-  >;
-};
+
+export type PagesQuery = (
+  { __typename?: 'query_root' }
+  & { pages: Array<(
+    { __typename: 'pages' }
+    & Pick<Pages, 'post_id' | 'body'>
+    & { post: (
+      { __typename: 'posts' }
+      & Pick<Posts, 'title' | 'type' | 'slug' | 'created_at'>
+    ) }
+  )> }
+);
 
 export type PagesAggregateQueryVariables = Exact<{
   where?: Maybe<PagesBoolExp>;
 }>;
 
-export type PagesAggregateQuery = { __typename?: "query_root" } & {
-  pages_aggregate: { __typename?: "pages_aggregate" } & {
-    aggregate?: Maybe<
-      { __typename: "pages_aggregate_fields" } & Pick<
-        PagesAggregateFields,
-        "count"
-      >
-    >;
-  };
-};
+
+export type PagesAggregateQuery = (
+  { __typename?: 'query_root' }
+  & { pages_aggregate: (
+    { __typename?: 'pages_aggregate' }
+    & { aggregate?: Maybe<(
+      { __typename: 'pages_aggregate_fields' }
+      & Pick<PagesAggregateFields, 'count'>
+    )> }
+  ) }
+);
 
 export type TermTaxonomiesQueryVariables = Exact<{
   where?: Maybe<TermTaxonomiesBoolExp>;
 }>;
 
-export type TermTaxonomiesQuery = { __typename?: "query_root" } & {
-  term_taxonomies: Array<
-    { __typename: "term_taxonomies" } & Pick<
-      TermTaxonomies,
-      "taxonomy" | "description" | "term_slug" | "parent_slug"
-    > & { term: { __typename: "terms" } & Pick<Terms, "name" | "slug"> }
-  >;
-};
+
+export type TermTaxonomiesQuery = (
+  { __typename?: 'query_root' }
+  & { term_taxonomies: Array<(
+    { __typename: 'term_taxonomies' }
+    & Pick<TermTaxonomies, 'taxonomy' | 'description' | 'term_slug' | 'parent_slug'>
+    & { term: (
+      { __typename: 'terms' }
+      & Pick<Terms, 'name' | 'slug'>
+    ) }
+  )> }
+);
 
 export type TermTaxonomiesTreeQueryVariables = Exact<{
   where?: Maybe<TermTaxonomiesTreeBoolExp>;
 }>;
 
-export type TermTaxonomiesTreeQuery = { __typename?: "query_root" } & {
-  term_taxonomies_tree: Array<
-    { __typename: "term_taxonomies_tree" } & Pick<
-      TermTaxonomiesTree,
-      "name" | "slug" | "parent_slug"
-    >
-  >;
-};
+
+export type TermTaxonomiesTreeQuery = (
+  { __typename?: 'query_root' }
+  & { term_taxonomies_tree: Array<(
+    { __typename: 'term_taxonomies_tree' }
+    & Pick<TermTaxonomiesTree, 'name' | 'slug' | 'parent_slug'>
+  )> }
+);
+
 
 export const CreateArticleDocument = gql`
-  mutation createArticle($object: articles_insert_input!) {
-    insert_articles_one(object: $object) {
-      __typename
-      post_id
-    }
+    mutation createArticle($object: articles_insert_input!) {
+  insert_articles_one(object: $object) {
+    __typename
+    post_id
   }
-`;
-export type CreateArticleMutationFn = Apollo.MutationFunction<
-  CreateArticleMutation,
-  CreateArticleMutationVariables
->;
+}
+    `;
+export type CreateArticleMutationFn = Apollo.MutationFunction<CreateArticleMutation, CreateArticleMutationVariables>;
 
 /**
  * __useCreateArticleMutation__
@@ -5590,39 +5889,22 @@ export type CreateArticleMutationFn = Apollo.MutationFunction<
  *   },
  * });
  */
-export function useCreateArticleMutation(
-  baseOptions?: ApolloReactHooks.MutationHookOptions<
-    CreateArticleMutation,
-    CreateArticleMutationVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return ApolloReactHooks.useMutation<
-    CreateArticleMutation,
-    CreateArticleMutationVariables
-  >(CreateArticleDocument, options);
-}
-export type CreateArticleMutationHookResult = ReturnType<
-  typeof useCreateArticleMutation
->;
-export type CreateArticleMutationResult =
-  Apollo.MutationResult<CreateArticleMutation>;
-export type CreateArticleMutationOptions = Apollo.BaseMutationOptions<
-  CreateArticleMutation,
-  CreateArticleMutationVariables
->;
+export function useCreateArticleMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<CreateArticleMutation, CreateArticleMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return ApolloReactHooks.useMutation<CreateArticleMutation, CreateArticleMutationVariables>(CreateArticleDocument, options);
+      }
+export type CreateArticleMutationHookResult = ReturnType<typeof useCreateArticleMutation>;
+export type CreateArticleMutationResult = Apollo.MutationResult<CreateArticleMutation>;
+export type CreateArticleMutationOptions = Apollo.BaseMutationOptions<CreateArticleMutation, CreateArticleMutationVariables>;
 export const CreatePageDocument = gql`
-  mutation createPage($object: pages_insert_input!) {
-    insert_pages_one(object: $object) {
-      __typename
-      id
-    }
+    mutation createPage($object: pages_insert_input!) {
+  insert_pages_one(object: $object) {
+    __typename
+    id
   }
-`;
-export type CreatePageMutationFn = Apollo.MutationFunction<
-  CreatePageMutation,
-  CreatePageMutationVariables
->;
+}
+    `;
+export type CreatePageMutationFn = Apollo.MutationFunction<CreatePageMutation, CreatePageMutationVariables>;
 
 /**
  * __useCreatePageMutation__
@@ -5641,39 +5923,22 @@ export type CreatePageMutationFn = Apollo.MutationFunction<
  *   },
  * });
  */
-export function useCreatePageMutation(
-  baseOptions?: ApolloReactHooks.MutationHookOptions<
-    CreatePageMutation,
-    CreatePageMutationVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return ApolloReactHooks.useMutation<
-    CreatePageMutation,
-    CreatePageMutationVariables
-  >(CreatePageDocument, options);
-}
-export type CreatePageMutationHookResult = ReturnType<
-  typeof useCreatePageMutation
->;
-export type CreatePageMutationResult =
-  Apollo.MutationResult<CreatePageMutation>;
-export type CreatePageMutationOptions = Apollo.BaseMutationOptions<
-  CreatePageMutation,
-  CreatePageMutationVariables
->;
+export function useCreatePageMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<CreatePageMutation, CreatePageMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return ApolloReactHooks.useMutation<CreatePageMutation, CreatePageMutationVariables>(CreatePageDocument, options);
+      }
+export type CreatePageMutationHookResult = ReturnType<typeof useCreatePageMutation>;
+export type CreatePageMutationResult = Apollo.MutationResult<CreatePageMutation>;
+export type CreatePageMutationOptions = Apollo.BaseMutationOptions<CreatePageMutation, CreatePageMutationVariables>;
 export const CreateTermDocument = gql`
-  mutation createTerm($object: terms_insert_input!) {
-    insert_terms_one(object: $object) {
-      __typename
-      slug
-    }
+    mutation createTerm($object: terms_insert_input!) {
+  insert_terms_one(object: $object) {
+    __typename
+    slug
   }
-`;
-export type CreateTermMutationFn = Apollo.MutationFunction<
-  CreateTermMutation,
-  CreateTermMutationVariables
->;
+}
+    `;
+export type CreateTermMutationFn = Apollo.MutationFunction<CreateTermMutation, CreateTermMutationVariables>;
 
 /**
  * __useCreateTermMutation__
@@ -5692,42 +5957,25 @@ export type CreateTermMutationFn = Apollo.MutationFunction<
  *   },
  * });
  */
-export function useCreateTermMutation(
-  baseOptions?: ApolloReactHooks.MutationHookOptions<
-    CreateTermMutation,
-    CreateTermMutationVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return ApolloReactHooks.useMutation<
-    CreateTermMutation,
-    CreateTermMutationVariables
-  >(CreateTermDocument, options);
-}
-export type CreateTermMutationHookResult = ReturnType<
-  typeof useCreateTermMutation
->;
-export type CreateTermMutationResult =
-  Apollo.MutationResult<CreateTermMutation>;
-export type CreateTermMutationOptions = Apollo.BaseMutationOptions<
-  CreateTermMutation,
-  CreateTermMutationVariables
->;
-export const CreateTermTaxonomyDocument = gql`
-  mutation createTermTaxonomy($objects: [term_taxonomies_insert_input!]!) {
-    insert_term_taxonomies(objects: $objects) {
-      __typename
-      returning {
-        __typename
-        term_slug
+export function useCreateTermMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<CreateTermMutation, CreateTermMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return ApolloReactHooks.useMutation<CreateTermMutation, CreateTermMutationVariables>(CreateTermDocument, options);
       }
+export type CreateTermMutationHookResult = ReturnType<typeof useCreateTermMutation>;
+export type CreateTermMutationResult = Apollo.MutationResult<CreateTermMutation>;
+export type CreateTermMutationOptions = Apollo.BaseMutationOptions<CreateTermMutation, CreateTermMutationVariables>;
+export const CreateTermTaxonomyDocument = gql`
+    mutation createTermTaxonomy($objects: [term_taxonomies_insert_input!]!) {
+  insert_term_taxonomies(objects: $objects) {
+    __typename
+    returning {
+      __typename
+      term_slug
     }
   }
-`;
-export type CreateTermTaxonomyMutationFn = Apollo.MutationFunction<
-  CreateTermTaxonomyMutation,
-  CreateTermTaxonomyMutationVariables
->;
+}
+    `;
+export type CreateTermTaxonomyMutationFn = Apollo.MutationFunction<CreateTermTaxonomyMutation, CreateTermTaxonomyMutationVariables>;
 
 /**
  * __useCreateTermTaxonomyMutation__
@@ -5746,39 +5994,22 @@ export type CreateTermTaxonomyMutationFn = Apollo.MutationFunction<
  *   },
  * });
  */
-export function useCreateTermTaxonomyMutation(
-  baseOptions?: ApolloReactHooks.MutationHookOptions<
-    CreateTermTaxonomyMutation,
-    CreateTermTaxonomyMutationVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return ApolloReactHooks.useMutation<
-    CreateTermTaxonomyMutation,
-    CreateTermTaxonomyMutationVariables
-  >(CreateTermTaxonomyDocument, options);
-}
-export type CreateTermTaxonomyMutationHookResult = ReturnType<
-  typeof useCreateTermTaxonomyMutation
->;
-export type CreateTermTaxonomyMutationResult =
-  Apollo.MutationResult<CreateTermTaxonomyMutation>;
-export type CreateTermTaxonomyMutationOptions = Apollo.BaseMutationOptions<
-  CreateTermTaxonomyMutation,
-  CreateTermTaxonomyMutationVariables
->;
+export function useCreateTermTaxonomyMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<CreateTermTaxonomyMutation, CreateTermTaxonomyMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return ApolloReactHooks.useMutation<CreateTermTaxonomyMutation, CreateTermTaxonomyMutationVariables>(CreateTermTaxonomyDocument, options);
+      }
+export type CreateTermTaxonomyMutationHookResult = ReturnType<typeof useCreateTermTaxonomyMutation>;
+export type CreateTermTaxonomyMutationResult = Apollo.MutationResult<CreateTermTaxonomyMutation>;
+export type CreateTermTaxonomyMutationOptions = Apollo.BaseMutationOptions<CreateTermTaxonomyMutation, CreateTermTaxonomyMutationVariables>;
 export const DeletePostDocument = gql`
-  mutation deletePost($where: posts_bool_exp!) {
-    delete_posts(where: $where) {
-      __typename
-      affected_rows
-    }
+    mutation deletePost($where: posts_bool_exp!) {
+  delete_posts(where: $where) {
+    __typename
+    affected_rows
   }
-`;
-export type DeletePostMutationFn = Apollo.MutationFunction<
-  DeletePostMutation,
-  DeletePostMutationVariables
->;
+}
+    `;
+export type DeletePostMutationFn = Apollo.MutationFunction<DeletePostMutation, DeletePostMutationVariables>;
 
 /**
  * __useDeletePostMutation__
@@ -5797,51 +6028,26 @@ export type DeletePostMutationFn = Apollo.MutationFunction<
  *   },
  * });
  */
-export function useDeletePostMutation(
-  baseOptions?: ApolloReactHooks.MutationHookOptions<
-    DeletePostMutation,
-    DeletePostMutationVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return ApolloReactHooks.useMutation<
-    DeletePostMutation,
-    DeletePostMutationVariables
-  >(DeletePostDocument, options);
-}
-export type DeletePostMutationHookResult = ReturnType<
-  typeof useDeletePostMutation
->;
-export type DeletePostMutationResult =
-  Apollo.MutationResult<DeletePostMutation>;
-export type DeletePostMutationOptions = Apollo.BaseMutationOptions<
-  DeletePostMutation,
-  DeletePostMutationVariables
->;
+export function useDeletePostMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<DeletePostMutation, DeletePostMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return ApolloReactHooks.useMutation<DeletePostMutation, DeletePostMutationVariables>(DeletePostDocument, options);
+      }
+export type DeletePostMutationHookResult = ReturnType<typeof useDeletePostMutation>;
+export type DeletePostMutationResult = Apollo.MutationResult<DeletePostMutation>;
+export type DeletePostMutationOptions = Apollo.BaseMutationOptions<DeletePostMutation, DeletePostMutationVariables>;
 export const UpdateArticleDocument = gql`
-  mutation updateArticle(
-    $articles_pk_columns: articles_pk_columns_input!
-    $articles_set: articles_set_input
-    $posts_pk_columns: posts_pk_columns_input!
-    $posts_set: posts_set_input
-  ) {
-    update_articles_by_pk(
-      pk_columns: $articles_pk_columns
-      _set: $articles_set
-    ) {
-      __typename
-      post_id
-    }
-    update_posts_by_pk(pk_columns: $posts_pk_columns, _set: $posts_set) {
-      __typename
-      id
-    }
+    mutation updateArticle($articles_pk_columns: articles_pk_columns_input!, $articles_set: articles_set_input, $posts_pk_columns: posts_pk_columns_input!, $posts_set: posts_set_input) {
+  update_articles_by_pk(pk_columns: $articles_pk_columns, _set: $articles_set) {
+    __typename
+    post_id
   }
-`;
-export type UpdateArticleMutationFn = Apollo.MutationFunction<
-  UpdateArticleMutation,
-  UpdateArticleMutationVariables
->;
+  update_posts_by_pk(pk_columns: $posts_pk_columns, _set: $posts_set) {
+    __typename
+    id
+  }
+}
+    `;
+export type UpdateArticleMutationFn = Apollo.MutationFunction<UpdateArticleMutation, UpdateArticleMutationVariables>;
 
 /**
  * __useUpdateArticleMutation__
@@ -5863,48 +6069,26 @@ export type UpdateArticleMutationFn = Apollo.MutationFunction<
  *   },
  * });
  */
-export function useUpdateArticleMutation(
-  baseOptions?: ApolloReactHooks.MutationHookOptions<
-    UpdateArticleMutation,
-    UpdateArticleMutationVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return ApolloReactHooks.useMutation<
-    UpdateArticleMutation,
-    UpdateArticleMutationVariables
-  >(UpdateArticleDocument, options);
-}
-export type UpdateArticleMutationHookResult = ReturnType<
-  typeof useUpdateArticleMutation
->;
-export type UpdateArticleMutationResult =
-  Apollo.MutationResult<UpdateArticleMutation>;
-export type UpdateArticleMutationOptions = Apollo.BaseMutationOptions<
-  UpdateArticleMutation,
-  UpdateArticleMutationVariables
->;
+export function useUpdateArticleMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<UpdateArticleMutation, UpdateArticleMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return ApolloReactHooks.useMutation<UpdateArticleMutation, UpdateArticleMutationVariables>(UpdateArticleDocument, options);
+      }
+export type UpdateArticleMutationHookResult = ReturnType<typeof useUpdateArticleMutation>;
+export type UpdateArticleMutationResult = Apollo.MutationResult<UpdateArticleMutation>;
+export type UpdateArticleMutationOptions = Apollo.BaseMutationOptions<UpdateArticleMutation, UpdateArticleMutationVariables>;
 export const UpdatePageDocument = gql`
-  mutation updatePage(
-    $pages_pk_columns: pages_pk_columns_input!
-    $pages_set: pages_set_input
-    $posts_pk_columns: posts_pk_columns_input!
-    $posts_set: posts_set_input
-  ) {
-    update_pages_by_pk(pk_columns: $pages_pk_columns, _set: $pages_set) {
-      __typename
-      post_id
-    }
-    update_posts_by_pk(pk_columns: $posts_pk_columns, _set: $posts_set) {
-      __typename
-      id
-    }
+    mutation updatePage($pages_pk_columns: pages_pk_columns_input!, $pages_set: pages_set_input, $posts_pk_columns: posts_pk_columns_input!, $posts_set: posts_set_input) {
+  update_pages_by_pk(pk_columns: $pages_pk_columns, _set: $pages_set) {
+    __typename
+    post_id
   }
-`;
-export type UpdatePageMutationFn = Apollo.MutationFunction<
-  UpdatePageMutation,
-  UpdatePageMutationVariables
->;
+  update_posts_by_pk(pk_columns: $posts_pk_columns, _set: $posts_set) {
+    __typename
+    id
+  }
+}
+    `;
+export type UpdatePageMutationFn = Apollo.MutationFunction<UpdatePageMutation, UpdatePageMutationVariables>;
 
 /**
  * __useUpdatePageMutation__
@@ -5926,42 +6110,22 @@ export type UpdatePageMutationFn = Apollo.MutationFunction<
  *   },
  * });
  */
-export function useUpdatePageMutation(
-  baseOptions?: ApolloReactHooks.MutationHookOptions<
-    UpdatePageMutation,
-    UpdatePageMutationVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return ApolloReactHooks.useMutation<
-    UpdatePageMutation,
-    UpdatePageMutationVariables
-  >(UpdatePageDocument, options);
-}
-export type UpdatePageMutationHookResult = ReturnType<
-  typeof useUpdatePageMutation
->;
-export type UpdatePageMutationResult =
-  Apollo.MutationResult<UpdatePageMutation>;
-export type UpdatePageMutationOptions = Apollo.BaseMutationOptions<
-  UpdatePageMutation,
-  UpdatePageMutationVariables
->;
+export function useUpdatePageMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<UpdatePageMutation, UpdatePageMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return ApolloReactHooks.useMutation<UpdatePageMutation, UpdatePageMutationVariables>(UpdatePageDocument, options);
+      }
+export type UpdatePageMutationHookResult = ReturnType<typeof useUpdatePageMutation>;
+export type UpdatePageMutationResult = Apollo.MutationResult<UpdatePageMutation>;
+export type UpdatePageMutationOptions = Apollo.BaseMutationOptions<UpdatePageMutation, UpdatePageMutationVariables>;
 export const UpdatePostDocument = gql`
-  mutation updatePost(
-    $pk_columns: posts_pk_columns_input!
-    $_set: posts_set_input
-  ) {
-    update_posts_by_pk(pk_columns: $pk_columns, _set: $_set) {
-      __typename
-      id
-    }
+    mutation updatePost($pk_columns: posts_pk_columns_input!, $_set: posts_set_input) {
+  update_posts_by_pk(pk_columns: $pk_columns, _set: $_set) {
+    __typename
+    id
   }
-`;
-export type UpdatePostMutationFn = Apollo.MutationFunction<
-  UpdatePostMutation,
-  UpdatePostMutationVariables
->;
+}
+    `;
+export type UpdatePostMutationFn = Apollo.MutationFunction<UpdatePostMutation, UpdatePostMutationVariables>;
 
 /**
  * __useUpdatePostMutation__
@@ -5981,44 +6145,30 @@ export type UpdatePostMutationFn = Apollo.MutationFunction<
  *   },
  * });
  */
-export function useUpdatePostMutation(
-  baseOptions?: ApolloReactHooks.MutationHookOptions<
-    UpdatePostMutation,
-    UpdatePostMutationVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return ApolloReactHooks.useMutation<
-    UpdatePostMutation,
-    UpdatePostMutationVariables
-  >(UpdatePostDocument, options);
-}
-export type UpdatePostMutationHookResult = ReturnType<
-  typeof useUpdatePostMutation
->;
-export type UpdatePostMutationResult =
-  Apollo.MutationResult<UpdatePostMutation>;
-export type UpdatePostMutationOptions = Apollo.BaseMutationOptions<
-  UpdatePostMutation,
-  UpdatePostMutationVariables
->;
-export const ArticleDocument = gql`
-  query article($uuid: uuid!) {
-    articles_by_pk(post_id: $uuid) {
-      __typename
-      post_id
-      post {
-        __typename
-        title
-        description
-        slug
+export function useUpdatePostMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<UpdatePostMutation, UpdatePostMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return ApolloReactHooks.useMutation<UpdatePostMutation, UpdatePostMutationVariables>(UpdatePostDocument, options);
       }
-      body
-      excerpt
-      state
+export type UpdatePostMutationHookResult = ReturnType<typeof useUpdatePostMutation>;
+export type UpdatePostMutationResult = Apollo.MutationResult<UpdatePostMutation>;
+export type UpdatePostMutationOptions = Apollo.BaseMutationOptions<UpdatePostMutation, UpdatePostMutationVariables>;
+export const ArticleDocument = gql`
+    query article($uuid: uuid!) {
+  articles_by_pk(post_id: $uuid) {
+    __typename
+    post_id
+    post {
+      __typename
+      title
+      description
+      slug
     }
+    body
+    excerpt
+    state
   }
-`;
+}
+    `;
 
 /**
  * __useArticleQuery__
@@ -6036,52 +6186,33 @@ export const ArticleDocument = gql`
  *   },
  * });
  */
-export function useArticleQuery(
-  baseOptions: ApolloReactHooks.QueryHookOptions<
-    ArticleQuery,
-    ArticleQueryVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return ApolloReactHooks.useQuery<ArticleQuery, ArticleQueryVariables>(
-    ArticleDocument,
-    options
-  );
-}
-export function useArticleLazyQuery(
-  baseOptions?: ApolloReactHooks.LazyQueryHookOptions<
-    ArticleQuery,
-    ArticleQueryVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return ApolloReactHooks.useLazyQuery<ArticleQuery, ArticleQueryVariables>(
-    ArticleDocument,
-    options
-  );
-}
+export function useArticleQuery(baseOptions: ApolloReactHooks.QueryHookOptions<ArticleQuery, ArticleQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return ApolloReactHooks.useQuery<ArticleQuery, ArticleQueryVariables>(ArticleDocument, options);
+      }
+export function useArticleLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<ArticleQuery, ArticleQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return ApolloReactHooks.useLazyQuery<ArticleQuery, ArticleQueryVariables>(ArticleDocument, options);
+        }
 export type ArticleQueryHookResult = ReturnType<typeof useArticleQuery>;
 export type ArticleLazyQueryHookResult = ReturnType<typeof useArticleLazyQuery>;
-export type ArticleQueryResult = Apollo.QueryResult<
-  ArticleQuery,
-  ArticleQueryVariables
->;
+export type ArticleQueryResult = Apollo.QueryResult<ArticleQuery, ArticleQueryVariables>;
 export const ArticlesDocument = gql`
-  query articles($where: articles_bool_exp) {
-    articles(where: $where) {
+    query articles($where: articles_bool_exp) {
+  articles(where: $where) {
+    __typename
+    post_id
+    state
+    post {
       __typename
-      post_id
-      state
-      post {
-        __typename
-        title
-        type
-        slug
-        created_at
-      }
+      title
+      type
+      slug
+      created_at
     }
   }
-`;
+}
+    `;
 
 /**
  * __useArticlesQuery__
@@ -6099,48 +6230,27 @@ export const ArticlesDocument = gql`
  *   },
  * });
  */
-export function useArticlesQuery(
-  baseOptions?: ApolloReactHooks.QueryHookOptions<
-    ArticlesQuery,
-    ArticlesQueryVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return ApolloReactHooks.useQuery<ArticlesQuery, ArticlesQueryVariables>(
-    ArticlesDocument,
-    options
-  );
-}
-export function useArticlesLazyQuery(
-  baseOptions?: ApolloReactHooks.LazyQueryHookOptions<
-    ArticlesQuery,
-    ArticlesQueryVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return ApolloReactHooks.useLazyQuery<ArticlesQuery, ArticlesQueryVariables>(
-    ArticlesDocument,
-    options
-  );
-}
-export type ArticlesQueryHookResult = ReturnType<typeof useArticlesQuery>;
-export type ArticlesLazyQueryHookResult = ReturnType<
-  typeof useArticlesLazyQuery
->;
-export type ArticlesQueryResult = Apollo.QueryResult<
-  ArticlesQuery,
-  ArticlesQueryVariables
->;
-export const ArticlesAggregateDocument = gql`
-  query articlesAggregate($where: articles_bool_exp) {
-    articles_aggregate(where: $where) {
-      aggregate {
-        __typename
-        count
+export function useArticlesQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<ArticlesQuery, ArticlesQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return ApolloReactHooks.useQuery<ArticlesQuery, ArticlesQueryVariables>(ArticlesDocument, options);
       }
+export function useArticlesLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<ArticlesQuery, ArticlesQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return ApolloReactHooks.useLazyQuery<ArticlesQuery, ArticlesQueryVariables>(ArticlesDocument, options);
+        }
+export type ArticlesQueryHookResult = ReturnType<typeof useArticlesQuery>;
+export type ArticlesLazyQueryHookResult = ReturnType<typeof useArticlesLazyQuery>;
+export type ArticlesQueryResult = Apollo.QueryResult<ArticlesQuery, ArticlesQueryVariables>;
+export const ArticlesAggregateDocument = gql`
+    query articlesAggregate($where: articles_bool_exp) {
+  articles_aggregate(where: $where) {
+    aggregate {
+      __typename
+      count
     }
   }
-`;
+}
+    `;
 
 /**
  * __useArticlesAggregateQuery__
@@ -6158,56 +6268,33 @@ export const ArticlesAggregateDocument = gql`
  *   },
  * });
  */
-export function useArticlesAggregateQuery(
-  baseOptions?: ApolloReactHooks.QueryHookOptions<
-    ArticlesAggregateQuery,
-    ArticlesAggregateQueryVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return ApolloReactHooks.useQuery<
-    ArticlesAggregateQuery,
-    ArticlesAggregateQueryVariables
-  >(ArticlesAggregateDocument, options);
-}
-export function useArticlesAggregateLazyQuery(
-  baseOptions?: ApolloReactHooks.LazyQueryHookOptions<
-    ArticlesAggregateQuery,
-    ArticlesAggregateQueryVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return ApolloReactHooks.useLazyQuery<
-    ArticlesAggregateQuery,
-    ArticlesAggregateQueryVariables
-  >(ArticlesAggregateDocument, options);
-}
-export type ArticlesAggregateQueryHookResult = ReturnType<
-  typeof useArticlesAggregateQuery
->;
-export type ArticlesAggregateLazyQueryHookResult = ReturnType<
-  typeof useArticlesAggregateLazyQuery
->;
-export type ArticlesAggregateQueryResult = Apollo.QueryResult<
-  ArticlesAggregateQuery,
-  ArticlesAggregateQueryVariables
->;
-export const PageDocument = gql`
-  query page($uuid: uuid!) {
-    pages_by_pk(post_id: $uuid) {
-      __typename
-      post_id
-      post {
-        __typename
-        title
-        description
-        slug
+export function useArticlesAggregateQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<ArticlesAggregateQuery, ArticlesAggregateQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return ApolloReactHooks.useQuery<ArticlesAggregateQuery, ArticlesAggregateQueryVariables>(ArticlesAggregateDocument, options);
       }
-      body
-      state
+export function useArticlesAggregateLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<ArticlesAggregateQuery, ArticlesAggregateQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return ApolloReactHooks.useLazyQuery<ArticlesAggregateQuery, ArticlesAggregateQueryVariables>(ArticlesAggregateDocument, options);
+        }
+export type ArticlesAggregateQueryHookResult = ReturnType<typeof useArticlesAggregateQuery>;
+export type ArticlesAggregateLazyQueryHookResult = ReturnType<typeof useArticlesAggregateLazyQuery>;
+export type ArticlesAggregateQueryResult = Apollo.QueryResult<ArticlesAggregateQuery, ArticlesAggregateQueryVariables>;
+export const PageDocument = gql`
+    query page($uuid: uuid!) {
+  pages_by_pk(post_id: $uuid) {
+    __typename
+    post_id
+    post {
+      __typename
+      title
+      description
+      slug
     }
+    body
+    state
   }
-`;
+}
+    `;
 
 /**
  * __usePageQuery__
@@ -6225,46 +6312,33 @@ export const PageDocument = gql`
  *   },
  * });
  */
-export function usePageQuery(
-  baseOptions: ApolloReactHooks.QueryHookOptions<PageQuery, PageQueryVariables>
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return ApolloReactHooks.useQuery<PageQuery, PageQueryVariables>(
-    PageDocument,
-    options
-  );
-}
-export function usePageLazyQuery(
-  baseOptions?: ApolloReactHooks.LazyQueryHookOptions<
-    PageQuery,
-    PageQueryVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return ApolloReactHooks.useLazyQuery<PageQuery, PageQueryVariables>(
-    PageDocument,
-    options
-  );
-}
+export function usePageQuery(baseOptions: ApolloReactHooks.QueryHookOptions<PageQuery, PageQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return ApolloReactHooks.useQuery<PageQuery, PageQueryVariables>(PageDocument, options);
+      }
+export function usePageLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<PageQuery, PageQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return ApolloReactHooks.useLazyQuery<PageQuery, PageQueryVariables>(PageDocument, options);
+        }
 export type PageQueryHookResult = ReturnType<typeof usePageQuery>;
 export type PageLazyQueryHookResult = ReturnType<typeof usePageLazyQuery>;
 export type PageQueryResult = Apollo.QueryResult<PageQuery, PageQueryVariables>;
 export const PagesDocument = gql`
-  query pages($where: pages_bool_exp) {
-    pages(where: $where) {
+    query pages($where: pages_bool_exp) {
+  pages(where: $where) {
+    __typename
+    post_id
+    body
+    post {
       __typename
-      post_id
-      body
-      post {
-        __typename
-        title
-        type
-        slug
-        created_at
-      }
+      title
+      type
+      slug
+      created_at
     }
   }
-`;
+}
+    `;
 
 /**
  * __usePagesQuery__
@@ -6282,46 +6356,27 @@ export const PagesDocument = gql`
  *   },
  * });
  */
-export function usePagesQuery(
-  baseOptions?: ApolloReactHooks.QueryHookOptions<
-    PagesQuery,
-    PagesQueryVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return ApolloReactHooks.useQuery<PagesQuery, PagesQueryVariables>(
-    PagesDocument,
-    options
-  );
-}
-export function usePagesLazyQuery(
-  baseOptions?: ApolloReactHooks.LazyQueryHookOptions<
-    PagesQuery,
-    PagesQueryVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return ApolloReactHooks.useLazyQuery<PagesQuery, PagesQueryVariables>(
-    PagesDocument,
-    options
-  );
-}
+export function usePagesQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<PagesQuery, PagesQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return ApolloReactHooks.useQuery<PagesQuery, PagesQueryVariables>(PagesDocument, options);
+      }
+export function usePagesLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<PagesQuery, PagesQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return ApolloReactHooks.useLazyQuery<PagesQuery, PagesQueryVariables>(PagesDocument, options);
+        }
 export type PagesQueryHookResult = ReturnType<typeof usePagesQuery>;
 export type PagesLazyQueryHookResult = ReturnType<typeof usePagesLazyQuery>;
-export type PagesQueryResult = Apollo.QueryResult<
-  PagesQuery,
-  PagesQueryVariables
->;
+export type PagesQueryResult = Apollo.QueryResult<PagesQuery, PagesQueryVariables>;
 export const PagesAggregateDocument = gql`
-  query pagesAggregate($where: pages_bool_exp) {
-    pages_aggregate(where: $where) {
-      aggregate {
-        __typename
-        count
-      }
+    query pagesAggregate($where: pages_bool_exp) {
+  pages_aggregate(where: $where) {
+    aggregate {
+      __typename
+      count
     }
   }
-`;
+}
+    `;
 
 /**
  * __usePagesAggregateQuery__
@@ -6339,56 +6394,33 @@ export const PagesAggregateDocument = gql`
  *   },
  * });
  */
-export function usePagesAggregateQuery(
-  baseOptions?: ApolloReactHooks.QueryHookOptions<
-    PagesAggregateQuery,
-    PagesAggregateQueryVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return ApolloReactHooks.useQuery<
-    PagesAggregateQuery,
-    PagesAggregateQueryVariables
-  >(PagesAggregateDocument, options);
-}
-export function usePagesAggregateLazyQuery(
-  baseOptions?: ApolloReactHooks.LazyQueryHookOptions<
-    PagesAggregateQuery,
-    PagesAggregateQueryVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return ApolloReactHooks.useLazyQuery<
-    PagesAggregateQuery,
-    PagesAggregateQueryVariables
-  >(PagesAggregateDocument, options);
-}
-export type PagesAggregateQueryHookResult = ReturnType<
-  typeof usePagesAggregateQuery
->;
-export type PagesAggregateLazyQueryHookResult = ReturnType<
-  typeof usePagesAggregateLazyQuery
->;
-export type PagesAggregateQueryResult = Apollo.QueryResult<
-  PagesAggregateQuery,
-  PagesAggregateQueryVariables
->;
-export const TermTaxonomiesDocument = gql`
-  query termTaxonomies($where: term_taxonomies_bool_exp) {
-    term_taxonomies(where: $where) {
-      __typename
-      taxonomy
-      description
-      term_slug
-      parent_slug
-      term {
-        __typename
-        name
-        slug
+export function usePagesAggregateQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<PagesAggregateQuery, PagesAggregateQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return ApolloReactHooks.useQuery<PagesAggregateQuery, PagesAggregateQueryVariables>(PagesAggregateDocument, options);
       }
+export function usePagesAggregateLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<PagesAggregateQuery, PagesAggregateQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return ApolloReactHooks.useLazyQuery<PagesAggregateQuery, PagesAggregateQueryVariables>(PagesAggregateDocument, options);
+        }
+export type PagesAggregateQueryHookResult = ReturnType<typeof usePagesAggregateQuery>;
+export type PagesAggregateLazyQueryHookResult = ReturnType<typeof usePagesAggregateLazyQuery>;
+export type PagesAggregateQueryResult = Apollo.QueryResult<PagesAggregateQuery, PagesAggregateQueryVariables>;
+export const TermTaxonomiesDocument = gql`
+    query termTaxonomies($where: term_taxonomies_bool_exp) {
+  term_taxonomies(where: $where) {
+    __typename
+    taxonomy
+    description
+    term_slug
+    parent_slug
+    term {
+      __typename
+      name
+      slug
     }
   }
-`;
+}
+    `;
 
 /**
  * __useTermTaxonomiesQuery__
@@ -6406,50 +6438,27 @@ export const TermTaxonomiesDocument = gql`
  *   },
  * });
  */
-export function useTermTaxonomiesQuery(
-  baseOptions?: ApolloReactHooks.QueryHookOptions<
-    TermTaxonomiesQuery,
-    TermTaxonomiesQueryVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return ApolloReactHooks.useQuery<
-    TermTaxonomiesQuery,
-    TermTaxonomiesQueryVariables
-  >(TermTaxonomiesDocument, options);
-}
-export function useTermTaxonomiesLazyQuery(
-  baseOptions?: ApolloReactHooks.LazyQueryHookOptions<
-    TermTaxonomiesQuery,
-    TermTaxonomiesQueryVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return ApolloReactHooks.useLazyQuery<
-    TermTaxonomiesQuery,
-    TermTaxonomiesQueryVariables
-  >(TermTaxonomiesDocument, options);
-}
-export type TermTaxonomiesQueryHookResult = ReturnType<
-  typeof useTermTaxonomiesQuery
->;
-export type TermTaxonomiesLazyQueryHookResult = ReturnType<
-  typeof useTermTaxonomiesLazyQuery
->;
-export type TermTaxonomiesQueryResult = Apollo.QueryResult<
-  TermTaxonomiesQuery,
-  TermTaxonomiesQueryVariables
->;
+export function useTermTaxonomiesQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<TermTaxonomiesQuery, TermTaxonomiesQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return ApolloReactHooks.useQuery<TermTaxonomiesQuery, TermTaxonomiesQueryVariables>(TermTaxonomiesDocument, options);
+      }
+export function useTermTaxonomiesLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<TermTaxonomiesQuery, TermTaxonomiesQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return ApolloReactHooks.useLazyQuery<TermTaxonomiesQuery, TermTaxonomiesQueryVariables>(TermTaxonomiesDocument, options);
+        }
+export type TermTaxonomiesQueryHookResult = ReturnType<typeof useTermTaxonomiesQuery>;
+export type TermTaxonomiesLazyQueryHookResult = ReturnType<typeof useTermTaxonomiesLazyQuery>;
+export type TermTaxonomiesQueryResult = Apollo.QueryResult<TermTaxonomiesQuery, TermTaxonomiesQueryVariables>;
 export const TermTaxonomiesTreeDocument = gql`
-  query termTaxonomiesTree($where: term_taxonomies_tree_bool_exp) {
-    term_taxonomies_tree(where: $where) {
-      __typename
-      name
-      slug
-      parent_slug
-    }
+    query termTaxonomiesTree($where: term_taxonomies_tree_bool_exp) {
+  term_taxonomies_tree(where: $where) {
+    __typename
+    name
+    slug
+    parent_slug
   }
-`;
+}
+    `;
 
 /**
  * __useTermTaxonomiesTreeQuery__
@@ -6467,37 +6476,14 @@ export const TermTaxonomiesTreeDocument = gql`
  *   },
  * });
  */
-export function useTermTaxonomiesTreeQuery(
-  baseOptions?: ApolloReactHooks.QueryHookOptions<
-    TermTaxonomiesTreeQuery,
-    TermTaxonomiesTreeQueryVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return ApolloReactHooks.useQuery<
-    TermTaxonomiesTreeQuery,
-    TermTaxonomiesTreeQueryVariables
-  >(TermTaxonomiesTreeDocument, options);
-}
-export function useTermTaxonomiesTreeLazyQuery(
-  baseOptions?: ApolloReactHooks.LazyQueryHookOptions<
-    TermTaxonomiesTreeQuery,
-    TermTaxonomiesTreeQueryVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return ApolloReactHooks.useLazyQuery<
-    TermTaxonomiesTreeQuery,
-    TermTaxonomiesTreeQueryVariables
-  >(TermTaxonomiesTreeDocument, options);
-}
-export type TermTaxonomiesTreeQueryHookResult = ReturnType<
-  typeof useTermTaxonomiesTreeQuery
->;
-export type TermTaxonomiesTreeLazyQueryHookResult = ReturnType<
-  typeof useTermTaxonomiesTreeLazyQuery
->;
-export type TermTaxonomiesTreeQueryResult = Apollo.QueryResult<
-  TermTaxonomiesTreeQuery,
-  TermTaxonomiesTreeQueryVariables
->;
+export function useTermTaxonomiesTreeQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<TermTaxonomiesTreeQuery, TermTaxonomiesTreeQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return ApolloReactHooks.useQuery<TermTaxonomiesTreeQuery, TermTaxonomiesTreeQueryVariables>(TermTaxonomiesTreeDocument, options);
+      }
+export function useTermTaxonomiesTreeLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<TermTaxonomiesTreeQuery, TermTaxonomiesTreeQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return ApolloReactHooks.useLazyQuery<TermTaxonomiesTreeQuery, TermTaxonomiesTreeQueryVariables>(TermTaxonomiesTreeDocument, options);
+        }
+export type TermTaxonomiesTreeQueryHookResult = ReturnType<typeof useTermTaxonomiesTreeQuery>;
+export type TermTaxonomiesTreeLazyQueryHookResult = ReturnType<typeof useTermTaxonomiesTreeLazyQuery>;
+export type TermTaxonomiesTreeQueryResult = Apollo.QueryResult<TermTaxonomiesTreeQuery, TermTaxonomiesTreeQueryVariables>;

@@ -983,7 +983,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "article_states_on_conflict",
-        "description": "on conflict condition type for table \"article_states\"",
+        "description": "on_conflict condition type for table \"article_states\"",
         "fields": null,
         "inputFields": [
           {
@@ -1755,7 +1755,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "articles_on_conflict",
-        "description": "on conflict condition type for table \"articles\"",
+        "description": "on_conflict condition type for table \"articles\"",
         "fields": null,
         "inputFields": [
           {
@@ -2391,7 +2391,7 @@
           },
           {
             "name": "on_conflict",
-            "description": "on conflict condition",
+            "description": "upsert condition",
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "auth_account_providers_on_conflict",
@@ -3087,7 +3087,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "auth_account_providers_on_conflict",
-        "description": "on conflict condition type for table \"auth.account_providers\"",
+        "description": "on_conflict condition type for table \"auth.account_providers\"",
         "fields": null,
         "inputFields": [
           {
@@ -3775,7 +3775,7 @@
           },
           {
             "name": "on_conflict",
-            "description": "on conflict condition",
+            "description": "upsert condition",
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "auth_account_roles_on_conflict",
@@ -4321,7 +4321,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "auth_account_roles_on_conflict",
-        "description": "on conflict condition type for table \"auth.account_roles\"",
+        "description": "on_conflict condition type for table \"auth.account_roles\"",
         "fields": null,
         "inputFields": [
           {
@@ -5711,7 +5711,7 @@
           },
           {
             "name": "on_conflict",
-            "description": "on conflict condition",
+            "description": "upsert condition",
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "auth_accounts_on_conflict",
@@ -7039,7 +7039,7 @@
           },
           {
             "name": "on_conflict",
-            "description": "on conflict condition",
+            "description": "upsert condition",
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "auth_accounts_on_conflict",
@@ -7057,7 +7057,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "auth_accounts_on_conflict",
-        "description": "on conflict condition type for table \"auth.accounts\"",
+        "description": "on_conflict condition type for table \"auth.accounts\"",
         "fields": null,
         "inputFields": [
           {
@@ -8423,7 +8423,7 @@
           },
           {
             "name": "on_conflict",
-            "description": "on conflict condition",
+            "description": "upsert condition",
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "auth_providers_on_conflict",
@@ -8441,7 +8441,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "auth_providers_on_conflict",
-        "description": "on conflict condition type for table \"auth.providers\"",
+        "description": "on_conflict condition type for table \"auth.providers\"",
         "fields": null,
         "inputFields": [
           {
@@ -8921,7 +8921,7 @@
           },
           {
             "name": "on_conflict",
-            "description": "on conflict condition",
+            "description": "upsert condition",
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "auth_refresh_tokens_on_conflict",
@@ -9437,7 +9437,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "auth_refresh_tokens_on_conflict",
-        "description": "on conflict condition type for table \"auth.refresh_tokens\"",
+        "description": "on_conflict condition type for table \"auth.refresh_tokens\"",
         "fields": null,
         "inputFields": [
           {
@@ -10554,7 +10554,7 @@
           },
           {
             "name": "on_conflict",
-            "description": "on conflict condition",
+            "description": "upsert condition",
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "auth_roles_on_conflict",
@@ -10572,7 +10572,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "auth_roles_on_conflict",
-        "description": "on conflict condition type for table \"auth.roles\"",
+        "description": "on_conflict condition type for table \"auth.roles\"",
         "fields": null,
         "inputFields": [
           {
@@ -11623,7 +11623,7 @@
           },
           {
             "name": "on_conflict",
-            "description": "on conflict condition",
+            "description": "upsert condition",
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "comments_on_conflict",
@@ -12597,7 +12597,7 @@
           },
           {
             "name": "on_conflict",
-            "description": "on conflict condition",
+            "description": "upsert condition",
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "comments_on_conflict",
@@ -12615,7 +12615,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "comments_on_conflict",
-        "description": "on conflict condition type for table \"comments\"",
+        "description": "on_conflict condition type for table \"comments\"",
         "fields": null,
         "inputFields": [
           {
@@ -13141,10 +13141,45 @@
       },
       {
         "kind": "INPUT_OBJECT",
+        "name": "jsonb_cast_exp",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "String",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "String_comparison_exp",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
         "name": "jsonb_comparison_exp",
         "description": "Boolean expression to compare columns of type \"jsonb\". All fields are combined with logical 'AND'.",
         "fields": null,
         "inputFields": [
+          {
+            "name": "_cast",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "jsonb_cast_exp",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
           {
             "name": "_contained_in",
             "description": "is the column contained in the given json value",
@@ -14429,7 +14464,7 @@
               },
               {
                 "name": "on_conflict",
-                "description": "on conflict condition",
+                "description": "upsert condition",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "article_states_on_conflict",
@@ -14470,7 +14505,7 @@
               },
               {
                 "name": "on_conflict",
-                "description": "on conflict condition",
+                "description": "upsert condition",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "article_states_on_conflict",
@@ -14519,7 +14554,7 @@
               },
               {
                 "name": "on_conflict",
-                "description": "on conflict condition",
+                "description": "upsert condition",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "articles_on_conflict",
@@ -14560,7 +14595,7 @@
               },
               {
                 "name": "on_conflict",
-                "description": "on conflict condition",
+                "description": "upsert condition",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "articles_on_conflict",
@@ -14609,7 +14644,7 @@
               },
               {
                 "name": "on_conflict",
-                "description": "on conflict condition",
+                "description": "upsert condition",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "auth_account_providers_on_conflict",
@@ -14650,7 +14685,7 @@
               },
               {
                 "name": "on_conflict",
-                "description": "on conflict condition",
+                "description": "upsert condition",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "auth_account_providers_on_conflict",
@@ -14699,7 +14734,7 @@
               },
               {
                 "name": "on_conflict",
-                "description": "on conflict condition",
+                "description": "upsert condition",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "auth_account_roles_on_conflict",
@@ -14740,7 +14775,7 @@
               },
               {
                 "name": "on_conflict",
-                "description": "on conflict condition",
+                "description": "upsert condition",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "auth_account_roles_on_conflict",
@@ -14789,7 +14824,7 @@
               },
               {
                 "name": "on_conflict",
-                "description": "on conflict condition",
+                "description": "upsert condition",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "auth_accounts_on_conflict",
@@ -14830,7 +14865,7 @@
               },
               {
                 "name": "on_conflict",
-                "description": "on conflict condition",
+                "description": "upsert condition",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "auth_accounts_on_conflict",
@@ -14879,7 +14914,7 @@
               },
               {
                 "name": "on_conflict",
-                "description": "on conflict condition",
+                "description": "upsert condition",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "auth_providers_on_conflict",
@@ -14920,7 +14955,7 @@
               },
               {
                 "name": "on_conflict",
-                "description": "on conflict condition",
+                "description": "upsert condition",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "auth_providers_on_conflict",
@@ -14969,7 +15004,7 @@
               },
               {
                 "name": "on_conflict",
-                "description": "on conflict condition",
+                "description": "upsert condition",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "auth_refresh_tokens_on_conflict",
@@ -15010,7 +15045,7 @@
               },
               {
                 "name": "on_conflict",
-                "description": "on conflict condition",
+                "description": "upsert condition",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "auth_refresh_tokens_on_conflict",
@@ -15059,7 +15094,7 @@
               },
               {
                 "name": "on_conflict",
-                "description": "on conflict condition",
+                "description": "upsert condition",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "auth_roles_on_conflict",
@@ -15100,7 +15135,7 @@
               },
               {
                 "name": "on_conflict",
-                "description": "on conflict condition",
+                "description": "upsert condition",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "auth_roles_on_conflict",
@@ -15149,7 +15184,7 @@
               },
               {
                 "name": "on_conflict",
-                "description": "on conflict condition",
+                "description": "upsert condition",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "comments_on_conflict",
@@ -15190,7 +15225,7 @@
               },
               {
                 "name": "on_conflict",
-                "description": "on conflict condition",
+                "description": "upsert condition",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "comments_on_conflict",
@@ -15239,7 +15274,7 @@
               },
               {
                 "name": "on_conflict",
-                "description": "on conflict condition",
+                "description": "upsert condition",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "page_states_on_conflict",
@@ -15280,7 +15315,7 @@
               },
               {
                 "name": "on_conflict",
-                "description": "on conflict condition",
+                "description": "upsert condition",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "page_states_on_conflict",
@@ -15329,7 +15364,7 @@
               },
               {
                 "name": "on_conflict",
-                "description": "on conflict condition",
+                "description": "upsert condition",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "pages_on_conflict",
@@ -15370,7 +15405,7 @@
               },
               {
                 "name": "on_conflict",
-                "description": "on conflict condition",
+                "description": "upsert condition",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "pages_on_conflict",
@@ -15419,7 +15454,7 @@
               },
               {
                 "name": "on_conflict",
-                "description": "on conflict condition",
+                "description": "upsert condition",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "post_types_on_conflict",
@@ -15460,7 +15495,7 @@
               },
               {
                 "name": "on_conflict",
-                "description": "on conflict condition",
+                "description": "upsert condition",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "post_types_on_conflict",
@@ -15509,7 +15544,7 @@
               },
               {
                 "name": "on_conflict",
-                "description": "on conflict condition",
+                "description": "upsert condition",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "posts_on_conflict",
@@ -15550,7 +15585,7 @@
               },
               {
                 "name": "on_conflict",
-                "description": "on conflict condition",
+                "description": "upsert condition",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "posts_on_conflict",
@@ -15599,7 +15634,7 @@
               },
               {
                 "name": "on_conflict",
-                "description": "on conflict condition",
+                "description": "upsert condition",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "taxonomies_on_conflict",
@@ -15640,7 +15675,7 @@
               },
               {
                 "name": "on_conflict",
-                "description": "on conflict condition",
+                "description": "upsert condition",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "taxonomies_on_conflict",
@@ -15689,7 +15724,7 @@
               },
               {
                 "name": "on_conflict",
-                "description": "on conflict condition",
+                "description": "upsert condition",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "term_relationships_on_conflict",
@@ -15730,7 +15765,7 @@
               },
               {
                 "name": "on_conflict",
-                "description": "on conflict condition",
+                "description": "upsert condition",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "term_relationships_on_conflict",
@@ -15779,7 +15814,7 @@
               },
               {
                 "name": "on_conflict",
-                "description": "on conflict condition",
+                "description": "upsert condition",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "term_taxonomies_on_conflict",
@@ -15820,7 +15855,7 @@
               },
               {
                 "name": "on_conflict",
-                "description": "on conflict condition",
+                "description": "upsert condition",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "term_taxonomies_on_conflict",
@@ -15869,7 +15904,7 @@
               },
               {
                 "name": "on_conflict",
-                "description": "on conflict condition",
+                "description": "upsert condition",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "terms_on_conflict",
@@ -15910,7 +15945,7 @@
               },
               {
                 "name": "on_conflict",
-                "description": "on conflict condition",
+                "description": "upsert condition",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "terms_on_conflict",
@@ -15959,7 +15994,7 @@
               },
               {
                 "name": "on_conflict",
-                "description": "on conflict condition",
+                "description": "upsert condition",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "users_on_conflict",
@@ -16000,7 +16035,7 @@
               },
               {
                 "name": "on_conflict",
-                "description": "on conflict condition",
+                "description": "upsert condition",
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "users_on_conflict",
@@ -18476,7 +18511,7 @@
           },
           {
             "name": "on_conflict",
-            "description": "on conflict condition",
+            "description": "upsert condition",
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "page_states_on_conflict",
@@ -18494,7 +18529,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "page_states_on_conflict",
-        "description": "on conflict condition type for table \"page_states\"",
+        "description": "on_conflict condition type for table \"page_states\"",
         "fields": null,
         "inputFields": [
           {
@@ -19314,7 +19349,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "pages_on_conflict",
-        "description": "on conflict condition type for table \"pages\"",
+        "description": "on_conflict condition type for table \"pages\"",
         "fields": null,
         "inputFields": [
           {
@@ -19910,12 +19945,6 @@
             "description": "Page",
             "isDeprecated": false,
             "deprecationReason": null
-          },
-          {
-            "name": "post",
-            "description": "Post",
-            "isDeprecated": false,
-            "deprecationReason": null
           }
         ],
         "possibleTypes": null
@@ -20166,7 +20195,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "post_types_on_conflict",
-        "description": "on conflict condition type for table \"post_types\"",
+        "description": "on_conflict condition type for table \"post_types\"",
         "fields": null,
         "inputFields": [
           {
@@ -21331,7 +21360,7 @@
           },
           {
             "name": "on_conflict",
-            "description": "on conflict condition",
+            "description": "upsert condition",
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "posts_on_conflict",
@@ -21349,7 +21378,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "posts_on_conflict",
-        "description": "on conflict condition type for table \"posts\"",
+        "description": "on_conflict condition type for table \"posts\"",
         "fields": null,
         "inputFields": [
           {
@@ -25096,7 +25125,7 @@
           },
           {
             "name": "term_taxonomies",
-            "description": "fetch data from the table: \"term_taxonomies\"",
+            "description": "An array relationship",
             "args": [
               {
                 "name": "distinct_on",
@@ -29315,7 +29344,7 @@
           },
           {
             "name": "term_taxonomies",
-            "description": "fetch data from the table: \"term_taxonomies\"",
+            "description": "An array relationship",
             "args": [
               {
                 "name": "distinct_on",
@@ -30205,7 +30234,7 @@
           },
           {
             "name": "term_taxonomies",
-            "description": "fetch data from the table: \"term_taxonomies\"",
+            "description": "An array relationship",
             "args": [
               {
                 "name": "distinct_on",
@@ -30910,7 +30939,7 @@
           },
           {
             "name": "on_conflict",
-            "description": "on conflict condition",
+            "description": "upsert condition",
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "taxonomies_on_conflict",
@@ -30928,7 +30957,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "taxonomies_on_conflict",
-        "description": "on conflict condition type for table \"taxonomies\"",
+        "description": "on_conflict condition type for table \"taxonomies\"",
         "fields": null,
         "inputFields": [
           {
@@ -31616,7 +31645,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "term_relationships_on_conflict",
-        "description": "on conflict condition type for table \"term_relationships\"",
+        "description": "on_conflict condition type for table \"term_relationships\"",
         "fields": null,
         "inputFields": [
           {
@@ -32200,7 +32229,7 @@
           },
           {
             "name": "on_conflict",
-            "description": "on conflict condition",
+            "description": "upsert condition",
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "term_taxonomies_on_conflict",
@@ -32908,7 +32937,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "term_taxonomies_on_conflict",
-        "description": "on conflict condition type for table \"term_taxonomies\"",
+        "description": "on_conflict condition type for table \"term_taxonomies\"",
         "fields": null,
         "inputFields": [
           {
@@ -34476,7 +34505,7 @@
           },
           {
             "name": "on_conflict",
-            "description": "on conflict condition",
+            "description": "upsert condition",
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "terms_on_conflict",
@@ -34494,7 +34523,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "terms_on_conflict",
-        "description": "on conflict condition type for table \"terms\"",
+        "description": "on_conflict condition type for table \"terms\"",
         "fields": null,
         "inputFields": [
           {
@@ -35741,7 +35770,7 @@
           },
           {
             "name": "on_conflict",
-            "description": "on conflict condition",
+            "description": "upsert condition",
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "users_on_conflict",
@@ -35759,7 +35788,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "users_on_conflict",
-        "description": "on conflict condition type for table \"users\"",
+        "description": "on_conflict condition type for table \"users\"",
         "fields": null,
         "inputFields": [
           {

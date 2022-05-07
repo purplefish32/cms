@@ -1,0 +1,13 @@
+table:
+  name: articles
+  schema: public
+object_relationships:
+- name: post
+  using:
+    manual_configuration:
+      column_mapping:
+        post_id: id
+      insertion_order: null
+      remote_table:
+        name: posts
+        schema: public

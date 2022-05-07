@@ -30,7 +30,8 @@
     "tailwindcss",
     "timestamptz",
     "uncategorized",
-    "unfetch"
+    "unfetch",
+    "upsert"
   ],
   "[typescriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"

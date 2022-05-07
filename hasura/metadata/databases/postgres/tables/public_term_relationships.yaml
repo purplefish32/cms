@@ -11,9 +11,6 @@ object_relationships:
       remote_table:
         name: posts
         schema: public
-- name: term
-  using:
-    foreign_key_constraint_on: term_id
 - name: user
   using:
     manual_configuration:
@@ -23,3 +20,7 @@ object_relationships:
       remote_table:
         name: users
         schema: public
+delete_permissions:
+- permission:
+    filter: {}
+  role: user

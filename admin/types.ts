@@ -153,7 +153,7 @@ export type Article_States_Mutation_Response = {
   returning: Array<Article_States>;
 };
 
-/** on conflict condition type for table "article_states" */
+/** on_conflict condition type for table "article_states" */
 export type Article_States_On_Conflict = {
   constraint: Article_States_Constraint;
   update_columns?: Array<Article_States_Update_Column>;
@@ -278,7 +278,7 @@ export type Articles_Mutation_Response = {
   returning: Array<Articles>;
 };
 
-/** on conflict condition type for table "articles" */
+/** on_conflict condition type for table "articles" */
 export type Articles_On_Conflict = {
   constraint: Articles_Constraint;
   update_columns?: Array<Articles_Update_Column>;
@@ -378,7 +378,7 @@ export type Auth_Account_Providers_Aggregate_Order_By = {
 /** input type for inserting array relation for remote table "auth.account_providers" */
 export type Auth_Account_Providers_Arr_Rel_Insert_Input = {
   data: Array<Auth_Account_Providers_Insert_Input>;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: Maybe<Auth_Account_Providers_On_Conflict>;
 };
 
@@ -470,7 +470,7 @@ export type Auth_Account_Providers_Mutation_Response = {
   returning: Array<Auth_Account_Providers>;
 };
 
-/** on conflict condition type for table "auth.account_providers" */
+/** on_conflict condition type for table "auth.account_providers" */
 export type Auth_Account_Providers_On_Conflict = {
   constraint: Auth_Account_Providers_Constraint;
   update_columns?: Array<Auth_Account_Providers_Update_Column>;
@@ -581,7 +581,7 @@ export type Auth_Account_Roles_Aggregate_Order_By = {
 /** input type for inserting array relation for remote table "auth.account_roles" */
 export type Auth_Account_Roles_Arr_Rel_Insert_Input = {
   data: Array<Auth_Account_Roles_Insert_Input>;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: Maybe<Auth_Account_Roles_On_Conflict>;
 };
 
@@ -659,7 +659,7 @@ export type Auth_Account_Roles_Mutation_Response = {
   returning: Array<Auth_Account_Roles>;
 };
 
-/** on conflict condition type for table "auth.account_roles" */
+/** on_conflict condition type for table "auth.account_roles" */
 export type Auth_Account_Roles_On_Conflict = {
   constraint: Auth_Account_Roles_Constraint;
   update_columns?: Array<Auth_Account_Roles_Update_Column>;
@@ -852,7 +852,7 @@ export type Auth_Accounts_Append_Input = {
 /** input type for inserting array relation for remote table "auth.accounts" */
 export type Auth_Accounts_Arr_Rel_Insert_Input = {
   data: Array<Auth_Accounts_Insert_Input>;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: Maybe<Auth_Accounts_On_Conflict>;
 };
 
@@ -1008,11 +1008,11 @@ export type Auth_Accounts_Mutation_Response = {
 /** input type for inserting object relation for remote table "auth.accounts" */
 export type Auth_Accounts_Obj_Rel_Insert_Input = {
   data: Auth_Accounts_Insert_Input;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: Maybe<Auth_Accounts_On_Conflict>;
 };
 
-/** on conflict condition type for table "auth.accounts" */
+/** on_conflict condition type for table "auth.accounts" */
 export type Auth_Accounts_On_Conflict = {
   constraint: Auth_Accounts_Constraint;
   update_columns?: Array<Auth_Accounts_Update_Column>;
@@ -1237,11 +1237,11 @@ export type Auth_Providers_Mutation_Response = {
 /** input type for inserting object relation for remote table "auth.providers" */
 export type Auth_Providers_Obj_Rel_Insert_Input = {
   data: Auth_Providers_Insert_Input;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: Maybe<Auth_Providers_On_Conflict>;
 };
 
-/** on conflict condition type for table "auth.providers" */
+/** on_conflict condition type for table "auth.providers" */
 export type Auth_Providers_On_Conflict = {
   constraint: Auth_Providers_Constraint;
   update_columns?: Array<Auth_Providers_Update_Column>;
@@ -1319,7 +1319,7 @@ export type Auth_Refresh_Tokens_Aggregate_Order_By = {
 /** input type for inserting array relation for remote table "auth.refresh_tokens" */
 export type Auth_Refresh_Tokens_Arr_Rel_Insert_Input = {
   data: Array<Auth_Refresh_Tokens_Insert_Input>;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: Maybe<Auth_Refresh_Tokens_On_Conflict>;
 };
 
@@ -1393,7 +1393,7 @@ export type Auth_Refresh_Tokens_Mutation_Response = {
   returning: Array<Auth_Refresh_Tokens>;
 };
 
-/** on conflict condition type for table "auth.refresh_tokens" */
+/** on_conflict condition type for table "auth.refresh_tokens" */
 export type Auth_Refresh_Tokens_On_Conflict = {
   constraint: Auth_Refresh_Tokens_Constraint;
   update_columns?: Array<Auth_Refresh_Tokens_Update_Column>;
@@ -1569,11 +1569,11 @@ export type Auth_Roles_Mutation_Response = {
 /** input type for inserting object relation for remote table "auth.roles" */
 export type Auth_Roles_Obj_Rel_Insert_Input = {
   data: Auth_Roles_Insert_Input;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: Maybe<Auth_Roles_On_Conflict>;
 };
 
-/** on conflict condition type for table "auth.roles" */
+/** on_conflict condition type for table "auth.roles" */
 export type Auth_Roles_On_Conflict = {
   constraint: Auth_Roles_Constraint;
   update_columns?: Array<Auth_Roles_Update_Column>;
@@ -1728,7 +1728,7 @@ export type Comments_Append_Input = {
 /** input type for inserting array relation for remote table "comments" */
 export type Comments_Arr_Rel_Insert_Input = {
   data: Array<Comments_Insert_Input>;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: Maybe<Comments_On_Conflict>;
 };
 
@@ -1850,11 +1850,11 @@ export type Comments_Mutation_Response = {
 /** input type for inserting object relation for remote table "comments" */
 export type Comments_Obj_Rel_Insert_Input = {
   data: Comments_Insert_Input;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: Maybe<Comments_On_Conflict>;
 };
 
-/** on conflict condition type for table "comments" */
+/** on_conflict condition type for table "comments" */
 export type Comments_On_Conflict = {
   constraint: Comments_Constraint;
   update_columns?: Array<Comments_Update_Column>;
@@ -1945,8 +1945,13 @@ export enum Comments_Update_Column {
 }
 
 
+export type Jsonb_Cast_Exp = {
+  String?: Maybe<String_Comparison_Exp>;
+};
+
 /** Boolean expression to compare columns of type "jsonb". All fields are combined with logical 'AND'. */
 export type Jsonb_Comparison_Exp = {
+  _cast?: Maybe<Jsonb_Cast_Exp>;
   /** is the column contained in the given json value */
   _contained_in?: Maybe<Scalars['jsonb']>;
   /** does the column contain the given json value at the top level */
@@ -3047,11 +3052,11 @@ export type Page_States_Mutation_Response = {
 /** input type for inserting object relation for remote table "page_states" */
 export type Page_States_Obj_Rel_Insert_Input = {
   data: Page_States_Insert_Input;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: Maybe<Page_States_On_Conflict>;
 };
 
-/** on conflict condition type for table "page_states" */
+/** on_conflict condition type for table "page_states" */
 export type Page_States_On_Conflict = {
   constraint: Page_States_Constraint;
   update_columns?: Array<Page_States_Update_Column>;
@@ -3180,7 +3185,7 @@ export type Pages_Mutation_Response = {
   returning: Array<Pages>;
 };
 
-/** on conflict condition type for table "pages" */
+/** on_conflict condition type for table "pages" */
 export type Pages_On_Conflict = {
   constraint: Pages_Constraint;
   update_columns?: Array<Pages_Update_Column>;
@@ -3282,9 +3287,7 @@ export enum Post_Types_Enum {
   /** Article */
   Article = 'article',
   /** Page */
-  Page = 'page',
-  /** Post */
-  Post = 'post'
+  Page = 'page'
 }
 
 /** Boolean expression to compare columns of type "post_types_enum". All fields are combined with logical 'AND'. */
@@ -3325,7 +3328,7 @@ export type Post_Types_Mutation_Response = {
   returning: Array<Post_Types>;
 };
 
-/** on conflict condition type for table "post_types" */
+/** on_conflict condition type for table "post_types" */
 export type Post_Types_On_Conflict = {
   constraint: Post_Types_Constraint;
   update_columns?: Array<Post_Types_Update_Column>;
@@ -3492,11 +3495,11 @@ export type Posts_Mutation_Response = {
 /** input type for inserting object relation for remote table "posts" */
 export type Posts_Obj_Rel_Insert_Input = {
   data: Posts_Insert_Input;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: Maybe<Posts_On_Conflict>;
 };
 
-/** on conflict condition type for table "posts" */
+/** on_conflict condition type for table "posts" */
 export type Posts_On_Conflict = {
   constraint: Posts_Constraint;
   update_columns?: Array<Posts_Update_Column>;
@@ -3659,7 +3662,7 @@ export type Query_Root = {
   term_relationships_aggregate: Term_Relationships_Aggregate;
   /** fetch data from the table: "term_relationships" using primary key columns */
   term_relationships_by_pk?: Maybe<Term_Relationships>;
-  /** fetch data from the table: "term_taxonomies" */
+  /** An array relationship */
   term_taxonomies: Array<Term_Taxonomies>;
   /** An aggregate relationship */
   term_taxonomies_aggregate: Term_Taxonomies_Aggregate;
@@ -4207,7 +4210,7 @@ export type Subscription_Root = {
   term_relationships_aggregate: Term_Relationships_Aggregate;
   /** fetch data from the table: "term_relationships" using primary key columns */
   term_relationships_by_pk?: Maybe<Term_Relationships>;
-  /** fetch data from the table: "term_taxonomies" */
+  /** An array relationship */
   term_taxonomies: Array<Term_Taxonomies>;
   /** An aggregate relationship */
   term_taxonomies_aggregate: Term_Taxonomies_Aggregate;
@@ -4667,7 +4670,7 @@ export type Subscription_RootUsers_By_PkArgs = {
 export type Taxonomies = {
   __typename?: 'taxonomies';
   taxonomy: Scalars['String'];
-  /** fetch data from the table: "term_taxonomies" */
+  /** An array relationship */
   term_taxonomies: Array<Term_Taxonomies>;
   /** An aggregate relationship */
   term_taxonomies_aggregate: Term_Taxonomies_Aggregate;
@@ -4776,11 +4779,11 @@ export type Taxonomies_Mutation_Response = {
 /** input type for inserting object relation for remote table "taxonomies" */
 export type Taxonomies_Obj_Rel_Insert_Input = {
   data: Taxonomies_Insert_Input;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: Maybe<Taxonomies_On_Conflict>;
 };
 
-/** on conflict condition type for table "taxonomies" */
+/** on_conflict condition type for table "taxonomies" */
 export type Taxonomies_On_Conflict = {
   constraint: Taxonomies_Constraint;
   update_columns?: Array<Taxonomies_Update_Column>;
@@ -4896,7 +4899,7 @@ export type Term_Relationships_Mutation_Response = {
   returning: Array<Term_Relationships>;
 };
 
-/** on conflict condition type for table "term_relationships" */
+/** on_conflict condition type for table "term_relationships" */
 export type Term_Relationships_On_Conflict = {
   constraint: Term_Relationships_Constraint;
   update_columns?: Array<Term_Relationships_Update_Column>;
@@ -4986,7 +4989,7 @@ export type Term_Taxonomies_Aggregate_Order_By = {
 /** input type for inserting array relation for remote table "term_taxonomies" */
 export type Term_Taxonomies_Arr_Rel_Insert_Input = {
   data: Array<Term_Taxonomies_Insert_Input>;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: Maybe<Term_Taxonomies_On_Conflict>;
 };
 
@@ -5076,7 +5079,7 @@ export type Term_Taxonomies_Mutation_Response = {
   returning: Array<Term_Taxonomies>;
 };
 
-/** on conflict condition type for table "term_taxonomies" */
+/** on_conflict condition type for table "term_taxonomies" */
 export type Term_Taxonomies_On_Conflict = {
   constraint: Term_Taxonomies_Constraint;
   update_columns?: Array<Term_Taxonomies_Update_Column>;
@@ -5321,11 +5324,11 @@ export type Terms_Mutation_Response = {
 /** input type for inserting object relation for remote table "terms" */
 export type Terms_Obj_Rel_Insert_Input = {
   data: Terms_Insert_Input;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: Maybe<Terms_On_Conflict>;
 };
 
-/** on conflict condition type for table "terms" */
+/** on_conflict condition type for table "terms" */
 export type Terms_On_Conflict = {
   constraint: Terms_Constraint;
   update_columns?: Array<Terms_Update_Column>;
@@ -5517,11 +5520,11 @@ export type Users_Mutation_Response = {
 /** input type for inserting object relation for remote table "users" */
 export type Users_Obj_Rel_Insert_Input = {
   data: Users_Insert_Input;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: Maybe<Users_On_Conflict>;
 };
 
-/** on conflict condition type for table "users" */
+/** on_conflict condition type for table "users" */
 export type Users_On_Conflict = {
   constraint: Users_Constraint;
   update_columns?: Array<Users_Update_Column>;

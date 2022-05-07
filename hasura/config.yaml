@@ -1,5 +1,6 @@
 version: 3
-endpoint: http://graphql-engine:8080
+endpoint: http://localhost:8080
+admin_secret: myhasurasecret
 metadata_directory: metadata
 actions:
   kind: synchronous

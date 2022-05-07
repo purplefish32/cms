@@ -1,10 +1,12 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable require-jsdoc */
 import { ApolloProvider } from "@apollo/client";
 import Head from "next/head";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import "rsuite/dist/rsuite.min.css";
 import "semantic-ui-css/semantic.min.css";
 import { useApollo } from "../lib/apolloClient";
-import { AuthProvider } from "../lib/auth.js";
+import { AuthProvider } from "../src/hooks/use-auth";
 import "../styles/globals.css";
 
 export default function App({ Component, pageProps }) {
@@ -16,8 +18,7 @@ export default function App({ Component, pageProps }) {
     }
   }, []);
 
-  const apolloClient = useApollo(pageProps.initialApolloState, "TOKENXXXX");
-  const getLayout = Component.getLayout || ((page) => page);
+  const apolloClient = useApollo(pageProps.initialApolloState, "");
 
   return (
     <AuthProvider>

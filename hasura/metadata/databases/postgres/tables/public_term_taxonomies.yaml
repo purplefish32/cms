@@ -1,0 +1,10 @@
+table:
+  name: term_taxonomies
+  schema: public
+object_relationships:
+- name: taxonomyByTaxonomy
+  using:
+    foreign_key_constraint_on: taxonomy
+- name: term
+  using:
+    foreign_key_constraint_on: term_slug

@@ -1,0 +1,4 @@
+table:
+  name: article_states
+  schema: public
+is_enum: true

@@ -39,7 +39,6 @@ const TermTaxonomiesTable: FunctionComponent<Props> = (props) => {
           <Table.HeaderCell>Name</Table.HeaderCell>
           <Table.HeaderCell>Description</Table.HeaderCell>
           <Table.HeaderCell>Slug</Table.HeaderCell>
-          <Table.HeaderCell>Count</Table.HeaderCell>
         </Table.Row>
       </Table.Header>
       <Table.Body>
@@ -49,7 +48,6 @@ const TermTaxonomiesTable: FunctionComponent<Props> = (props) => {
               <Table.Cell>{term_taxonomy.term.name}</Table.Cell>
               <Table.Cell>{term_taxonomy.description}</Table.Cell>
               <Table.Cell>{term_taxonomy.term.slug}</Table.Cell>
-              {/* <Table.Cell>{term_taxonomy.term.term_relationships_aggregate.aggregate.count}</Table.Cell> */}
             </Table.Row>
           );
         })}
