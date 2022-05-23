@@ -1,71 +1,99 @@
 /* eslint-disable require-jsdoc */
+import {
+  Anchor,
+  Button,
+  Checkbox,
+  Container,
+  Group,
+  Paper,
+  PasswordInput,
+  Text,
+  TextInput,
+  Title,
+} from "@mantine/core";
+import { useForm } from "@mantine/form";
 import router from "next/router";
 import React, { useEffect } from "react";
-import { useForm } from "react-hook-form";
-import { Button, Form } from "semantic-ui-react";
 import { useAuth } from "../src/hooks/use-auth";
 
 export default function Login() {
   const { session, signInEmailPassword } = useAuth();
 
-  useEffect(() => {
-    register("email", { required: true });
-    register("password", { required: true });
-  }, []);
+  const form = useForm({
+    initialValues: {
+      email: "",
+      password: "",
+    },
 
-  const {
-    register,
-    handleSubmit,
-    setValue,
-    trigger,
-    formState: { errors },
-  } = useForm();
-
-  const onSubmit = async (data: { email: string; password: string }) => {
-    const { email, password } = data;
-
-    await signInEmailPassword(email, password);
-  };
+    validate: {
+      email: (value) => (/^\S+@\S+$/.test(value) ? null : "Invalid email"), // TODO Zod
+    },
+  });
 
   useEffect(() => {
     if (session) {
-      console.log(session);
       router.push("/");
     }
   }, [session]);
 
   return (
-    <div>
-      <h1 className={"text-4xl"}>Login</h1>
-      <Form onSubmit={handleSubmit(onSubmit)}>
-        <Form.Field>
-          <Form.Input
-            name="email"
-            type="text"
-            placeholder="Email"
+    <Container size={420} my={40}>
+      <form
+        onSubmit={form.onSubmit(async (values) => {
+          console.log(values);
+          const { email, password } = values;
+          await signInEmailPassword(email, password);
+        })}
+      >
+        <Title
+          align="center"
+          sx={(theme) => ({
+            fontFamily: `Greycliff CF, ${theme.fontFamily}`,
+            fontWeight: 900,
+          })}
+        >
+          Login
+        </Title>
+        <Text color="dimmed" size="sm" align="center" mt={5}>
+          Do not have an account yet?{" "}
+          <Anchor<"a">
+            href="#"
+            size="sm"
+            onClick={(event) => event.preventDefault()} // TODO
+          >
+            Create account
+          </Anchor>
+        </Text>
+
+        <Paper withBorder shadow="md" p={30} mt={30} radius="md">
+          <TextInput
             label="Email"
-            onChange={async (e, { name, value }) => {
-              setValue(name, value);
-              await trigger(e.target.name);
-            }}
-            error={errors.email ? true : false}
+            placeholder="Your email"
+            required
+            {...form.getInputProps("email")}
           />
-        </Form.Field>
-        <Form.Field>
-          <Form.Input
-            name="password"
-            type="password"
-            placeholder="Password"
+          <PasswordInput
             label="Password"
-            onChange={async (e, { name, value }) => {
-              setValue(name, value);
-              await trigger(e.target.name);
-            }}
-            error={errors.password ? true : false}
+            placeholder="Your password"
+            required
+            mt="md"
+            {...form.getInputProps("password")}
           />
-        </Form.Field>
-        <Button type="submit">Login</Button>
-      </Form>
-    </div>
+          <Group position="apart" mt="md">
+            <Checkbox label="Remember me" />
+            <Anchor<"a">
+              onClick={(event) => event.preventDefault()} // TODO
+              href="#"
+              size="sm"
+            >
+              Forgot password?
+            </Anchor>
+          </Group>
+          <Button fullWidth mt="xl" type="submit">
+            Sign in
+          </Button>
+        </Paper>
+      </form>
+    </Container>
   );
 }

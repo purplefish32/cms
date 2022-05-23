@@ -1,4 +1,13 @@
-import React, { createContext, ReactNode, useContext, useState } from "react";
+import { ApolloProvider } from "@apollo/client";
+import router from "next/router";
+import React, {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
+import { createApolloClient } from "../../lib/apolloClient";
 
 interface AuthContextInterface {
   session: any;
@@ -14,6 +23,12 @@ interface AuthProviderProps {
 
 const AuthProvider = ({ children }: AuthProviderProps) => {
   const [session, setSession] = useState(null);
+
+  useEffect(() => {
+    if (!session) {
+      router.push("/login");
+    }
+  }, [session]);
 
   const signInEmailPassword = async (
     email: string,
@@ -40,7 +55,9 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
 
   return (
     <AuthContext.Provider value={{ session, signInEmailPassword }}>
-      {children}
+      <ApolloProvider client={createApolloClient(session?.accessToken)}>
+        {children}
+      </ApolloProvider>
     </AuthContext.Provider>
   );
 };

@@ -1,11 +1,9 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable require-jsdoc */
-import { ApolloProvider } from "@apollo/client";
+import { MantineProvider } from "@mantine/core";
 import Head from "next/head";
 import React, { useEffect } from "react";
 import "rsuite/dist/rsuite.min.css";
-import "semantic-ui-css/semantic.min.css";
-import { useApollo } from "../lib/apolloClient";
 import { AuthProvider } from "../src/hooks/use-auth";
 import "../styles/globals.css";
 
@@ -18,11 +16,13 @@ export default function App({ Component, pageProps }) {
     }
   }, []);
 
-  const apolloClient = useApollo(pageProps.initialApolloState, "");
-
   return (
-    <AuthProvider>
-      <ApolloProvider client={apolloClient}>
+    <MantineProvider
+      theme={{ colorScheme: "dark" }}
+      withGlobalStyles
+      withNormalizeCSS
+    >
+      <AuthProvider>
         <Head>
           <title>My App</title>
           <meta
@@ -31,7 +31,7 @@ export default function App({ Component, pageProps }) {
           />
         </Head>
         <Component {...pageProps} />
-      </ApolloProvider>
-    </AuthProvider>
+      </AuthProvider>
+    </MantineProvider>
   );
 }
