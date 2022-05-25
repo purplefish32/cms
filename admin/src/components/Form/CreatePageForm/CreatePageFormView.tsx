@@ -1,82 +1,51 @@
-/* eslint-disable react/display-name */
-import React, { useState } from "react";
-import { Editor } from "react-draft-wysiwyg";
-import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-import { Button, Form, InputPicker } from "rsuite";
-import { Schema } from "schema-typed";
+import { Button, NativeSelect, TextInput } from "@mantine/core";
+import { UseFormReturnType } from "@mantine/form/lib/use-form";
+import React from "react";
 import { PageStatesEnum } from "../../../../generated/graphql";
 import { CreatePageFormModel } from "./CreatePageFormLogic";
 interface Props {
-  model: Schema<
-    {
-      title: unknown;
-      slug: unknown;
-      body: unknown;
-    },
-    string
-  >;
-  defaultValues: CreatePageFormModel;
+  form: UseFormReturnType<CreatePageFormModel>;
   handleSubmit: (data: CreatePageFormModel) => Promise<void>;
 }
 
-const CreatePageFormView = ({ model, defaultValues, handleSubmit }: Props) => {
-  const [formValue, setFormValue] =
-    useState<CreatePageFormModel>(defaultValues);
-
+const CreatePageFormView = ({ form, handleSubmit }: Props) => {
   return (
-    <Form
-      onChange={(formValue) => {
-        console.log("change");
-        setFormValue(formValue as CreatePageFormModel);
-      }}
-      formValue={formValue}
-      model={model}
-      fluid
+    <form
+      onSubmit={form.onSubmit((values: CreatePageFormModel) =>
+        handleSubmit(values)
+      )}
     >
-      <Form.Group>
-        <Form.Control
-          name="state"
-          accepter={InputPicker}
-          data={[
-            {
-              label: "Draft",
-              value: PageStatesEnum.Draft,
-            },
-            {
-              label: "Published",
-              value: PageStatesEnum.Published,
-            },
-          ]}
-        />
-      </Form.Group>
-      <Form.Group>
-        <Form.ControlLabel>Title</Form.ControlLabel>
-        <Form.Control name="title" type="text" placeholder="Title" />
-      </Form.Group>
-      <Form.Group>
-        <Form.ControlLabel>Slug</Form.ControlLabel>
-        <Form.Control
-          checkAsync
-          name="slug"
-          type="text"
-          placeholder="Slug"
-          label="Slug"
-        />
-      </Form.Group>
-      <Form.Group>
-        <Form.ControlLabel>Body</Form.ControlLabel>
-        <Form.Control name="body" accepter={Editor} />
-      </Form.Group>
-      <Button
-        type="submit"
-        appearance="primary"
-        onClick={() => {
-          handleSubmit(formValue);
-        }}
-      >
+      <NativeSelect
+        label="State"
+        placeholder="Pick one"
+        data={[
+          { value: PageStatesEnum.Draft, label: "Draft" },
+          { value: PageStatesEnum.Published, label: "Published" },
+        ]}
+      />
+      <TextInput
+        label="Title"
+        placeholder="Title"
+        required
+        {...form.getInputProps("title")}
+      />
+      <TextInput
+        label="Slug"
+        placeholder="Slug"
+        required
+        {...form.getInputProps("slug")}
+      />
+
+      <TextInput
+        label="Body"
+        placeholder="Body"
+        required
+        {...form.getInputProps("body")}
+      />
+      <Button fullWidth mt="xl" type="submit">
         Submit
       </Button>
-    </Form>
+    </form>
   );
 };
 

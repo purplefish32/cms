@@ -1,7 +1,8 @@
 /* eslint-disable new-cap */
 /* eslint-disable camelcase */
+import { Button } from "@mantine/core";
 import React, { useState } from "react";
-import { Button, Form, Schema } from "rsuite";
+import { Form, Schema } from "rsuite";
 import {
   TaxonomiesEnum,
   useCreateTermTaxonomyMutation,
@@ -79,12 +80,7 @@ const CategoryFromCreate = () => {
       <TaxonomyFormGroupSlug />
       <TaxonomyFormGroupParent />
       <TaxonomyFormGroupDescription />
-      <Button
-        type="submit"
-        appearance="primary"
-        onClick={handleSubmit}
-        loading={loading}
-      >
+      <Button type="submit" onClick={handleSubmit} loading={loading}>
         Add Category
       </Button>
     </Form>

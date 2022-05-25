@@ -1,9 +1,8 @@
+import { Button, Table } from "@mantine/core";
 import { format } from "date-fns";
 import Link from "next/link";
 import router from "next/router";
 import React, { FunctionComponent } from "react";
-import { Button, ButtonToolbar } from "rsuite";
-import { Table } from "semantic-ui-react";
 import { useArticlesQuery } from "../../../generated/graphql";
 import PostDeleteButton from "../PostDeleteButton";
 
@@ -21,49 +20,46 @@ const ArticlesTable: FunctionComponent = () => {
   }
 
   return (
-    <Table celled>
-      <Table.Header>
-        <Table.Row>
-          <Table.HeaderCell>Title</Table.HeaderCell>
-          <Table.HeaderCell>Date</Table.HeaderCell>
-          <Table.HeaderCell>Actions</Table.HeaderCell>
-        </Table.Row>
-      </Table.Header>
+    <Table striped>
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Date</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
 
-      <Table.Body>
+      <tbody>
         {data.articles.map((article, key) => {
           return (
-            <Table.Row key={key}>
-              <Table.Cell>
+            <tr key={key}>
+              <td>
                 <Link href={`articles/${article.post_id}`}>
                   {article.post.title}
                 </Link>
-              </Table.Cell>
-              <Table.Cell>
+              </td>
+              <td>
                 Created <br />
                 {format(
                   new Date(article.post.created_at),
                   "yyyy/MM/dd 'at ' HH:ii"
                 )}
-              </Table.Cell>
-              <Table.Cell>
-                <ButtonToolbar>
-                  <Button
-                    size="xs"
-                    appearance="primary"
-                    onClick={() => {
-                      router.push(`articles/edit/${article.post_id}`);
-                    }}
-                  >
-                    Edit
-                  </Button>
-                  <PostDeleteButton postId={article.post_id} />
-                </ButtonToolbar>
-              </Table.Cell>
-            </Table.Row>
+              </td>
+              <td>
+                <Button
+                  size="xs"
+                  onClick={() => {
+                    router.push(`articles/edit/${article.post_id}`);
+                  }}
+                >
+                  Edit
+                </Button>
+                <PostDeleteButton postId={article.post_id} />
+              </td>
+            </tr>
           );
         })}
-      </Table.Body>
+      </tbody>
     </Table>
   );
 };

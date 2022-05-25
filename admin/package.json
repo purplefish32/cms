@@ -38,10 +38,9 @@
     "react-hook-form": "^7.19.5",
     "rsuite": "^5.9.0",
     "schema-typed": "^2.0.2",
-    "semantic-ui-css": "^2.4.1",
-    "semantic-ui-react": "^2.0.4",
     "tabler-icons-react": "^1.48.0",
-    "underscore.string": "^3.3.5"
+    "underscore.string": "^3.3.5",
+    "zod": "^3.17.3"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^1.21.8",

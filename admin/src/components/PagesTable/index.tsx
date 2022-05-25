@@ -1,13 +1,12 @@
+import { Button, LoadingOverlay, Table } from "@mantine/core";
 import Link from "next/link";
 import router from "next/router";
 import React, { FunctionComponent } from "react";
-import { Button, ButtonToolbar } from "rsuite";
-import { Table } from "semantic-ui-react";
 import { usePagesQuery } from "../../../generated/graphql";
 import PostDeleteButton from "../PostDeleteButton";
 
 const PostsTable: FunctionComponent = () => {
-  const { data, error } = usePagesQuery({
+  const { loading, data, error } = usePagesQuery({
     fetchPolicy: "cache-and-network",
   });
 
@@ -16,44 +15,55 @@ const PostsTable: FunctionComponent = () => {
   }
 
   if (!data) {
-    return <div>Loading</div>;
+    return (
+      <Table>
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Body</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <LoadingOverlay visible={true} />
+        </tbody>
+      </Table>
+    );
   }
 
   return (
-    <Table celled>
-      <Table.Header>
-        <Table.Row>
-          <Table.HeaderCell>Title</Table.HeaderCell>
-          <Table.HeaderCell>Body</Table.HeaderCell>
-          <Table.HeaderCell>Actions</Table.HeaderCell>
-        </Table.Row>
-      </Table.Header>
-      <Table.Body>
+    <Table striped>
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Body</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <LoadingOverlay visible={loading} />
         {data.pages.map((page, key) => {
           return (
-            <Table.Row key={key}>
-              <Table.Cell>
+            <tr key={key}>
+              <td>
                 <Link href={`pages/${page.post_id}`}>{page.post.title}</Link>
-              </Table.Cell>
-              <Table.Cell>{page.body}</Table.Cell>
-              <Table.Cell>
-                <ButtonToolbar>
-                  <Button
-                    size="xs"
-                    appearance="primary"
-                    onClick={() => {
-                      router.push(`pages/edit/${page.post_id}`);
-                    }}
-                  >
-                    Edit
-                  </Button>
-                  <PostDeleteButton postId={page.post_id} />
-                </ButtonToolbar>
-              </Table.Cell>
-            </Table.Row>
+              </td>
+              <td>{page.body}</td>
+              <td>
+                <Button
+                  size="xs"
+                  onClick={() => {
+                    router.push(`pages/edit/${page.post_id}`);
+                  }}
+                >
+                  Edit
+                </Button>
+                <PostDeleteButton postId={page.post_id} />
+              </td>
+            </tr>
           );
         })}
-      </Table.Body>
+      </tbody>
     </Table>
   );
 };

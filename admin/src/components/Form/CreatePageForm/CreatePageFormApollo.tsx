@@ -28,31 +28,20 @@ const CreatePageFormApollo = () => {
               },
             },
             body,
-            state: PageStatesEnum[capitalize(state)],
+            state:
+              PageStatesEnum[capitalize(state) as keyof typeof PageStatesEnum],
           },
         },
       });
 
-      router.push(`/pages/edit/${data.insert_pages_one.id}`);
+      router.push(`/pages/edit/${data?.insert_pages_one?.id}`);
     } catch (error) {
-      console.log(error.stack);
+      console.log(error);
       throw new Error("Could not create page");
     }
   };
 
-  const defaultValues = {
-    title: "",
-    slug: "",
-    body: "",
-    state: "",
-  };
-
-  return (
-    <CreatePageFormLogic
-      defaultValues={defaultValues}
-      onSubmit={handleSubmit}
-    />
-  );
+  return <CreatePageFormLogic onSubmit={handleSubmit} />;
 };
 
 export default CreatePageFormApollo;

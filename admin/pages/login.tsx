@@ -40,7 +40,6 @@ export default function Login() {
     <Container size={420} my={40}>
       <form
         onSubmit={form.onSubmit(async (values) => {
-          console.log(values);
           const { email, password } = values;
           await signInEmailPassword(email, password);
         })}
@@ -52,7 +51,7 @@ export default function Login() {
             fontWeight: 900,
           })}
         >
-          Login
+          JAHCMS Login
         </Title>
         <Text color="dimmed" size="sm" align="center" mt={5}>
           Do not have an account yet?{" "}

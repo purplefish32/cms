@@ -1,12 +1,14 @@
-import { Button } from "rsuite";
+/* eslint-disable require-jsdoc */
+import { Button } from "@mantine/core";
+import React from "react";
 import { useDeletePostMutation } from "../../../generated/graphql";
 import { namedOperations } from "../../../types";
 
 function PageDeleteButton({ postId }) {
   const [postsDelete, { loading }] = useDeletePostMutation({
     refetchQueries: [
-      namedOperations.Query.posts,
-      namedOperations.Query.postsAggregate,
+      namedOperations.Query.pages,
+      namedOperations.Query.pagesAggregate,
     ],
   });
 
@@ -15,7 +17,6 @@ function PageDeleteButton({ postId }) {
       size="xs"
       loading={loading}
       color="red"
-      appearance="primary"
       onClick={async (event) => {
         await postsDelete({
           variables: {

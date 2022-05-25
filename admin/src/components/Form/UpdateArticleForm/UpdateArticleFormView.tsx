@@ -1,5 +1,6 @@
+import { Button } from "@mantine/core";
 import React, { useState } from "react";
-import { Button, Form, InputPicker } from "rsuite";
+import { Form, InputPicker } from "rsuite";
 import { Schema } from "schema-typed";
 import { ArticleStatesEnum } from "../../../../generated/graphql";
 import { UpdateArticleFormModel } from "./UpdateArticleFormLogic";
@@ -71,7 +72,6 @@ const UpdatePostFormView = ({ model, defaultValues, handleSubmit }: Props) => {
       </Form.Group>
       <Button
         type="submit"
-        appearance="primary"
         onClick={() => {
           handleSubmit(formValue);
         }}

@@ -1,25 +1,25 @@
-/* eslint-disable new-cap */
+import { useForm, zodResolver } from "@mantine/form";
 import React from "react";
-import { Notification, Schema, toaster } from "rsuite";
+import { Notification, toaster } from "rsuite";
+import { z } from "zod";
+import { PageStatesEnum } from "../../../../generated/graphql";
 import CreatePageFormView from "./CreatePageFormView";
 
 export interface CreatePageFormModel {
   title: string;
   slug: string;
   body: string;
-  state: string;
+  state: PageStatesEnum;
 }
 
-const { StringType } = Schema.Types;
-
-const CreatePageFormSchema = Schema.Model({
-  title: StringType().isRequired("This field is required."),
-  slug: StringType().isRequired("This field is required."), // TODO test slug unique
-  body: StringType(),
+const schema = z.object({
+  state: z.string(),
+  title: z.string(),
+  slug: z.string(),
+  body: z.string(),
 });
 
 interface Props {
-  defaultValues: CreatePageFormModel;
   onSubmit: (data: CreatePageFormModel) => Promise<void>;
 }
 
@@ -29,19 +29,23 @@ const message = (
   </Notification>
 );
 
-const CreatePageFormLogic = ({ defaultValues, onSubmit }: Props) => {
+const CreatePageFormLogic = ({ onSubmit }: Props) => {
   const handleSubmit = async (data: CreatePageFormModel) => {
     await onSubmit(data);
     toaster.push(message);
   };
 
-  return (
-    <CreatePageFormView
-      defaultValues={defaultValues}
-      handleSubmit={handleSubmit}
-      model={CreatePageFormSchema}
-    />
-  );
+  const form = useForm({
+    schema: zodResolver(schema),
+    initialValues: {
+      state: PageStatesEnum.Draft,
+      title: "",
+      slug: "",
+      body: "",
+    },
+  });
+
+  return <CreatePageFormView form={form} handleSubmit={handleSubmit} />;
 };
 
 export default CreatePageFormLogic;

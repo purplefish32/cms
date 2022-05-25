@@ -1,9 +1,9 @@
 /* eslint-disable camelcase */
+import { Table } from "@mantine/core";
 import React, { FunctionComponent } from "react";
-import { Table } from "semantic-ui-react";
 import {
   TaxonomiesEnum,
-  useTermTaxonomiesQuery,
+  useTermTaxonomiesQuery
 } from "../../../generated/graphql";
 
 type Props = {
@@ -33,25 +33,25 @@ const TermTaxonomiesTable: FunctionComponent<Props> = (props) => {
   }
 
   return (
-    <Table celled>
-      <Table.Header>
-        <Table.Row>
-          <Table.HeaderCell>Name</Table.HeaderCell>
-          <Table.HeaderCell>Description</Table.HeaderCell>
-          <Table.HeaderCell>Slug</Table.HeaderCell>
-        </Table.Row>
-      </Table.Header>
-      <Table.Body>
+    <Table striped>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Slug</th>
+        </tr>
+      </thead>
+      <tbody>
         {data.term_taxonomies.map((term_taxonomy, key) => {
           return (
-            <Table.Row key={key}>
-              <Table.Cell>{term_taxonomy.term.name}</Table.Cell>
-              <Table.Cell>{term_taxonomy.description}</Table.Cell>
-              <Table.Cell>{term_taxonomy.term.slug}</Table.Cell>
-            </Table.Row>
+            <tr key={key}>
+              <td>{term_taxonomy.term.name}</td>
+              <td>{term_taxonomy.description}</td>
+              <td>{term_taxonomy.term.slug}</td>
+            </tr>
           );
         })}
-      </Table.Body>
+      </tbody>
     </Table>
   );
 };
