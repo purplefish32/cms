@@ -1,13 +1,13 @@
-import { Button, InputWrapper, NativeSelect, TextInput } from "@mantine/core";
+import { Button, NativeSelect, TextInput } from "@mantine/core";
 import { UseFormReturnType } from "@mantine/form/lib/use-form";
 import React from "react";
 import { PageStatesEnum } from "../../../../generated/graphql";
-import { CreatePageModel } from "../../../../pages/pages/create";
-import RichTextEditor from "../../RichText";
+import { PageFormValues } from "./page-form-values-interface";
+// import RichTextEditor from "../../RichText";
 
 interface Props {
-  form: UseFormReturnType<CreatePageModel>;
-  handleSubmit: (data: CreatePageModel) => Promise<void>;
+  form: UseFormReturnType<PageFormValues>;
+  handleSubmit: (data: PageFormValues) => Promise<void>;
 }
 
 const CreatePageForm = ({ form, handleSubmit }: Props) => {
@@ -33,17 +33,12 @@ const CreatePageForm = ({ form, handleSubmit }: Props) => {
         required
         {...form.getInputProps("slug")}
       />
-      <InputWrapper label="Body">
-        <RichTextEditor
-          placeholder="Body"
-          {...form.getInputProps("body")}
-          controls={[
-            ["bold", "italic", "underline", "link"],
-            ["unorderedList", "h1", "h2", "h3", "h4"],
-            ["alignLeft", "alignCenter", "alignRight"],
-          ]}
-        />
-      </InputWrapper>
+      <TextInput
+        label="Body"
+        placeholder="Body"
+        required
+        {...form.getInputProps("body")}
+      />
       <Button fullWidth mt="xl" type="submit">
         Submit
       </Button>

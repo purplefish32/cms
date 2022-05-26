@@ -1,6 +1,6 @@
 mutation createPage($object: pages_insert_input!) {
   insert_pages_one(object: $object) {
     __typename
-    id
+    post_id
   }
 }

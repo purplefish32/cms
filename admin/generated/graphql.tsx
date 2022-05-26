@@ -69,8 +69,32 @@ export type StringComparisonExp = {
 /** columns and relationships of "article_states" */
 export type ArticleStates = {
   __typename?: 'article_states';
+  /** An array relationship */
+  articles: Array<Articles>;
+  /** An aggregate relationship */
+  articles_aggregate: ArticlesAggregate;
   comment: Scalars['String'];
   value: Scalars['String'];
+};
+
+
+/** columns and relationships of "article_states" */
+export type ArticleStatesArticlesArgs = {
+  distinct_on?: Maybe<Array<ArticlesSelectColumn>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<ArticlesOrderBy>>;
+  where?: Maybe<ArticlesBoolExp>;
+};
+
+
+/** columns and relationships of "article_states" */
+export type ArticleStatesArticlesAggregateArgs = {
+  distinct_on?: Maybe<Array<ArticlesSelectColumn>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<ArticlesOrderBy>>;
+  where?: Maybe<ArticlesBoolExp>;
 };
 
 /** aggregated selection of "article_states" */
@@ -100,6 +124,7 @@ export type ArticleStatesBoolExp = {
   _and?: Maybe<Array<ArticleStatesBoolExp>>;
   _not?: Maybe<ArticleStatesBoolExp>;
   _or?: Maybe<Array<ArticleStatesBoolExp>>;
+  articles?: Maybe<ArticlesBoolExp>;
   comment?: Maybe<StringComparisonExp>;
   value?: Maybe<StringComparisonExp>;
 };
@@ -130,6 +155,7 @@ export type ArticleStatesEnumComparisonExp = {
 
 /** input type for inserting data into table "article_states" */
 export type ArticleStatesInsertInput = {
+  articles?: Maybe<ArticlesArrRelInsertInput>;
   comment?: Maybe<Scalars['String']>;
   value?: Maybe<Scalars['String']>;
 };
@@ -157,6 +183,13 @@ export type ArticleStatesMutationResponse = {
   returning: Array<ArticleStates>;
 };
 
+/** input type for inserting object relation for remote table "article_states" */
+export type ArticleStatesObjRelInsertInput = {
+  data: ArticleStatesInsertInput;
+  /** upsert condition */
+  on_conflict?: Maybe<ArticleStatesOnConflict>;
+};
+
 /** on_conflict condition type for table "article_states" */
 export type ArticleStatesOnConflict = {
   constraint: ArticleStatesConstraint;
@@ -166,6 +199,7 @@ export type ArticleStatesOnConflict = {
 
 /** Ordering options when selecting data from "article_states". */
 export type ArticleStatesOrderBy = {
+  articles_aggregate?: Maybe<ArticlesAggregateOrderBy>;
   comment?: Maybe<OrderBy>;
   value?: Maybe<OrderBy>;
 };
@@ -200,10 +234,12 @@ export enum ArticleStatesUpdateColumn {
 /** columns and relationships of "articles" */
 export type Articles = {
   __typename?: 'articles';
+  /** An object relationship */
+  article_state: ArticleStates;
   body?: Maybe<Scalars['String']>;
   excerpt?: Maybe<Scalars['String']>;
   /** An object relationship */
-  post?: Maybe<Posts>;
+  post: Posts;
   post_id: Scalars['uuid'];
   state: ArticleStatesEnum;
 };
@@ -230,11 +266,26 @@ export type ArticlesAggregateFieldsCountArgs = {
   distinct?: Maybe<Scalars['Boolean']>;
 };
 
+/** order by aggregate values of table "articles" */
+export type ArticlesAggregateOrderBy = {
+  count?: Maybe<OrderBy>;
+  max?: Maybe<ArticlesMaxOrderBy>;
+  min?: Maybe<ArticlesMinOrderBy>;
+};
+
+/** input type for inserting array relation for remote table "articles" */
+export type ArticlesArrRelInsertInput = {
+  data: Array<ArticlesInsertInput>;
+  /** upsert condition */
+  on_conflict?: Maybe<ArticlesOnConflict>;
+};
+
 /** Boolean expression to filter rows from the table "articles". All fields are combined with a logical 'AND'. */
 export type ArticlesBoolExp = {
   _and?: Maybe<Array<ArticlesBoolExp>>;
   _not?: Maybe<ArticlesBoolExp>;
   _or?: Maybe<Array<ArticlesBoolExp>>;
+  article_state?: Maybe<ArticleStatesBoolExp>;
   body?: Maybe<StringComparisonExp>;
   excerpt?: Maybe<StringComparisonExp>;
   post?: Maybe<PostsBoolExp>;
@@ -250,6 +301,7 @@ export enum ArticlesConstraint {
 
 /** input type for inserting data into table "articles" */
 export type ArticlesInsertInput = {
+  article_state?: Maybe<ArticleStatesObjRelInsertInput>;
   body?: Maybe<Scalars['String']>;
   excerpt?: Maybe<Scalars['String']>;
   post?: Maybe<PostsObjRelInsertInput>;
@@ -265,12 +317,26 @@ export type ArticlesMaxFields = {
   post_id?: Maybe<Scalars['uuid']>;
 };
 
+/** order by max() on columns of table "articles" */
+export type ArticlesMaxOrderBy = {
+  body?: Maybe<OrderBy>;
+  excerpt?: Maybe<OrderBy>;
+  post_id?: Maybe<OrderBy>;
+};
+
 /** aggregate min on columns */
 export type ArticlesMinFields = {
   __typename?: 'articles_min_fields';
   body?: Maybe<Scalars['String']>;
   excerpt?: Maybe<Scalars['String']>;
   post_id?: Maybe<Scalars['uuid']>;
+};
+
+/** order by min() on columns of table "articles" */
+export type ArticlesMinOrderBy = {
+  body?: Maybe<OrderBy>;
+  excerpt?: Maybe<OrderBy>;
+  post_id?: Maybe<OrderBy>;
 };
 
 /** response of any mutation on the table "articles" */
@@ -282,6 +348,13 @@ export type ArticlesMutationResponse = {
   returning: Array<Articles>;
 };
 
+/** input type for inserting object relation for remote table "articles" */
+export type ArticlesObjRelInsertInput = {
+  data: ArticlesInsertInput;
+  /** upsert condition */
+  on_conflict?: Maybe<ArticlesOnConflict>;
+};
+
 /** on_conflict condition type for table "articles" */
 export type ArticlesOnConflict = {
   constraint: ArticlesConstraint;
@@ -291,6 +364,7 @@ export type ArticlesOnConflict = {
 
 /** Ordering options when selecting data from "articles". */
 export type ArticlesOrderBy = {
+  article_state?: Maybe<ArticleStatesOrderBy>;
   body?: Maybe<OrderBy>;
   excerpt?: Maybe<OrderBy>;
   post?: Maybe<PostsOrderBy>;
@@ -335,855 +409,188 @@ export enum ArticlesUpdateColumn {
   State = 'state'
 }
 
-/** columns and relationships of "auth.account_providers" */
-export type AuthAccountProviders = {
-  __typename?: 'auth_account_providers';
-  /** An object relationship */
-  account: AuthAccounts;
-  account_id: Scalars['uuid'];
-  auth_provider: Scalars['String'];
-  auth_provider_unique_id: Scalars['String'];
-  created_at: Scalars['timestamptz'];
+/** columns and relationships of "auth.provider_requests" */
+export type AuthProviderRequests = {
+  __typename?: 'authProviderRequests';
   id: Scalars['uuid'];
-  /** An object relationship */
-  provider: AuthProviders;
-  updated_at: Scalars['timestamptz'];
-};
-
-/** aggregated selection of "auth.account_providers" */
-export type AuthAccountProvidersAggregate = {
-  __typename?: 'auth_account_providers_aggregate';
-  aggregate?: Maybe<AuthAccountProvidersAggregateFields>;
-  nodes: Array<AuthAccountProviders>;
-};
-
-/** aggregate fields of "auth.account_providers" */
-export type AuthAccountProvidersAggregateFields = {
-  __typename?: 'auth_account_providers_aggregate_fields';
-  count: Scalars['Int'];
-  max?: Maybe<AuthAccountProvidersMaxFields>;
-  min?: Maybe<AuthAccountProvidersMinFields>;
+  options?: Maybe<Scalars['jsonb']>;
 };
 
 
-/** aggregate fields of "auth.account_providers" */
-export type AuthAccountProvidersAggregateFieldsCountArgs = {
-  columns?: Maybe<Array<AuthAccountProvidersSelectColumn>>;
-  distinct?: Maybe<Scalars['Boolean']>;
-};
-
-/** order by aggregate values of table "auth.account_providers" */
-export type AuthAccountProvidersAggregateOrderBy = {
-  count?: Maybe<OrderBy>;
-  max?: Maybe<AuthAccountProvidersMaxOrderBy>;
-  min?: Maybe<AuthAccountProvidersMinOrderBy>;
-};
-
-/** input type for inserting array relation for remote table "auth.account_providers" */
-export type AuthAccountProvidersArrRelInsertInput = {
-  data: Array<AuthAccountProvidersInsertInput>;
-  /** upsert condition */
-  on_conflict?: Maybe<AuthAccountProvidersOnConflict>;
-};
-
-/** Boolean expression to filter rows from the table "auth.account_providers". All fields are combined with a logical 'AND'. */
-export type AuthAccountProvidersBoolExp = {
-  _and?: Maybe<Array<AuthAccountProvidersBoolExp>>;
-  _not?: Maybe<AuthAccountProvidersBoolExp>;
-  _or?: Maybe<Array<AuthAccountProvidersBoolExp>>;
-  account?: Maybe<AuthAccountsBoolExp>;
-  account_id?: Maybe<UuidComparisonExp>;
-  auth_provider?: Maybe<StringComparisonExp>;
-  auth_provider_unique_id?: Maybe<StringComparisonExp>;
-  created_at?: Maybe<TimestamptzComparisonExp>;
-  id?: Maybe<UuidComparisonExp>;
-  provider?: Maybe<AuthProvidersBoolExp>;
-  updated_at?: Maybe<TimestamptzComparisonExp>;
-};
-
-/** unique or primary key constraints on table "auth.account_providers" */
-export enum AuthAccountProvidersConstraint {
-  /** unique or primary key constraint */
-  AccountProvidersAccountIdAuthProviderKey = 'account_providers_account_id_auth_provider_key',
-  /** unique or primary key constraint */
-  AccountProvidersAuthProviderAuthProviderUniqueIdKey = 'account_providers_auth_provider_auth_provider_unique_id_key',
-  /** unique or primary key constraint */
-  AccountProvidersPkey = 'account_providers_pkey'
-}
-
-/** input type for inserting data into table "auth.account_providers" */
-export type AuthAccountProvidersInsertInput = {
-  account?: Maybe<AuthAccountsObjRelInsertInput>;
-  account_id?: Maybe<Scalars['uuid']>;
-  auth_provider?: Maybe<Scalars['String']>;
-  auth_provider_unique_id?: Maybe<Scalars['String']>;
-  created_at?: Maybe<Scalars['timestamptz']>;
-  id?: Maybe<Scalars['uuid']>;
-  provider?: Maybe<AuthProvidersObjRelInsertInput>;
-  updated_at?: Maybe<Scalars['timestamptz']>;
-};
-
-/** aggregate max on columns */
-export type AuthAccountProvidersMaxFields = {
-  __typename?: 'auth_account_providers_max_fields';
-  account_id?: Maybe<Scalars['uuid']>;
-  auth_provider?: Maybe<Scalars['String']>;
-  auth_provider_unique_id?: Maybe<Scalars['String']>;
-  created_at?: Maybe<Scalars['timestamptz']>;
-  id?: Maybe<Scalars['uuid']>;
-  updated_at?: Maybe<Scalars['timestamptz']>;
-};
-
-/** order by max() on columns of table "auth.account_providers" */
-export type AuthAccountProvidersMaxOrderBy = {
-  account_id?: Maybe<OrderBy>;
-  auth_provider?: Maybe<OrderBy>;
-  auth_provider_unique_id?: Maybe<OrderBy>;
-  created_at?: Maybe<OrderBy>;
-  id?: Maybe<OrderBy>;
-  updated_at?: Maybe<OrderBy>;
-};
-
-/** aggregate min on columns */
-export type AuthAccountProvidersMinFields = {
-  __typename?: 'auth_account_providers_min_fields';
-  account_id?: Maybe<Scalars['uuid']>;
-  auth_provider?: Maybe<Scalars['String']>;
-  auth_provider_unique_id?: Maybe<Scalars['String']>;
-  created_at?: Maybe<Scalars['timestamptz']>;
-  id?: Maybe<Scalars['uuid']>;
-  updated_at?: Maybe<Scalars['timestamptz']>;
-};
-
-/** order by min() on columns of table "auth.account_providers" */
-export type AuthAccountProvidersMinOrderBy = {
-  account_id?: Maybe<OrderBy>;
-  auth_provider?: Maybe<OrderBy>;
-  auth_provider_unique_id?: Maybe<OrderBy>;
-  created_at?: Maybe<OrderBy>;
-  id?: Maybe<OrderBy>;
-  updated_at?: Maybe<OrderBy>;
-};
-
-/** response of any mutation on the table "auth.account_providers" */
-export type AuthAccountProvidersMutationResponse = {
-  __typename?: 'auth_account_providers_mutation_response';
-  /** number of rows affected by the mutation */
-  affected_rows: Scalars['Int'];
-  /** data from the rows affected by the mutation */
-  returning: Array<AuthAccountProviders>;
-};
-
-/** on_conflict condition type for table "auth.account_providers" */
-export type AuthAccountProvidersOnConflict = {
-  constraint: AuthAccountProvidersConstraint;
-  update_columns?: Array<AuthAccountProvidersUpdateColumn>;
-  where?: Maybe<AuthAccountProvidersBoolExp>;
-};
-
-/** Ordering options when selecting data from "auth.account_providers". */
-export type AuthAccountProvidersOrderBy = {
-  account?: Maybe<AuthAccountsOrderBy>;
-  account_id?: Maybe<OrderBy>;
-  auth_provider?: Maybe<OrderBy>;
-  auth_provider_unique_id?: Maybe<OrderBy>;
-  created_at?: Maybe<OrderBy>;
-  id?: Maybe<OrderBy>;
-  provider?: Maybe<AuthProvidersOrderBy>;
-  updated_at?: Maybe<OrderBy>;
-};
-
-/** primary key columns input for table: auth_account_providers */
-export type AuthAccountProvidersPkColumnsInput = {
-  id: Scalars['uuid'];
-};
-
-/** select columns of table "auth.account_providers" */
-export enum AuthAccountProvidersSelectColumn {
-  /** column name */
-  AccountId = 'account_id',
-  /** column name */
-  AuthProvider = 'auth_provider',
-  /** column name */
-  AuthProviderUniqueId = 'auth_provider_unique_id',
-  /** column name */
-  CreatedAt = 'created_at',
-  /** column name */
-  Id = 'id',
-  /** column name */
-  UpdatedAt = 'updated_at'
-}
-
-/** input type for updating data in table "auth.account_providers" */
-export type AuthAccountProvidersSetInput = {
-  account_id?: Maybe<Scalars['uuid']>;
-  auth_provider?: Maybe<Scalars['String']>;
-  auth_provider_unique_id?: Maybe<Scalars['String']>;
-  created_at?: Maybe<Scalars['timestamptz']>;
-  id?: Maybe<Scalars['uuid']>;
-  updated_at?: Maybe<Scalars['timestamptz']>;
-};
-
-/** update columns of table "auth.account_providers" */
-export enum AuthAccountProvidersUpdateColumn {
-  /** column name */
-  AccountId = 'account_id',
-  /** column name */
-  AuthProvider = 'auth_provider',
-  /** column name */
-  AuthProviderUniqueId = 'auth_provider_unique_id',
-  /** column name */
-  CreatedAt = 'created_at',
-  /** column name */
-  Id = 'id',
-  /** column name */
-  UpdatedAt = 'updated_at'
-}
-
-/** columns and relationships of "auth.account_roles" */
-export type AuthAccountRoles = {
-  __typename?: 'auth_account_roles';
-  /** An object relationship */
-  account: AuthAccounts;
-  account_id: Scalars['uuid'];
-  created_at: Scalars['timestamptz'];
-  id: Scalars['uuid'];
-  role: Scalars['String'];
-  /** An object relationship */
-  roleByRole: AuthRoles;
-};
-
-/** aggregated selection of "auth.account_roles" */
-export type AuthAccountRolesAggregate = {
-  __typename?: 'auth_account_roles_aggregate';
-  aggregate?: Maybe<AuthAccountRolesAggregateFields>;
-  nodes: Array<AuthAccountRoles>;
-};
-
-/** aggregate fields of "auth.account_roles" */
-export type AuthAccountRolesAggregateFields = {
-  __typename?: 'auth_account_roles_aggregate_fields';
-  count: Scalars['Int'];
-  max?: Maybe<AuthAccountRolesMaxFields>;
-  min?: Maybe<AuthAccountRolesMinFields>;
-};
-
-
-/** aggregate fields of "auth.account_roles" */
-export type AuthAccountRolesAggregateFieldsCountArgs = {
-  columns?: Maybe<Array<AuthAccountRolesSelectColumn>>;
-  distinct?: Maybe<Scalars['Boolean']>;
-};
-
-/** order by aggregate values of table "auth.account_roles" */
-export type AuthAccountRolesAggregateOrderBy = {
-  count?: Maybe<OrderBy>;
-  max?: Maybe<AuthAccountRolesMaxOrderBy>;
-  min?: Maybe<AuthAccountRolesMinOrderBy>;
-};
-
-/** input type for inserting array relation for remote table "auth.account_roles" */
-export type AuthAccountRolesArrRelInsertInput = {
-  data: Array<AuthAccountRolesInsertInput>;
-  /** upsert condition */
-  on_conflict?: Maybe<AuthAccountRolesOnConflict>;
-};
-
-/** Boolean expression to filter rows from the table "auth.account_roles". All fields are combined with a logical 'AND'. */
-export type AuthAccountRolesBoolExp = {
-  _and?: Maybe<Array<AuthAccountRolesBoolExp>>;
-  _not?: Maybe<AuthAccountRolesBoolExp>;
-  _or?: Maybe<Array<AuthAccountRolesBoolExp>>;
-  account?: Maybe<AuthAccountsBoolExp>;
-  account_id?: Maybe<UuidComparisonExp>;
-  created_at?: Maybe<TimestamptzComparisonExp>;
-  id?: Maybe<UuidComparisonExp>;
-  role?: Maybe<StringComparisonExp>;
-  roleByRole?: Maybe<AuthRolesBoolExp>;
-};
-
-/** unique or primary key constraints on table "auth.account_roles" */
-export enum AuthAccountRolesConstraint {
-  /** unique or primary key constraint */
-  AccountRolesPkey = 'account_roles_pkey',
-  /** unique or primary key constraint */
-  UserRolesAccountIdRoleKey = 'user_roles_account_id_role_key'
-}
-
-/** input type for inserting data into table "auth.account_roles" */
-export type AuthAccountRolesInsertInput = {
-  account?: Maybe<AuthAccountsObjRelInsertInput>;
-  account_id?: Maybe<Scalars['uuid']>;
-  created_at?: Maybe<Scalars['timestamptz']>;
-  id?: Maybe<Scalars['uuid']>;
-  role?: Maybe<Scalars['String']>;
-  roleByRole?: Maybe<AuthRolesObjRelInsertInput>;
-};
-
-/** aggregate max on columns */
-export type AuthAccountRolesMaxFields = {
-  __typename?: 'auth_account_roles_max_fields';
-  account_id?: Maybe<Scalars['uuid']>;
-  created_at?: Maybe<Scalars['timestamptz']>;
-  id?: Maybe<Scalars['uuid']>;
-  role?: Maybe<Scalars['String']>;
-};
-
-/** order by max() on columns of table "auth.account_roles" */
-export type AuthAccountRolesMaxOrderBy = {
-  account_id?: Maybe<OrderBy>;
-  created_at?: Maybe<OrderBy>;
-  id?: Maybe<OrderBy>;
-  role?: Maybe<OrderBy>;
-};
-
-/** aggregate min on columns */
-export type AuthAccountRolesMinFields = {
-  __typename?: 'auth_account_roles_min_fields';
-  account_id?: Maybe<Scalars['uuid']>;
-  created_at?: Maybe<Scalars['timestamptz']>;
-  id?: Maybe<Scalars['uuid']>;
-  role?: Maybe<Scalars['String']>;
-};
-
-/** order by min() on columns of table "auth.account_roles" */
-export type AuthAccountRolesMinOrderBy = {
-  account_id?: Maybe<OrderBy>;
-  created_at?: Maybe<OrderBy>;
-  id?: Maybe<OrderBy>;
-  role?: Maybe<OrderBy>;
-};
-
-/** response of any mutation on the table "auth.account_roles" */
-export type AuthAccountRolesMutationResponse = {
-  __typename?: 'auth_account_roles_mutation_response';
-  /** number of rows affected by the mutation */
-  affected_rows: Scalars['Int'];
-  /** data from the rows affected by the mutation */
-  returning: Array<AuthAccountRoles>;
-};
-
-/** on_conflict condition type for table "auth.account_roles" */
-export type AuthAccountRolesOnConflict = {
-  constraint: AuthAccountRolesConstraint;
-  update_columns?: Array<AuthAccountRolesUpdateColumn>;
-  where?: Maybe<AuthAccountRolesBoolExp>;
-};
-
-/** Ordering options when selecting data from "auth.account_roles". */
-export type AuthAccountRolesOrderBy = {
-  account?: Maybe<AuthAccountsOrderBy>;
-  account_id?: Maybe<OrderBy>;
-  created_at?: Maybe<OrderBy>;
-  id?: Maybe<OrderBy>;
-  role?: Maybe<OrderBy>;
-  roleByRole?: Maybe<AuthRolesOrderBy>;
-};
-
-/** primary key columns input for table: auth_account_roles */
-export type AuthAccountRolesPkColumnsInput = {
-  id: Scalars['uuid'];
-};
-
-/** select columns of table "auth.account_roles" */
-export enum AuthAccountRolesSelectColumn {
-  /** column name */
-  AccountId = 'account_id',
-  /** column name */
-  CreatedAt = 'created_at',
-  /** column name */
-  Id = 'id',
-  /** column name */
-  Role = 'role'
-}
-
-/** input type for updating data in table "auth.account_roles" */
-export type AuthAccountRolesSetInput = {
-  account_id?: Maybe<Scalars['uuid']>;
-  created_at?: Maybe<Scalars['timestamptz']>;
-  id?: Maybe<Scalars['uuid']>;
-  role?: Maybe<Scalars['String']>;
-};
-
-/** update columns of table "auth.account_roles" */
-export enum AuthAccountRolesUpdateColumn {
-  /** column name */
-  AccountId = 'account_id',
-  /** column name */
-  CreatedAt = 'created_at',
-  /** column name */
-  Id = 'id',
-  /** column name */
-  Role = 'role'
-}
-
-/** columns and relationships of "auth.accounts" */
-export type AuthAccounts = {
-  __typename?: 'auth_accounts';
-  /** An array relationship */
-  account_providers: Array<AuthAccountProviders>;
-  /** An aggregate relationship */
-  account_providers_aggregate: AuthAccountProvidersAggregate;
-  /** An array relationship */
-  account_roles: Array<AuthAccountRoles>;
-  /** An aggregate relationship */
-  account_roles_aggregate: AuthAccountRolesAggregate;
-  active: Scalars['Boolean'];
-  created_at: Scalars['timestamptz'];
-  custom_register_data?: Maybe<Scalars['jsonb']>;
-  default_role: Scalars['String'];
-  email?: Maybe<Scalars['citext']>;
-  id: Scalars['uuid'];
-  is_anonymous: Scalars['Boolean'];
-  mfa_enabled: Scalars['Boolean'];
-  new_email?: Maybe<Scalars['citext']>;
-  otp_secret?: Maybe<Scalars['String']>;
-  password_hash?: Maybe<Scalars['String']>;
-  /** An array relationship */
-  refresh_tokens: Array<AuthRefreshTokens>;
-  /** An aggregate relationship */
-  refresh_tokens_aggregate: AuthRefreshTokensAggregate;
-  /** An object relationship */
-  role: AuthRoles;
-  ticket: Scalars['uuid'];
-  ticket_expires_at: Scalars['timestamptz'];
-  updated_at: Scalars['timestamptz'];
-  /** An object relationship */
-  user: Users;
-  user_id: Scalars['uuid'];
-};
-
-
-/** columns and relationships of "auth.accounts" */
-export type AuthAccountsAccountProvidersArgs = {
-  distinct_on?: Maybe<Array<AuthAccountProvidersSelectColumn>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<AuthAccountProvidersOrderBy>>;
-  where?: Maybe<AuthAccountProvidersBoolExp>;
-};
-
-
-/** columns and relationships of "auth.accounts" */
-export type AuthAccountsAccountProvidersAggregateArgs = {
-  distinct_on?: Maybe<Array<AuthAccountProvidersSelectColumn>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<AuthAccountProvidersOrderBy>>;
-  where?: Maybe<AuthAccountProvidersBoolExp>;
-};
-
-
-/** columns and relationships of "auth.accounts" */
-export type AuthAccountsAccountRolesArgs = {
-  distinct_on?: Maybe<Array<AuthAccountRolesSelectColumn>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<AuthAccountRolesOrderBy>>;
-  where?: Maybe<AuthAccountRolesBoolExp>;
-};
-
-
-/** columns and relationships of "auth.accounts" */
-export type AuthAccountsAccountRolesAggregateArgs = {
-  distinct_on?: Maybe<Array<AuthAccountRolesSelectColumn>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<AuthAccountRolesOrderBy>>;
-  where?: Maybe<AuthAccountRolesBoolExp>;
-};
-
-
-/** columns and relationships of "auth.accounts" */
-export type AuthAccountsCustomRegisterDataArgs = {
+/** columns and relationships of "auth.provider_requests" */
+export type AuthProviderRequestsOptionsArgs = {
   path?: Maybe<Scalars['String']>;
 };
 
-
-/** columns and relationships of "auth.accounts" */
-export type AuthAccountsRefreshTokensArgs = {
-  distinct_on?: Maybe<Array<AuthRefreshTokensSelectColumn>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<AuthRefreshTokensOrderBy>>;
-  where?: Maybe<AuthRefreshTokensBoolExp>;
+/** aggregated selection of "auth.provider_requests" */
+export type AuthProviderRequestsAggregate = {
+  __typename?: 'authProviderRequests_aggregate';
+  aggregate?: Maybe<AuthProviderRequestsAggregateFields>;
+  nodes: Array<AuthProviderRequests>;
 };
 
-
-/** columns and relationships of "auth.accounts" */
-export type AuthAccountsRefreshTokensAggregateArgs = {
-  distinct_on?: Maybe<Array<AuthRefreshTokensSelectColumn>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<AuthRefreshTokensOrderBy>>;
-  where?: Maybe<AuthRefreshTokensBoolExp>;
-};
-
-/** aggregated selection of "auth.accounts" */
-export type AuthAccountsAggregate = {
-  __typename?: 'auth_accounts_aggregate';
-  aggregate?: Maybe<AuthAccountsAggregateFields>;
-  nodes: Array<AuthAccounts>;
-};
-
-/** aggregate fields of "auth.accounts" */
-export type AuthAccountsAggregateFields = {
-  __typename?: 'auth_accounts_aggregate_fields';
+/** aggregate fields of "auth.provider_requests" */
+export type AuthProviderRequestsAggregateFields = {
+  __typename?: 'authProviderRequests_aggregate_fields';
   count: Scalars['Int'];
-  max?: Maybe<AuthAccountsMaxFields>;
-  min?: Maybe<AuthAccountsMinFields>;
+  max?: Maybe<AuthProviderRequestsMaxFields>;
+  min?: Maybe<AuthProviderRequestsMinFields>;
 };
 
 
-/** aggregate fields of "auth.accounts" */
-export type AuthAccountsAggregateFieldsCountArgs = {
-  columns?: Maybe<Array<AuthAccountsSelectColumn>>;
+/** aggregate fields of "auth.provider_requests" */
+export type AuthProviderRequestsAggregateFieldsCountArgs = {
+  columns?: Maybe<Array<AuthProviderRequestsSelectColumn>>;
   distinct?: Maybe<Scalars['Boolean']>;
 };
 
-/** order by aggregate values of table "auth.accounts" */
-export type AuthAccountsAggregateOrderBy = {
-  count?: Maybe<OrderBy>;
-  max?: Maybe<AuthAccountsMaxOrderBy>;
-  min?: Maybe<AuthAccountsMinOrderBy>;
-};
-
 /** append existing jsonb value of filtered columns with new jsonb value */
-export type AuthAccountsAppendInput = {
-  custom_register_data?: Maybe<Scalars['jsonb']>;
+export type AuthProviderRequestsAppendInput = {
+  options?: Maybe<Scalars['jsonb']>;
 };
 
-/** input type for inserting array relation for remote table "auth.accounts" */
-export type AuthAccountsArrRelInsertInput = {
-  data: Array<AuthAccountsInsertInput>;
-  /** upsert condition */
-  on_conflict?: Maybe<AuthAccountsOnConflict>;
-};
-
-/** Boolean expression to filter rows from the table "auth.accounts". All fields are combined with a logical 'AND'. */
-export type AuthAccountsBoolExp = {
-  _and?: Maybe<Array<AuthAccountsBoolExp>>;
-  _not?: Maybe<AuthAccountsBoolExp>;
-  _or?: Maybe<Array<AuthAccountsBoolExp>>;
-  account_providers?: Maybe<AuthAccountProvidersBoolExp>;
-  account_roles?: Maybe<AuthAccountRolesBoolExp>;
-  active?: Maybe<BooleanComparisonExp>;
-  created_at?: Maybe<TimestamptzComparisonExp>;
-  custom_register_data?: Maybe<JsonbComparisonExp>;
-  default_role?: Maybe<StringComparisonExp>;
-  email?: Maybe<CitextComparisonExp>;
+/** Boolean expression to filter rows from the table "auth.provider_requests". All fields are combined with a logical 'AND'. */
+export type AuthProviderRequestsBoolExp = {
+  _and?: Maybe<Array<AuthProviderRequestsBoolExp>>;
+  _not?: Maybe<AuthProviderRequestsBoolExp>;
+  _or?: Maybe<Array<AuthProviderRequestsBoolExp>>;
   id?: Maybe<UuidComparisonExp>;
-  is_anonymous?: Maybe<BooleanComparisonExp>;
-  mfa_enabled?: Maybe<BooleanComparisonExp>;
-  new_email?: Maybe<CitextComparisonExp>;
-  otp_secret?: Maybe<StringComparisonExp>;
-  password_hash?: Maybe<StringComparisonExp>;
-  refresh_tokens?: Maybe<AuthRefreshTokensBoolExp>;
-  role?: Maybe<AuthRolesBoolExp>;
-  ticket?: Maybe<UuidComparisonExp>;
-  ticket_expires_at?: Maybe<TimestamptzComparisonExp>;
-  updated_at?: Maybe<TimestamptzComparisonExp>;
-  user?: Maybe<UsersBoolExp>;
-  user_id?: Maybe<UuidComparisonExp>;
+  options?: Maybe<JsonbComparisonExp>;
 };
 
-/** unique or primary key constraints on table "auth.accounts" */
-export enum AuthAccountsConstraint {
+/** unique or primary key constraints on table "auth.provider_requests" */
+export enum AuthProviderRequestsConstraint {
   /** unique or primary key constraint */
-  AccountsEmailKey = 'accounts_email_key',
-  /** unique or primary key constraint */
-  AccountsNewEmailKey = 'accounts_new_email_key',
-  /** unique or primary key constraint */
-  AccountsPkey = 'accounts_pkey',
-  /** unique or primary key constraint */
-  AccountsUserIdKey = 'accounts_user_id_key'
+  ProviderRequestsPkey = 'provider_requests_pkey'
 }
 
 /** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
-export type AuthAccountsDeleteAtPathInput = {
-  custom_register_data?: Maybe<Array<Scalars['String']>>;
+export type AuthProviderRequestsDeleteAtPathInput = {
+  options?: Maybe<Array<Scalars['String']>>;
 };
 
 /** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
-export type AuthAccountsDeleteElemInput = {
-  custom_register_data?: Maybe<Scalars['Int']>;
+export type AuthProviderRequestsDeleteElemInput = {
+  options?: Maybe<Scalars['Int']>;
 };
 
 /** delete key/value pair or string element. key/value pairs are matched based on their key value */
-export type AuthAccountsDeleteKeyInput = {
-  custom_register_data?: Maybe<Scalars['String']>;
+export type AuthProviderRequestsDeleteKeyInput = {
+  options?: Maybe<Scalars['String']>;
 };
 
-/** input type for inserting data into table "auth.accounts" */
-export type AuthAccountsInsertInput = {
-  account_providers?: Maybe<AuthAccountProvidersArrRelInsertInput>;
-  account_roles?: Maybe<AuthAccountRolesArrRelInsertInput>;
-  active?: Maybe<Scalars['Boolean']>;
-  created_at?: Maybe<Scalars['timestamptz']>;
-  custom_register_data?: Maybe<Scalars['jsonb']>;
-  default_role?: Maybe<Scalars['String']>;
-  email?: Maybe<Scalars['citext']>;
+/** input type for inserting data into table "auth.provider_requests" */
+export type AuthProviderRequestsInsertInput = {
   id?: Maybe<Scalars['uuid']>;
-  is_anonymous?: Maybe<Scalars['Boolean']>;
-  mfa_enabled?: Maybe<Scalars['Boolean']>;
-  new_email?: Maybe<Scalars['citext']>;
-  otp_secret?: Maybe<Scalars['String']>;
-  password_hash?: Maybe<Scalars['String']>;
-  refresh_tokens?: Maybe<AuthRefreshTokensArrRelInsertInput>;
-  role?: Maybe<AuthRolesObjRelInsertInput>;
-  ticket?: Maybe<Scalars['uuid']>;
-  ticket_expires_at?: Maybe<Scalars['timestamptz']>;
-  updated_at?: Maybe<Scalars['timestamptz']>;
-  user?: Maybe<UsersObjRelInsertInput>;
-  user_id?: Maybe<Scalars['uuid']>;
+  options?: Maybe<Scalars['jsonb']>;
 };
 
 /** aggregate max on columns */
-export type AuthAccountsMaxFields = {
-  __typename?: 'auth_accounts_max_fields';
-  created_at?: Maybe<Scalars['timestamptz']>;
-  default_role?: Maybe<Scalars['String']>;
-  email?: Maybe<Scalars['citext']>;
+export type AuthProviderRequestsMaxFields = {
+  __typename?: 'authProviderRequests_max_fields';
   id?: Maybe<Scalars['uuid']>;
-  new_email?: Maybe<Scalars['citext']>;
-  otp_secret?: Maybe<Scalars['String']>;
-  password_hash?: Maybe<Scalars['String']>;
-  ticket?: Maybe<Scalars['uuid']>;
-  ticket_expires_at?: Maybe<Scalars['timestamptz']>;
-  updated_at?: Maybe<Scalars['timestamptz']>;
-  user_id?: Maybe<Scalars['uuid']>;
-};
-
-/** order by max() on columns of table "auth.accounts" */
-export type AuthAccountsMaxOrderBy = {
-  created_at?: Maybe<OrderBy>;
-  default_role?: Maybe<OrderBy>;
-  email?: Maybe<OrderBy>;
-  id?: Maybe<OrderBy>;
-  new_email?: Maybe<OrderBy>;
-  otp_secret?: Maybe<OrderBy>;
-  password_hash?: Maybe<OrderBy>;
-  ticket?: Maybe<OrderBy>;
-  ticket_expires_at?: Maybe<OrderBy>;
-  updated_at?: Maybe<OrderBy>;
-  user_id?: Maybe<OrderBy>;
 };
 
 /** aggregate min on columns */
-export type AuthAccountsMinFields = {
-  __typename?: 'auth_accounts_min_fields';
-  created_at?: Maybe<Scalars['timestamptz']>;
-  default_role?: Maybe<Scalars['String']>;
-  email?: Maybe<Scalars['citext']>;
+export type AuthProviderRequestsMinFields = {
+  __typename?: 'authProviderRequests_min_fields';
   id?: Maybe<Scalars['uuid']>;
-  new_email?: Maybe<Scalars['citext']>;
-  otp_secret?: Maybe<Scalars['String']>;
-  password_hash?: Maybe<Scalars['String']>;
-  ticket?: Maybe<Scalars['uuid']>;
-  ticket_expires_at?: Maybe<Scalars['timestamptz']>;
-  updated_at?: Maybe<Scalars['timestamptz']>;
-  user_id?: Maybe<Scalars['uuid']>;
 };
 
-/** order by min() on columns of table "auth.accounts" */
-export type AuthAccountsMinOrderBy = {
-  created_at?: Maybe<OrderBy>;
-  default_role?: Maybe<OrderBy>;
-  email?: Maybe<OrderBy>;
-  id?: Maybe<OrderBy>;
-  new_email?: Maybe<OrderBy>;
-  otp_secret?: Maybe<OrderBy>;
-  password_hash?: Maybe<OrderBy>;
-  ticket?: Maybe<OrderBy>;
-  ticket_expires_at?: Maybe<OrderBy>;
-  updated_at?: Maybe<OrderBy>;
-  user_id?: Maybe<OrderBy>;
-};
-
-/** response of any mutation on the table "auth.accounts" */
-export type AuthAccountsMutationResponse = {
-  __typename?: 'auth_accounts_mutation_response';
+/** response of any mutation on the table "auth.provider_requests" */
+export type AuthProviderRequestsMutationResponse = {
+  __typename?: 'authProviderRequests_mutation_response';
   /** number of rows affected by the mutation */
   affected_rows: Scalars['Int'];
   /** data from the rows affected by the mutation */
-  returning: Array<AuthAccounts>;
+  returning: Array<AuthProviderRequests>;
 };
 
-/** input type for inserting object relation for remote table "auth.accounts" */
-export type AuthAccountsObjRelInsertInput = {
-  data: AuthAccountsInsertInput;
-  /** upsert condition */
-  on_conflict?: Maybe<AuthAccountsOnConflict>;
+/** on_conflict condition type for table "auth.provider_requests" */
+export type AuthProviderRequestsOnConflict = {
+  constraint: AuthProviderRequestsConstraint;
+  update_columns?: Array<AuthProviderRequestsUpdateColumn>;
+  where?: Maybe<AuthProviderRequestsBoolExp>;
 };
 
-/** on_conflict condition type for table "auth.accounts" */
-export type AuthAccountsOnConflict = {
-  constraint: AuthAccountsConstraint;
-  update_columns?: Array<AuthAccountsUpdateColumn>;
-  where?: Maybe<AuthAccountsBoolExp>;
-};
-
-/** Ordering options when selecting data from "auth.accounts". */
-export type AuthAccountsOrderBy = {
-  account_providers_aggregate?: Maybe<AuthAccountProvidersAggregateOrderBy>;
-  account_roles_aggregate?: Maybe<AuthAccountRolesAggregateOrderBy>;
-  active?: Maybe<OrderBy>;
-  created_at?: Maybe<OrderBy>;
-  custom_register_data?: Maybe<OrderBy>;
-  default_role?: Maybe<OrderBy>;
-  email?: Maybe<OrderBy>;
+/** Ordering options when selecting data from "auth.provider_requests". */
+export type AuthProviderRequestsOrderBy = {
   id?: Maybe<OrderBy>;
-  is_anonymous?: Maybe<OrderBy>;
-  mfa_enabled?: Maybe<OrderBy>;
-  new_email?: Maybe<OrderBy>;
-  otp_secret?: Maybe<OrderBy>;
-  password_hash?: Maybe<OrderBy>;
-  refresh_tokens_aggregate?: Maybe<AuthRefreshTokensAggregateOrderBy>;
-  role?: Maybe<AuthRolesOrderBy>;
-  ticket?: Maybe<OrderBy>;
-  ticket_expires_at?: Maybe<OrderBy>;
-  updated_at?: Maybe<OrderBy>;
-  user?: Maybe<UsersOrderBy>;
-  user_id?: Maybe<OrderBy>;
+  options?: Maybe<OrderBy>;
 };
 
-/** primary key columns input for table: auth_accounts */
-export type AuthAccountsPkColumnsInput = {
+/** primary key columns input for table: authProviderRequests */
+export type AuthProviderRequestsPkColumnsInput = {
   id: Scalars['uuid'];
 };
 
 /** prepend existing jsonb value of filtered columns with new jsonb value */
-export type AuthAccountsPrependInput = {
-  custom_register_data?: Maybe<Scalars['jsonb']>;
+export type AuthProviderRequestsPrependInput = {
+  options?: Maybe<Scalars['jsonb']>;
 };
 
-/** select columns of table "auth.accounts" */
-export enum AuthAccountsSelectColumn {
-  /** column name */
-  Active = 'active',
-  /** column name */
-  CreatedAt = 'created_at',
-  /** column name */
-  CustomRegisterData = 'custom_register_data',
-  /** column name */
-  DefaultRole = 'default_role',
-  /** column name */
-  Email = 'email',
+/** select columns of table "auth.provider_requests" */
+export enum AuthProviderRequestsSelectColumn {
   /** column name */
   Id = 'id',
   /** column name */
-  IsAnonymous = 'is_anonymous',
-  /** column name */
-  MfaEnabled = 'mfa_enabled',
-  /** column name */
-  NewEmail = 'new_email',
-  /** column name */
-  OtpSecret = 'otp_secret',
-  /** column name */
-  PasswordHash = 'password_hash',
-  /** column name */
-  Ticket = 'ticket',
-  /** column name */
-  TicketExpiresAt = 'ticket_expires_at',
-  /** column name */
-  UpdatedAt = 'updated_at',
-  /** column name */
-  UserId = 'user_id'
+  Options = 'options'
 }
 
-/** input type for updating data in table "auth.accounts" */
-export type AuthAccountsSetInput = {
-  active?: Maybe<Scalars['Boolean']>;
-  created_at?: Maybe<Scalars['timestamptz']>;
-  custom_register_data?: Maybe<Scalars['jsonb']>;
-  default_role?: Maybe<Scalars['String']>;
-  email?: Maybe<Scalars['citext']>;
+/** input type for updating data in table "auth.provider_requests" */
+export type AuthProviderRequestsSetInput = {
   id?: Maybe<Scalars['uuid']>;
-  is_anonymous?: Maybe<Scalars['Boolean']>;
-  mfa_enabled?: Maybe<Scalars['Boolean']>;
-  new_email?: Maybe<Scalars['citext']>;
-  otp_secret?: Maybe<Scalars['String']>;
-  password_hash?: Maybe<Scalars['String']>;
-  ticket?: Maybe<Scalars['uuid']>;
-  ticket_expires_at?: Maybe<Scalars['timestamptz']>;
-  updated_at?: Maybe<Scalars['timestamptz']>;
-  user_id?: Maybe<Scalars['uuid']>;
+  options?: Maybe<Scalars['jsonb']>;
 };
 
-/** update columns of table "auth.accounts" */
-export enum AuthAccountsUpdateColumn {
-  /** column name */
-  Active = 'active',
-  /** column name */
-  CreatedAt = 'created_at',
-  /** column name */
-  CustomRegisterData = 'custom_register_data',
-  /** column name */
-  DefaultRole = 'default_role',
-  /** column name */
-  Email = 'email',
+/** update columns of table "auth.provider_requests" */
+export enum AuthProviderRequestsUpdateColumn {
   /** column name */
   Id = 'id',
   /** column name */
-  IsAnonymous = 'is_anonymous',
-  /** column name */
-  MfaEnabled = 'mfa_enabled',
-  /** column name */
-  NewEmail = 'new_email',
-  /** column name */
-  OtpSecret = 'otp_secret',
-  /** column name */
-  PasswordHash = 'password_hash',
-  /** column name */
-  Ticket = 'ticket',
-  /** column name */
-  TicketExpiresAt = 'ticket_expires_at',
-  /** column name */
-  UpdatedAt = 'updated_at',
-  /** column name */
-  UserId = 'user_id'
+  Options = 'options'
 }
 
 /** columns and relationships of "auth.providers" */
 export type AuthProviders = {
-  __typename?: 'auth_providers';
+  __typename?: 'authProviders';
+  id: Scalars['String'];
   /** An array relationship */
-  account_providers: Array<AuthAccountProviders>;
+  userProviders: Array<AuthUserProviders>;
   /** An aggregate relationship */
-  account_providers_aggregate: AuthAccountProvidersAggregate;
-  provider: Scalars['String'];
+  userProviders_aggregate: AuthUserProvidersAggregate;
 };
 
 
 /** columns and relationships of "auth.providers" */
-export type AuthProvidersAccountProvidersArgs = {
-  distinct_on?: Maybe<Array<AuthAccountProvidersSelectColumn>>;
+export type AuthProvidersUserProvidersArgs = {
+  distinct_on?: Maybe<Array<AuthUserProvidersSelectColumn>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<AuthAccountProvidersOrderBy>>;
-  where?: Maybe<AuthAccountProvidersBoolExp>;
+  order_by?: Maybe<Array<AuthUserProvidersOrderBy>>;
+  where?: Maybe<AuthUserProvidersBoolExp>;
 };
 
 
 /** columns and relationships of "auth.providers" */
-export type AuthProvidersAccountProvidersAggregateArgs = {
-  distinct_on?: Maybe<Array<AuthAccountProvidersSelectColumn>>;
+export type AuthProvidersUserProvidersAggregateArgs = {
+  distinct_on?: Maybe<Array<AuthUserProvidersSelectColumn>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<AuthAccountProvidersOrderBy>>;
-  where?: Maybe<AuthAccountProvidersBoolExp>;
+  order_by?: Maybe<Array<AuthUserProvidersOrderBy>>;
+  where?: Maybe<AuthUserProvidersBoolExp>;
 };
 
 /** aggregated selection of "auth.providers" */
 export type AuthProvidersAggregate = {
-  __typename?: 'auth_providers_aggregate';
+  __typename?: 'authProviders_aggregate';
   aggregate?: Maybe<AuthProvidersAggregateFields>;
   nodes: Array<AuthProviders>;
 };
 
 /** aggregate fields of "auth.providers" */
 export type AuthProvidersAggregateFields = {
-  __typename?: 'auth_providers_aggregate_fields';
+  __typename?: 'authProviders_aggregate_fields';
   count: Scalars['Int'];
   max?: Maybe<AuthProvidersMaxFields>;
   min?: Maybe<AuthProvidersMinFields>;
@@ -1201,8 +608,8 @@ export type AuthProvidersBoolExp = {
   _and?: Maybe<Array<AuthProvidersBoolExp>>;
   _not?: Maybe<AuthProvidersBoolExp>;
   _or?: Maybe<Array<AuthProvidersBoolExp>>;
-  account_providers?: Maybe<AuthAccountProvidersBoolExp>;
-  provider?: Maybe<StringComparisonExp>;
+  id?: Maybe<StringComparisonExp>;
+  userProviders?: Maybe<AuthUserProvidersBoolExp>;
 };
 
 /** unique or primary key constraints on table "auth.providers" */
@@ -1213,25 +620,25 @@ export enum AuthProvidersConstraint {
 
 /** input type for inserting data into table "auth.providers" */
 export type AuthProvidersInsertInput = {
-  account_providers?: Maybe<AuthAccountProvidersArrRelInsertInput>;
-  provider?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+  userProviders?: Maybe<AuthUserProvidersArrRelInsertInput>;
 };
 
 /** aggregate max on columns */
 export type AuthProvidersMaxFields = {
-  __typename?: 'auth_providers_max_fields';
-  provider?: Maybe<Scalars['String']>;
+  __typename?: 'authProviders_max_fields';
+  id?: Maybe<Scalars['String']>;
 };
 
 /** aggregate min on columns */
 export type AuthProvidersMinFields = {
-  __typename?: 'auth_providers_min_fields';
-  provider?: Maybe<Scalars['String']>;
+  __typename?: 'authProviders_min_fields';
+  id?: Maybe<Scalars['String']>;
 };
 
 /** response of any mutation on the table "auth.providers" */
 export type AuthProvidersMutationResponse = {
-  __typename?: 'auth_providers_mutation_response';
+  __typename?: 'authProviders_mutation_response';
   /** number of rows affected by the mutation */
   affected_rows: Scalars['Int'];
   /** data from the rows affected by the mutation */
@@ -1254,53 +661,53 @@ export type AuthProvidersOnConflict = {
 
 /** Ordering options when selecting data from "auth.providers". */
 export type AuthProvidersOrderBy = {
-  account_providers_aggregate?: Maybe<AuthAccountProvidersAggregateOrderBy>;
-  provider?: Maybe<OrderBy>;
+  id?: Maybe<OrderBy>;
+  userProviders_aggregate?: Maybe<AuthUserProvidersAggregateOrderBy>;
 };
 
-/** primary key columns input for table: auth_providers */
+/** primary key columns input for table: authProviders */
 export type AuthProvidersPkColumnsInput = {
-  provider: Scalars['String'];
+  id: Scalars['String'];
 };
 
 /** select columns of table "auth.providers" */
 export enum AuthProvidersSelectColumn {
   /** column name */
-  Provider = 'provider'
+  Id = 'id'
 }
 
 /** input type for updating data in table "auth.providers" */
 export type AuthProvidersSetInput = {
-  provider?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
 };
 
 /** update columns of table "auth.providers" */
 export enum AuthProvidersUpdateColumn {
   /** column name */
-  Provider = 'provider'
+  Id = 'id'
 }
 
 /** columns and relationships of "auth.refresh_tokens" */
 export type AuthRefreshTokens = {
-  __typename?: 'auth_refresh_tokens';
+  __typename?: 'authRefreshTokens';
+  createdAt: Scalars['timestamptz'];
+  expiresAt: Scalars['timestamptz'];
+  refreshToken: Scalars['uuid'];
   /** An object relationship */
-  account: AuthAccounts;
-  account_id: Scalars['uuid'];
-  created_at: Scalars['timestamptz'];
-  expires_at: Scalars['timestamptz'];
-  refresh_token: Scalars['uuid'];
+  user: Users;
+  userId: Scalars['uuid'];
 };
 
 /** aggregated selection of "auth.refresh_tokens" */
 export type AuthRefreshTokensAggregate = {
-  __typename?: 'auth_refresh_tokens_aggregate';
+  __typename?: 'authRefreshTokens_aggregate';
   aggregate?: Maybe<AuthRefreshTokensAggregateFields>;
   nodes: Array<AuthRefreshTokens>;
 };
 
 /** aggregate fields of "auth.refresh_tokens" */
 export type AuthRefreshTokensAggregateFields = {
-  __typename?: 'auth_refresh_tokens_aggregate_fields';
+  __typename?: 'authRefreshTokens_aggregate_fields';
   count: Scalars['Int'];
   max?: Maybe<AuthRefreshTokensMaxFields>;
   min?: Maybe<AuthRefreshTokensMinFields>;
@@ -1332,11 +739,11 @@ export type AuthRefreshTokensBoolExp = {
   _and?: Maybe<Array<AuthRefreshTokensBoolExp>>;
   _not?: Maybe<AuthRefreshTokensBoolExp>;
   _or?: Maybe<Array<AuthRefreshTokensBoolExp>>;
-  account?: Maybe<AuthAccountsBoolExp>;
-  account_id?: Maybe<UuidComparisonExp>;
-  created_at?: Maybe<TimestamptzComparisonExp>;
-  expires_at?: Maybe<TimestamptzComparisonExp>;
-  refresh_token?: Maybe<UuidComparisonExp>;
+  createdAt?: Maybe<TimestamptzComparisonExp>;
+  expiresAt?: Maybe<TimestamptzComparisonExp>;
+  refreshToken?: Maybe<UuidComparisonExp>;
+  user?: Maybe<UsersBoolExp>;
+  userId?: Maybe<UuidComparisonExp>;
 };
 
 /** unique or primary key constraints on table "auth.refresh_tokens" */
@@ -1347,50 +754,50 @@ export enum AuthRefreshTokensConstraint {
 
 /** input type for inserting data into table "auth.refresh_tokens" */
 export type AuthRefreshTokensInsertInput = {
-  account?: Maybe<AuthAccountsObjRelInsertInput>;
-  account_id?: Maybe<Scalars['uuid']>;
-  created_at?: Maybe<Scalars['timestamptz']>;
-  expires_at?: Maybe<Scalars['timestamptz']>;
-  refresh_token?: Maybe<Scalars['uuid']>;
+  createdAt?: Maybe<Scalars['timestamptz']>;
+  expiresAt?: Maybe<Scalars['timestamptz']>;
+  refreshToken?: Maybe<Scalars['uuid']>;
+  user?: Maybe<UsersObjRelInsertInput>;
+  userId?: Maybe<Scalars['uuid']>;
 };
 
 /** aggregate max on columns */
 export type AuthRefreshTokensMaxFields = {
-  __typename?: 'auth_refresh_tokens_max_fields';
-  account_id?: Maybe<Scalars['uuid']>;
-  created_at?: Maybe<Scalars['timestamptz']>;
-  expires_at?: Maybe<Scalars['timestamptz']>;
-  refresh_token?: Maybe<Scalars['uuid']>;
+  __typename?: 'authRefreshTokens_max_fields';
+  createdAt?: Maybe<Scalars['timestamptz']>;
+  expiresAt?: Maybe<Scalars['timestamptz']>;
+  refreshToken?: Maybe<Scalars['uuid']>;
+  userId?: Maybe<Scalars['uuid']>;
 };
 
 /** order by max() on columns of table "auth.refresh_tokens" */
 export type AuthRefreshTokensMaxOrderBy = {
-  account_id?: Maybe<OrderBy>;
-  created_at?: Maybe<OrderBy>;
-  expires_at?: Maybe<OrderBy>;
-  refresh_token?: Maybe<OrderBy>;
+  createdAt?: Maybe<OrderBy>;
+  expiresAt?: Maybe<OrderBy>;
+  refreshToken?: Maybe<OrderBy>;
+  userId?: Maybe<OrderBy>;
 };
 
 /** aggregate min on columns */
 export type AuthRefreshTokensMinFields = {
-  __typename?: 'auth_refresh_tokens_min_fields';
-  account_id?: Maybe<Scalars['uuid']>;
-  created_at?: Maybe<Scalars['timestamptz']>;
-  expires_at?: Maybe<Scalars['timestamptz']>;
-  refresh_token?: Maybe<Scalars['uuid']>;
+  __typename?: 'authRefreshTokens_min_fields';
+  createdAt?: Maybe<Scalars['timestamptz']>;
+  expiresAt?: Maybe<Scalars['timestamptz']>;
+  refreshToken?: Maybe<Scalars['uuid']>;
+  userId?: Maybe<Scalars['uuid']>;
 };
 
 /** order by min() on columns of table "auth.refresh_tokens" */
 export type AuthRefreshTokensMinOrderBy = {
-  account_id?: Maybe<OrderBy>;
-  created_at?: Maybe<OrderBy>;
-  expires_at?: Maybe<OrderBy>;
-  refresh_token?: Maybe<OrderBy>;
+  createdAt?: Maybe<OrderBy>;
+  expiresAt?: Maybe<OrderBy>;
+  refreshToken?: Maybe<OrderBy>;
+  userId?: Maybe<OrderBy>;
 };
 
 /** response of any mutation on the table "auth.refresh_tokens" */
 export type AuthRefreshTokensMutationResponse = {
-  __typename?: 'auth_refresh_tokens_mutation_response';
+  __typename?: 'authRefreshTokens_mutation_response';
   /** number of rows affected by the mutation */
   affected_rows: Scalars['Int'];
   /** data from the rows affected by the mutation */
@@ -1406,114 +813,114 @@ export type AuthRefreshTokensOnConflict = {
 
 /** Ordering options when selecting data from "auth.refresh_tokens". */
 export type AuthRefreshTokensOrderBy = {
-  account?: Maybe<AuthAccountsOrderBy>;
-  account_id?: Maybe<OrderBy>;
-  created_at?: Maybe<OrderBy>;
-  expires_at?: Maybe<OrderBy>;
-  refresh_token?: Maybe<OrderBy>;
+  createdAt?: Maybe<OrderBy>;
+  expiresAt?: Maybe<OrderBy>;
+  refreshToken?: Maybe<OrderBy>;
+  user?: Maybe<UsersOrderBy>;
+  userId?: Maybe<OrderBy>;
 };
 
-/** primary key columns input for table: auth_refresh_tokens */
+/** primary key columns input for table: authRefreshTokens */
 export type AuthRefreshTokensPkColumnsInput = {
-  refresh_token: Scalars['uuid'];
+  refreshToken: Scalars['uuid'];
 };
 
 /** select columns of table "auth.refresh_tokens" */
 export enum AuthRefreshTokensSelectColumn {
   /** column name */
-  AccountId = 'account_id',
+  CreatedAt = 'createdAt',
   /** column name */
-  CreatedAt = 'created_at',
+  ExpiresAt = 'expiresAt',
   /** column name */
-  ExpiresAt = 'expires_at',
+  RefreshToken = 'refreshToken',
   /** column name */
-  RefreshToken = 'refresh_token'
+  UserId = 'userId'
 }
 
 /** input type for updating data in table "auth.refresh_tokens" */
 export type AuthRefreshTokensSetInput = {
-  account_id?: Maybe<Scalars['uuid']>;
-  created_at?: Maybe<Scalars['timestamptz']>;
-  expires_at?: Maybe<Scalars['timestamptz']>;
-  refresh_token?: Maybe<Scalars['uuid']>;
+  createdAt?: Maybe<Scalars['timestamptz']>;
+  expiresAt?: Maybe<Scalars['timestamptz']>;
+  refreshToken?: Maybe<Scalars['uuid']>;
+  userId?: Maybe<Scalars['uuid']>;
 };
 
 /** update columns of table "auth.refresh_tokens" */
 export enum AuthRefreshTokensUpdateColumn {
   /** column name */
-  AccountId = 'account_id',
+  CreatedAt = 'createdAt',
   /** column name */
-  CreatedAt = 'created_at',
+  ExpiresAt = 'expiresAt',
   /** column name */
-  ExpiresAt = 'expires_at',
+  RefreshToken = 'refreshToken',
   /** column name */
-  RefreshToken = 'refresh_token'
+  UserId = 'userId'
 }
 
 /** columns and relationships of "auth.roles" */
 export type AuthRoles = {
-  __typename?: 'auth_roles';
-  /** An array relationship */
-  account_roles: Array<AuthAccountRoles>;
-  /** An aggregate relationship */
-  account_roles_aggregate: AuthAccountRolesAggregate;
-  /** An array relationship */
-  accounts: Array<AuthAccounts>;
-  /** An aggregate relationship */
-  accounts_aggregate: AuthAccountsAggregate;
+  __typename?: 'authRoles';
   role: Scalars['String'];
+  /** An array relationship */
+  userRoles: Array<AuthUserRoles>;
+  /** An aggregate relationship */
+  userRoles_aggregate: AuthUserRolesAggregate;
+  /** An array relationship */
+  usersByDefaultRole: Array<Users>;
+  /** An aggregate relationship */
+  usersByDefaultRole_aggregate: UsersAggregate;
 };
 
 
 /** columns and relationships of "auth.roles" */
-export type AuthRolesAccountRolesArgs = {
-  distinct_on?: Maybe<Array<AuthAccountRolesSelectColumn>>;
+export type AuthRolesUserRolesArgs = {
+  distinct_on?: Maybe<Array<AuthUserRolesSelectColumn>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<AuthAccountRolesOrderBy>>;
-  where?: Maybe<AuthAccountRolesBoolExp>;
+  order_by?: Maybe<Array<AuthUserRolesOrderBy>>;
+  where?: Maybe<AuthUserRolesBoolExp>;
 };
 
 
 /** columns and relationships of "auth.roles" */
-export type AuthRolesAccountRolesAggregateArgs = {
-  distinct_on?: Maybe<Array<AuthAccountRolesSelectColumn>>;
+export type AuthRolesUserRolesAggregateArgs = {
+  distinct_on?: Maybe<Array<AuthUserRolesSelectColumn>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<AuthAccountRolesOrderBy>>;
-  where?: Maybe<AuthAccountRolesBoolExp>;
+  order_by?: Maybe<Array<AuthUserRolesOrderBy>>;
+  where?: Maybe<AuthUserRolesBoolExp>;
 };
 
 
 /** columns and relationships of "auth.roles" */
-export type AuthRolesAccountsArgs = {
-  distinct_on?: Maybe<Array<AuthAccountsSelectColumn>>;
+export type AuthRolesUsersByDefaultRoleArgs = {
+  distinct_on?: Maybe<Array<UsersSelectColumn>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<AuthAccountsOrderBy>>;
-  where?: Maybe<AuthAccountsBoolExp>;
+  order_by?: Maybe<Array<UsersOrderBy>>;
+  where?: Maybe<UsersBoolExp>;
 };
 
 
 /** columns and relationships of "auth.roles" */
-export type AuthRolesAccountsAggregateArgs = {
-  distinct_on?: Maybe<Array<AuthAccountsSelectColumn>>;
+export type AuthRolesUsersByDefaultRoleAggregateArgs = {
+  distinct_on?: Maybe<Array<UsersSelectColumn>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<AuthAccountsOrderBy>>;
-  where?: Maybe<AuthAccountsBoolExp>;
+  order_by?: Maybe<Array<UsersOrderBy>>;
+  where?: Maybe<UsersBoolExp>;
 };
 
 /** aggregated selection of "auth.roles" */
 export type AuthRolesAggregate = {
-  __typename?: 'auth_roles_aggregate';
+  __typename?: 'authRoles_aggregate';
   aggregate?: Maybe<AuthRolesAggregateFields>;
   nodes: Array<AuthRoles>;
 };
 
 /** aggregate fields of "auth.roles" */
 export type AuthRolesAggregateFields = {
-  __typename?: 'auth_roles_aggregate_fields';
+  __typename?: 'authRoles_aggregate_fields';
   count: Scalars['Int'];
   max?: Maybe<AuthRolesMaxFields>;
   min?: Maybe<AuthRolesMinFields>;
@@ -1531,9 +938,9 @@ export type AuthRolesBoolExp = {
   _and?: Maybe<Array<AuthRolesBoolExp>>;
   _not?: Maybe<AuthRolesBoolExp>;
   _or?: Maybe<Array<AuthRolesBoolExp>>;
-  account_roles?: Maybe<AuthAccountRolesBoolExp>;
-  accounts?: Maybe<AuthAccountsBoolExp>;
   role?: Maybe<StringComparisonExp>;
+  userRoles?: Maybe<AuthUserRolesBoolExp>;
+  usersByDefaultRole?: Maybe<UsersBoolExp>;
 };
 
 /** unique or primary key constraints on table "auth.roles" */
@@ -1544,26 +951,26 @@ export enum AuthRolesConstraint {
 
 /** input type for inserting data into table "auth.roles" */
 export type AuthRolesInsertInput = {
-  account_roles?: Maybe<AuthAccountRolesArrRelInsertInput>;
-  accounts?: Maybe<AuthAccountsArrRelInsertInput>;
   role?: Maybe<Scalars['String']>;
+  userRoles?: Maybe<AuthUserRolesArrRelInsertInput>;
+  usersByDefaultRole?: Maybe<UsersArrRelInsertInput>;
 };
 
 /** aggregate max on columns */
 export type AuthRolesMaxFields = {
-  __typename?: 'auth_roles_max_fields';
+  __typename?: 'authRoles_max_fields';
   role?: Maybe<Scalars['String']>;
 };
 
 /** aggregate min on columns */
 export type AuthRolesMinFields = {
-  __typename?: 'auth_roles_min_fields';
+  __typename?: 'authRoles_min_fields';
   role?: Maybe<Scalars['String']>;
 };
 
 /** response of any mutation on the table "auth.roles" */
 export type AuthRolesMutationResponse = {
-  __typename?: 'auth_roles_mutation_response';
+  __typename?: 'authRoles_mutation_response';
   /** number of rows affected by the mutation */
   affected_rows: Scalars['Int'];
   /** data from the rows affected by the mutation */
@@ -1586,12 +993,12 @@ export type AuthRolesOnConflict = {
 
 /** Ordering options when selecting data from "auth.roles". */
 export type AuthRolesOrderBy = {
-  account_roles_aggregate?: Maybe<AuthAccountRolesAggregateOrderBy>;
-  accounts_aggregate?: Maybe<AuthAccountsAggregateOrderBy>;
   role?: Maybe<OrderBy>;
+  userRoles_aggregate?: Maybe<AuthUserRolesAggregateOrderBy>;
+  usersByDefaultRole_aggregate?: Maybe<UsersAggregateOrderBy>;
 };
 
-/** primary key columns input for table: auth_roles */
+/** primary key columns input for table: authRoles */
 export type AuthRolesPkColumnsInput = {
   role: Scalars['String'];
 };
@@ -1611,6 +1018,414 @@ export type AuthRolesSetInput = {
 export enum AuthRolesUpdateColumn {
   /** column name */
   Role = 'role'
+}
+
+/** columns and relationships of "auth.user_providers" */
+export type AuthUserProviders = {
+  __typename?: 'authUserProviders';
+  accessToken: Scalars['String'];
+  createdAt: Scalars['timestamptz'];
+  id: Scalars['uuid'];
+  /** An object relationship */
+  provider: AuthProviders;
+  providerId: Scalars['String'];
+  providerUserId: Scalars['String'];
+  refreshToken?: Maybe<Scalars['String']>;
+  updatedAt: Scalars['timestamptz'];
+  /** An object relationship */
+  user: Users;
+  userId: Scalars['uuid'];
+};
+
+/** aggregated selection of "auth.user_providers" */
+export type AuthUserProvidersAggregate = {
+  __typename?: 'authUserProviders_aggregate';
+  aggregate?: Maybe<AuthUserProvidersAggregateFields>;
+  nodes: Array<AuthUserProviders>;
+};
+
+/** aggregate fields of "auth.user_providers" */
+export type AuthUserProvidersAggregateFields = {
+  __typename?: 'authUserProviders_aggregate_fields';
+  count: Scalars['Int'];
+  max?: Maybe<AuthUserProvidersMaxFields>;
+  min?: Maybe<AuthUserProvidersMinFields>;
+};
+
+
+/** aggregate fields of "auth.user_providers" */
+export type AuthUserProvidersAggregateFieldsCountArgs = {
+  columns?: Maybe<Array<AuthUserProvidersSelectColumn>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "auth.user_providers" */
+export type AuthUserProvidersAggregateOrderBy = {
+  count?: Maybe<OrderBy>;
+  max?: Maybe<AuthUserProvidersMaxOrderBy>;
+  min?: Maybe<AuthUserProvidersMinOrderBy>;
+};
+
+/** input type for inserting array relation for remote table "auth.user_providers" */
+export type AuthUserProvidersArrRelInsertInput = {
+  data: Array<AuthUserProvidersInsertInput>;
+  /** upsert condition */
+  on_conflict?: Maybe<AuthUserProvidersOnConflict>;
+};
+
+/** Boolean expression to filter rows from the table "auth.user_providers". All fields are combined with a logical 'AND'. */
+export type AuthUserProvidersBoolExp = {
+  _and?: Maybe<Array<AuthUserProvidersBoolExp>>;
+  _not?: Maybe<AuthUserProvidersBoolExp>;
+  _or?: Maybe<Array<AuthUserProvidersBoolExp>>;
+  accessToken?: Maybe<StringComparisonExp>;
+  createdAt?: Maybe<TimestamptzComparisonExp>;
+  id?: Maybe<UuidComparisonExp>;
+  provider?: Maybe<AuthProvidersBoolExp>;
+  providerId?: Maybe<StringComparisonExp>;
+  providerUserId?: Maybe<StringComparisonExp>;
+  refreshToken?: Maybe<StringComparisonExp>;
+  updatedAt?: Maybe<TimestamptzComparisonExp>;
+  user?: Maybe<UsersBoolExp>;
+  userId?: Maybe<UuidComparisonExp>;
+};
+
+/** unique or primary key constraints on table "auth.user_providers" */
+export enum AuthUserProvidersConstraint {
+  /** unique or primary key constraint */
+  UserProvidersPkey = 'user_providers_pkey',
+  /** unique or primary key constraint */
+  UserProvidersProviderIdProviderUserIdKey = 'user_providers_provider_id_provider_user_id_key',
+  /** unique or primary key constraint */
+  UserProvidersUserIdProviderIdKey = 'user_providers_user_id_provider_id_key'
+}
+
+/** input type for inserting data into table "auth.user_providers" */
+export type AuthUserProvidersInsertInput = {
+  accessToken?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['uuid']>;
+  provider?: Maybe<AuthProvidersObjRelInsertInput>;
+  providerId?: Maybe<Scalars['String']>;
+  providerUserId?: Maybe<Scalars['String']>;
+  refreshToken?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['timestamptz']>;
+  user?: Maybe<UsersObjRelInsertInput>;
+  userId?: Maybe<Scalars['uuid']>;
+};
+
+/** aggregate max on columns */
+export type AuthUserProvidersMaxFields = {
+  __typename?: 'authUserProviders_max_fields';
+  accessToken?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['uuid']>;
+  providerId?: Maybe<Scalars['String']>;
+  providerUserId?: Maybe<Scalars['String']>;
+  refreshToken?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['timestamptz']>;
+  userId?: Maybe<Scalars['uuid']>;
+};
+
+/** order by max() on columns of table "auth.user_providers" */
+export type AuthUserProvidersMaxOrderBy = {
+  accessToken?: Maybe<OrderBy>;
+  createdAt?: Maybe<OrderBy>;
+  id?: Maybe<OrderBy>;
+  providerId?: Maybe<OrderBy>;
+  providerUserId?: Maybe<OrderBy>;
+  refreshToken?: Maybe<OrderBy>;
+  updatedAt?: Maybe<OrderBy>;
+  userId?: Maybe<OrderBy>;
+};
+
+/** aggregate min on columns */
+export type AuthUserProvidersMinFields = {
+  __typename?: 'authUserProviders_min_fields';
+  accessToken?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['uuid']>;
+  providerId?: Maybe<Scalars['String']>;
+  providerUserId?: Maybe<Scalars['String']>;
+  refreshToken?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['timestamptz']>;
+  userId?: Maybe<Scalars['uuid']>;
+};
+
+/** order by min() on columns of table "auth.user_providers" */
+export type AuthUserProvidersMinOrderBy = {
+  accessToken?: Maybe<OrderBy>;
+  createdAt?: Maybe<OrderBy>;
+  id?: Maybe<OrderBy>;
+  providerId?: Maybe<OrderBy>;
+  providerUserId?: Maybe<OrderBy>;
+  refreshToken?: Maybe<OrderBy>;
+  updatedAt?: Maybe<OrderBy>;
+  userId?: Maybe<OrderBy>;
+};
+
+/** response of any mutation on the table "auth.user_providers" */
+export type AuthUserProvidersMutationResponse = {
+  __typename?: 'authUserProviders_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data from the rows affected by the mutation */
+  returning: Array<AuthUserProviders>;
+};
+
+/** on_conflict condition type for table "auth.user_providers" */
+export type AuthUserProvidersOnConflict = {
+  constraint: AuthUserProvidersConstraint;
+  update_columns?: Array<AuthUserProvidersUpdateColumn>;
+  where?: Maybe<AuthUserProvidersBoolExp>;
+};
+
+/** Ordering options when selecting data from "auth.user_providers". */
+export type AuthUserProvidersOrderBy = {
+  accessToken?: Maybe<OrderBy>;
+  createdAt?: Maybe<OrderBy>;
+  id?: Maybe<OrderBy>;
+  provider?: Maybe<AuthProvidersOrderBy>;
+  providerId?: Maybe<OrderBy>;
+  providerUserId?: Maybe<OrderBy>;
+  refreshToken?: Maybe<OrderBy>;
+  updatedAt?: Maybe<OrderBy>;
+  user?: Maybe<UsersOrderBy>;
+  userId?: Maybe<OrderBy>;
+};
+
+/** primary key columns input for table: authUserProviders */
+export type AuthUserProvidersPkColumnsInput = {
+  id: Scalars['uuid'];
+};
+
+/** select columns of table "auth.user_providers" */
+export enum AuthUserProvidersSelectColumn {
+  /** column name */
+  AccessToken = 'accessToken',
+  /** column name */
+  CreatedAt = 'createdAt',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  ProviderId = 'providerId',
+  /** column name */
+  ProviderUserId = 'providerUserId',
+  /** column name */
+  RefreshToken = 'refreshToken',
+  /** column name */
+  UpdatedAt = 'updatedAt',
+  /** column name */
+  UserId = 'userId'
+}
+
+/** input type for updating data in table "auth.user_providers" */
+export type AuthUserProvidersSetInput = {
+  accessToken?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['uuid']>;
+  providerId?: Maybe<Scalars['String']>;
+  providerUserId?: Maybe<Scalars['String']>;
+  refreshToken?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['timestamptz']>;
+  userId?: Maybe<Scalars['uuid']>;
+};
+
+/** update columns of table "auth.user_providers" */
+export enum AuthUserProvidersUpdateColumn {
+  /** column name */
+  AccessToken = 'accessToken',
+  /** column name */
+  CreatedAt = 'createdAt',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  ProviderId = 'providerId',
+  /** column name */
+  ProviderUserId = 'providerUserId',
+  /** column name */
+  RefreshToken = 'refreshToken',
+  /** column name */
+  UpdatedAt = 'updatedAt',
+  /** column name */
+  UserId = 'userId'
+}
+
+/** columns and relationships of "auth.user_roles" */
+export type AuthUserRoles = {
+  __typename?: 'authUserRoles';
+  createdAt: Scalars['timestamptz'];
+  id: Scalars['uuid'];
+  role: Scalars['String'];
+  /** An object relationship */
+  roleByRole: AuthRoles;
+  /** An object relationship */
+  user: Users;
+  userId: Scalars['uuid'];
+};
+
+/** aggregated selection of "auth.user_roles" */
+export type AuthUserRolesAggregate = {
+  __typename?: 'authUserRoles_aggregate';
+  aggregate?: Maybe<AuthUserRolesAggregateFields>;
+  nodes: Array<AuthUserRoles>;
+};
+
+/** aggregate fields of "auth.user_roles" */
+export type AuthUserRolesAggregateFields = {
+  __typename?: 'authUserRoles_aggregate_fields';
+  count: Scalars['Int'];
+  max?: Maybe<AuthUserRolesMaxFields>;
+  min?: Maybe<AuthUserRolesMinFields>;
+};
+
+
+/** aggregate fields of "auth.user_roles" */
+export type AuthUserRolesAggregateFieldsCountArgs = {
+  columns?: Maybe<Array<AuthUserRolesSelectColumn>>;
+  distinct?: Maybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "auth.user_roles" */
+export type AuthUserRolesAggregateOrderBy = {
+  count?: Maybe<OrderBy>;
+  max?: Maybe<AuthUserRolesMaxOrderBy>;
+  min?: Maybe<AuthUserRolesMinOrderBy>;
+};
+
+/** input type for inserting array relation for remote table "auth.user_roles" */
+export type AuthUserRolesArrRelInsertInput = {
+  data: Array<AuthUserRolesInsertInput>;
+  /** upsert condition */
+  on_conflict?: Maybe<AuthUserRolesOnConflict>;
+};
+
+/** Boolean expression to filter rows from the table "auth.user_roles". All fields are combined with a logical 'AND'. */
+export type AuthUserRolesBoolExp = {
+  _and?: Maybe<Array<AuthUserRolesBoolExp>>;
+  _not?: Maybe<AuthUserRolesBoolExp>;
+  _or?: Maybe<Array<AuthUserRolesBoolExp>>;
+  createdAt?: Maybe<TimestamptzComparisonExp>;
+  id?: Maybe<UuidComparisonExp>;
+  role?: Maybe<StringComparisonExp>;
+  roleByRole?: Maybe<AuthRolesBoolExp>;
+  user?: Maybe<UsersBoolExp>;
+  userId?: Maybe<UuidComparisonExp>;
+};
+
+/** unique or primary key constraints on table "auth.user_roles" */
+export enum AuthUserRolesConstraint {
+  /** unique or primary key constraint */
+  UserRolesPkey = 'user_roles_pkey',
+  /** unique or primary key constraint */
+  UserRolesUserIdRoleKey = 'user_roles_user_id_role_key'
+}
+
+/** input type for inserting data into table "auth.user_roles" */
+export type AuthUserRolesInsertInput = {
+  createdAt?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['uuid']>;
+  role?: Maybe<Scalars['String']>;
+  roleByRole?: Maybe<AuthRolesObjRelInsertInput>;
+  user?: Maybe<UsersObjRelInsertInput>;
+  userId?: Maybe<Scalars['uuid']>;
+};
+
+/** aggregate max on columns */
+export type AuthUserRolesMaxFields = {
+  __typename?: 'authUserRoles_max_fields';
+  createdAt?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['uuid']>;
+  role?: Maybe<Scalars['String']>;
+  userId?: Maybe<Scalars['uuid']>;
+};
+
+/** order by max() on columns of table "auth.user_roles" */
+export type AuthUserRolesMaxOrderBy = {
+  createdAt?: Maybe<OrderBy>;
+  id?: Maybe<OrderBy>;
+  role?: Maybe<OrderBy>;
+  userId?: Maybe<OrderBy>;
+};
+
+/** aggregate min on columns */
+export type AuthUserRolesMinFields = {
+  __typename?: 'authUserRoles_min_fields';
+  createdAt?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['uuid']>;
+  role?: Maybe<Scalars['String']>;
+  userId?: Maybe<Scalars['uuid']>;
+};
+
+/** order by min() on columns of table "auth.user_roles" */
+export type AuthUserRolesMinOrderBy = {
+  createdAt?: Maybe<OrderBy>;
+  id?: Maybe<OrderBy>;
+  role?: Maybe<OrderBy>;
+  userId?: Maybe<OrderBy>;
+};
+
+/** response of any mutation on the table "auth.user_roles" */
+export type AuthUserRolesMutationResponse = {
+  __typename?: 'authUserRoles_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data from the rows affected by the mutation */
+  returning: Array<AuthUserRoles>;
+};
+
+/** on_conflict condition type for table "auth.user_roles" */
+export type AuthUserRolesOnConflict = {
+  constraint: AuthUserRolesConstraint;
+  update_columns?: Array<AuthUserRolesUpdateColumn>;
+  where?: Maybe<AuthUserRolesBoolExp>;
+};
+
+/** Ordering options when selecting data from "auth.user_roles". */
+export type AuthUserRolesOrderBy = {
+  createdAt?: Maybe<OrderBy>;
+  id?: Maybe<OrderBy>;
+  role?: Maybe<OrderBy>;
+  roleByRole?: Maybe<AuthRolesOrderBy>;
+  user?: Maybe<UsersOrderBy>;
+  userId?: Maybe<OrderBy>;
+};
+
+/** primary key columns input for table: authUserRoles */
+export type AuthUserRolesPkColumnsInput = {
+  id: Scalars['uuid'];
+};
+
+/** select columns of table "auth.user_roles" */
+export enum AuthUserRolesSelectColumn {
+  /** column name */
+  CreatedAt = 'createdAt',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Role = 'role',
+  /** column name */
+  UserId = 'userId'
+}
+
+/** input type for updating data in table "auth.user_roles" */
+export type AuthUserRolesSetInput = {
+  createdAt?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['uuid']>;
+  role?: Maybe<Scalars['String']>;
+  userId?: Maybe<Scalars['uuid']>;
+};
+
+/** update columns of table "auth.user_roles" */
+export enum AuthUserRolesUpdateColumn {
+  /** column name */
+  CreatedAt = 'createdAt',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Role = 'role',
+  /** column name */
+  UserId = 'userId'
 }
 
 
@@ -1980,6 +1795,34 @@ export type JsonbComparisonExp = {
 /** mutation root */
 export type MutationRoot = {
   __typename?: 'mutation_root';
+  /** delete single row from the table: "auth.providers" */
+  deleteAuthProvider?: Maybe<AuthProviders>;
+  /** delete single row from the table: "auth.provider_requests" */
+  deleteAuthProviderRequest?: Maybe<AuthProviderRequests>;
+  /** delete data from the table: "auth.provider_requests" */
+  deleteAuthProviderRequests?: Maybe<AuthProviderRequestsMutationResponse>;
+  /** delete data from the table: "auth.providers" */
+  deleteAuthProviders?: Maybe<AuthProvidersMutationResponse>;
+  /** delete single row from the table: "auth.refresh_tokens" */
+  deleteAuthRefreshToken?: Maybe<AuthRefreshTokens>;
+  /** delete data from the table: "auth.refresh_tokens" */
+  deleteAuthRefreshTokens?: Maybe<AuthRefreshTokensMutationResponse>;
+  /** delete single row from the table: "auth.roles" */
+  deleteAuthRole?: Maybe<AuthRoles>;
+  /** delete data from the table: "auth.roles" */
+  deleteAuthRoles?: Maybe<AuthRolesMutationResponse>;
+  /** delete single row from the table: "auth.user_providers" */
+  deleteAuthUserProvider?: Maybe<AuthUserProviders>;
+  /** delete data from the table: "auth.user_providers" */
+  deleteAuthUserProviders?: Maybe<AuthUserProvidersMutationResponse>;
+  /** delete single row from the table: "auth.user_roles" */
+  deleteAuthUserRole?: Maybe<AuthUserRoles>;
+  /** delete data from the table: "auth.user_roles" */
+  deleteAuthUserRoles?: Maybe<AuthUserRolesMutationResponse>;
+  /** delete single row from the table: "auth.users" */
+  deleteUser?: Maybe<Users>;
+  /** delete data from the table: "auth.users" */
+  deleteUsers?: Maybe<UsersMutationResponse>;
   /** delete data from the table: "article_states" */
   delete_article_states?: Maybe<ArticleStatesMutationResponse>;
   /** delete single row from the table: "article_states" */
@@ -1988,30 +1831,6 @@ export type MutationRoot = {
   delete_articles?: Maybe<ArticlesMutationResponse>;
   /** delete single row from the table: "articles" */
   delete_articles_by_pk?: Maybe<Articles>;
-  /** delete data from the table: "auth.account_providers" */
-  delete_auth_account_providers?: Maybe<AuthAccountProvidersMutationResponse>;
-  /** delete single row from the table: "auth.account_providers" */
-  delete_auth_account_providers_by_pk?: Maybe<AuthAccountProviders>;
-  /** delete data from the table: "auth.account_roles" */
-  delete_auth_account_roles?: Maybe<AuthAccountRolesMutationResponse>;
-  /** delete single row from the table: "auth.account_roles" */
-  delete_auth_account_roles_by_pk?: Maybe<AuthAccountRoles>;
-  /** delete data from the table: "auth.accounts" */
-  delete_auth_accounts?: Maybe<AuthAccountsMutationResponse>;
-  /** delete single row from the table: "auth.accounts" */
-  delete_auth_accounts_by_pk?: Maybe<AuthAccounts>;
-  /** delete data from the table: "auth.providers" */
-  delete_auth_providers?: Maybe<AuthProvidersMutationResponse>;
-  /** delete single row from the table: "auth.providers" */
-  delete_auth_providers_by_pk?: Maybe<AuthProviders>;
-  /** delete data from the table: "auth.refresh_tokens" */
-  delete_auth_refresh_tokens?: Maybe<AuthRefreshTokensMutationResponse>;
-  /** delete single row from the table: "auth.refresh_tokens" */
-  delete_auth_refresh_tokens_by_pk?: Maybe<AuthRefreshTokens>;
-  /** delete data from the table: "auth.roles" */
-  delete_auth_roles?: Maybe<AuthRolesMutationResponse>;
-  /** delete single row from the table: "auth.roles" */
-  delete_auth_roles_by_pk?: Maybe<AuthRoles>;
   /** delete data from the table: "comments" */
   delete_comments?: Maybe<CommentsMutationResponse>;
   /** delete single row from the table: "comments" */
@@ -2048,10 +1867,34 @@ export type MutationRoot = {
   delete_terms?: Maybe<TermsMutationResponse>;
   /** delete single row from the table: "terms" */
   delete_terms_by_pk?: Maybe<Terms>;
-  /** delete data from the table: "users" */
-  delete_users?: Maybe<UsersMutationResponse>;
-  /** delete single row from the table: "users" */
-  delete_users_by_pk?: Maybe<Users>;
+  /** insert a single row into the table: "auth.providers" */
+  insertAuthProvider?: Maybe<AuthProviders>;
+  /** insert a single row into the table: "auth.provider_requests" */
+  insertAuthProviderRequest?: Maybe<AuthProviderRequests>;
+  /** insert data into the table: "auth.provider_requests" */
+  insertAuthProviderRequests?: Maybe<AuthProviderRequestsMutationResponse>;
+  /** insert data into the table: "auth.providers" */
+  insertAuthProviders?: Maybe<AuthProvidersMutationResponse>;
+  /** insert a single row into the table: "auth.refresh_tokens" */
+  insertAuthRefreshToken?: Maybe<AuthRefreshTokens>;
+  /** insert data into the table: "auth.refresh_tokens" */
+  insertAuthRefreshTokens?: Maybe<AuthRefreshTokensMutationResponse>;
+  /** insert a single row into the table: "auth.roles" */
+  insertAuthRole?: Maybe<AuthRoles>;
+  /** insert data into the table: "auth.roles" */
+  insertAuthRoles?: Maybe<AuthRolesMutationResponse>;
+  /** insert a single row into the table: "auth.user_providers" */
+  insertAuthUserProvider?: Maybe<AuthUserProviders>;
+  /** insert data into the table: "auth.user_providers" */
+  insertAuthUserProviders?: Maybe<AuthUserProvidersMutationResponse>;
+  /** insert a single row into the table: "auth.user_roles" */
+  insertAuthUserRole?: Maybe<AuthUserRoles>;
+  /** insert data into the table: "auth.user_roles" */
+  insertAuthUserRoles?: Maybe<AuthUserRolesMutationResponse>;
+  /** insert a single row into the table: "auth.users" */
+  insertUser?: Maybe<Users>;
+  /** insert data into the table: "auth.users" */
+  insertUsers?: Maybe<UsersMutationResponse>;
   /** insert data into the table: "article_states" */
   insert_article_states?: Maybe<ArticleStatesMutationResponse>;
   /** insert a single row into the table: "article_states" */
@@ -2060,30 +1903,6 @@ export type MutationRoot = {
   insert_articles?: Maybe<ArticlesMutationResponse>;
   /** insert a single row into the table: "articles" */
   insert_articles_one?: Maybe<Articles>;
-  /** insert data into the table: "auth.account_providers" */
-  insert_auth_account_providers?: Maybe<AuthAccountProvidersMutationResponse>;
-  /** insert a single row into the table: "auth.account_providers" */
-  insert_auth_account_providers_one?: Maybe<AuthAccountProviders>;
-  /** insert data into the table: "auth.account_roles" */
-  insert_auth_account_roles?: Maybe<AuthAccountRolesMutationResponse>;
-  /** insert a single row into the table: "auth.account_roles" */
-  insert_auth_account_roles_one?: Maybe<AuthAccountRoles>;
-  /** insert data into the table: "auth.accounts" */
-  insert_auth_accounts?: Maybe<AuthAccountsMutationResponse>;
-  /** insert a single row into the table: "auth.accounts" */
-  insert_auth_accounts_one?: Maybe<AuthAccounts>;
-  /** insert data into the table: "auth.providers" */
-  insert_auth_providers?: Maybe<AuthProvidersMutationResponse>;
-  /** insert a single row into the table: "auth.providers" */
-  insert_auth_providers_one?: Maybe<AuthProviders>;
-  /** insert data into the table: "auth.refresh_tokens" */
-  insert_auth_refresh_tokens?: Maybe<AuthRefreshTokensMutationResponse>;
-  /** insert a single row into the table: "auth.refresh_tokens" */
-  insert_auth_refresh_tokens_one?: Maybe<AuthRefreshTokens>;
-  /** insert data into the table: "auth.roles" */
-  insert_auth_roles?: Maybe<AuthRolesMutationResponse>;
-  /** insert a single row into the table: "auth.roles" */
-  insert_auth_roles_one?: Maybe<AuthRoles>;
   /** insert data into the table: "comments" */
   insert_comments?: Maybe<CommentsMutationResponse>;
   /** insert a single row into the table: "comments" */
@@ -2120,10 +1939,34 @@ export type MutationRoot = {
   insert_terms?: Maybe<TermsMutationResponse>;
   /** insert a single row into the table: "terms" */
   insert_terms_one?: Maybe<Terms>;
-  /** insert data into the table: "users" */
-  insert_users?: Maybe<UsersMutationResponse>;
-  /** insert a single row into the table: "users" */
-  insert_users_one?: Maybe<Users>;
+  /** update single row of the table: "auth.providers" */
+  updateAuthProvider?: Maybe<AuthProviders>;
+  /** update single row of the table: "auth.provider_requests" */
+  updateAuthProviderRequest?: Maybe<AuthProviderRequests>;
+  /** update data of the table: "auth.provider_requests" */
+  updateAuthProviderRequests?: Maybe<AuthProviderRequestsMutationResponse>;
+  /** update data of the table: "auth.providers" */
+  updateAuthProviders?: Maybe<AuthProvidersMutationResponse>;
+  /** update single row of the table: "auth.refresh_tokens" */
+  updateAuthRefreshToken?: Maybe<AuthRefreshTokens>;
+  /** update data of the table: "auth.refresh_tokens" */
+  updateAuthRefreshTokens?: Maybe<AuthRefreshTokensMutationResponse>;
+  /** update single row of the table: "auth.roles" */
+  updateAuthRole?: Maybe<AuthRoles>;
+  /** update data of the table: "auth.roles" */
+  updateAuthRoles?: Maybe<AuthRolesMutationResponse>;
+  /** update single row of the table: "auth.user_providers" */
+  updateAuthUserProvider?: Maybe<AuthUserProviders>;
+  /** update data of the table: "auth.user_providers" */
+  updateAuthUserProviders?: Maybe<AuthUserProvidersMutationResponse>;
+  /** update single row of the table: "auth.user_roles" */
+  updateAuthUserRole?: Maybe<AuthUserRoles>;
+  /** update data of the table: "auth.user_roles" */
+  updateAuthUserRoles?: Maybe<AuthUserRolesMutationResponse>;
+  /** update single row of the table: "auth.users" */
+  updateUser?: Maybe<Users>;
+  /** update data of the table: "auth.users" */
+  updateUsers?: Maybe<UsersMutationResponse>;
   /** update data of the table: "article_states" */
   update_article_states?: Maybe<ArticleStatesMutationResponse>;
   /** update single row of the table: "article_states" */
@@ -2132,30 +1975,6 @@ export type MutationRoot = {
   update_articles?: Maybe<ArticlesMutationResponse>;
   /** update single row of the table: "articles" */
   update_articles_by_pk?: Maybe<Articles>;
-  /** update data of the table: "auth.account_providers" */
-  update_auth_account_providers?: Maybe<AuthAccountProvidersMutationResponse>;
-  /** update single row of the table: "auth.account_providers" */
-  update_auth_account_providers_by_pk?: Maybe<AuthAccountProviders>;
-  /** update data of the table: "auth.account_roles" */
-  update_auth_account_roles?: Maybe<AuthAccountRolesMutationResponse>;
-  /** update single row of the table: "auth.account_roles" */
-  update_auth_account_roles_by_pk?: Maybe<AuthAccountRoles>;
-  /** update data of the table: "auth.accounts" */
-  update_auth_accounts?: Maybe<AuthAccountsMutationResponse>;
-  /** update single row of the table: "auth.accounts" */
-  update_auth_accounts_by_pk?: Maybe<AuthAccounts>;
-  /** update data of the table: "auth.providers" */
-  update_auth_providers?: Maybe<AuthProvidersMutationResponse>;
-  /** update single row of the table: "auth.providers" */
-  update_auth_providers_by_pk?: Maybe<AuthProviders>;
-  /** update data of the table: "auth.refresh_tokens" */
-  update_auth_refresh_tokens?: Maybe<AuthRefreshTokensMutationResponse>;
-  /** update single row of the table: "auth.refresh_tokens" */
-  update_auth_refresh_tokens_by_pk?: Maybe<AuthRefreshTokens>;
-  /** update data of the table: "auth.roles" */
-  update_auth_roles?: Maybe<AuthRolesMutationResponse>;
-  /** update single row of the table: "auth.roles" */
-  update_auth_roles_by_pk?: Maybe<AuthRoles>;
   /** update data of the table: "comments" */
   update_comments?: Maybe<CommentsMutationResponse>;
   /** update single row of the table: "comments" */
@@ -2192,10 +2011,90 @@ export type MutationRoot = {
   update_terms?: Maybe<TermsMutationResponse>;
   /** update single row of the table: "terms" */
   update_terms_by_pk?: Maybe<Terms>;
-  /** update data of the table: "users" */
-  update_users?: Maybe<UsersMutationResponse>;
-  /** update single row of the table: "users" */
-  update_users_by_pk?: Maybe<Users>;
+};
+
+
+/** mutation root */
+export type MutationRootDeleteAuthProviderArgs = {
+  id: Scalars['String'];
+};
+
+
+/** mutation root */
+export type MutationRootDeleteAuthProviderRequestArgs = {
+  id: Scalars['uuid'];
+};
+
+
+/** mutation root */
+export type MutationRootDeleteAuthProviderRequestsArgs = {
+  where: AuthProviderRequestsBoolExp;
+};
+
+
+/** mutation root */
+export type MutationRootDeleteAuthProvidersArgs = {
+  where: AuthProvidersBoolExp;
+};
+
+
+/** mutation root */
+export type MutationRootDeleteAuthRefreshTokenArgs = {
+  refreshToken: Scalars['uuid'];
+};
+
+
+/** mutation root */
+export type MutationRootDeleteAuthRefreshTokensArgs = {
+  where: AuthRefreshTokensBoolExp;
+};
+
+
+/** mutation root */
+export type MutationRootDeleteAuthRoleArgs = {
+  role: Scalars['String'];
+};
+
+
+/** mutation root */
+export type MutationRootDeleteAuthRolesArgs = {
+  where: AuthRolesBoolExp;
+};
+
+
+/** mutation root */
+export type MutationRootDeleteAuthUserProviderArgs = {
+  id: Scalars['uuid'];
+};
+
+
+/** mutation root */
+export type MutationRootDeleteAuthUserProvidersArgs = {
+  where: AuthUserProvidersBoolExp;
+};
+
+
+/** mutation root */
+export type MutationRootDeleteAuthUserRoleArgs = {
+  id: Scalars['uuid'];
+};
+
+
+/** mutation root */
+export type MutationRootDeleteAuthUserRolesArgs = {
+  where: AuthUserRolesBoolExp;
+};
+
+
+/** mutation root */
+export type MutationRootDeleteUserArgs = {
+  id: Scalars['uuid'];
+};
+
+
+/** mutation root */
+export type MutationRootDeleteUsersArgs = {
+  where: UsersBoolExp;
 };
 
 
@@ -2220,78 +2119,6 @@ export type MutationRootDeleteArticlesArgs = {
 /** mutation root */
 export type MutationRootDeleteArticlesByPkArgs = {
   post_id: Scalars['uuid'];
-};
-
-
-/** mutation root */
-export type MutationRootDeleteAuthAccountProvidersArgs = {
-  where: AuthAccountProvidersBoolExp;
-};
-
-
-/** mutation root */
-export type MutationRootDeleteAuthAccountProvidersByPkArgs = {
-  id: Scalars['uuid'];
-};
-
-
-/** mutation root */
-export type MutationRootDeleteAuthAccountRolesArgs = {
-  where: AuthAccountRolesBoolExp;
-};
-
-
-/** mutation root */
-export type MutationRootDeleteAuthAccountRolesByPkArgs = {
-  id: Scalars['uuid'];
-};
-
-
-/** mutation root */
-export type MutationRootDeleteAuthAccountsArgs = {
-  where: AuthAccountsBoolExp;
-};
-
-
-/** mutation root */
-export type MutationRootDeleteAuthAccountsByPkArgs = {
-  id: Scalars['uuid'];
-};
-
-
-/** mutation root */
-export type MutationRootDeleteAuthProvidersArgs = {
-  where: AuthProvidersBoolExp;
-};
-
-
-/** mutation root */
-export type MutationRootDeleteAuthProvidersByPkArgs = {
-  provider: Scalars['String'];
-};
-
-
-/** mutation root */
-export type MutationRootDeleteAuthRefreshTokensArgs = {
-  where: AuthRefreshTokensBoolExp;
-};
-
-
-/** mutation root */
-export type MutationRootDeleteAuthRefreshTokensByPkArgs = {
-  refresh_token: Scalars['uuid'];
-};
-
-
-/** mutation root */
-export type MutationRootDeleteAuthRolesArgs = {
-  where: AuthRolesBoolExp;
-};
-
-
-/** mutation root */
-export type MutationRootDeleteAuthRolesByPkArgs = {
-  role: Scalars['String'];
 };
 
 
@@ -2404,14 +2231,100 @@ export type MutationRootDeleteTermsByPkArgs = {
 
 
 /** mutation root */
-export type MutationRootDeleteUsersArgs = {
-  where: UsersBoolExp;
+export type MutationRootInsertAuthProviderArgs = {
+  object: AuthProvidersInsertInput;
+  on_conflict?: Maybe<AuthProvidersOnConflict>;
 };
 
 
 /** mutation root */
-export type MutationRootDeleteUsersByPkArgs = {
-  id: Scalars['uuid'];
+export type MutationRootInsertAuthProviderRequestArgs = {
+  object: AuthProviderRequestsInsertInput;
+  on_conflict?: Maybe<AuthProviderRequestsOnConflict>;
+};
+
+
+/** mutation root */
+export type MutationRootInsertAuthProviderRequestsArgs = {
+  objects: Array<AuthProviderRequestsInsertInput>;
+  on_conflict?: Maybe<AuthProviderRequestsOnConflict>;
+};
+
+
+/** mutation root */
+export type MutationRootInsertAuthProvidersArgs = {
+  objects: Array<AuthProvidersInsertInput>;
+  on_conflict?: Maybe<AuthProvidersOnConflict>;
+};
+
+
+/** mutation root */
+export type MutationRootInsertAuthRefreshTokenArgs = {
+  object: AuthRefreshTokensInsertInput;
+  on_conflict?: Maybe<AuthRefreshTokensOnConflict>;
+};
+
+
+/** mutation root */
+export type MutationRootInsertAuthRefreshTokensArgs = {
+  objects: Array<AuthRefreshTokensInsertInput>;
+  on_conflict?: Maybe<AuthRefreshTokensOnConflict>;
+};
+
+
+/** mutation root */
+export type MutationRootInsertAuthRoleArgs = {
+  object: AuthRolesInsertInput;
+  on_conflict?: Maybe<AuthRolesOnConflict>;
+};
+
+
+/** mutation root */
+export type MutationRootInsertAuthRolesArgs = {
+  objects: Array<AuthRolesInsertInput>;
+  on_conflict?: Maybe<AuthRolesOnConflict>;
+};
+
+
+/** mutation root */
+export type MutationRootInsertAuthUserProviderArgs = {
+  object: AuthUserProvidersInsertInput;
+  on_conflict?: Maybe<AuthUserProvidersOnConflict>;
+};
+
+
+/** mutation root */
+export type MutationRootInsertAuthUserProvidersArgs = {
+  objects: Array<AuthUserProvidersInsertInput>;
+  on_conflict?: Maybe<AuthUserProvidersOnConflict>;
+};
+
+
+/** mutation root */
+export type MutationRootInsertAuthUserRoleArgs = {
+  object: AuthUserRolesInsertInput;
+  on_conflict?: Maybe<AuthUserRolesOnConflict>;
+};
+
+
+/** mutation root */
+export type MutationRootInsertAuthUserRolesArgs = {
+  objects: Array<AuthUserRolesInsertInput>;
+  on_conflict?: Maybe<AuthUserRolesOnConflict>;
+};
+
+
+/** mutation root */
+export type MutationRootInsertUserArgs = {
+  object: UsersInsertInput;
+  on_conflict?: Maybe<UsersOnConflict>;
+};
+
+
+/** mutation root */
+export type MutationRootInsertUsersArgs = {
+  objects: Array<UsersInsertInput>;
+  on_conflict?: Maybe<UsersOnConflict>;
 };
 
 
@@ -2440,90 +2353,6 @@ export type MutationRootInsertArticlesArgs = {
 export type MutationRootInsertArticlesOneArgs = {
   object: ArticlesInsertInput;
   on_conflict?: Maybe<ArticlesOnConflict>;
-};
-
-
-/** mutation root */
-export type MutationRootInsertAuthAccountProvidersArgs = {
-  objects: Array<AuthAccountProvidersInsertInput>;
-  on_conflict?: Maybe<AuthAccountProvidersOnConflict>;
-};
-
-
-/** mutation root */
-export type MutationRootInsertAuthAccountProvidersOneArgs = {
-  object: AuthAccountProvidersInsertInput;
-  on_conflict?: Maybe<AuthAccountProvidersOnConflict>;
-};
-
-
-/** mutation root */
-export type MutationRootInsertAuthAccountRolesArgs = {
-  objects: Array<AuthAccountRolesInsertInput>;
-  on_conflict?: Maybe<AuthAccountRolesOnConflict>;
-};
-
-
-/** mutation root */
-export type MutationRootInsertAuthAccountRolesOneArgs = {
-  object: AuthAccountRolesInsertInput;
-  on_conflict?: Maybe<AuthAccountRolesOnConflict>;
-};
-
-
-/** mutation root */
-export type MutationRootInsertAuthAccountsArgs = {
-  objects: Array<AuthAccountsInsertInput>;
-  on_conflict?: Maybe<AuthAccountsOnConflict>;
-};
-
-
-/** mutation root */
-export type MutationRootInsertAuthAccountsOneArgs = {
-  object: AuthAccountsInsertInput;
-  on_conflict?: Maybe<AuthAccountsOnConflict>;
-};
-
-
-/** mutation root */
-export type MutationRootInsertAuthProvidersArgs = {
-  objects: Array<AuthProvidersInsertInput>;
-  on_conflict?: Maybe<AuthProvidersOnConflict>;
-};
-
-
-/** mutation root */
-export type MutationRootInsertAuthProvidersOneArgs = {
-  object: AuthProvidersInsertInput;
-  on_conflict?: Maybe<AuthProvidersOnConflict>;
-};
-
-
-/** mutation root */
-export type MutationRootInsertAuthRefreshTokensArgs = {
-  objects: Array<AuthRefreshTokensInsertInput>;
-  on_conflict?: Maybe<AuthRefreshTokensOnConflict>;
-};
-
-
-/** mutation root */
-export type MutationRootInsertAuthRefreshTokensOneArgs = {
-  object: AuthRefreshTokensInsertInput;
-  on_conflict?: Maybe<AuthRefreshTokensOnConflict>;
-};
-
-
-/** mutation root */
-export type MutationRootInsertAuthRolesArgs = {
-  objects: Array<AuthRolesInsertInput>;
-  on_conflict?: Maybe<AuthRolesOnConflict>;
-};
-
-
-/** mutation root */
-export type MutationRootInsertAuthRolesOneArgs = {
-  object: AuthRolesInsertInput;
-  on_conflict?: Maybe<AuthRolesOnConflict>;
 };
 
 
@@ -2654,16 +2483,120 @@ export type MutationRootInsertTermsOneArgs = {
 
 
 /** mutation root */
-export type MutationRootInsertUsersArgs = {
-  objects: Array<UsersInsertInput>;
-  on_conflict?: Maybe<UsersOnConflict>;
+export type MutationRootUpdateAuthProviderArgs = {
+  _set?: Maybe<AuthProvidersSetInput>;
+  pk_columns: AuthProvidersPkColumnsInput;
 };
 
 
 /** mutation root */
-export type MutationRootInsertUsersOneArgs = {
-  object: UsersInsertInput;
-  on_conflict?: Maybe<UsersOnConflict>;
+export type MutationRootUpdateAuthProviderRequestArgs = {
+  _append?: Maybe<AuthProviderRequestsAppendInput>;
+  _delete_at_path?: Maybe<AuthProviderRequestsDeleteAtPathInput>;
+  _delete_elem?: Maybe<AuthProviderRequestsDeleteElemInput>;
+  _delete_key?: Maybe<AuthProviderRequestsDeleteKeyInput>;
+  _prepend?: Maybe<AuthProviderRequestsPrependInput>;
+  _set?: Maybe<AuthProviderRequestsSetInput>;
+  pk_columns: AuthProviderRequestsPkColumnsInput;
+};
+
+
+/** mutation root */
+export type MutationRootUpdateAuthProviderRequestsArgs = {
+  _append?: Maybe<AuthProviderRequestsAppendInput>;
+  _delete_at_path?: Maybe<AuthProviderRequestsDeleteAtPathInput>;
+  _delete_elem?: Maybe<AuthProviderRequestsDeleteElemInput>;
+  _delete_key?: Maybe<AuthProviderRequestsDeleteKeyInput>;
+  _prepend?: Maybe<AuthProviderRequestsPrependInput>;
+  _set?: Maybe<AuthProviderRequestsSetInput>;
+  where: AuthProviderRequestsBoolExp;
+};
+
+
+/** mutation root */
+export type MutationRootUpdateAuthProvidersArgs = {
+  _set?: Maybe<AuthProvidersSetInput>;
+  where: AuthProvidersBoolExp;
+};
+
+
+/** mutation root */
+export type MutationRootUpdateAuthRefreshTokenArgs = {
+  _set?: Maybe<AuthRefreshTokensSetInput>;
+  pk_columns: AuthRefreshTokensPkColumnsInput;
+};
+
+
+/** mutation root */
+export type MutationRootUpdateAuthRefreshTokensArgs = {
+  _set?: Maybe<AuthRefreshTokensSetInput>;
+  where: AuthRefreshTokensBoolExp;
+};
+
+
+/** mutation root */
+export type MutationRootUpdateAuthRoleArgs = {
+  _set?: Maybe<AuthRolesSetInput>;
+  pk_columns: AuthRolesPkColumnsInput;
+};
+
+
+/** mutation root */
+export type MutationRootUpdateAuthRolesArgs = {
+  _set?: Maybe<AuthRolesSetInput>;
+  where: AuthRolesBoolExp;
+};
+
+
+/** mutation root */
+export type MutationRootUpdateAuthUserProviderArgs = {
+  _set?: Maybe<AuthUserProvidersSetInput>;
+  pk_columns: AuthUserProvidersPkColumnsInput;
+};
+
+
+/** mutation root */
+export type MutationRootUpdateAuthUserProvidersArgs = {
+  _set?: Maybe<AuthUserProvidersSetInput>;
+  where: AuthUserProvidersBoolExp;
+};
+
+
+/** mutation root */
+export type MutationRootUpdateAuthUserRoleArgs = {
+  _set?: Maybe<AuthUserRolesSetInput>;
+  pk_columns: AuthUserRolesPkColumnsInput;
+};
+
+
+/** mutation root */
+export type MutationRootUpdateAuthUserRolesArgs = {
+  _set?: Maybe<AuthUserRolesSetInput>;
+  where: AuthUserRolesBoolExp;
+};
+
+
+/** mutation root */
+export type MutationRootUpdateUserArgs = {
+  _append?: Maybe<UsersAppendInput>;
+  _delete_at_path?: Maybe<UsersDeleteAtPathInput>;
+  _delete_elem?: Maybe<UsersDeleteElemInput>;
+  _delete_key?: Maybe<UsersDeleteKeyInput>;
+  _prepend?: Maybe<UsersPrependInput>;
+  _set?: Maybe<UsersSetInput>;
+  pk_columns: UsersPkColumnsInput;
+};
+
+
+/** mutation root */
+export type MutationRootUpdateUsersArgs = {
+  _append?: Maybe<UsersAppendInput>;
+  _delete_at_path?: Maybe<UsersDeleteAtPathInput>;
+  _delete_elem?: Maybe<UsersDeleteElemInput>;
+  _delete_key?: Maybe<UsersDeleteKeyInput>;
+  _prepend?: Maybe<UsersPrependInput>;
+  _set?: Maybe<UsersSetInput>;
+  where: UsersBoolExp;
 };
 
 
@@ -2692,100 +2625,6 @@ export type MutationRootUpdateArticlesArgs = {
 export type MutationRootUpdateArticlesByPkArgs = {
   _set?: Maybe<ArticlesSetInput>;
   pk_columns: ArticlesPkColumnsInput;
-};
-
-
-/** mutation root */
-export type MutationRootUpdateAuthAccountProvidersArgs = {
-  _set?: Maybe<AuthAccountProvidersSetInput>;
-  where: AuthAccountProvidersBoolExp;
-};
-
-
-/** mutation root */
-export type MutationRootUpdateAuthAccountProvidersByPkArgs = {
-  _set?: Maybe<AuthAccountProvidersSetInput>;
-  pk_columns: AuthAccountProvidersPkColumnsInput;
-};
-
-
-/** mutation root */
-export type MutationRootUpdateAuthAccountRolesArgs = {
-  _set?: Maybe<AuthAccountRolesSetInput>;
-  where: AuthAccountRolesBoolExp;
-};
-
-
-/** mutation root */
-export type MutationRootUpdateAuthAccountRolesByPkArgs = {
-  _set?: Maybe<AuthAccountRolesSetInput>;
-  pk_columns: AuthAccountRolesPkColumnsInput;
-};
-
-
-/** mutation root */
-export type MutationRootUpdateAuthAccountsArgs = {
-  _append?: Maybe<AuthAccountsAppendInput>;
-  _delete_at_path?: Maybe<AuthAccountsDeleteAtPathInput>;
-  _delete_elem?: Maybe<AuthAccountsDeleteElemInput>;
-  _delete_key?: Maybe<AuthAccountsDeleteKeyInput>;
-  _prepend?: Maybe<AuthAccountsPrependInput>;
-  _set?: Maybe<AuthAccountsSetInput>;
-  where: AuthAccountsBoolExp;
-};
-
-
-/** mutation root */
-export type MutationRootUpdateAuthAccountsByPkArgs = {
-  _append?: Maybe<AuthAccountsAppendInput>;
-  _delete_at_path?: Maybe<AuthAccountsDeleteAtPathInput>;
-  _delete_elem?: Maybe<AuthAccountsDeleteElemInput>;
-  _delete_key?: Maybe<AuthAccountsDeleteKeyInput>;
-  _prepend?: Maybe<AuthAccountsPrependInput>;
-  _set?: Maybe<AuthAccountsSetInput>;
-  pk_columns: AuthAccountsPkColumnsInput;
-};
-
-
-/** mutation root */
-export type MutationRootUpdateAuthProvidersArgs = {
-  _set?: Maybe<AuthProvidersSetInput>;
-  where: AuthProvidersBoolExp;
-};
-
-
-/** mutation root */
-export type MutationRootUpdateAuthProvidersByPkArgs = {
-  _set?: Maybe<AuthProvidersSetInput>;
-  pk_columns: AuthProvidersPkColumnsInput;
-};
-
-
-/** mutation root */
-export type MutationRootUpdateAuthRefreshTokensArgs = {
-  _set?: Maybe<AuthRefreshTokensSetInput>;
-  where: AuthRefreshTokensBoolExp;
-};
-
-
-/** mutation root */
-export type MutationRootUpdateAuthRefreshTokensByPkArgs = {
-  _set?: Maybe<AuthRefreshTokensSetInput>;
-  pk_columns: AuthRefreshTokensPkColumnsInput;
-};
-
-
-/** mutation root */
-export type MutationRootUpdateAuthRolesArgs = {
-  _set?: Maybe<AuthRolesSetInput>;
-  where: AuthRolesBoolExp;
-};
-
-
-/** mutation root */
-export type MutationRootUpdateAuthRolesByPkArgs = {
-  _set?: Maybe<AuthRolesSetInput>;
-  pk_columns: AuthRolesPkColumnsInput;
 };
 
 
@@ -2924,30 +2763,6 @@ export type MutationRootUpdateTermsByPkArgs = {
   pk_columns: TermsPkColumnsInput;
 };
 
-
-/** mutation root */
-export type MutationRootUpdateUsersArgs = {
-  _append?: Maybe<UsersAppendInput>;
-  _delete_at_path?: Maybe<UsersDeleteAtPathInput>;
-  _delete_elem?: Maybe<UsersDeleteElemInput>;
-  _delete_key?: Maybe<UsersDeleteKeyInput>;
-  _prepend?: Maybe<UsersPrependInput>;
-  _set?: Maybe<UsersSetInput>;
-  where: UsersBoolExp;
-};
-
-
-/** mutation root */
-export type MutationRootUpdateUsersByPkArgs = {
-  _append?: Maybe<UsersAppendInput>;
-  _delete_at_path?: Maybe<UsersDeleteAtPathInput>;
-  _delete_elem?: Maybe<UsersDeleteElemInput>;
-  _delete_key?: Maybe<UsersDeleteKeyInput>;
-  _prepend?: Maybe<UsersPrependInput>;
-  _set?: Maybe<UsersSetInput>;
-  pk_columns: UsersPkColumnsInput;
-};
-
 /** column ordering options */
 export enum OrderBy {
   /** in ascending order, nulls last */
@@ -2968,7 +2783,31 @@ export enum OrderBy {
 export type PageStates = {
   __typename?: 'page_states';
   comment: Scalars['String'];
+  /** An array relationship */
+  pages: Array<Pages>;
+  /** An aggregate relationship */
+  pages_aggregate: PagesAggregate;
   value: Scalars['String'];
+};
+
+
+/** columns and relationships of "page_states" */
+export type PageStatesPagesArgs = {
+  distinct_on?: Maybe<Array<PagesSelectColumn>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<PagesOrderBy>>;
+  where?: Maybe<PagesBoolExp>;
+};
+
+
+/** columns and relationships of "page_states" */
+export type PageStatesPagesAggregateArgs = {
+  distinct_on?: Maybe<Array<PagesSelectColumn>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<PagesOrderBy>>;
+  where?: Maybe<PagesBoolExp>;
 };
 
 /** aggregated selection of "page_states" */
@@ -2999,6 +2838,7 @@ export type PageStatesBoolExp = {
   _not?: Maybe<PageStatesBoolExp>;
   _or?: Maybe<Array<PageStatesBoolExp>>;
   comment?: Maybe<StringComparisonExp>;
+  pages?: Maybe<PagesBoolExp>;
   value?: Maybe<StringComparisonExp>;
 };
 
@@ -3027,6 +2867,7 @@ export type PageStatesEnumComparisonExp = {
 /** input type for inserting data into table "page_states" */
 export type PageStatesInsertInput = {
   comment?: Maybe<Scalars['String']>;
+  pages?: Maybe<PagesArrRelInsertInput>;
   value?: Maybe<Scalars['String']>;
 };
 
@@ -3070,6 +2911,7 @@ export type PageStatesOnConflict = {
 /** Ordering options when selecting data from "page_states". */
 export type PageStatesOrderBy = {
   comment?: Maybe<OrderBy>;
+  pages_aggregate?: Maybe<PagesAggregateOrderBy>;
   value?: Maybe<OrderBy>;
 };
 
@@ -3135,6 +2977,20 @@ export type PagesAggregateFieldsCountArgs = {
   distinct?: Maybe<Scalars['Boolean']>;
 };
 
+/** order by aggregate values of table "pages" */
+export type PagesAggregateOrderBy = {
+  count?: Maybe<OrderBy>;
+  max?: Maybe<PagesMaxOrderBy>;
+  min?: Maybe<PagesMinOrderBy>;
+};
+
+/** input type for inserting array relation for remote table "pages" */
+export type PagesArrRelInsertInput = {
+  data: Array<PagesInsertInput>;
+  /** upsert condition */
+  on_conflict?: Maybe<PagesOnConflict>;
+};
+
 /** Boolean expression to filter rows from the table "pages". All fields are combined with a logical 'AND'. */
 export type PagesBoolExp = {
   _and?: Maybe<Array<PagesBoolExp>>;
@@ -3172,12 +3028,26 @@ export type PagesMaxFields = {
   post_id?: Maybe<Scalars['uuid']>;
 };
 
+/** order by max() on columns of table "pages" */
+export type PagesMaxOrderBy = {
+  body?: Maybe<OrderBy>;
+  id?: Maybe<OrderBy>;
+  post_id?: Maybe<OrderBy>;
+};
+
 /** aggregate min on columns */
 export type PagesMinFields = {
   __typename?: 'pages_min_fields';
   body?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['uuid']>;
   post_id?: Maybe<Scalars['uuid']>;
+};
+
+/** order by min() on columns of table "pages" */
+export type PagesMinOrderBy = {
+  body?: Maybe<OrderBy>;
+  id?: Maybe<OrderBy>;
+  post_id?: Maybe<OrderBy>;
 };
 
 /** response of any mutation on the table "pages" */
@@ -3187,6 +3057,13 @@ export type PagesMutationResponse = {
   affected_rows: Scalars['Int'];
   /** data from the rows affected by the mutation */
   returning: Array<Pages>;
+};
+
+/** input type for inserting object relation for remote table "pages" */
+export type PagesObjRelInsertInput = {
+  data: PagesInsertInput;
+  /** upsert condition */
+  on_conflict?: Maybe<PagesOnConflict>;
 };
 
 /** on_conflict condition type for table "pages" */
@@ -3247,7 +3124,31 @@ export enum PagesUpdateColumn {
 export type PostTypes = {
   __typename?: 'post_types';
   comment: Scalars['String'];
+  /** An array relationship */
+  posts: Array<Posts>;
+  /** An aggregate relationship */
+  posts_aggregate: PostsAggregate;
   value: Scalars['String'];
+};
+
+
+/** columns and relationships of "post_types" */
+export type PostTypesPostsArgs = {
+  distinct_on?: Maybe<Array<PostsSelectColumn>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<PostsOrderBy>>;
+  where?: Maybe<PostsBoolExp>;
+};
+
+
+/** columns and relationships of "post_types" */
+export type PostTypesPostsAggregateArgs = {
+  distinct_on?: Maybe<Array<PostsSelectColumn>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<PostsOrderBy>>;
+  where?: Maybe<PostsBoolExp>;
 };
 
 /** aggregated selection of "post_types" */
@@ -3278,6 +3179,7 @@ export type PostTypesBoolExp = {
   _not?: Maybe<PostTypesBoolExp>;
   _or?: Maybe<Array<PostTypesBoolExp>>;
   comment?: Maybe<StringComparisonExp>;
+  posts?: Maybe<PostsBoolExp>;
   value?: Maybe<StringComparisonExp>;
 };
 
@@ -3306,6 +3208,7 @@ export type PostTypesEnumComparisonExp = {
 /** input type for inserting data into table "post_types" */
 export type PostTypesInsertInput = {
   comment?: Maybe<Scalars['String']>;
+  posts?: Maybe<PostsArrRelInsertInput>;
   value?: Maybe<Scalars['String']>;
 };
 
@@ -3332,6 +3235,13 @@ export type PostTypesMutationResponse = {
   returning: Array<PostTypes>;
 };
 
+/** input type for inserting object relation for remote table "post_types" */
+export type PostTypesObjRelInsertInput = {
+  data: PostTypesInsertInput;
+  /** upsert condition */
+  on_conflict?: Maybe<PostTypesOnConflict>;
+};
+
 /** on_conflict condition type for table "post_types" */
 export type PostTypesOnConflict = {
   constraint: PostTypesConstraint;
@@ -3342,6 +3252,7 @@ export type PostTypesOnConflict = {
 /** Ordering options when selecting data from "post_types". */
 export type PostTypesOrderBy = {
   comment?: Maybe<OrderBy>;
+  posts_aggregate?: Maybe<PostsAggregateOrderBy>;
   value?: Maybe<OrderBy>;
 };
 
@@ -3375,6 +3286,8 @@ export enum PostTypesUpdateColumn {
 /** columns and relationships of "posts" */
 export type Posts = {
   __typename?: 'posts';
+  /** An object relationship */
+  article?: Maybe<Articles>;
   /** An array relationship */
   comments: Array<Comments>;
   /** An aggregate relationship */
@@ -3382,6 +3295,10 @@ export type Posts = {
   created_at?: Maybe<Scalars['timestamptz']>;
   description?: Maybe<Scalars['String']>;
   id: Scalars['uuid'];
+  /** An object relationship */
+  page?: Maybe<Pages>;
+  /** An object relationship */
+  post_type?: Maybe<PostTypes>;
   slug: Scalars['String'];
   title: Scalars['String'];
   type?: Maybe<PostTypesEnum>;
@@ -3430,15 +3347,32 @@ export type PostsAggregateFieldsCountArgs = {
   distinct?: Maybe<Scalars['Boolean']>;
 };
 
+/** order by aggregate values of table "posts" */
+export type PostsAggregateOrderBy = {
+  count?: Maybe<OrderBy>;
+  max?: Maybe<PostsMaxOrderBy>;
+  min?: Maybe<PostsMinOrderBy>;
+};
+
+/** input type for inserting array relation for remote table "posts" */
+export type PostsArrRelInsertInput = {
+  data: Array<PostsInsertInput>;
+  /** upsert condition */
+  on_conflict?: Maybe<PostsOnConflict>;
+};
+
 /** Boolean expression to filter rows from the table "posts". All fields are combined with a logical 'AND'. */
 export type PostsBoolExp = {
   _and?: Maybe<Array<PostsBoolExp>>;
   _not?: Maybe<PostsBoolExp>;
   _or?: Maybe<Array<PostsBoolExp>>;
+  article?: Maybe<ArticlesBoolExp>;
   comments?: Maybe<CommentsBoolExp>;
   created_at?: Maybe<TimestamptzComparisonExp>;
   description?: Maybe<StringComparisonExp>;
   id?: Maybe<UuidComparisonExp>;
+  page?: Maybe<PagesBoolExp>;
+  post_type?: Maybe<PostTypesBoolExp>;
   slug?: Maybe<StringComparisonExp>;
   title?: Maybe<StringComparisonExp>;
   type?: Maybe<PostTypesEnumComparisonExp>;
@@ -3455,10 +3389,13 @@ export enum PostsConstraint {
 
 /** input type for inserting data into table "posts" */
 export type PostsInsertInput = {
+  article?: Maybe<ArticlesObjRelInsertInput>;
   comments?: Maybe<CommentsArrRelInsertInput>;
   created_at?: Maybe<Scalars['timestamptz']>;
   description?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['uuid']>;
+  page?: Maybe<PagesObjRelInsertInput>;
+  post_type?: Maybe<PostTypesObjRelInsertInput>;
   slug?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
   type?: Maybe<PostTypesEnum>;
@@ -3476,6 +3413,16 @@ export type PostsMaxFields = {
   updated_at?: Maybe<Scalars['timestamptz']>;
 };
 
+/** order by max() on columns of table "posts" */
+export type PostsMaxOrderBy = {
+  created_at?: Maybe<OrderBy>;
+  description?: Maybe<OrderBy>;
+  id?: Maybe<OrderBy>;
+  slug?: Maybe<OrderBy>;
+  title?: Maybe<OrderBy>;
+  updated_at?: Maybe<OrderBy>;
+};
+
 /** aggregate min on columns */
 export type PostsMinFields = {
   __typename?: 'posts_min_fields';
@@ -3485,6 +3432,16 @@ export type PostsMinFields = {
   slug?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
   updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** order by min() on columns of table "posts" */
+export type PostsMinOrderBy = {
+  created_at?: Maybe<OrderBy>;
+  description?: Maybe<OrderBy>;
+  id?: Maybe<OrderBy>;
+  slug?: Maybe<OrderBy>;
+  title?: Maybe<OrderBy>;
+  updated_at?: Maybe<OrderBy>;
 };
 
 /** response of any mutation on the table "posts" */
@@ -3512,10 +3469,13 @@ export type PostsOnConflict = {
 
 /** Ordering options when selecting data from "posts". */
 export type PostsOrderBy = {
+  article?: Maybe<ArticlesOrderBy>;
   comments_aggregate?: Maybe<CommentsAggregateOrderBy>;
   created_at?: Maybe<OrderBy>;
   description?: Maybe<OrderBy>;
   id?: Maybe<OrderBy>;
+  page?: Maybe<PagesOrderBy>;
+  post_type?: Maybe<PostTypesOrderBy>;
   slug?: Maybe<OrderBy>;
   title?: Maybe<OrderBy>;
   type?: Maybe<OrderBy>;
@@ -3582,48 +3542,48 @@ export type QueryRoot = {
   article_states_aggregate: ArticleStatesAggregate;
   /** fetch data from the table: "article_states" using primary key columns */
   article_states_by_pk?: Maybe<ArticleStates>;
-  /** fetch data from the table: "articles" */
+  /** An array relationship */
   articles: Array<Articles>;
-  /** fetch aggregated fields from the table: "articles" */
+  /** An aggregate relationship */
   articles_aggregate: ArticlesAggregate;
   /** fetch data from the table: "articles" using primary key columns */
   articles_by_pk?: Maybe<Articles>;
-  /** fetch data from the table: "auth.account_providers" */
-  auth_account_providers: Array<AuthAccountProviders>;
-  /** fetch aggregated fields from the table: "auth.account_providers" */
-  auth_account_providers_aggregate: AuthAccountProvidersAggregate;
-  /** fetch data from the table: "auth.account_providers" using primary key columns */
-  auth_account_providers_by_pk?: Maybe<AuthAccountProviders>;
-  /** fetch data from the table: "auth.account_roles" */
-  auth_account_roles: Array<AuthAccountRoles>;
-  /** fetch aggregated fields from the table: "auth.account_roles" */
-  auth_account_roles_aggregate: AuthAccountRolesAggregate;
-  /** fetch data from the table: "auth.account_roles" using primary key columns */
-  auth_account_roles_by_pk?: Maybe<AuthAccountRoles>;
-  /** fetch data from the table: "auth.accounts" */
-  auth_accounts: Array<AuthAccounts>;
-  /** fetch aggregated fields from the table: "auth.accounts" */
-  auth_accounts_aggregate: AuthAccountsAggregate;
-  /** fetch data from the table: "auth.accounts" using primary key columns */
-  auth_accounts_by_pk?: Maybe<AuthAccounts>;
-  /** fetch data from the table: "auth.providers" */
-  auth_providers: Array<AuthProviders>;
-  /** fetch aggregated fields from the table: "auth.providers" */
-  auth_providers_aggregate: AuthProvidersAggregate;
   /** fetch data from the table: "auth.providers" using primary key columns */
-  auth_providers_by_pk?: Maybe<AuthProviders>;
-  /** fetch data from the table: "auth.refresh_tokens" */
-  auth_refresh_tokens: Array<AuthRefreshTokens>;
-  /** fetch aggregated fields from the table: "auth.refresh_tokens" */
-  auth_refresh_tokens_aggregate: AuthRefreshTokensAggregate;
+  authProvider?: Maybe<AuthProviders>;
+  /** fetch data from the table: "auth.provider_requests" using primary key columns */
+  authProviderRequest?: Maybe<AuthProviderRequests>;
+  /** fetch data from the table: "auth.provider_requests" */
+  authProviderRequests: Array<AuthProviderRequests>;
+  /** fetch aggregated fields from the table: "auth.provider_requests" */
+  authProviderRequestsAggregate: AuthProviderRequestsAggregate;
+  /** fetch data from the table: "auth.providers" */
+  authProviders: Array<AuthProviders>;
+  /** fetch aggregated fields from the table: "auth.providers" */
+  authProvidersAggregate: AuthProvidersAggregate;
   /** fetch data from the table: "auth.refresh_tokens" using primary key columns */
-  auth_refresh_tokens_by_pk?: Maybe<AuthRefreshTokens>;
-  /** fetch data from the table: "auth.roles" */
-  auth_roles: Array<AuthRoles>;
-  /** fetch aggregated fields from the table: "auth.roles" */
-  auth_roles_aggregate: AuthRolesAggregate;
+  authRefreshToken?: Maybe<AuthRefreshTokens>;
+  /** fetch data from the table: "auth.refresh_tokens" */
+  authRefreshTokens: Array<AuthRefreshTokens>;
+  /** fetch aggregated fields from the table: "auth.refresh_tokens" */
+  authRefreshTokensAggregate: AuthRefreshTokensAggregate;
   /** fetch data from the table: "auth.roles" using primary key columns */
-  auth_roles_by_pk?: Maybe<AuthRoles>;
+  authRole?: Maybe<AuthRoles>;
+  /** fetch data from the table: "auth.roles" */
+  authRoles: Array<AuthRoles>;
+  /** fetch aggregated fields from the table: "auth.roles" */
+  authRolesAggregate: AuthRolesAggregate;
+  /** fetch data from the table: "auth.user_providers" using primary key columns */
+  authUserProvider?: Maybe<AuthUserProviders>;
+  /** fetch data from the table: "auth.user_providers" */
+  authUserProviders: Array<AuthUserProviders>;
+  /** fetch aggregated fields from the table: "auth.user_providers" */
+  authUserProvidersAggregate: AuthUserProvidersAggregate;
+  /** fetch data from the table: "auth.user_roles" using primary key columns */
+  authUserRole?: Maybe<AuthUserRoles>;
+  /** fetch data from the table: "auth.user_roles" */
+  authUserRoles: Array<AuthUserRoles>;
+  /** fetch aggregated fields from the table: "auth.user_roles" */
+  authUserRolesAggregate: AuthUserRolesAggregate;
   /** An array relationship */
   comments: Array<Comments>;
   /** An aggregate relationship */
@@ -3636,9 +3596,9 @@ export type QueryRoot = {
   page_states_aggregate: PageStatesAggregate;
   /** fetch data from the table: "page_states" using primary key columns */
   page_states_by_pk?: Maybe<PageStates>;
-  /** fetch data from the table: "pages" */
+  /** An array relationship */
   pages: Array<Pages>;
-  /** fetch aggregated fields from the table: "pages" */
+  /** An aggregate relationship */
   pages_aggregate: PagesAggregate;
   /** fetch data from the table: "pages" using primary key columns */
   pages_by_pk?: Maybe<Pages>;
@@ -3648,9 +3608,9 @@ export type QueryRoot = {
   post_types_aggregate: PostTypesAggregate;
   /** fetch data from the table: "post_types" using primary key columns */
   post_types_by_pk?: Maybe<PostTypes>;
-  /** fetch data from the table: "posts" */
+  /** An array relationship */
   posts: Array<Posts>;
-  /** fetch aggregated fields from the table: "posts" */
+  /** An aggregate relationship */
   posts_aggregate: PostsAggregate;
   /** fetch data from the table: "posts" using primary key columns */
   posts_by_pk?: Maybe<Posts>;
@@ -3682,12 +3642,12 @@ export type QueryRoot = {
   terms_aggregate: TermsAggregate;
   /** fetch data from the table: "terms" using primary key columns */
   terms_by_pk?: Maybe<Terms>;
-  /** fetch data from the table: "users" */
+  /** fetch data from the table: "auth.users" using primary key columns */
+  user?: Maybe<Users>;
+  /** fetch data from the table: "auth.users" */
   users: Array<Users>;
-  /** fetch aggregated fields from the table: "users" */
-  users_aggregate: UsersAggregate;
-  /** fetch data from the table: "users" using primary key columns */
-  users_by_pk?: Maybe<Users>;
+  /** fetch aggregated fields from the table: "auth.users" */
+  usersAggregate: UsersAggregate;
 };
 
 
@@ -3737,72 +3697,31 @@ export type QueryRootArticlesByPkArgs = {
 };
 
 
-export type QueryRootAuthAccountProvidersArgs = {
-  distinct_on?: Maybe<Array<AuthAccountProvidersSelectColumn>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<AuthAccountProvidersOrderBy>>;
-  where?: Maybe<AuthAccountProvidersBoolExp>;
+export type QueryRootAuthProviderArgs = {
+  id: Scalars['String'];
 };
 
 
-export type QueryRootAuthAccountProvidersAggregateArgs = {
-  distinct_on?: Maybe<Array<AuthAccountProvidersSelectColumn>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<AuthAccountProvidersOrderBy>>;
-  where?: Maybe<AuthAccountProvidersBoolExp>;
-};
-
-
-export type QueryRootAuthAccountProvidersByPkArgs = {
+export type QueryRootAuthProviderRequestArgs = {
   id: Scalars['uuid'];
 };
 
 
-export type QueryRootAuthAccountRolesArgs = {
-  distinct_on?: Maybe<Array<AuthAccountRolesSelectColumn>>;
+export type QueryRootAuthProviderRequestsArgs = {
+  distinct_on?: Maybe<Array<AuthProviderRequestsSelectColumn>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<AuthAccountRolesOrderBy>>;
-  where?: Maybe<AuthAccountRolesBoolExp>;
+  order_by?: Maybe<Array<AuthProviderRequestsOrderBy>>;
+  where?: Maybe<AuthProviderRequestsBoolExp>;
 };
 
 
-export type QueryRootAuthAccountRolesAggregateArgs = {
-  distinct_on?: Maybe<Array<AuthAccountRolesSelectColumn>>;
+export type QueryRootAuthProviderRequestsAggregateArgs = {
+  distinct_on?: Maybe<Array<AuthProviderRequestsSelectColumn>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<AuthAccountRolesOrderBy>>;
-  where?: Maybe<AuthAccountRolesBoolExp>;
-};
-
-
-export type QueryRootAuthAccountRolesByPkArgs = {
-  id: Scalars['uuid'];
-};
-
-
-export type QueryRootAuthAccountsArgs = {
-  distinct_on?: Maybe<Array<AuthAccountsSelectColumn>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<AuthAccountsOrderBy>>;
-  where?: Maybe<AuthAccountsBoolExp>;
-};
-
-
-export type QueryRootAuthAccountsAggregateArgs = {
-  distinct_on?: Maybe<Array<AuthAccountsSelectColumn>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<AuthAccountsOrderBy>>;
-  where?: Maybe<AuthAccountsBoolExp>;
-};
-
-
-export type QueryRootAuthAccountsByPkArgs = {
-  id: Scalars['uuid'];
+  order_by?: Maybe<Array<AuthProviderRequestsOrderBy>>;
+  where?: Maybe<AuthProviderRequestsBoolExp>;
 };
 
 
@@ -3824,8 +3743,8 @@ export type QueryRootAuthProvidersAggregateArgs = {
 };
 
 
-export type QueryRootAuthProvidersByPkArgs = {
-  provider: Scalars['String'];
+export type QueryRootAuthRefreshTokenArgs = {
+  refreshToken: Scalars['uuid'];
 };
 
 
@@ -3847,8 +3766,8 @@ export type QueryRootAuthRefreshTokensAggregateArgs = {
 };
 
 
-export type QueryRootAuthRefreshTokensByPkArgs = {
-  refresh_token: Scalars['uuid'];
+export type QueryRootAuthRoleArgs = {
+  role: Scalars['String'];
 };
 
 
@@ -3870,8 +3789,49 @@ export type QueryRootAuthRolesAggregateArgs = {
 };
 
 
-export type QueryRootAuthRolesByPkArgs = {
-  role: Scalars['String'];
+export type QueryRootAuthUserProviderArgs = {
+  id: Scalars['uuid'];
+};
+
+
+export type QueryRootAuthUserProvidersArgs = {
+  distinct_on?: Maybe<Array<AuthUserProvidersSelectColumn>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<AuthUserProvidersOrderBy>>;
+  where?: Maybe<AuthUserProvidersBoolExp>;
+};
+
+
+export type QueryRootAuthUserProvidersAggregateArgs = {
+  distinct_on?: Maybe<Array<AuthUserProvidersSelectColumn>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<AuthUserProvidersOrderBy>>;
+  where?: Maybe<AuthUserProvidersBoolExp>;
+};
+
+
+export type QueryRootAuthUserRoleArgs = {
+  id: Scalars['uuid'];
+};
+
+
+export type QueryRootAuthUserRolesArgs = {
+  distinct_on?: Maybe<Array<AuthUserRolesSelectColumn>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<AuthUserRolesOrderBy>>;
+  where?: Maybe<AuthUserRolesBoolExp>;
+};
+
+
+export type QueryRootAuthUserRolesAggregateArgs = {
+  distinct_on?: Maybe<Array<AuthUserRolesSelectColumn>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<AuthUserRolesOrderBy>>;
+  where?: Maybe<AuthUserRolesBoolExp>;
 };
 
 
@@ -4100,6 +4060,11 @@ export type QueryRootTermsByPkArgs = {
 };
 
 
+export type QueryRootUserArgs = {
+  id: Scalars['uuid'];
+};
+
+
 export type QueryRootUsersArgs = {
   distinct_on?: Maybe<Array<UsersSelectColumn>>;
   limit?: Maybe<Scalars['Int']>;
@@ -4117,11 +4082,6 @@ export type QueryRootUsersAggregateArgs = {
   where?: Maybe<UsersBoolExp>;
 };
 
-
-export type QueryRootUsersByPkArgs = {
-  id: Scalars['uuid'];
-};
-
 export type SubscriptionRoot = {
   __typename?: 'subscription_root';
   /** fetch data from the table: "article_states" */
@@ -4130,48 +4090,48 @@ export type SubscriptionRoot = {
   article_states_aggregate: ArticleStatesAggregate;
   /** fetch data from the table: "article_states" using primary key columns */
   article_states_by_pk?: Maybe<ArticleStates>;
-  /** fetch data from the table: "articles" */
+  /** An array relationship */
   articles: Array<Articles>;
-  /** fetch aggregated fields from the table: "articles" */
+  /** An aggregate relationship */
   articles_aggregate: ArticlesAggregate;
   /** fetch data from the table: "articles" using primary key columns */
   articles_by_pk?: Maybe<Articles>;
-  /** fetch data from the table: "auth.account_providers" */
-  auth_account_providers: Array<AuthAccountProviders>;
-  /** fetch aggregated fields from the table: "auth.account_providers" */
-  auth_account_providers_aggregate: AuthAccountProvidersAggregate;
-  /** fetch data from the table: "auth.account_providers" using primary key columns */
-  auth_account_providers_by_pk?: Maybe<AuthAccountProviders>;
-  /** fetch data from the table: "auth.account_roles" */
-  auth_account_roles: Array<AuthAccountRoles>;
-  /** fetch aggregated fields from the table: "auth.account_roles" */
-  auth_account_roles_aggregate: AuthAccountRolesAggregate;
-  /** fetch data from the table: "auth.account_roles" using primary key columns */
-  auth_account_roles_by_pk?: Maybe<AuthAccountRoles>;
-  /** fetch data from the table: "auth.accounts" */
-  auth_accounts: Array<AuthAccounts>;
-  /** fetch aggregated fields from the table: "auth.accounts" */
-  auth_accounts_aggregate: AuthAccountsAggregate;
-  /** fetch data from the table: "auth.accounts" using primary key columns */
-  auth_accounts_by_pk?: Maybe<AuthAccounts>;
-  /** fetch data from the table: "auth.providers" */
-  auth_providers: Array<AuthProviders>;
-  /** fetch aggregated fields from the table: "auth.providers" */
-  auth_providers_aggregate: AuthProvidersAggregate;
   /** fetch data from the table: "auth.providers" using primary key columns */
-  auth_providers_by_pk?: Maybe<AuthProviders>;
-  /** fetch data from the table: "auth.refresh_tokens" */
-  auth_refresh_tokens: Array<AuthRefreshTokens>;
-  /** fetch aggregated fields from the table: "auth.refresh_tokens" */
-  auth_refresh_tokens_aggregate: AuthRefreshTokensAggregate;
+  authProvider?: Maybe<AuthProviders>;
+  /** fetch data from the table: "auth.provider_requests" using primary key columns */
+  authProviderRequest?: Maybe<AuthProviderRequests>;
+  /** fetch data from the table: "auth.provider_requests" */
+  authProviderRequests: Array<AuthProviderRequests>;
+  /** fetch aggregated fields from the table: "auth.provider_requests" */
+  authProviderRequestsAggregate: AuthProviderRequestsAggregate;
+  /** fetch data from the table: "auth.providers" */
+  authProviders: Array<AuthProviders>;
+  /** fetch aggregated fields from the table: "auth.providers" */
+  authProvidersAggregate: AuthProvidersAggregate;
   /** fetch data from the table: "auth.refresh_tokens" using primary key columns */
-  auth_refresh_tokens_by_pk?: Maybe<AuthRefreshTokens>;
-  /** fetch data from the table: "auth.roles" */
-  auth_roles: Array<AuthRoles>;
-  /** fetch aggregated fields from the table: "auth.roles" */
-  auth_roles_aggregate: AuthRolesAggregate;
+  authRefreshToken?: Maybe<AuthRefreshTokens>;
+  /** fetch data from the table: "auth.refresh_tokens" */
+  authRefreshTokens: Array<AuthRefreshTokens>;
+  /** fetch aggregated fields from the table: "auth.refresh_tokens" */
+  authRefreshTokensAggregate: AuthRefreshTokensAggregate;
   /** fetch data from the table: "auth.roles" using primary key columns */
-  auth_roles_by_pk?: Maybe<AuthRoles>;
+  authRole?: Maybe<AuthRoles>;
+  /** fetch data from the table: "auth.roles" */
+  authRoles: Array<AuthRoles>;
+  /** fetch aggregated fields from the table: "auth.roles" */
+  authRolesAggregate: AuthRolesAggregate;
+  /** fetch data from the table: "auth.user_providers" using primary key columns */
+  authUserProvider?: Maybe<AuthUserProviders>;
+  /** fetch data from the table: "auth.user_providers" */
+  authUserProviders: Array<AuthUserProviders>;
+  /** fetch aggregated fields from the table: "auth.user_providers" */
+  authUserProvidersAggregate: AuthUserProvidersAggregate;
+  /** fetch data from the table: "auth.user_roles" using primary key columns */
+  authUserRole?: Maybe<AuthUserRoles>;
+  /** fetch data from the table: "auth.user_roles" */
+  authUserRoles: Array<AuthUserRoles>;
+  /** fetch aggregated fields from the table: "auth.user_roles" */
+  authUserRolesAggregate: AuthUserRolesAggregate;
   /** An array relationship */
   comments: Array<Comments>;
   /** An aggregate relationship */
@@ -4184,9 +4144,9 @@ export type SubscriptionRoot = {
   page_states_aggregate: PageStatesAggregate;
   /** fetch data from the table: "page_states" using primary key columns */
   page_states_by_pk?: Maybe<PageStates>;
-  /** fetch data from the table: "pages" */
+  /** An array relationship */
   pages: Array<Pages>;
-  /** fetch aggregated fields from the table: "pages" */
+  /** An aggregate relationship */
   pages_aggregate: PagesAggregate;
   /** fetch data from the table: "pages" using primary key columns */
   pages_by_pk?: Maybe<Pages>;
@@ -4196,9 +4156,9 @@ export type SubscriptionRoot = {
   post_types_aggregate: PostTypesAggregate;
   /** fetch data from the table: "post_types" using primary key columns */
   post_types_by_pk?: Maybe<PostTypes>;
-  /** fetch data from the table: "posts" */
+  /** An array relationship */
   posts: Array<Posts>;
-  /** fetch aggregated fields from the table: "posts" */
+  /** An aggregate relationship */
   posts_aggregate: PostsAggregate;
   /** fetch data from the table: "posts" using primary key columns */
   posts_by_pk?: Maybe<Posts>;
@@ -4230,12 +4190,12 @@ export type SubscriptionRoot = {
   terms_aggregate: TermsAggregate;
   /** fetch data from the table: "terms" using primary key columns */
   terms_by_pk?: Maybe<Terms>;
-  /** fetch data from the table: "users" */
+  /** fetch data from the table: "auth.users" using primary key columns */
+  user?: Maybe<Users>;
+  /** fetch data from the table: "auth.users" */
   users: Array<Users>;
-  /** fetch aggregated fields from the table: "users" */
-  users_aggregate: UsersAggregate;
-  /** fetch data from the table: "users" using primary key columns */
-  users_by_pk?: Maybe<Users>;
+  /** fetch aggregated fields from the table: "auth.users" */
+  usersAggregate: UsersAggregate;
 };
 
 
@@ -4285,72 +4245,31 @@ export type SubscriptionRootArticlesByPkArgs = {
 };
 
 
-export type SubscriptionRootAuthAccountProvidersArgs = {
-  distinct_on?: Maybe<Array<AuthAccountProvidersSelectColumn>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<AuthAccountProvidersOrderBy>>;
-  where?: Maybe<AuthAccountProvidersBoolExp>;
+export type SubscriptionRootAuthProviderArgs = {
+  id: Scalars['String'];
 };
 
 
-export type SubscriptionRootAuthAccountProvidersAggregateArgs = {
-  distinct_on?: Maybe<Array<AuthAccountProvidersSelectColumn>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<AuthAccountProvidersOrderBy>>;
-  where?: Maybe<AuthAccountProvidersBoolExp>;
-};
-
-
-export type SubscriptionRootAuthAccountProvidersByPkArgs = {
+export type SubscriptionRootAuthProviderRequestArgs = {
   id: Scalars['uuid'];
 };
 
 
-export type SubscriptionRootAuthAccountRolesArgs = {
-  distinct_on?: Maybe<Array<AuthAccountRolesSelectColumn>>;
+export type SubscriptionRootAuthProviderRequestsArgs = {
+  distinct_on?: Maybe<Array<AuthProviderRequestsSelectColumn>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<AuthAccountRolesOrderBy>>;
-  where?: Maybe<AuthAccountRolesBoolExp>;
+  order_by?: Maybe<Array<AuthProviderRequestsOrderBy>>;
+  where?: Maybe<AuthProviderRequestsBoolExp>;
 };
 
 
-export type SubscriptionRootAuthAccountRolesAggregateArgs = {
-  distinct_on?: Maybe<Array<AuthAccountRolesSelectColumn>>;
+export type SubscriptionRootAuthProviderRequestsAggregateArgs = {
+  distinct_on?: Maybe<Array<AuthProviderRequestsSelectColumn>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<AuthAccountRolesOrderBy>>;
-  where?: Maybe<AuthAccountRolesBoolExp>;
-};
-
-
-export type SubscriptionRootAuthAccountRolesByPkArgs = {
-  id: Scalars['uuid'];
-};
-
-
-export type SubscriptionRootAuthAccountsArgs = {
-  distinct_on?: Maybe<Array<AuthAccountsSelectColumn>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<AuthAccountsOrderBy>>;
-  where?: Maybe<AuthAccountsBoolExp>;
-};
-
-
-export type SubscriptionRootAuthAccountsAggregateArgs = {
-  distinct_on?: Maybe<Array<AuthAccountsSelectColumn>>;
-  limit?: Maybe<Scalars['Int']>;
-  offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<AuthAccountsOrderBy>>;
-  where?: Maybe<AuthAccountsBoolExp>;
-};
-
-
-export type SubscriptionRootAuthAccountsByPkArgs = {
-  id: Scalars['uuid'];
+  order_by?: Maybe<Array<AuthProviderRequestsOrderBy>>;
+  where?: Maybe<AuthProviderRequestsBoolExp>;
 };
 
 
@@ -4372,8 +4291,8 @@ export type SubscriptionRootAuthProvidersAggregateArgs = {
 };
 
 
-export type SubscriptionRootAuthProvidersByPkArgs = {
-  provider: Scalars['String'];
+export type SubscriptionRootAuthRefreshTokenArgs = {
+  refreshToken: Scalars['uuid'];
 };
 
 
@@ -4395,8 +4314,8 @@ export type SubscriptionRootAuthRefreshTokensAggregateArgs = {
 };
 
 
-export type SubscriptionRootAuthRefreshTokensByPkArgs = {
-  refresh_token: Scalars['uuid'];
+export type SubscriptionRootAuthRoleArgs = {
+  role: Scalars['String'];
 };
 
 
@@ -4418,8 +4337,49 @@ export type SubscriptionRootAuthRolesAggregateArgs = {
 };
 
 
-export type SubscriptionRootAuthRolesByPkArgs = {
-  role: Scalars['String'];
+export type SubscriptionRootAuthUserProviderArgs = {
+  id: Scalars['uuid'];
+};
+
+
+export type SubscriptionRootAuthUserProvidersArgs = {
+  distinct_on?: Maybe<Array<AuthUserProvidersSelectColumn>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<AuthUserProvidersOrderBy>>;
+  where?: Maybe<AuthUserProvidersBoolExp>;
+};
+
+
+export type SubscriptionRootAuthUserProvidersAggregateArgs = {
+  distinct_on?: Maybe<Array<AuthUserProvidersSelectColumn>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<AuthUserProvidersOrderBy>>;
+  where?: Maybe<AuthUserProvidersBoolExp>;
+};
+
+
+export type SubscriptionRootAuthUserRoleArgs = {
+  id: Scalars['uuid'];
+};
+
+
+export type SubscriptionRootAuthUserRolesArgs = {
+  distinct_on?: Maybe<Array<AuthUserRolesSelectColumn>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<AuthUserRolesOrderBy>>;
+  where?: Maybe<AuthUserRolesBoolExp>;
+};
+
+
+export type SubscriptionRootAuthUserRolesAggregateArgs = {
+  distinct_on?: Maybe<Array<AuthUserRolesSelectColumn>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<AuthUserRolesOrderBy>>;
+  where?: Maybe<AuthUserRolesBoolExp>;
 };
 
 
@@ -4648,6 +4608,11 @@ export type SubscriptionRootTermsByPkArgs = {
 };
 
 
+export type SubscriptionRootUserArgs = {
+  id: Scalars['uuid'];
+};
+
+
 export type SubscriptionRootUsersArgs = {
   distinct_on?: Maybe<Array<UsersSelectColumn>>;
   limit?: Maybe<Scalars['Int']>;
@@ -4663,11 +4628,6 @@ export type SubscriptionRootUsersAggregateArgs = {
   offset?: Maybe<Scalars['Int']>;
   order_by?: Maybe<Array<UsersOrderBy>>;
   where?: Maybe<UsersBoolExp>;
-};
-
-
-export type SubscriptionRootUsersByPkArgs = {
-  id: Scalars['uuid'];
 };
 
 /** columns and relationships of "taxonomies" */
@@ -4827,10 +4787,6 @@ export type TermRelationships = {
   __typename?: 'term_relationships';
   id: Scalars['uuid'];
   object_id: Scalars['uuid'];
-  /** An object relationship */
-  post?: Maybe<Posts>;
-  /** An object relationship */
-  user?: Maybe<Users>;
 };
 
 /** aggregated selection of "term_relationships" */
@@ -4862,8 +4818,6 @@ export type TermRelationshipsBoolExp = {
   _or?: Maybe<Array<TermRelationshipsBoolExp>>;
   id?: Maybe<UuidComparisonExp>;
   object_id?: Maybe<UuidComparisonExp>;
-  post?: Maybe<PostsBoolExp>;
-  user?: Maybe<UsersBoolExp>;
 };
 
 /** unique or primary key constraints on table "term_relationships" */
@@ -4876,8 +4830,6 @@ export enum TermRelationshipsConstraint {
 export type TermRelationshipsInsertInput = {
   id?: Maybe<Scalars['uuid']>;
   object_id?: Maybe<Scalars['uuid']>;
-  post?: Maybe<PostsObjRelInsertInput>;
-  user?: Maybe<UsersObjRelInsertInput>;
 };
 
 /** aggregate max on columns */
@@ -4914,8 +4866,6 @@ export type TermRelationshipsOnConflict = {
 export type TermRelationshipsOrderBy = {
   id?: Maybe<OrderBy>;
   object_id?: Maybe<OrderBy>;
-  post?: Maybe<PostsOrderBy>;
-  user?: Maybe<UsersOrderBy>;
 };
 
 /** primary key columns input for table: term_relationships */
@@ -4958,7 +4908,33 @@ export type TermTaxonomies = {
   /** An object relationship */
   term: Terms;
   term_slug: Scalars['String'];
+  /** An array relationship */
+  term_taxonomies: Array<TermTaxonomies>;
+  /** An aggregate relationship */
+  term_taxonomies_aggregate: TermTaxonomiesAggregate;
+  /** An object relationship */
+  term_taxonomy?: Maybe<TermTaxonomies>;
   updated_at: Scalars['timestamptz'];
+};
+
+
+/** columns and relationships of "term_taxonomies" */
+export type TermTaxonomiesTermTaxonomiesArgs = {
+  distinct_on?: Maybe<Array<TermTaxonomiesSelectColumn>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<TermTaxonomiesOrderBy>>;
+  where?: Maybe<TermTaxonomiesBoolExp>;
+};
+
+
+/** columns and relationships of "term_taxonomies" */
+export type TermTaxonomiesTermTaxonomiesAggregateArgs = {
+  distinct_on?: Maybe<Array<TermTaxonomiesSelectColumn>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<TermTaxonomiesOrderBy>>;
+  where?: Maybe<TermTaxonomiesBoolExp>;
 };
 
 /** aggregated selection of "term_taxonomies" */
@@ -5010,6 +4986,8 @@ export type TermTaxonomiesBoolExp = {
   taxonomyByTaxonomy?: Maybe<TaxonomiesBoolExp>;
   term?: Maybe<TermsBoolExp>;
   term_slug?: Maybe<StringComparisonExp>;
+  term_taxonomies?: Maybe<TermTaxonomiesBoolExp>;
+  term_taxonomy?: Maybe<TermTaxonomiesBoolExp>;
   updated_at?: Maybe<TimestamptzComparisonExp>;
 };
 
@@ -5029,6 +5007,8 @@ export type TermTaxonomiesInsertInput = {
   taxonomyByTaxonomy?: Maybe<TaxonomiesObjRelInsertInput>;
   term?: Maybe<TermsObjRelInsertInput>;
   term_slug?: Maybe<Scalars['String']>;
+  term_taxonomies?: Maybe<TermTaxonomiesArrRelInsertInput>;
+  term_taxonomy?: Maybe<TermTaxonomiesObjRelInsertInput>;
   updated_at?: Maybe<Scalars['timestamptz']>;
 };
 
@@ -5083,6 +5063,13 @@ export type TermTaxonomiesMutationResponse = {
   returning: Array<TermTaxonomies>;
 };
 
+/** input type for inserting object relation for remote table "term_taxonomies" */
+export type TermTaxonomiesObjRelInsertInput = {
+  data: TermTaxonomiesInsertInput;
+  /** upsert condition */
+  on_conflict?: Maybe<TermTaxonomiesOnConflict>;
+};
+
 /** on_conflict condition type for table "term_taxonomies" */
 export type TermTaxonomiesOnConflict = {
   constraint: TermTaxonomiesConstraint;
@@ -5100,6 +5087,8 @@ export type TermTaxonomiesOrderBy = {
   taxonomyByTaxonomy?: Maybe<TaxonomiesOrderBy>;
   term?: Maybe<TermsOrderBy>;
   term_slug?: Maybe<OrderBy>;
+  term_taxonomies_aggregate?: Maybe<TermTaxonomiesAggregateOrderBy>;
+  term_taxonomy?: Maybe<TermTaxonomiesOrderBy>;
   updated_at?: Maybe<OrderBy>;
 };
 
@@ -5242,6 +5231,8 @@ export type Terms = {
   id: Scalars['uuid'];
   name: Scalars['String'];
   slug: Scalars['String'];
+  /** An object relationship */
+  term_taxonomy?: Maybe<TermTaxonomies>;
   updated_at?: Maybe<Scalars['timestamptz']>;
 };
 
@@ -5276,6 +5267,7 @@ export type TermsBoolExp = {
   id?: Maybe<UuidComparisonExp>;
   name?: Maybe<StringComparisonExp>;
   slug?: Maybe<StringComparisonExp>;
+  term_taxonomy?: Maybe<TermTaxonomiesBoolExp>;
   updated_at?: Maybe<TimestamptzComparisonExp>;
 };
 
@@ -5293,6 +5285,7 @@ export type TermsInsertInput = {
   id?: Maybe<Scalars['uuid']>;
   name?: Maybe<Scalars['String']>;
   slug?: Maybe<Scalars['String']>;
+  term_taxonomy?: Maybe<TermTaxonomiesObjRelInsertInput>;
   updated_at?: Maybe<Scalars['timestamptz']>;
 };
 
@@ -5345,6 +5338,7 @@ export type TermsOrderBy = {
   id?: Maybe<OrderBy>;
   name?: Maybe<OrderBy>;
   slug?: Maybe<OrderBy>;
+  term_taxonomy?: Maybe<TermTaxonomiesOrderBy>;
   updated_at?: Maybe<OrderBy>;
 };
 
@@ -5404,31 +5398,123 @@ export type TimestamptzComparisonExp = {
   _nin?: Maybe<Array<Scalars['timestamptz']>>;
 };
 
-/** columns and relationships of "users" */
+/** columns and relationships of "auth.users" */
 export type Users = {
   __typename?: 'users';
-  avatar_url?: Maybe<Scalars['String']>;
-  created_at: Scalars['timestamptz'];
-  display_name?: Maybe<Scalars['String']>;
+  activeMfaType?: Maybe<Scalars['String']>;
+  avatarUrl: Scalars['String'];
+  createdAt: Scalars['timestamptz'];
+  defaultRole: Scalars['String'];
+  /** An object relationship */
+  defaultRoleByRole: AuthRoles;
+  disabled: Scalars['Boolean'];
+  displayName: Scalars['String'];
+  email?: Maybe<Scalars['citext']>;
+  emailVerified: Scalars['Boolean'];
   id: Scalars['uuid'];
-  meta?: Maybe<Scalars['jsonb']>;
-  updated_at: Scalars['timestamptz'];
+  isAnonymous: Scalars['Boolean'];
+  lastSeen?: Maybe<Scalars['timestamptz']>;
+  locale: Scalars['String'];
+  metadata?: Maybe<Scalars['jsonb']>;
+  newEmail?: Maybe<Scalars['citext']>;
+  otpHash?: Maybe<Scalars['String']>;
+  otpHashExpiresAt: Scalars['timestamptz'];
+  otpMethodLastUsed?: Maybe<Scalars['String']>;
+  passwordHash?: Maybe<Scalars['String']>;
+  phoneNumber?: Maybe<Scalars['String']>;
+  phoneNumberVerified: Scalars['Boolean'];
+  /** An array relationship */
+  refreshTokens: Array<AuthRefreshTokens>;
+  /** An aggregate relationship */
+  refreshTokens_aggregate: AuthRefreshTokensAggregate;
+  /** An array relationship */
+  roles: Array<AuthUserRoles>;
+  /** An aggregate relationship */
+  roles_aggregate: AuthUserRolesAggregate;
+  ticket?: Maybe<Scalars['String']>;
+  ticketExpiresAt: Scalars['timestamptz'];
+  totpSecret?: Maybe<Scalars['String']>;
+  updatedAt: Scalars['timestamptz'];
+  /** An array relationship */
+  userProviders: Array<AuthUserProviders>;
+  /** An aggregate relationship */
+  userProviders_aggregate: AuthUserProvidersAggregate;
 };
 
 
-/** columns and relationships of "users" */
-export type UsersMetaArgs = {
+/** columns and relationships of "auth.users" */
+export type UsersMetadataArgs = {
   path?: Maybe<Scalars['String']>;
 };
 
-/** aggregated selection of "users" */
+
+/** columns and relationships of "auth.users" */
+export type UsersRefreshTokensArgs = {
+  distinct_on?: Maybe<Array<AuthRefreshTokensSelectColumn>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<AuthRefreshTokensOrderBy>>;
+  where?: Maybe<AuthRefreshTokensBoolExp>;
+};
+
+
+/** columns and relationships of "auth.users" */
+export type UsersRefreshTokensAggregateArgs = {
+  distinct_on?: Maybe<Array<AuthRefreshTokensSelectColumn>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<AuthRefreshTokensOrderBy>>;
+  where?: Maybe<AuthRefreshTokensBoolExp>;
+};
+
+
+/** columns and relationships of "auth.users" */
+export type UsersRolesArgs = {
+  distinct_on?: Maybe<Array<AuthUserRolesSelectColumn>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<AuthUserRolesOrderBy>>;
+  where?: Maybe<AuthUserRolesBoolExp>;
+};
+
+
+/** columns and relationships of "auth.users" */
+export type UsersRolesAggregateArgs = {
+  distinct_on?: Maybe<Array<AuthUserRolesSelectColumn>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<AuthUserRolesOrderBy>>;
+  where?: Maybe<AuthUserRolesBoolExp>;
+};
+
+
+/** columns and relationships of "auth.users" */
+export type UsersUserProvidersArgs = {
+  distinct_on?: Maybe<Array<AuthUserProvidersSelectColumn>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<AuthUserProvidersOrderBy>>;
+  where?: Maybe<AuthUserProvidersBoolExp>;
+};
+
+
+/** columns and relationships of "auth.users" */
+export type UsersUserProvidersAggregateArgs = {
+  distinct_on?: Maybe<Array<AuthUserProvidersSelectColumn>>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  order_by?: Maybe<Array<AuthUserProvidersOrderBy>>;
+  where?: Maybe<AuthUserProvidersBoolExp>;
+};
+
+/** aggregated selection of "auth.users" */
 export type UsersAggregate = {
   __typename?: 'users_aggregate';
   aggregate?: Maybe<UsersAggregateFields>;
   nodes: Array<Users>;
 };
 
-/** aggregate fields of "users" */
+/** aggregate fields of "auth.users" */
 export type UsersAggregateFields = {
   __typename?: 'users_aggregate_fields';
   count: Scalars['Int'];
@@ -5437,82 +5523,218 @@ export type UsersAggregateFields = {
 };
 
 
-/** aggregate fields of "users" */
+/** aggregate fields of "auth.users" */
 export type UsersAggregateFieldsCountArgs = {
   columns?: Maybe<Array<UsersSelectColumn>>;
   distinct?: Maybe<Scalars['Boolean']>;
 };
 
-/** append existing jsonb value of filtered columns with new jsonb value */
-export type UsersAppendInput = {
-  meta?: Maybe<Scalars['jsonb']>;
+/** order by aggregate values of table "auth.users" */
+export type UsersAggregateOrderBy = {
+  count?: Maybe<OrderBy>;
+  max?: Maybe<UsersMaxOrderBy>;
+  min?: Maybe<UsersMinOrderBy>;
 };
 
-/** Boolean expression to filter rows from the table "users". All fields are combined with a logical 'AND'. */
+/** append existing jsonb value of filtered columns with new jsonb value */
+export type UsersAppendInput = {
+  metadata?: Maybe<Scalars['jsonb']>;
+};
+
+/** input type for inserting array relation for remote table "auth.users" */
+export type UsersArrRelInsertInput = {
+  data: Array<UsersInsertInput>;
+  /** upsert condition */
+  on_conflict?: Maybe<UsersOnConflict>;
+};
+
+/** Boolean expression to filter rows from the table "auth.users". All fields are combined with a logical 'AND'. */
 export type UsersBoolExp = {
   _and?: Maybe<Array<UsersBoolExp>>;
   _not?: Maybe<UsersBoolExp>;
   _or?: Maybe<Array<UsersBoolExp>>;
-  avatar_url?: Maybe<StringComparisonExp>;
-  created_at?: Maybe<TimestamptzComparisonExp>;
-  display_name?: Maybe<StringComparisonExp>;
+  activeMfaType?: Maybe<StringComparisonExp>;
+  avatarUrl?: Maybe<StringComparisonExp>;
+  createdAt?: Maybe<TimestamptzComparisonExp>;
+  defaultRole?: Maybe<StringComparisonExp>;
+  defaultRoleByRole?: Maybe<AuthRolesBoolExp>;
+  disabled?: Maybe<BooleanComparisonExp>;
+  displayName?: Maybe<StringComparisonExp>;
+  email?: Maybe<CitextComparisonExp>;
+  emailVerified?: Maybe<BooleanComparisonExp>;
   id?: Maybe<UuidComparisonExp>;
-  meta?: Maybe<JsonbComparisonExp>;
-  updated_at?: Maybe<TimestamptzComparisonExp>;
+  isAnonymous?: Maybe<BooleanComparisonExp>;
+  lastSeen?: Maybe<TimestamptzComparisonExp>;
+  locale?: Maybe<StringComparisonExp>;
+  metadata?: Maybe<JsonbComparisonExp>;
+  newEmail?: Maybe<CitextComparisonExp>;
+  otpHash?: Maybe<StringComparisonExp>;
+  otpHashExpiresAt?: Maybe<TimestamptzComparisonExp>;
+  otpMethodLastUsed?: Maybe<StringComparisonExp>;
+  passwordHash?: Maybe<StringComparisonExp>;
+  phoneNumber?: Maybe<StringComparisonExp>;
+  phoneNumberVerified?: Maybe<BooleanComparisonExp>;
+  refreshTokens?: Maybe<AuthRefreshTokensBoolExp>;
+  roles?: Maybe<AuthUserRolesBoolExp>;
+  ticket?: Maybe<StringComparisonExp>;
+  ticketExpiresAt?: Maybe<TimestamptzComparisonExp>;
+  totpSecret?: Maybe<StringComparisonExp>;
+  updatedAt?: Maybe<TimestamptzComparisonExp>;
+  userProviders?: Maybe<AuthUserProvidersBoolExp>;
 };
 
-/** unique or primary key constraints on table "users" */
+/** unique or primary key constraints on table "auth.users" */
 export enum UsersConstraint {
+  /** unique or primary key constraint */
+  UsersEmailKey = 'users_email_key',
+  /** unique or primary key constraint */
+  UsersPhoneNumberKey = 'users_phone_number_key',
   /** unique or primary key constraint */
   UsersPkey = 'users_pkey'
 }
 
 /** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
 export type UsersDeleteAtPathInput = {
-  meta?: Maybe<Array<Scalars['String']>>;
+  metadata?: Maybe<Array<Scalars['String']>>;
 };
 
 /** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
 export type UsersDeleteElemInput = {
-  meta?: Maybe<Scalars['Int']>;
+  metadata?: Maybe<Scalars['Int']>;
 };
 
 /** delete key/value pair or string element. key/value pairs are matched based on their key value */
 export type UsersDeleteKeyInput = {
-  meta?: Maybe<Scalars['String']>;
+  metadata?: Maybe<Scalars['String']>;
 };
 
-/** input type for inserting data into table "users" */
+/** input type for inserting data into table "auth.users" */
 export type UsersInsertInput = {
-  avatar_url?: Maybe<Scalars['String']>;
-  created_at?: Maybe<Scalars['timestamptz']>;
-  display_name?: Maybe<Scalars['String']>;
+  activeMfaType?: Maybe<Scalars['String']>;
+  avatarUrl?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['timestamptz']>;
+  defaultRole?: Maybe<Scalars['String']>;
+  defaultRoleByRole?: Maybe<AuthRolesObjRelInsertInput>;
+  disabled?: Maybe<Scalars['Boolean']>;
+  displayName?: Maybe<Scalars['String']>;
+  email?: Maybe<Scalars['citext']>;
+  emailVerified?: Maybe<Scalars['Boolean']>;
   id?: Maybe<Scalars['uuid']>;
-  meta?: Maybe<Scalars['jsonb']>;
-  updated_at?: Maybe<Scalars['timestamptz']>;
+  isAnonymous?: Maybe<Scalars['Boolean']>;
+  lastSeen?: Maybe<Scalars['timestamptz']>;
+  locale?: Maybe<Scalars['String']>;
+  metadata?: Maybe<Scalars['jsonb']>;
+  newEmail?: Maybe<Scalars['citext']>;
+  otpHash?: Maybe<Scalars['String']>;
+  otpHashExpiresAt?: Maybe<Scalars['timestamptz']>;
+  otpMethodLastUsed?: Maybe<Scalars['String']>;
+  passwordHash?: Maybe<Scalars['String']>;
+  phoneNumber?: Maybe<Scalars['String']>;
+  phoneNumberVerified?: Maybe<Scalars['Boolean']>;
+  refreshTokens?: Maybe<AuthRefreshTokensArrRelInsertInput>;
+  roles?: Maybe<AuthUserRolesArrRelInsertInput>;
+  ticket?: Maybe<Scalars['String']>;
+  ticketExpiresAt?: Maybe<Scalars['timestamptz']>;
+  totpSecret?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['timestamptz']>;
+  userProviders?: Maybe<AuthUserProvidersArrRelInsertInput>;
 };
 
 /** aggregate max on columns */
 export type UsersMaxFields = {
   __typename?: 'users_max_fields';
-  avatar_url?: Maybe<Scalars['String']>;
-  created_at?: Maybe<Scalars['timestamptz']>;
-  display_name?: Maybe<Scalars['String']>;
+  activeMfaType?: Maybe<Scalars['String']>;
+  avatarUrl?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['timestamptz']>;
+  defaultRole?: Maybe<Scalars['String']>;
+  displayName?: Maybe<Scalars['String']>;
+  email?: Maybe<Scalars['citext']>;
   id?: Maybe<Scalars['uuid']>;
-  updated_at?: Maybe<Scalars['timestamptz']>;
+  lastSeen?: Maybe<Scalars['timestamptz']>;
+  locale?: Maybe<Scalars['String']>;
+  newEmail?: Maybe<Scalars['citext']>;
+  otpHash?: Maybe<Scalars['String']>;
+  otpHashExpiresAt?: Maybe<Scalars['timestamptz']>;
+  otpMethodLastUsed?: Maybe<Scalars['String']>;
+  passwordHash?: Maybe<Scalars['String']>;
+  phoneNumber?: Maybe<Scalars['String']>;
+  ticket?: Maybe<Scalars['String']>;
+  ticketExpiresAt?: Maybe<Scalars['timestamptz']>;
+  totpSecret?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['timestamptz']>;
+};
+
+/** order by max() on columns of table "auth.users" */
+export type UsersMaxOrderBy = {
+  activeMfaType?: Maybe<OrderBy>;
+  avatarUrl?: Maybe<OrderBy>;
+  createdAt?: Maybe<OrderBy>;
+  defaultRole?: Maybe<OrderBy>;
+  displayName?: Maybe<OrderBy>;
+  email?: Maybe<OrderBy>;
+  id?: Maybe<OrderBy>;
+  lastSeen?: Maybe<OrderBy>;
+  locale?: Maybe<OrderBy>;
+  newEmail?: Maybe<OrderBy>;
+  otpHash?: Maybe<OrderBy>;
+  otpHashExpiresAt?: Maybe<OrderBy>;
+  otpMethodLastUsed?: Maybe<OrderBy>;
+  passwordHash?: Maybe<OrderBy>;
+  phoneNumber?: Maybe<OrderBy>;
+  ticket?: Maybe<OrderBy>;
+  ticketExpiresAt?: Maybe<OrderBy>;
+  totpSecret?: Maybe<OrderBy>;
+  updatedAt?: Maybe<OrderBy>;
 };
 
 /** aggregate min on columns */
 export type UsersMinFields = {
   __typename?: 'users_min_fields';
-  avatar_url?: Maybe<Scalars['String']>;
-  created_at?: Maybe<Scalars['timestamptz']>;
-  display_name?: Maybe<Scalars['String']>;
+  activeMfaType?: Maybe<Scalars['String']>;
+  avatarUrl?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['timestamptz']>;
+  defaultRole?: Maybe<Scalars['String']>;
+  displayName?: Maybe<Scalars['String']>;
+  email?: Maybe<Scalars['citext']>;
   id?: Maybe<Scalars['uuid']>;
-  updated_at?: Maybe<Scalars['timestamptz']>;
+  lastSeen?: Maybe<Scalars['timestamptz']>;
+  locale?: Maybe<Scalars['String']>;
+  newEmail?: Maybe<Scalars['citext']>;
+  otpHash?: Maybe<Scalars['String']>;
+  otpHashExpiresAt?: Maybe<Scalars['timestamptz']>;
+  otpMethodLastUsed?: Maybe<Scalars['String']>;
+  passwordHash?: Maybe<Scalars['String']>;
+  phoneNumber?: Maybe<Scalars['String']>;
+  ticket?: Maybe<Scalars['String']>;
+  ticketExpiresAt?: Maybe<Scalars['timestamptz']>;
+  totpSecret?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['timestamptz']>;
 };
 
-/** response of any mutation on the table "users" */
+/** order by min() on columns of table "auth.users" */
+export type UsersMinOrderBy = {
+  activeMfaType?: Maybe<OrderBy>;
+  avatarUrl?: Maybe<OrderBy>;
+  createdAt?: Maybe<OrderBy>;
+  defaultRole?: Maybe<OrderBy>;
+  displayName?: Maybe<OrderBy>;
+  email?: Maybe<OrderBy>;
+  id?: Maybe<OrderBy>;
+  lastSeen?: Maybe<OrderBy>;
+  locale?: Maybe<OrderBy>;
+  newEmail?: Maybe<OrderBy>;
+  otpHash?: Maybe<OrderBy>;
+  otpHashExpiresAt?: Maybe<OrderBy>;
+  otpMethodLastUsed?: Maybe<OrderBy>;
+  passwordHash?: Maybe<OrderBy>;
+  phoneNumber?: Maybe<OrderBy>;
+  ticket?: Maybe<OrderBy>;
+  ticketExpiresAt?: Maybe<OrderBy>;
+  totpSecret?: Maybe<OrderBy>;
+  updatedAt?: Maybe<OrderBy>;
+};
+
+/** response of any mutation on the table "auth.users" */
 export type UsersMutationResponse = {
   __typename?: 'users_mutation_response';
   /** number of rows affected by the mutation */
@@ -5521,28 +5743,50 @@ export type UsersMutationResponse = {
   returning: Array<Users>;
 };
 
-/** input type for inserting object relation for remote table "users" */
+/** input type for inserting object relation for remote table "auth.users" */
 export type UsersObjRelInsertInput = {
   data: UsersInsertInput;
   /** upsert condition */
   on_conflict?: Maybe<UsersOnConflict>;
 };
 
-/** on_conflict condition type for table "users" */
+/** on_conflict condition type for table "auth.users" */
 export type UsersOnConflict = {
   constraint: UsersConstraint;
   update_columns?: Array<UsersUpdateColumn>;
   where?: Maybe<UsersBoolExp>;
 };
 
-/** Ordering options when selecting data from "users". */
+/** Ordering options when selecting data from "auth.users". */
 export type UsersOrderBy = {
-  avatar_url?: Maybe<OrderBy>;
-  created_at?: Maybe<OrderBy>;
-  display_name?: Maybe<OrderBy>;
+  activeMfaType?: Maybe<OrderBy>;
+  avatarUrl?: Maybe<OrderBy>;
+  createdAt?: Maybe<OrderBy>;
+  defaultRole?: Maybe<OrderBy>;
+  defaultRoleByRole?: Maybe<AuthRolesOrderBy>;
+  disabled?: Maybe<OrderBy>;
+  displayName?: Maybe<OrderBy>;
+  email?: Maybe<OrderBy>;
+  emailVerified?: Maybe<OrderBy>;
   id?: Maybe<OrderBy>;
-  meta?: Maybe<OrderBy>;
-  updated_at?: Maybe<OrderBy>;
+  isAnonymous?: Maybe<OrderBy>;
+  lastSeen?: Maybe<OrderBy>;
+  locale?: Maybe<OrderBy>;
+  metadata?: Maybe<OrderBy>;
+  newEmail?: Maybe<OrderBy>;
+  otpHash?: Maybe<OrderBy>;
+  otpHashExpiresAt?: Maybe<OrderBy>;
+  otpMethodLastUsed?: Maybe<OrderBy>;
+  passwordHash?: Maybe<OrderBy>;
+  phoneNumber?: Maybe<OrderBy>;
+  phoneNumberVerified?: Maybe<OrderBy>;
+  refreshTokens_aggregate?: Maybe<AuthRefreshTokensAggregateOrderBy>;
+  roles_aggregate?: Maybe<AuthUserRolesAggregateOrderBy>;
+  ticket?: Maybe<OrderBy>;
+  ticketExpiresAt?: Maybe<OrderBy>;
+  totpSecret?: Maybe<OrderBy>;
+  updatedAt?: Maybe<OrderBy>;
+  userProviders_aggregate?: Maybe<AuthUserProvidersAggregateOrderBy>;
 };
 
 /** primary key columns input for table: users */
@@ -5552,49 +5796,139 @@ export type UsersPkColumnsInput = {
 
 /** prepend existing jsonb value of filtered columns with new jsonb value */
 export type UsersPrependInput = {
-  meta?: Maybe<Scalars['jsonb']>;
+  metadata?: Maybe<Scalars['jsonb']>;
 };
 
-/** select columns of table "users" */
+/** select columns of table "auth.users" */
 export enum UsersSelectColumn {
   /** column name */
-  AvatarUrl = 'avatar_url',
+  ActiveMfaType = 'activeMfaType',
   /** column name */
-  CreatedAt = 'created_at',
+  AvatarUrl = 'avatarUrl',
   /** column name */
-  DisplayName = 'display_name',
+  CreatedAt = 'createdAt',
+  /** column name */
+  DefaultRole = 'defaultRole',
+  /** column name */
+  Disabled = 'disabled',
+  /** column name */
+  DisplayName = 'displayName',
+  /** column name */
+  Email = 'email',
+  /** column name */
+  EmailVerified = 'emailVerified',
   /** column name */
   Id = 'id',
   /** column name */
-  Meta = 'meta',
+  IsAnonymous = 'isAnonymous',
   /** column name */
-  UpdatedAt = 'updated_at'
+  LastSeen = 'lastSeen',
+  /** column name */
+  Locale = 'locale',
+  /** column name */
+  Metadata = 'metadata',
+  /** column name */
+  NewEmail = 'newEmail',
+  /** column name */
+  OtpHash = 'otpHash',
+  /** column name */
+  OtpHashExpiresAt = 'otpHashExpiresAt',
+  /** column name */
+  OtpMethodLastUsed = 'otpMethodLastUsed',
+  /** column name */
+  PasswordHash = 'passwordHash',
+  /** column name */
+  PhoneNumber = 'phoneNumber',
+  /** column name */
+  PhoneNumberVerified = 'phoneNumberVerified',
+  /** column name */
+  Ticket = 'ticket',
+  /** column name */
+  TicketExpiresAt = 'ticketExpiresAt',
+  /** column name */
+  TotpSecret = 'totpSecret',
+  /** column name */
+  UpdatedAt = 'updatedAt'
 }
 
-/** input type for updating data in table "users" */
+/** input type for updating data in table "auth.users" */
 export type UsersSetInput = {
-  avatar_url?: Maybe<Scalars['String']>;
-  created_at?: Maybe<Scalars['timestamptz']>;
-  display_name?: Maybe<Scalars['String']>;
+  activeMfaType?: Maybe<Scalars['String']>;
+  avatarUrl?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['timestamptz']>;
+  defaultRole?: Maybe<Scalars['String']>;
+  disabled?: Maybe<Scalars['Boolean']>;
+  displayName?: Maybe<Scalars['String']>;
+  email?: Maybe<Scalars['citext']>;
+  emailVerified?: Maybe<Scalars['Boolean']>;
   id?: Maybe<Scalars['uuid']>;
-  meta?: Maybe<Scalars['jsonb']>;
-  updated_at?: Maybe<Scalars['timestamptz']>;
+  isAnonymous?: Maybe<Scalars['Boolean']>;
+  lastSeen?: Maybe<Scalars['timestamptz']>;
+  locale?: Maybe<Scalars['String']>;
+  metadata?: Maybe<Scalars['jsonb']>;
+  newEmail?: Maybe<Scalars['citext']>;
+  otpHash?: Maybe<Scalars['String']>;
+  otpHashExpiresAt?: Maybe<Scalars['timestamptz']>;
+  otpMethodLastUsed?: Maybe<Scalars['String']>;
+  passwordHash?: Maybe<Scalars['String']>;
+  phoneNumber?: Maybe<Scalars['String']>;
+  phoneNumberVerified?: Maybe<Scalars['Boolean']>;
+  ticket?: Maybe<Scalars['String']>;
+  ticketExpiresAt?: Maybe<Scalars['timestamptz']>;
+  totpSecret?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['timestamptz']>;
 };
 
-/** update columns of table "users" */
+/** update columns of table "auth.users" */
 export enum UsersUpdateColumn {
   /** column name */
-  AvatarUrl = 'avatar_url',
+  ActiveMfaType = 'activeMfaType',
   /** column name */
-  CreatedAt = 'created_at',
+  AvatarUrl = 'avatarUrl',
   /** column name */
-  DisplayName = 'display_name',
+  CreatedAt = 'createdAt',
+  /** column name */
+  DefaultRole = 'defaultRole',
+  /** column name */
+  Disabled = 'disabled',
+  /** column name */
+  DisplayName = 'displayName',
+  /** column name */
+  Email = 'email',
+  /** column name */
+  EmailVerified = 'emailVerified',
   /** column name */
   Id = 'id',
   /** column name */
-  Meta = 'meta',
+  IsAnonymous = 'isAnonymous',
   /** column name */
-  UpdatedAt = 'updated_at'
+  LastSeen = 'lastSeen',
+  /** column name */
+  Locale = 'locale',
+  /** column name */
+  Metadata = 'metadata',
+  /** column name */
+  NewEmail = 'newEmail',
+  /** column name */
+  OtpHash = 'otpHash',
+  /** column name */
+  OtpHashExpiresAt = 'otpHashExpiresAt',
+  /** column name */
+  OtpMethodLastUsed = 'otpMethodLastUsed',
+  /** column name */
+  PasswordHash = 'passwordHash',
+  /** column name */
+  PhoneNumber = 'phoneNumber',
+  /** column name */
+  PhoneNumberVerified = 'phoneNumberVerified',
+  /** column name */
+  Ticket = 'ticket',
+  /** column name */
+  TicketExpiresAt = 'ticketExpiresAt',
+  /** column name */
+  TotpSecret = 'totpSecret',
+  /** column name */
+  UpdatedAt = 'updatedAt'
 }
 
 
@@ -5633,7 +5967,7 @@ export type CreatePageMutation = (
   { __typename?: 'mutation_root' }
   & { insert_pages_one?: Maybe<(
     { __typename: 'pages' }
-    & Pick<Pages, 'id'>
+    & Pick<Pages, 'post_id'>
   )> }
 );
 
@@ -5741,10 +6075,10 @@ export type ArticleQuery = (
   & { articles_by_pk?: Maybe<(
     { __typename: 'articles' }
     & Pick<Articles, 'post_id' | 'body' | 'excerpt' | 'state'>
-    & { post?: Maybe<(
+    & { post: (
       { __typename: 'posts' }
       & Pick<Posts, 'title' | 'description' | 'slug'>
-    )> }
+    ) }
   )> }
 );
 
@@ -5758,10 +6092,10 @@ export type ArticlesQuery = (
   & { articles: Array<(
     { __typename: 'articles' }
     & Pick<Articles, 'post_id' | 'state'>
-    & { post?: Maybe<(
+    & { post: (
       { __typename: 'posts' }
       & Pick<Posts, 'title' | 'type' | 'slug' | 'created_at'>
-    )> }
+    ) }
   )> }
 );
 
@@ -5793,7 +6127,7 @@ export type PageQuery = (
     & Pick<Pages, 'post_id' | 'body' | 'state'>
     & { post: (
       { __typename: 'posts' }
-      & Pick<Posts, 'title' | 'description' | 'slug'>
+      & Pick<Posts, 'title' | 'slug'>
     ) }
   )> }
 );
@@ -5900,7 +6234,7 @@ export const CreatePageDocument = gql`
     mutation createPage($object: pages_insert_input!) {
   insert_pages_one(object: $object) {
     __typename
-    id
+    post_id
   }
 }
     `;
@@ -6287,7 +6621,6 @@ export const PageDocument = gql`
     post {
       __typename
       title
-      description
       slug
     }
     body
@@ -6487,3 +6820,25 @@ export function useTermTaxonomiesTreeLazyQuery(baseOptions?: ApolloReactHooks.La
 export type TermTaxonomiesTreeQueryHookResult = ReturnType<typeof useTermTaxonomiesTreeQuery>;
 export type TermTaxonomiesTreeLazyQueryHookResult = ReturnType<typeof useTermTaxonomiesTreeLazyQuery>;
 export type TermTaxonomiesTreeQueryResult = Apollo.QueryResult<TermTaxonomiesTreeQuery, TermTaxonomiesTreeQueryVariables>;
+export const namedOperations = {
+  Query: {
+    article: 'article',
+    articles: 'articles',
+    articlesAggregate: 'articlesAggregate',
+    page: 'page',
+    pages: 'pages',
+    pagesAggregate: 'pagesAggregate',
+    termTaxonomies: 'termTaxonomies',
+    termTaxonomiesTree: 'termTaxonomiesTree'
+  },
+  Mutation: {
+    createArticle: 'createArticle',
+    createPage: 'createPage',
+    createTerm: 'createTerm',
+    createTermTaxonomy: 'createTermTaxonomy',
+    deletePost: 'deletePost',
+    updateArticle: 'updateArticle',
+    updatePage: 'updatePage',
+    updatePost: 'updatePost'
+  }
+}

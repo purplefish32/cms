@@ -1,8 +1,10 @@
 /* eslint-disable require-jsdoc */
 import { Button } from "@mantine/core";
 import React from "react";
-import { useDeletePostMutation } from "../../../generated/graphql";
-import { namedOperations } from "../../../types";
+import {
+  namedOperations,
+  useDeletePostMutation,
+} from "../../../generated/graphql";
 
 function PageDeleteButton({ postId }) {
   const [postsDelete, { loading }] = useDeletePostMutation({

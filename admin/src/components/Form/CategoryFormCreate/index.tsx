@@ -4,10 +4,10 @@ import { Button } from "@mantine/core";
 import React, { useState } from "react";
 import { Form, Schema } from "rsuite";
 import {
+  namedOperations,
   TaxonomiesEnum,
   useCreateTermTaxonomyMutation,
 } from "../../../../generated/graphql";
-import { namedOperations } from "../../../../types";
 import TaxonomyFormGroupDescription from "../TaxonomyFormGroupDescription";
 import TaxonomyFormGroupName from "../TaxonomyFormGroupName";
 import TaxonomyFormGroupParent from "../TaxonomyFormGroupParent";

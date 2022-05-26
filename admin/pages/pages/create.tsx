@@ -1,33 +1,19 @@
+import { Title } from "@mantine/core";
 import { useForm, zodResolver } from "@mantine/form";
 import { showNotification } from "@mantine/notifications";
 import router from "next/router";
 import React from "react";
-import { Content, Header, Panel, PanelGroup } from "rsuite";
 import { Check } from "tabler-icons-react";
 import { capitalize } from "underscore.string";
-import { z } from "zod";
 import {
   PageStatesEnum,
   PostTypesEnum,
   useCreatePageMutation,
 } from "../../generated/graphql";
-import CreatePageForm from "../../src/components/Form/CreatePageForm";
+import PageForm from "../../src/components/Form/PageForm";
+import { PageFormSchema } from "../../src/components/Form/PageForm/page-form-schema";
+import { PageFormValues } from "../../src/components/Form/PageForm/page-form-values-interface";
 import Layout from "../../src/components/Layout";
-
-export interface CreatePageModel {
-  title: string;
-  slug: string;
-  body: string;
-  state: PageStatesEnum;
-}
-
-const schema = z.object({
-  state: z.string(),
-  title: z.string(),
-  slug: z.string(),
-  body: z.string(),
-});
-
 /**
  * PageCreatePage: The Page Create Page
  * @return {JSX.Element} The JSX Code for the Page Create Page
@@ -35,7 +21,7 @@ const schema = z.object({
 export default function PageCreatePage() {
   const [insertPagesOne] = useCreatePageMutation();
 
-  const handleSubmit = async (data: CreatePageModel): Promise<void> => {
+  const handleSubmit = async (data: PageFormValues): Promise<void> => {
     const { title, slug, state, body } = data;
 
     try {
@@ -55,20 +41,21 @@ export default function PageCreatePage() {
           },
         },
       });
+
       showNotification({
         icon: <Check />,
         color: "teal",
         message: "The page has been created.",
       });
 
-      router.push(`/articles/edit/${data?.insert_pages_one?.id}`);
+      router.push(`/pages/edit/${data?.insert_pages_one?.post_id}`);
     } catch (error) {
       throw new Error("Could not create page");
     }
   };
 
-  const form = useForm({
-    schema: zodResolver(schema),
+  const pageForm = useForm<PageFormValues>({
+    schema: zodResolver(PageFormSchema),
     initialValues: {
       state: PageStatesEnum.Draft,
       title: "",
@@ -79,18 +66,8 @@ export default function PageCreatePage() {
 
   return (
     <Layout>
-      <PanelGroup>
-        <Panel>
-          <Header>
-            <h1>Create Page</h1>
-          </Header>
-        </Panel>
-        <Panel>
-          <Content>
-            <CreatePageForm form={form} handleSubmit={handleSubmit} />
-          </Content>
-        </Panel>
-      </PanelGroup>
+      <Title>Create Page</Title>
+      <PageForm form={pageForm} handleSubmit={handleSubmit} />
     </Layout>
   );
 }

@@ -16,6 +16,7 @@ module.exports = {
         'typescript',
         'typescript-operations',
         'typescript-react-apollo',
+        'named-operations-object'
       ],
       config: {
         skipTypename: false,
@@ -33,11 +34,11 @@ module.exports = {
         },
       },
     },
-    './graphql.schema.json': {
+    /* './graphql.schema.json': {
       plugins: ['introspection'],
     },
     './types.ts': {
       plugins: ['typescript', 'typescript-operations', 'named-operations-object']
-    }
+    }*/
   },
 };

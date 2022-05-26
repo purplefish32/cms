@@ -5,7 +5,6 @@ query page($uuid: uuid!) {
     post {
       __typename
       title
-      description
       slug
     }
     body
