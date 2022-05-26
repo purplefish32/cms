@@ -4,10 +4,10 @@ import { capitalize } from "underscore.string";
 import {
   ArticleStatesEnum,
   PostTypesEnum,
-  useCreateArticleMutation
+  useCreateArticleMutation,
 } from "../../../../generated/graphql";
 import CreateArticleFormLogic, {
-  CreateArticleFormModel
+  CreateArticleFormModel,
 } from "./CreateArticleFormLogic";
 
 const CreateArticleFormApollo = () => {

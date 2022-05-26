@@ -1,6 +1,6 @@
 import React from "react";
 import { Content, Header, Panel, PanelGroup } from "rsuite";
-import CreatePageFormApollo from "../../src/components/Form/CreatePageForm/CreatePageFormApollo";
+import CreatePageForm from "../../src/components/Form/CreatePageForm";
 import Layout from "../../src/components/Layout";
 
 /**
@@ -18,7 +18,7 @@ export default function PageCreatePage() {
         </Panel>
         <Panel>
           <Content>
-            <CreatePageFormApollo />
+            <CreatePageForm />
           </Content>
         </Panel>
       </PanelGroup>
