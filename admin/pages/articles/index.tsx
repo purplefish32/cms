@@ -1,7 +1,6 @@
+import { Button } from "@mantine/core";
 import router from "next/router";
 import React from "react";
-import { Content, Panel, PanelGroup } from "rsuite";
-import { Button, Header } from "semantic-ui-react";
 import { ArticleStatesEnum } from "../../generated/graphql";
 import ArticleCounter from "../../src/components/ArticleCounter";
 import ArticlesTable from "../../src/components/ArticlesTable";
@@ -18,25 +17,12 @@ const handleClick = () => {
 export default function ArticleIndexPage() {
   return (
     <Layout>
-      <PanelGroup>
-        <Panel>
-          <Header>
-            <h1>
-              Articles{" "}
-              <Button appearance={"primary"} onClick={handleClick}>
-                Add New
-              </Button>
-            </h1>
-          </Header>
-        </Panel>
-        <Panel>
-          <Content>
-            Published (<ArticleCounter state={ArticleStatesEnum.Published} />) |
-            Draft (<ArticleCounter state={ArticleStatesEnum.Draft} />)
-            <ArticlesTable></ArticlesTable>
-          </Content>
-        </Panel>
-      </PanelGroup>
+      <h1>
+        Articles <Button onClick={handleClick}>Add New</Button>
+      </h1>
+      Published (<ArticleCounter state={ArticleStatesEnum.Published} />) | Draft
+      (<ArticleCounter state={ArticleStatesEnum.Draft} />)
+      <ArticlesTable></ArticlesTable>
     </Layout>
   );
 }

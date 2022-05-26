@@ -1,77 +1,16 @@
 import { Button, InputWrapper, NativeSelect, TextInput } from "@mantine/core";
-import { useForm, zodResolver } from "@mantine/form";
-import { showNotification } from "@mantine/notifications";
-import router from "next/router";
+import { UseFormReturnType } from "@mantine/form/lib/use-form";
 import React from "react";
-import { Check } from "tabler-icons-react";
-import { capitalize } from "underscore.string";
-import { z } from "zod";
-import {
-  PageStatesEnum,
-  PostTypesEnum,
-  useCreatePageMutation,
-} from "../../../../generated/graphql";
+import { PageStatesEnum } from "../../../../generated/graphql";
+import { CreatePageModel } from "../../../../pages/pages/create";
 import RichTextEditor from "../../RichText";
 
-export interface CreatePageModel {
-  title: string;
-  slug: string;
-  body: string;
-  state: PageStatesEnum;
+interface Props {
+  form: UseFormReturnType<CreatePageModel>;
+  handleSubmit: (data: CreatePageModel) => Promise<void>;
 }
 
-const schema = z.object({
-  state: z.string(),
-  title: z.string(),
-  slug: z.string(),
-  body: z.string(),
-});
-
-const CreatePageForm = () => {
-  const [insertPagesOne] = useCreatePageMutation();
-
-  const handleSubmit = async (data: CreatePageModel) => {
-    const { title, slug, state, body } = data;
-
-    try {
-      const { data } = await insertPagesOne({
-        variables: {
-          object: {
-            post: {
-              data: {
-                title,
-                slug,
-                type: PostTypesEnum.Page,
-              },
-            },
-            body,
-            state:
-              PageStatesEnum[capitalize(state) as keyof typeof PageStatesEnum],
-          },
-        },
-      });
-      showNotification({
-        icon: <Check />,
-        color: "teal",
-        message: "The page has been created.",
-      });
-
-      router.push(`/articles/edit/${data?.insert_pages_one?.id}`);
-    } catch (error) {
-      throw new Error("Could not create page");
-    }
-  };
-
-  const form = useForm({
-    schema: zodResolver(schema),
-    initialValues: {
-      state: PageStatesEnum.Draft,
-      title: "",
-      slug: "",
-      body: "",
-    },
-  });
-
+const CreatePageForm = ({ form, handleSubmit }: Props) => {
   return (
     <form onSubmit={form.onSubmit((values) => handleSubmit(values))}>
       <NativeSelect
