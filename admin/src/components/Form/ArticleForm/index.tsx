@@ -1,24 +1,24 @@
 import { Button, NativeSelect, TextInput } from "@mantine/core";
 import { UseFormReturnType } from "@mantine/form/lib/use-form";
 import React from "react";
-import { PageStatesEnum } from "../../../../generated/graphql";
-import { PageFormValues } from "./page-form-values-interface";
+import { ArticleStatesEnum } from "../../../../generated/graphql";
+import { ArticleFormValues } from "./article-form-values-interface";
 // import RichTextEditor from "../../RichText";
 
 interface Props {
-  form: UseFormReturnType<PageFormValues>;
-  handleSubmit: (data: PageFormValues) => Promise<void>;
+  form: UseFormReturnType<ArticleFormValues>;
+  handleSubmit: (data: ArticleFormValues) => Promise<void>;
 }
 
-const PageForm = ({ form, handleSubmit }: Props) => {
+const ArticleForm = ({ form, handleSubmit }: Props) => {
   return (
     <form onSubmit={form.onSubmit((values) => handleSubmit(values))}>
       <NativeSelect
         label="State"
         placeholder="Pick one"
         data={[
-          { value: PageStatesEnum.Draft, label: "Draft" },
-          { value: PageStatesEnum.Published, label: "Published" },
+          { value: ArticleStatesEnum.Draft, label: "Draft" },
+          { value: ArticleStatesEnum.Published, label: "Published" },
         ]}
       />
       <TextInput
@@ -34,6 +34,12 @@ const PageForm = ({ form, handleSubmit }: Props) => {
         {...form.getInputProps("slug")}
       />
       <TextInput
+        label="Excerpt"
+        placeholder="Excerpt"
+        required
+        {...form.getInputProps("excerpt")}
+      />
+      <TextInput
         label="Body"
         placeholder="Body"
         required
@@ -46,4 +52,4 @@ const PageForm = ({ form, handleSubmit }: Props) => {
   );
 };
 
-export default PageForm;
+export default ArticleForm;

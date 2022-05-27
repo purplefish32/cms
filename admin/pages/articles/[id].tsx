@@ -1,12 +1,12 @@
+import { Button, Title } from "@mantine/core";
 import router, { useRouter } from "next/router";
 import React from "react";
-import { Button, Content, Header, Panel, PanelGroup } from "rsuite";
 import { useArticleQuery } from "../../generated/graphql";
 import Layout from "../../src/components/Layout";
 
 /**
  * ArticlePage: The Article Page
- * @return {JSX.Element} The JSX Code for the Article Page
+ * @return {JSX.Element} The JSX Code for the Page Page
  */
 export default function ArticlePage() {
   const { query } = useRouter();
@@ -20,7 +20,7 @@ export default function ArticlePage() {
   });
 
   if (error) {
-    return <div>Error loading article.</div>;
+    return <div>Error loading page.</div>;
   }
 
   if (!data) {
@@ -35,38 +35,17 @@ export default function ArticlePage() {
 
   return (
     <Layout>
-      <PanelGroup>
-        <Panel>
-          <Header>
-            <h1>
-              {article.post.title}{" "}
-              <Button appearance={"primary"} onClick={handleClick}>
-                Edit
-              </Button>
-            </h1>
-          </Header>
-        </Panel>
-        <Panel>
-          <Content>
-            <Panel>
-              <h4>State</h4>
-              {article.state}
-            </Panel>
-            <Panel>
-              <h4>Slug</h4>
-              {article.post.slug}
-            </Panel>
-            <Panel>
-              <h4>Excerpt</h4>
-              {article.excerpt}
-            </Panel>
-            <Panel>
-              <h4>Body</h4>
-              {article.body}
-            </Panel>
-          </Content>
-        </Panel>
-      </PanelGroup>
+      <Title>
+        {article?.post?.title} <Button onClick={handleClick}>Edit</Button>
+      </Title>
+      <Title>State</Title>
+      {article?.state}
+      <Title>Slug</Title>
+      {article?.post.slug}
+      <Title>Excerpt</Title>
+      {article?.excerpt}
+      <Title>Body</Title>
+      {article?.body}
     </Layout>
   );
 }

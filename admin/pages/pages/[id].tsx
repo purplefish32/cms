@@ -1,6 +1,6 @@
+import { Button, Title } from "@mantine/core";
 import router, { useRouter } from "next/router";
 import React from "react";
-import { Button, Content, Header, Panel, PanelGroup } from "rsuite";
 import { usePageQuery } from "../../generated/graphql";
 import Layout from "../../src/components/Layout";
 
@@ -35,34 +35,15 @@ export default function PagePage() {
 
   return (
     <Layout>
-      <PanelGroup>
-        <Panel>
-          <Header>
-            <h1>
-              {page.post.title}{" "}
-              <Button appearance={"primary"} onClick={handleClick}>
-                Edit
-              </Button>
-            </h1>
-          </Header>
-        </Panel>
-        <Panel>
-          <Content>
-            <Panel>
-              <h4>State</h4>
-              {page.state}
-            </Panel>
-            <Panel>
-              <h4>Slug</h4>
-              {page.post.slug}
-            </Panel>
-            <Panel>
-              <h4>Body</h4>
-              {page.body}
-            </Panel>
-          </Content>
-        </Panel>
-      </PanelGroup>
+      <Title>
+        {page?.post?.title} <Button onClick={handleClick}>Edit</Button>
+      </Title>
+      <Title>State</Title>
+      {page?.state}
+      <Title>Slug</Title>
+      {page?.post.slug}
+      <Title>Body</Title>
+      {page?.body}
     </Layout>
   );
 }

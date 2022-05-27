@@ -10,7 +10,7 @@ import {
   usePageLazyQuery,
   useUpdatePageMutation,
 } from "../../../generated/graphql";
-import CreatePageForm from "../../../src/components/Form/PageForm";
+import PageForm from "../../../src/components/Form/PageForm";
 import { PageFormSchema } from "../../../src/components/Form/PageForm/page-form-schema";
 import { PageFormValues } from "../../../src/components/Form/PageForm/page-form-values-interface";
 import Layout from "../../../src/components/Layout";
@@ -99,7 +99,7 @@ export default function PageEditPage() {
   return (
     <Layout>
       <Title>Edit Page</Title>
-      <CreatePageForm form={form} handleSubmit={handleSubmit} />
+      <PageForm form={form} handleSubmit={handleSubmit} />
     </Layout>
   );
 }
