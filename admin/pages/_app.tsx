@@ -4,7 +4,6 @@ import { MantineProvider } from "@mantine/core";
 import { NotificationsProvider } from "@mantine/notifications";
 import Head from "next/head";
 import React, { useEffect } from "react";
-import "rsuite/dist/rsuite.min.css";
 import { AuthProvider } from "../src/hooks/use-auth";
 import "../styles/globals.css";
 

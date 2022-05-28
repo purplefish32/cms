@@ -37,7 +37,6 @@
     "react-dom": "^17.0.1",
     "react-draft-wysiwyg": "^1.14.7",
     "react-hook-form": "^7.19.5",
-    "rsuite": "^5.9.0",
     "schema-typed": "^2.0.2",
     "tabler-icons-react": "^1.48.0",
     "underscore.string": "^3.3.5",

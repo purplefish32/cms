@@ -3,7 +3,7 @@ import { Table } from "@mantine/core";
 import React, { FunctionComponent } from "react";
 import {
   TaxonomiesEnum,
-  useTermTaxonomiesQuery
+  useTermTaxonomiesQuery,
 } from "../../../generated/graphql";
 
 type Props = {

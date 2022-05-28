@@ -1,6 +1,6 @@
+import { Button, Title } from "@mantine/core";
 import router from "next/router";
 import React from "react";
-import { Button, Content, Header, Panel, PanelGroup } from "rsuite";
 import { PageStatesEnum } from "../../generated/graphql";
 import Layout from "../../src/components/Layout";
 import PageCounter from "../../src/components/PageCounter";
@@ -17,25 +17,11 @@ const handleClick = () => {
 export default function PageIndexPage() {
   return (
     <Layout>
-      <PanelGroup>
-        <Panel>
-          <Header>
-            <h1>
-              Pages{" "}
-              <Button appearance={"primary"} onClick={handleClick}>
-                Add New
-              </Button>
-            </h1>
-          </Header>
-        </Panel>
-        <Panel>
-          <Content>
-            Published (<PageCounter state={PageStatesEnum.Published} />) | Draft
-            (<PageCounter state={PageStatesEnum.Draft} />)
-            <PagesTable></PagesTable>
-          </Content>
-        </Panel>
-      </PanelGroup>
+      <Title>
+        Pages <Button onClick={handleClick}>Add New</Button>
+      </Title>
+      Published (<PageCounter state={PageStatesEnum.Published} />) | Draft (
+      <PageCounter state={PageStatesEnum.Draft} />)<PagesTable></PagesTable>
     </Layout>
   );
 }

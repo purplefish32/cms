@@ -1,7 +1,15 @@
+import { Checkbox, Loader, Title } from "@mantine/core";
+import { useForm, zodResolver } from "@mantine/form";
+import { showNotification } from "@mantine/notifications";
 import React from "react";
-import { Content, FlexboxGrid, Header, Panel, PanelGroup } from "rsuite";
-import { TaxonomiesEnum } from "../../generated/graphql";
-import TagFormCreate from "../../src/components/Form/TagFormCreate";
+import {
+  namedOperations,
+  TaxonomiesEnum,
+  useCreateTermTaxonomyMutation,
+} from "../../generated/graphql";
+import TagFrom from "../../src/components/Form/TagForm";
+import { TagFormSchema } from "../../src/components/Form/TagForm/tag-form-schema";
+import { TagFormValues } from "../../src/components/Form/TagForm/tag-form-values-interface";
 import Layout from "../../src/components/Layout";
 import TermTaxonomiesTable from "../../src/components/TermTaxonomiesTable";
 
@@ -10,28 +18,62 @@ import TermTaxonomiesTable from "../../src/components/TermTaxonomiesTable";
  * @return {JSX.Element} The JSX Code for the Tags Edit Page
  */
 export default function TagsEditPage() {
+  const form = useForm<TagFormValues>({
+    schema: zodResolver(TagFormSchema),
+    initialValues: {
+      name: "",
+      slug: "",
+      parent_slug: "",
+      description: "",
+    },
+  });
+
+  const [createTermTaxonomy, { loading }] = useCreateTermTaxonomyMutation({
+    refetchQueries: [namedOperations.Query.termTaxonomies],
+  });
+
+  const handleSubmit = async (data: TagFormValues): Promise<void> => {
+    // eslint-disable-next-line camelcase
+    const { name, slug, parent_slug, description } = data;
+
+    try {
+      await createTermTaxonomy({
+        variables: {
+          objects: [
+            {
+              description,
+              taxonomy: TaxonomiesEnum.Tags,
+              // eslint-disable-next-line camelcase
+              parent_slug: parent_slug,
+              term: {
+                data: {
+                  name,
+                  slug,
+                },
+              },
+            },
+          ],
+        },
+      });
+
+      showNotification({
+        icon: <Checkbox />,
+        color: "teal",
+        message: "The tag has been added.",
+      });
+    } catch (error) {
+      throw new Error("Could not add tag");
+    }
+  };
+
+  if (loading) return <Loader />;
+
   return (
     <Layout>
-      <PanelGroup>
-        <Panel>
-          <Header>
-            <h1>Tags</h1>
-          </Header>
-        </Panel>
-        <Panel>
-          <Content>
-            <FlexboxGrid>
-              <FlexboxGrid.Item colspan={6}>
-                <h4>Add New Tag</h4>
-                <TagFormCreate />
-              </FlexboxGrid.Item>
-              <FlexboxGrid.Item colspan={18}>
-                <TermTaxonomiesTable taxonomy={TaxonomiesEnum.Tags} />
-              </FlexboxGrid.Item>
-            </FlexboxGrid>
-          </Content>
-        </Panel>
-      </PanelGroup>
+      <Title>Tags</Title>
+      <Title>Add New Tag</Title>
+      <TagFrom form={form} handleSubmit={handleSubmit} />
+      <TermTaxonomiesTable taxonomy={TaxonomiesEnum.Tags} />
     </Layout>
   );
 }

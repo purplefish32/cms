@@ -3,7 +3,6 @@ import { UseFormReturnType } from "@mantine/form/lib/use-form";
 import React from "react";
 import { ArticleStatesEnum } from "../../../../generated/graphql";
 import { ArticleFormValues } from "./article-form-values-interface";
-// import RichTextEditor from "../../RichText";
 
 interface Props {
   form: UseFormReturnType<ArticleFormValues>;
@@ -20,6 +19,7 @@ const ArticleForm = ({ form, handleSubmit }: Props) => {
           { value: ArticleStatesEnum.Draft, label: "Draft" },
           { value: ArticleStatesEnum.Published, label: "Published" },
         ]}
+        {...form.getInputProps("state")}
       />
       <TextInput
         label="Title"
