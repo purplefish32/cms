@@ -10,6 +10,7 @@ import {
   PostTypesEnum,
   useCreateArticleMutation,
 } from "../../generated/graphql";
+import { withApollo } from "../../lib/withApollo";
 import ArticleForm from "../../src/components/Form/ArticleForm";
 import { ArticleFormSchema } from "../../src/components/Form/ArticleForm/article-form-schema";
 import { ArticleFormValues } from "../../src/components/Form/ArticleForm/article-form-values-interface";
@@ -18,7 +19,7 @@ import Layout from "../../src/components/Layout";
  * ArticleCreatePage: The Article Create Page
  * @return {JSX.Element} The JSX Code for the Page Create Page
  */
-export default function ArticleCreatePage() {
+const ArticleCreatePage = () => {
   const [insertArticlesOne] = useCreateArticleMutation();
 
   const handleSubmit = async (data: ArticleFormValues): Promise<void> => {
@@ -74,4 +75,6 @@ export default function ArticleCreatePage() {
       <ArticleForm form={articleForm} handleSubmit={handleSubmit} />
     </Layout>
   );
-}
+};
+
+export default withApollo()(ArticleCreatePage);

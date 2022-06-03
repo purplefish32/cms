@@ -10,6 +10,7 @@ import {
   useArticleLazyQuery,
   useUpdateArticleMutation,
 } from "../../../generated/graphql";
+import { withApollo } from "../../../lib/withApollo";
 import ArticleForm from "../../../src/components/Form/ArticleForm";
 import { ArticleFormSchema } from "../../../src/components/Form/ArticleForm/article-form-schema";
 import { ArticleFormValues } from "../../../src/components/Form/ArticleForm/article-form-values-interface";
@@ -19,7 +20,7 @@ import Layout from "../../../src/components/Layout";
  * ArticleEditArticle: The Article Edit Article
  * @return {JSX.Element} The JSX Code for the Article Edit Article
  */
-export default function ArticleEditArticle() {
+const ArticleEditArticle = () => {
   const { query } = useRouter();
   const postId = query["id"] as string;
 
@@ -106,4 +107,6 @@ export default function ArticleEditArticle() {
       <ArticleForm form={form} handleSubmit={handleSubmit} />
     </Layout>
   );
-}
+};
+
+export default withApollo()(ArticleEditArticle);

@@ -10,6 +10,7 @@ import {
   usePageLazyQuery,
   useUpdatePageMutation,
 } from "../../../generated/graphql";
+import { withApollo } from "../../../lib/withApollo";
 import PageForm from "../../../src/components/Form/PageForm";
 import { PageFormSchema } from "../../../src/components/Form/PageForm/page-form-schema";
 import { PageFormValues } from "../../../src/components/Form/PageForm/page-form-values-interface";
@@ -19,7 +20,7 @@ import Layout from "../../../src/components/Layout";
  * PageEditPage: The Page Edit Page
  * @return {JSX.Element} The JSX Code for the Page Edit Page
  */
-export default function PageEditPage() {
+const PageEditPage = () => {
   const { query } = useRouter();
   const postId = query["id"] as string;
 
@@ -102,4 +103,6 @@ export default function PageEditPage() {
       <PageForm form={form} handleSubmit={handleSubmit} />
     </Layout>
   );
-}
+};
+
+export default withApollo()(PageEditPage);

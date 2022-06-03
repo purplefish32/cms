@@ -7,6 +7,7 @@ import {
   TaxonomiesEnum,
   useCreateTermTaxonomyMutation,
 } from "../../generated/graphql";
+import { withApollo } from "../../lib/withApollo";
 import CategoryFrom from "../../src/components/Form/CategoryForm";
 import { CategoryFormSchema } from "../../src/components/Form/CategoryForm/category-form-schema";
 import { CategoryFormValues } from "../../src/components/Form/CategoryForm/category-form-values-interface";
@@ -17,7 +18,7 @@ import TermTaxonomiesTable from "../../src/components/TermTaxonomiesTable";
  * CategoriesEditPage: The Category Edit Page
  * @return {JSX.Element} The JSX Code for the Categories Edit Page
  */
-export default function CategoriesEditPage() {
+const CategoriesEditPage = () => {
   const form = useForm<CategoryFormValues>({
     schema: zodResolver(CategoryFormSchema),
     initialValues: {
@@ -76,4 +77,6 @@ export default function CategoriesEditPage() {
       <TermTaxonomiesTable taxonomy={TaxonomiesEnum.Categories} />
     </Layout>
   );
-}
+};
+
+export default withApollo()(CategoriesEditPage);

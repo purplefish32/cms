@@ -7,6 +7,7 @@ import {
   TaxonomiesEnum,
   useCreateTermTaxonomyMutation,
 } from "../../generated/graphql";
+import { withApollo } from "../../lib/withApollo";
 import TagFrom from "../../src/components/Form/TagForm";
 import { TagFormSchema } from "../../src/components/Form/TagForm/tag-form-schema";
 import { TagFormValues } from "../../src/components/Form/TagForm/tag-form-values-interface";
@@ -17,7 +18,7 @@ import TermTaxonomiesTable from "../../src/components/TermTaxonomiesTable";
  * TagsEditPage: The Tags Edit Page
  * @return {JSX.Element} The JSX Code for the Tags Edit Page
  */
-export default function TagsEditPage() {
+const TagsEditPage = () => {
   const form = useForm<TagFormValues>({
     schema: zodResolver(TagFormSchema),
     initialValues: {
@@ -76,4 +77,6 @@ export default function TagsEditPage() {
       <TermTaxonomiesTable taxonomy={TaxonomiesEnum.Tags} />
     </Layout>
   );
-}
+};
+
+export default withApollo()(TagsEditPage);

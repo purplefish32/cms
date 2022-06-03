@@ -29,7 +29,7 @@ const PageCounter: FunctionComponent<Props> = (props) => {
     return <div>Loading</div>;
   }
 
-  return <span>{data.pages_aggregate.aggregate.count}</span>;
+  return <span>{data?.pages_aggregate?.aggregate?.count}</span>;
 };
 
 export default PageCounter;

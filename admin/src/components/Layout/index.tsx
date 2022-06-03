@@ -1,8 +1,8 @@
 import { AppShell, Header } from "@mantine/core";
-import React from "react";
+import React, { FunctionComponent } from "react";
 import { SidebarNavigation } from "../SidebarNavigation";
 
-export default function Layout({ children }) {
+const Layout: FunctionComponent = ({ children }) => {
   return (
     <AppShell
       padding="md"
@@ -16,4 +16,6 @@ export default function Layout({ children }) {
       {children}
     </AppShell>
   );
-}
+};
+
+export default Layout;

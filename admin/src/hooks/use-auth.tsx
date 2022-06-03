@@ -1,4 +1,3 @@
-import { ApolloProvider } from "@apollo/client";
 import router from "next/router";
 import React, {
   createContext,
@@ -7,10 +6,8 @@ import React, {
   useEffect,
   useState,
 } from "react";
-import { createApolloClient } from "../../lib/apolloClient";
-
 interface AuthContextInterface {
-  session: any;
+  session: any; // TODO
   signInEmailPassword: (email: string, password: string) => Promise<void>;
 }
 
@@ -34,19 +31,16 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
     email: string,
     password: string
   ): Promise<void> => {
-    const response = await fetch(
-      "http://localhost:4000/signin/email-password",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email,
-          password,
-        }),
-      }
-    );
+    const response = await fetch("/api/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    });
 
     const { session } = await response.json();
 
@@ -55,14 +49,12 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
 
   return (
     <AuthContext.Provider value={{ session, signInEmailPassword }}>
-      <ApolloProvider client={createApolloClient(session?.accessToken)}>
-        {children}
-      </ApolloProvider>
+      {children}
     </AuthContext.Provider>
   );
 };
 
-const useAuth = () => {
+const useAuth = (): AuthContextInterface | null => {
   // get the context
   const context = useContext(AuthContext);
   // if `undefined`, throw an error

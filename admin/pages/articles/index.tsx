@@ -2,6 +2,7 @@ import { Button } from "@mantine/core";
 import router from "next/router";
 import React from "react";
 import { ArticleStatesEnum } from "../../generated/graphql";
+import { withApollo } from "../../lib/withApollo";
 import ArticleCounter from "../../src/components/ArticleCounter";
 import ArticlesTable from "../../src/components/ArticlesTable";
 import Layout from "../../src/components/Layout";
@@ -14,7 +15,7 @@ const handleClick = () => {
  * ArticleIndexPage: The Article Index Page
  * @return {JSX.Element} The JSX Code for the Article Index Page
  */
-export default function ArticleIndexPage() {
+const ArticleIndexPage = () => {
   return (
     <Layout>
       <h1>
@@ -25,4 +26,6 @@ export default function ArticleIndexPage() {
       <ArticlesTable></ArticlesTable>
     </Layout>
   );
-}
+};
+
+export default withApollo()(ArticleIndexPage);

@@ -10,6 +10,7 @@ import {
   PostTypesEnum,
   useCreatePageMutation,
 } from "../../generated/graphql";
+import { withApollo } from "../../lib/withApollo";
 import PageForm from "../../src/components/Form/PageForm";
 import { PageFormSchema } from "../../src/components/Form/PageForm/page-form-schema";
 import { PageFormValues } from "../../src/components/Form/PageForm/page-form-values-interface";
@@ -18,7 +19,7 @@ import Layout from "../../src/components/Layout";
  * PageCreatePage: The Page Create Page
  * @return {JSX.Element} The JSX Code for the Page Create Page
  */
-export default function PageCreatePage() {
+const PageCreatePage = () => {
   const [insertPagesOne] = useCreatePageMutation();
 
   const handleSubmit = async (data: PageFormValues): Promise<void> => {
@@ -70,4 +71,6 @@ export default function PageCreatePage() {
       <PageForm form={pageForm} handleSubmit={handleSubmit} />
     </Layout>
   );
-}
+};
+
+export default withApollo()(PageCreatePage);
