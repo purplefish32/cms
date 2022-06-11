@@ -1,4 +1,17 @@
 actions:
+  - name: meiliSearchTerms
+    definition:
+      kind: ""
+      handler: http://meilisearch:7700
+      request_transform:
+        body:
+          action: transform
+          template: "{\r\n            \"q\": {{$body.input.query}},\r\n            \"limit\": {{$body.input?.limit ?? 20}},\r\n            \"offset\": {{$body.input?.offset ?? 0}}\r\n          }"
+        url: '{{$base_url}}/indexes/terms/search'
+        method: POST
+        version: 2
+        query_params: {}
+        template_engine: Kriti
   - name: meiliSearchUsers
     definition:
       kind: ""

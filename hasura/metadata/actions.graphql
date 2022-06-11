@@ -1,4 +1,12 @@
 type Query {
+  meiliSearchTerms(
+    query: String!
+    limit: Int
+    offset: Int
+  ): MeiliSearchOutput
+}
+
+type Query {
   meiliSearchUsers(
     query: String!
     limit: Int

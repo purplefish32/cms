@@ -1,6 +1,6 @@
-import { Checkbox, Grid, Title } from "@mantine/core";
+import { Grid, Title } from "@mantine/core";
 import { useForm, zodResolver } from "@mantine/form";
-import { showNotification } from "@mantine/notifications";
+import { showNotification, updateNotification } from "@mantine/notifications";
 import React from "react";
 import {
   namedOperations,
@@ -32,10 +32,18 @@ const TagsEditPage = () => {
     refetchQueries: [namedOperations.Query.TagsTable],
   });
 
-  const handleSubmit = (data: TagFormValues): void => {
+  const handleSubmit = async (data: TagFormValues): Promise<void> => {
     const { name, slug, description } = data;
 
-    createTermTaxonomy({
+    showNotification({
+      id: "add-tag",
+      message: "The tag is being added.",
+      loading: true,
+      autoClose: false,
+      disallowClose: true,
+    });
+
+    await createTermTaxonomy({
       variables: {
         objects: [
           {
@@ -52,11 +60,11 @@ const TagsEditPage = () => {
       },
     });
 
-    showNotification({
-      icon: <Checkbox />,
+    updateNotification({
+      id: "add-tag",
       color: "teal",
       message: "The tag has been added.",
-      loading: loading,
+      autoClose: 2000,
     });
   };
 
