@@ -1,4 +1,4 @@
-import { AppShell, Header } from "@mantine/core";
+import { AppShell, Header, Title } from "@mantine/core";
 import React, { FunctionComponent } from "react";
 import { SidebarNavigation } from "../SidebarNavigation";
 
@@ -9,7 +9,7 @@ const Layout: FunctionComponent = ({ children }) => {
       navbar={<SidebarNavigation></SidebarNavigation>}
       header={
         <Header height={60} p="xs">
-          {/* Header content */}
+          <Title>JAHCMS</Title>
         </Header>
       }
     >

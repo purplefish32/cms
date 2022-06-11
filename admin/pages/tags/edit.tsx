@@ -1,4 +1,4 @@
-import { Checkbox, Loader, Title } from "@mantine/core";
+import { Checkbox, Grid, Title } from "@mantine/core";
 import { useForm, zodResolver } from "@mantine/form";
 import { showNotification } from "@mantine/notifications";
 import React from "react";
@@ -24,7 +24,6 @@ const TagsEditPage = () => {
     initialValues: {
       name: "",
       slug: "",
-      parent_slug: "",
       description: "",
     },
   });
@@ -34,47 +33,44 @@ const TagsEditPage = () => {
   });
 
   const handleSubmit = async (data: TagFormValues): Promise<void> => {
-    // eslint-disable-next-line camelcase
-    const { name, slug, parent_slug, description } = data;
+    const { name, slug, description } = data;
 
-    try {
-      await createTermTaxonomy({
-        variables: {
-          objects: [
-            {
-              description,
-              taxonomy: TaxonomiesEnum.Tags,
-              // eslint-disable-next-line camelcase
-              parent_slug: parent_slug,
-              term: {
-                data: {
-                  name,
-                  slug,
-                },
+    await createTermTaxonomy({
+      variables: {
+        objects: [
+          {
+            description,
+            taxonomy: TaxonomiesEnum.Tags,
+            term: {
+              data: {
+                name,
+                slug,
               },
             },
-          ],
-        },
-      });
+          },
+        ],
+      },
+    });
 
-      showNotification({
-        icon: <Checkbox />,
-        color: "teal",
-        message: "The tag has been added.",
-      });
-    } catch (error) {
-      throw new Error("Could not add tag");
-    }
+    showNotification({
+      icon: <Checkbox />,
+      color: "teal",
+      message: "The tag has been added.",
+    });
   };
-
-  if (loading) return <Loader />;
 
   return (
     <Layout>
-      <Title>Tags</Title>
-      <Title>Add New Tag</Title>
-      <TagFrom form={form} handleSubmit={handleSubmit} />
-      <TermTaxonomiesTable taxonomy={TaxonomiesEnum.Tags} />
+      <Title order={1}>Tags</Title>
+      <Grid>
+        <Grid.Col span={4}>
+          <Title order={2}>Add New Tag</Title>
+          <TagFrom form={form} handleSubmit={handleSubmit} loading={loading} />
+        </Grid.Col>
+        <Grid.Col span={8}>
+          <TermTaxonomiesTable taxonomy={TaxonomiesEnum.Tags} />
+        </Grid.Col>
+      </Grid>
     </Layout>
   );
 };

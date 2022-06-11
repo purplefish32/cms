@@ -1,14 +1,15 @@
-import { Button, TextInput } from "@mantine/core";
+import { Button, Textarea, TextInput } from "@mantine/core";
 import { UseFormReturnType } from "@mantine/form/lib/use-form";
 import React from "react";
 import { TagFormValues } from "./tag-form-values-interface";
 
 interface Props {
+  loading: boolean;
   form: UseFormReturnType<TagFormValues>;
   handleSubmit: (data: TagFormValues) => Promise<void>;
 }
 
-const TagFrom = ({ form, handleSubmit }: Props) => {
+const TagFrom = ({ loading, form, handleSubmit }: Props) => {
   return (
     <form onSubmit={form.onSubmit((values) => handleSubmit(values))}>
       <TextInput
@@ -23,13 +24,15 @@ const TagFrom = ({ form, handleSubmit }: Props) => {
         required
         {...form.getInputProps("slug")}
       />
-      <TextInput
+      <Textarea
         label="Description"
         placeholder="Description"
+        autosize
+        minRows={2}
         required
         {...form.getInputProps("description")}
       />
-      <Button fullWidth mt="xl" type="submit">
+      <Button fullWidth mt="xl" type="submit" loading={loading}>
         Add Tag
       </Button>
     </form>

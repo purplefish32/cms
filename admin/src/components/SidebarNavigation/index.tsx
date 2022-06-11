@@ -7,6 +7,11 @@ import { Logout } from "tabler-icons-react";
 export function SidebarNavigation() {
   return (
     <Navbar width={{ base: 300 }} height={500} p="xs">
+      <Navbar.Section>
+        <Anchor component={Link} href="/">
+          Dashboard
+        </Anchor>
+      </Navbar.Section>
       <Navbar.Section grow>
         <Accordion>
           <Accordion.Item label="Articles">

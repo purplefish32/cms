@@ -35,7 +35,7 @@ const resetTokenLink = onError(({ networkError }) => {
 
 const createHttpLink = (headers: any) => {
   const httpLink = new HttpLink({
-    uri: "http://dev.home.lan:8080/v1/graphql",
+    uri: "http://graphql-engine:8080/v1/graphql",
     credentials: "include",
     headers, // auth token is fetched on the server side
     fetch,
