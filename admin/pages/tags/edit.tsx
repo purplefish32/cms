@@ -28,7 +28,7 @@ const TagsEditPage = () => {
     },
   });
 
-  const [createTermTaxonomy, { loading }] = useInsertTermTaxonomyMutation({
+  const [insertTermTaxonomy, { loading }] = useInsertTermTaxonomyMutation({
     refetchQueries: [namedOperations.Query.TagsTable],
   });
 
@@ -43,7 +43,7 @@ const TagsEditPage = () => {
       disallowClose: true,
     });
 
-    await createTermTaxonomy({
+    await insertTermTaxonomy({
       variables: {
         object: {
           description,

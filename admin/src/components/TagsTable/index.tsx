@@ -9,7 +9,8 @@ const TagsTable: FunctionComponent = () => {
   });
 
   if (error) {
-    return <div>Error loading pages.</div>;
+    console.error(error);
+    return <div>Error loading tags.</div>;
   }
 
   if (!data) {
@@ -27,15 +28,13 @@ const TagsTable: FunctionComponent = () => {
         </tr>
       </thead>
       <tbody>
-        {data.termTaxonomies.map((termTaxonomy, key) => {
+        {data.summaryTaxonomies.map((summaryTaxonomies, key) => {
           return (
             <tr key={key}>
-              <td>{termTaxonomy.term.name}</td>
-              <td>{termTaxonomy.description}</td>
-              <td>{termTaxonomy.term.slug}</td>
-              <td>
-                {termTaxonomy.termRelationships_aggregate.aggregate?.count}
-              </td>
+              <td>{summaryTaxonomies.name}</td>
+              <td>{summaryTaxonomies.description}</td>
+              <td>{summaryTaxonomies.slug}</td>
+              <td>{summaryTaxonomies.count}</td>
             </tr>
           );
         })}

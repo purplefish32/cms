@@ -3,7 +3,6 @@ query termTaxonomies($where: termTaxonomies_bool_exp) {
     __typename
     taxonomy
     description
-    termSlug
     parentSlug
     term {
       __typename

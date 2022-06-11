@@ -6,4 +6,5 @@ export interface ArticleFormValues {
   excerpt: string;
   body: string;
   state: ArticleStatesEnum;
+  tags: string[];
 }

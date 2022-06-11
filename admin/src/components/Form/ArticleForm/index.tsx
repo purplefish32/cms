@@ -1,4 +1,10 @@
-import { Button, NativeSelect, Textarea, TextInput } from "@mantine/core";
+import {
+  Button,
+  MultiSelect,
+  NativeSelect,
+  Textarea,
+  TextInput,
+} from "@mantine/core";
 import { UseFormReturnType } from "@mantine/form/lib/use-form";
 import React from "react";
 import { ArticleStatesEnum } from "../../../../generated/graphql";
@@ -50,6 +56,18 @@ const ArticleForm = ({ form, handleSubmit }: Props) => {
       <Button fullWidth mt="xl" type="submit">
         Submit
       </Button>
+      <MultiSelect
+        data={[]}
+        searchable
+        creatable
+        label="Tags"
+        placeholder="Tags"
+        getCreateLabel={(query) => `+ Create tag ${query}`}
+        onCreate={(query) => {
+          console.log(query);
+        }}
+        {...form.getInputProps("tags")}
+      />
     </form>
   );
 };

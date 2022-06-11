@@ -1,19 +1,9 @@
 query TagsTable {
-  termTaxonomies(where: { taxonomy: { _eq: tags } }) {
+  summaryTaxonomies(where: { taxonomy: { _eq: "tags" } }) {
     __typename
-    taxonomy
+    name
+    slug
     description
-    termSlug
-    term {
-      __typename
-      name
-      slug
-    }
-    termRelationships_aggregate {
-      __typename
-      aggregate {
-        count
-      }
-    }
+    count
   }
 }

@@ -4,10 +4,11 @@ import { showNotification } from "@mantine/notifications";
 import router from "next/router";
 import React from "react";
 import { Check } from "tabler-icons-react";
-import { capitalize } from "underscore.string";
+import { capitalize, slugify } from "underscore.string";
 import {
   ArticleStatesEnum,
   PostTypesEnum,
+  TaxonomiesEnum,
   useInsertArticleMutation,
 } from "../../generated/graphql";
 import { withApollo } from "../../lib/withApollo";
@@ -20,14 +21,32 @@ import Layout from "../../src/components/Layout";
  * @return {JSX.Element} The JSX Code for the Page Create Page
  */
 const ArticleCreatePage = () => {
-  const [insertArticlesOne] = useInsertArticleMutation();
+  const [insertArticle] = useInsertArticleMutation();
 
-  const handleSubmit = async (
+  const handleSubmitArticleForm = async (
     articleFormValues: ArticleFormValues
   ): Promise<void> => {
-    const { title, slug, state, body, excerpt } = articleFormValues;
+    const { title, slug, state, body, excerpt, tags } = articleFormValues;
 
-    const { data } = await insertArticlesOne({
+    const termRelationships = {
+      data: tags.map((tag) => {
+        return {
+          termTaxonomy: {
+            data: {
+              taxonomy: TaxonomiesEnum.Tags,
+              term: {
+                data: {
+                  name: tag,
+                  slug: slugify(tag),
+                },
+              },
+            },
+          },
+        };
+      }),
+    };
+
+    const { data } = await insertArticle({
       variables: {
         object: {
           post: {
@@ -35,6 +54,7 @@ const ArticleCreatePage = () => {
               title,
               slug,
               type: PostTypesEnum.Page,
+              termRelationships,
             },
           },
           body,
@@ -64,13 +84,16 @@ const ArticleCreatePage = () => {
       slug: "",
       body: "",
       excerpt: "",
+      tags: [],
     },
   });
+
+  console.log(articleForm);
 
   return (
     <Layout>
       <Title>Create Article</Title>
-      <ArticleForm form={articleForm} handleSubmit={handleSubmit} />
+      <ArticleForm form={articleForm} handleSubmit={handleSubmitArticleForm} />
     </Layout>
   );
 };

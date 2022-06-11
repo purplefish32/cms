@@ -6,4 +6,5 @@ export const ArticleFormSchema = z.object({
   slug: z.string(),
   excerpt: z.string().optional(),
   body: z.string(),
+  tags: z.array(z.string()).optional(),
 });
