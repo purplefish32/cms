@@ -80,12 +80,11 @@ export type StringComparisonExp = {
 /** columns and relationships of "article_states" */
 export type ArticleStates = {
   __typename?: 'articleStates';
+  articleState: Scalars['String'];
   /** An array relationship */
   articles: Array<Articles>;
   /** An aggregate relationship */
   articles_aggregate: ArticlesAggregate;
-  comment: Scalars['String'];
-  value: Scalars['String'];
 };
 
 
@@ -135,23 +134,19 @@ export type ArticleStatesBoolExp = {
   _and?: Maybe<Array<ArticleStatesBoolExp>>;
   _not?: Maybe<ArticleStatesBoolExp>;
   _or?: Maybe<Array<ArticleStatesBoolExp>>;
+  articleState?: Maybe<StringComparisonExp>;
   articles?: Maybe<ArticlesBoolExp>;
-  comment?: Maybe<StringComparisonExp>;
-  value?: Maybe<StringComparisonExp>;
 };
 
 /** unique or primary key constraints on table "article_states" */
 export enum ArticleStatesConstraint {
-  /** unique or primary key constraint on columns "value" */
+  /** unique or primary key constraint on columns "article_state" */
   ArticleStatesPkey = 'article_states_pkey'
 }
 
 export enum ArticleStatesEnum {
-  /** Archived */
   Archived = 'archived',
-  /** Draft */
   Draft = 'draft',
-  /** Published */
   Published = 'published'
 }
 
@@ -166,23 +161,20 @@ export type ArticleStatesEnumComparisonExp = {
 
 /** input type for inserting data into table "article_states" */
 export type ArticleStatesInsertInput = {
+  articleState?: Maybe<Scalars['String']>;
   articles?: Maybe<ArticlesArrRelInsertInput>;
-  comment?: Maybe<Scalars['String']>;
-  value?: Maybe<Scalars['String']>;
 };
 
 /** aggregate max on columns */
 export type ArticleStatesMaxFields = {
   __typename?: 'articleStates_max_fields';
-  comment?: Maybe<Scalars['String']>;
-  value?: Maybe<Scalars['String']>;
+  articleState?: Maybe<Scalars['String']>;
 };
 
 /** aggregate min on columns */
 export type ArticleStatesMinFields = {
   __typename?: 'articleStates_min_fields';
-  comment?: Maybe<Scalars['String']>;
-  value?: Maybe<Scalars['String']>;
+  articleState?: Maybe<Scalars['String']>;
 };
 
 /** response of any mutation on the table "article_states" */
@@ -210,36 +202,30 @@ export type ArticleStatesOnConflict = {
 
 /** Ordering options when selecting data from "article_states". */
 export type ArticleStatesOrderBy = {
+  articleState?: Maybe<OrderBy>;
   articles_aggregate?: Maybe<ArticlesAggregateOrderBy>;
-  comment?: Maybe<OrderBy>;
-  value?: Maybe<OrderBy>;
 };
 
 /** primary key columns input for table: articleStates */
 export type ArticleStatesPkColumnsInput = {
-  value: Scalars['String'];
+  articleState: Scalars['String'];
 };
 
 /** select columns of table "article_states" */
 export enum ArticleStatesSelectColumn {
   /** column name */
-  Comment = 'comment',
-  /** column name */
-  Value = 'value'
+  ArticleState = 'articleState'
 }
 
 /** input type for updating data in table "article_states" */
 export type ArticleStatesSetInput = {
-  comment?: Maybe<Scalars['String']>;
-  value?: Maybe<Scalars['String']>;
+  articleState?: Maybe<Scalars['String']>;
 };
 
 /** update columns of table "article_states" */
 export enum ArticleStatesUpdateColumn {
   /** column name */
-  Comment = 'comment',
-  /** column name */
-  Value = 'value'
+  ArticleState = 'articleState'
 }
 
 /** columns and relationships of "articles" */
@@ -2052,7 +2038,7 @@ export type MutationRootDeleteArticleArgs = {
 
 /** mutation root */
 export type MutationRootDeleteArticleStateArgs = {
-  value: Scalars['String'];
+  articleState: Scalars['String'];
 };
 
 
@@ -2160,7 +2146,7 @@ export type MutationRootDeletePageArgs = {
 
 /** mutation root */
 export type MutationRootDeletePageStateArgs = {
-  value: Scalars['String'];
+  pageState: Scalars['String'];
 };
 
 
@@ -2184,7 +2170,7 @@ export type MutationRootDeletePostArgs = {
 
 /** mutation root */
 export type MutationRootDeletePostTypeArgs = {
-  value: Scalars['String'];
+  postType: Scalars['String'];
 };
 
 
@@ -2813,12 +2799,11 @@ export enum OrderBy {
 /** columns and relationships of "page_states" */
 export type PageStates = {
   __typename?: 'pageStates';
-  comment: Scalars['String'];
+  pageState: Scalars['String'];
   /** An array relationship */
   pages: Array<Pages>;
   /** An aggregate relationship */
   pages_aggregate: PagesAggregate;
-  value: Scalars['String'];
 };
 
 
@@ -2868,21 +2853,18 @@ export type PageStatesBoolExp = {
   _and?: Maybe<Array<PageStatesBoolExp>>;
   _not?: Maybe<PageStatesBoolExp>;
   _or?: Maybe<Array<PageStatesBoolExp>>;
-  comment?: Maybe<StringComparisonExp>;
+  pageState?: Maybe<StringComparisonExp>;
   pages?: Maybe<PagesBoolExp>;
-  value?: Maybe<StringComparisonExp>;
 };
 
 /** unique or primary key constraints on table "page_states" */
 export enum PageStatesConstraint {
-  /** unique or primary key constraint on columns "value" */
+  /** unique or primary key constraint on columns "pageState" */
   PageStatesPkey = 'page_states_pkey'
 }
 
 export enum PageStatesEnum {
-  /** Draft */
   Draft = 'draft',
-  /** Published */
   Published = 'published'
 }
 
@@ -2897,23 +2879,20 @@ export type PageStatesEnumComparisonExp = {
 
 /** input type for inserting data into table "page_states" */
 export type PageStatesInsertInput = {
-  comment?: Maybe<Scalars['String']>;
+  pageState?: Maybe<Scalars['String']>;
   pages?: Maybe<PagesArrRelInsertInput>;
-  value?: Maybe<Scalars['String']>;
 };
 
 /** aggregate max on columns */
 export type PageStatesMaxFields = {
   __typename?: 'pageStates_max_fields';
-  comment?: Maybe<Scalars['String']>;
-  value?: Maybe<Scalars['String']>;
+  pageState?: Maybe<Scalars['String']>;
 };
 
 /** aggregate min on columns */
 export type PageStatesMinFields = {
   __typename?: 'pageStates_min_fields';
-  comment?: Maybe<Scalars['String']>;
-  value?: Maybe<Scalars['String']>;
+  pageState?: Maybe<Scalars['String']>;
 };
 
 /** response of any mutation on the table "page_states" */
@@ -2941,36 +2920,30 @@ export type PageStatesOnConflict = {
 
 /** Ordering options when selecting data from "page_states". */
 export type PageStatesOrderBy = {
-  comment?: Maybe<OrderBy>;
+  pageState?: Maybe<OrderBy>;
   pages_aggregate?: Maybe<PagesAggregateOrderBy>;
-  value?: Maybe<OrderBy>;
 };
 
 /** primary key columns input for table: pageStates */
 export type PageStatesPkColumnsInput = {
-  value: Scalars['String'];
+  pageState: Scalars['String'];
 };
 
 /** select columns of table "page_states" */
 export enum PageStatesSelectColumn {
   /** column name */
-  Comment = 'comment',
-  /** column name */
-  Value = 'value'
+  PageState = 'pageState'
 }
 
 /** input type for updating data in table "page_states" */
 export type PageStatesSetInput = {
-  comment?: Maybe<Scalars['String']>;
-  value?: Maybe<Scalars['String']>;
+  pageState?: Maybe<Scalars['String']>;
 };
 
 /** update columns of table "page_states" */
 export enum PageStatesUpdateColumn {
   /** column name */
-  Comment = 'comment',
-  /** column name */
-  Value = 'value'
+  PageState = 'pageState'
 }
 
 /** columns and relationships of "pages" */
@@ -3141,12 +3114,11 @@ export enum PagesUpdateColumn {
 /** columns and relationships of "post_types" */
 export type PostTypes = {
   __typename?: 'postTypes';
-  comment: Scalars['String'];
+  postType: Scalars['String'];
   /** An array relationship */
   posts: Array<Posts>;
   /** An aggregate relationship */
   posts_aggregate: PostsAggregate;
-  value: Scalars['String'];
 };
 
 
@@ -3196,21 +3168,18 @@ export type PostTypesBoolExp = {
   _and?: Maybe<Array<PostTypesBoolExp>>;
   _not?: Maybe<PostTypesBoolExp>;
   _or?: Maybe<Array<PostTypesBoolExp>>;
-  comment?: Maybe<StringComparisonExp>;
+  postType?: Maybe<StringComparisonExp>;
   posts?: Maybe<PostsBoolExp>;
-  value?: Maybe<StringComparisonExp>;
 };
 
 /** unique or primary key constraints on table "post_types" */
 export enum PostTypesConstraint {
-  /** unique or primary key constraint on columns "value" */
+  /** unique or primary key constraint on columns "post_type" */
   PostTypesPkey = 'post_types_pkey'
 }
 
 export enum PostTypesEnum {
-  /** Article */
   Article = 'article',
-  /** Page */
   Page = 'page'
 }
 
@@ -3225,23 +3194,20 @@ export type PostTypesEnumComparisonExp = {
 
 /** input type for inserting data into table "post_types" */
 export type PostTypesInsertInput = {
-  comment?: Maybe<Scalars['String']>;
+  postType?: Maybe<Scalars['String']>;
   posts?: Maybe<PostsArrRelInsertInput>;
-  value?: Maybe<Scalars['String']>;
 };
 
 /** aggregate max on columns */
 export type PostTypesMaxFields = {
   __typename?: 'postTypes_max_fields';
-  comment?: Maybe<Scalars['String']>;
-  value?: Maybe<Scalars['String']>;
+  postType?: Maybe<Scalars['String']>;
 };
 
 /** aggregate min on columns */
 export type PostTypesMinFields = {
   __typename?: 'postTypes_min_fields';
-  comment?: Maybe<Scalars['String']>;
-  value?: Maybe<Scalars['String']>;
+  postType?: Maybe<Scalars['String']>;
 };
 
 /** response of any mutation on the table "post_types" */
@@ -3269,36 +3235,30 @@ export type PostTypesOnConflict = {
 
 /** Ordering options when selecting data from "post_types". */
 export type PostTypesOrderBy = {
-  comment?: Maybe<OrderBy>;
+  postType?: Maybe<OrderBy>;
   posts_aggregate?: Maybe<PostsAggregateOrderBy>;
-  value?: Maybe<OrderBy>;
 };
 
 /** primary key columns input for table: postTypes */
 export type PostTypesPkColumnsInput = {
-  value: Scalars['String'];
+  postType: Scalars['String'];
 };
 
 /** select columns of table "post_types" */
 export enum PostTypesSelectColumn {
   /** column name */
-  Comment = 'comment',
-  /** column name */
-  Value = 'value'
+  PostType = 'postType'
 }
 
 /** input type for updating data in table "post_types" */
 export type PostTypesSetInput = {
-  comment?: Maybe<Scalars['String']>;
-  value?: Maybe<Scalars['String']>;
+  postType?: Maybe<Scalars['String']>;
 };
 
 /** update columns of table "post_types" */
 export enum PostTypesUpdateColumn {
   /** column name */
-  Comment = 'comment',
-  /** column name */
-  Value = 'value'
+  PostType = 'postType'
 }
 
 /** columns and relationships of "posts" */
@@ -3704,7 +3664,7 @@ export type QueryRootArticleArgs = {
 
 
 export type QueryRootArticleStateArgs = {
-  value: Scalars['String'];
+  articleState: Scalars['String'];
 };
 
 
@@ -3925,7 +3885,7 @@ export type QueryRootPageArgs = {
 
 
 export type QueryRootPageStateArgs = {
-  value: Scalars['String'];
+  pageState: Scalars['String'];
 };
 
 
@@ -3971,7 +3931,7 @@ export type QueryRootPostArgs = {
 
 
 export type QueryRootPostTypeArgs = {
-  value: Scalars['String'];
+  postType: Scalars['String'];
 };
 
 
@@ -4267,7 +4227,7 @@ export type SubscriptionRootArticleArgs = {
 
 
 export type SubscriptionRootArticleStateArgs = {
-  value: Scalars['String'];
+  articleState: Scalars['String'];
 };
 
 
@@ -4474,7 +4434,7 @@ export type SubscriptionRootPageArgs = {
 
 
 export type SubscriptionRootPageStateArgs = {
-  value: Scalars['String'];
+  pageState: Scalars['String'];
 };
 
 
@@ -4520,7 +4480,7 @@ export type SubscriptionRootPostArgs = {
 
 
 export type SubscriptionRootPostTypeArgs = {
-  value: Scalars['String'];
+  postType: Scalars['String'];
 };
 
 

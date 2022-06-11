@@ -484,6 +484,22 @@
         "description": "columns and relationships of \"article_states\"",
         "fields": [
           {
+            "name": "articleState",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "articles",
             "description": "An array relationship",
             "args": [
@@ -671,38 +687,6 @@
               "ofType": {
                 "kind": "OBJECT",
                 "name": "articles_aggregate",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "comment",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "value",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
                 "ofType": null
               }
             },
@@ -915,35 +899,23 @@
             "deprecationReason": null
           },
           {
+            "name": "articleState",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "String_comparison_exp",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "articles",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "articles_bool_exp",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "comment",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "String_comparison_exp",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "value",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "String_comparison_exp",
               "ofType": null
             },
             "defaultValue": null,
@@ -965,7 +937,7 @@
         "enumValues": [
           {
             "name": "article_states_pkey",
-            "description": "unique or primary key constraint on columns \"value\"",
+            "description": "unique or primary key constraint on columns \"article_state\"",
             "isDeprecated": false,
             "deprecationReason": null
           }
@@ -982,19 +954,19 @@
         "enumValues": [
           {
             "name": "archived",
-            "description": "Archived",
+            "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "draft",
-            "description": "Draft",
+            "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "published",
-            "description": "Published",
+            "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           }
@@ -1095,35 +1067,23 @@
         "fields": null,
         "inputFields": [
           {
+            "name": "articleState",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "articles",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "articles_arr_rel_insert_input",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "comment",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "value",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
               "ofType": null
             },
             "defaultValue": null,
@@ -1141,19 +1101,7 @@
         "description": "aggregate max on columns",
         "fields": [
           {
-            "name": "comment",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "value",
+            "name": "articleState",
             "description": null,
             "args": [],
             "type": {
@@ -1176,19 +1124,7 @@
         "description": "aggregate min on columns",
         "fields": [
           {
-            "name": "comment",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "value",
+            "name": "articleState",
             "description": null,
             "args": [],
             "type": {
@@ -1365,35 +1301,23 @@
         "fields": null,
         "inputFields": [
           {
+            "name": "articleState",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "articles_aggregate",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "articles_aggregate_order_by",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "comment",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "order_by",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "value",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "order_by",
               "ofType": null
             },
             "defaultValue": null,
@@ -1412,7 +1336,7 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "value",
+            "name": "articleState",
             "description": null,
             "type": {
               "kind": "NON_NULL",
@@ -1441,13 +1365,7 @@
         "interfaces": null,
         "enumValues": [
           {
-            "name": "comment",
-            "description": "column name",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "value",
+            "name": "articleState",
             "description": "column name",
             "isDeprecated": false,
             "deprecationReason": null
@@ -1462,19 +1380,7 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "comment",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "value",
+            "name": "articleState",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -1499,13 +1405,7 @@
         "interfaces": null,
         "enumValues": [
           {
-            "name": "comment",
-            "description": "column name",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "value",
+            "name": "articleState",
             "description": "column name",
             "isDeprecated": false,
             "deprecationReason": null
@@ -12015,7 +11915,7 @@
             "description": "delete single row from the table: \"article_states\"",
             "args": [
               {
-                "name": "value",
+                "name": "articleState",
                 "description": null,
                 "type": {
                   "kind": "NON_NULL",
@@ -12537,7 +12437,7 @@
             "description": "delete single row from the table: \"page_states\"",
             "args": [
               {
-                "name": "value",
+                "name": "pageState",
                 "description": null,
                 "type": {
                   "kind": "NON_NULL",
@@ -12653,7 +12553,7 @@
             "description": "delete single row from the table: \"post_types\"",
             "args": [
               {
-                "name": "value",
+                "name": "postType",
                 "description": null,
                 "type": {
                   "kind": "NON_NULL",
@@ -16556,7 +16456,7 @@
         "description": "columns and relationships of \"page_states\"",
         "fields": [
           {
-            "name": "comment",
+            "name": "pageState",
             "description": null,
             "args": [],
             "type": {
@@ -16764,22 +16664,6 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
-          },
-          {
-            "name": "value",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
           }
         ],
         "inputFields": null,
@@ -16977,7 +16861,7 @@
             "deprecationReason": null
           },
           {
-            "name": "comment",
+            "name": "pageState",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -16999,18 +16883,6 @@
             "defaultValue": null,
             "isDeprecated": false,
             "deprecationReason": null
-          },
-          {
-            "name": "value",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "String_comparison_exp",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
           }
         ],
         "interfaces": null,
@@ -17027,7 +16899,7 @@
         "enumValues": [
           {
             "name": "page_states_pkey",
-            "description": "unique or primary key constraint on columns \"value\"",
+            "description": "unique or primary key constraint on columns \"pageState\"",
             "isDeprecated": false,
             "deprecationReason": null
           }
@@ -17044,13 +16916,13 @@
         "enumValues": [
           {
             "name": "draft",
-            "description": "Draft",
+            "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "published",
-            "description": "Published",
+            "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           }
@@ -17151,7 +17023,7 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "comment",
+            "name": "pageState",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -17173,18 +17045,6 @@
             "defaultValue": null,
             "isDeprecated": false,
             "deprecationReason": null
-          },
-          {
-            "name": "value",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
           }
         ],
         "interfaces": null,
@@ -17197,19 +17057,7 @@
         "description": "aggregate max on columns",
         "fields": [
           {
-            "name": "comment",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "value",
+            "name": "pageState",
             "description": null,
             "args": [],
             "type": {
@@ -17232,19 +17080,7 @@
         "description": "aggregate min on columns",
         "fields": [
           {
-            "name": "comment",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "value",
+            "name": "pageState",
             "description": null,
             "args": [],
             "type": {
@@ -17421,7 +17257,7 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "comment",
+            "name": "pageState",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -17443,18 +17279,6 @@
             "defaultValue": null,
             "isDeprecated": false,
             "deprecationReason": null
-          },
-          {
-            "name": "value",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "order_by",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
           }
         ],
         "interfaces": null,
@@ -17468,7 +17292,7 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "value",
+            "name": "pageState",
             "description": null,
             "type": {
               "kind": "NON_NULL",
@@ -17497,13 +17321,7 @@
         "interfaces": null,
         "enumValues": [
           {
-            "name": "comment",
-            "description": "column name",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "value",
+            "name": "pageState",
             "description": "column name",
             "isDeprecated": false,
             "deprecationReason": null
@@ -17518,19 +17336,7 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "comment",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "value",
+            "name": "pageState",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -17555,13 +17361,7 @@
         "interfaces": null,
         "enumValues": [
           {
-            "name": "comment",
-            "description": "column name",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "value",
+            "name": "pageState",
             "description": "column name",
             "isDeprecated": false,
             "deprecationReason": null
@@ -18594,7 +18394,7 @@
         "description": "columns and relationships of \"post_types\"",
         "fields": [
           {
-            "name": "comment",
+            "name": "postType",
             "description": null,
             "args": [],
             "type": {
@@ -18802,22 +18602,6 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
-          },
-          {
-            "name": "value",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
           }
         ],
         "inputFields": null,
@@ -19015,7 +18799,7 @@
             "deprecationReason": null
           },
           {
-            "name": "comment",
+            "name": "postType",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -19037,18 +18821,6 @@
             "defaultValue": null,
             "isDeprecated": false,
             "deprecationReason": null
-          },
-          {
-            "name": "value",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "String_comparison_exp",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
           }
         ],
         "interfaces": null,
@@ -19065,7 +18837,7 @@
         "enumValues": [
           {
             "name": "post_types_pkey",
-            "description": "unique or primary key constraint on columns \"value\"",
+            "description": "unique or primary key constraint on columns \"post_type\"",
             "isDeprecated": false,
             "deprecationReason": null
           }
@@ -19082,13 +18854,13 @@
         "enumValues": [
           {
             "name": "article",
-            "description": "Article",
+            "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
             "name": "page",
-            "description": "Page",
+            "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           }
@@ -19189,7 +18961,7 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "comment",
+            "name": "postType",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -19211,18 +18983,6 @@
             "defaultValue": null,
             "isDeprecated": false,
             "deprecationReason": null
-          },
-          {
-            "name": "value",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
           }
         ],
         "interfaces": null,
@@ -19235,19 +18995,7 @@
         "description": "aggregate max on columns",
         "fields": [
           {
-            "name": "comment",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "value",
+            "name": "postType",
             "description": null,
             "args": [],
             "type": {
@@ -19270,19 +19018,7 @@
         "description": "aggregate min on columns",
         "fields": [
           {
-            "name": "comment",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "value",
+            "name": "postType",
             "description": null,
             "args": [],
             "type": {
@@ -19459,7 +19195,7 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "comment",
+            "name": "postType",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -19481,18 +19217,6 @@
             "defaultValue": null,
             "isDeprecated": false,
             "deprecationReason": null
-          },
-          {
-            "name": "value",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "order_by",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
           }
         ],
         "interfaces": null,
@@ -19506,7 +19230,7 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "value",
+            "name": "postType",
             "description": null,
             "type": {
               "kind": "NON_NULL",
@@ -19535,13 +19259,7 @@
         "interfaces": null,
         "enumValues": [
           {
-            "name": "comment",
-            "description": "column name",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "value",
+            "name": "postType",
             "description": "column name",
             "isDeprecated": false,
             "deprecationReason": null
@@ -19556,19 +19274,7 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "comment",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "value",
+            "name": "postType",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -19593,13 +19299,7 @@
         "interfaces": null,
         "enumValues": [
           {
-            "name": "comment",
-            "description": "column name",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "value",
+            "name": "postType",
             "description": "column name",
             "isDeprecated": false,
             "deprecationReason": null
@@ -21655,7 +21355,7 @@
             "description": "fetch data from the table: \"article_states\" using primary key columns",
             "args": [
               {
-                "name": "value",
+                "name": "articleState",
                 "description": null,
                 "type": {
                   "kind": "NON_NULL",
@@ -23768,7 +23468,7 @@
             "description": "fetch data from the table: \"page_states\" using primary key columns",
             "args": [
               {
-                "name": "value",
+                "name": "pageState",
                 "description": null,
                 "type": {
                   "kind": "NON_NULL",
@@ -24214,7 +23914,7 @@
             "description": "fetch data from the table: \"post_types\" using primary key columns",
             "args": [
               {
-                "name": "value",
+                "name": "postType",
                 "description": null,
                 "type": {
                   "kind": "NON_NULL",
@@ -25996,7 +25696,7 @@
             "description": "fetch data from the table: \"article_states\" using primary key columns",
             "args": [
               {
-                "name": "value",
+                "name": "articleState",
                 "description": null,
                 "type": {
                   "kind": "NON_NULL",
@@ -28003,7 +27703,7 @@
             "description": "fetch data from the table: \"page_states\" using primary key columns",
             "args": [
               {
-                "name": "value",
+                "name": "pageState",
                 "description": null,
                 "type": {
                   "kind": "NON_NULL",
@@ -28449,7 +28149,7 @@
             "description": "fetch data from the table: \"post_types\" using primary key columns",
             "args": [
               {
-                "name": "value",
+                "name": "postType",
                 "description": null,
                 "type": {
                   "kind": "NON_NULL",
