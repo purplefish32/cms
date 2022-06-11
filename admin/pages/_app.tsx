@@ -24,7 +24,7 @@ export default function App({ Component, pageProps }: AppProps) {
         withGlobalStyles
         withNormalizeCSS
       >
-        <NotificationsProvider>
+        <NotificationsProvider position="top-right">
           <Head>
             <title>My App</title>
             <meta

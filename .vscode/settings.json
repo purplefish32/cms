@@ -7,6 +7,7 @@
     "source.fixAll.format": true
   },
   "cSpell.words": [
+    "autosize",
     "camelcase",
     "citext",
     "codegen",

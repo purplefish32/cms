@@ -20,8 +20,13 @@ export type Scalars = {
 };
 
 
+export type BooleanCastExp = {
+  String?: Maybe<StringComparisonExp>;
+};
+
 /** Boolean expression to compare columns of type "Boolean". All fields are combined with logical 'AND'. */
 export type BooleanComparisonExp = {
+  _cast?: Maybe<BooleanCastExp>;
   _eq?: Maybe<Scalars['Boolean']>;
   _gt?: Maybe<Scalars['Boolean']>;
   _gte?: Maybe<Scalars['Boolean']>;
@@ -31,6 +36,11 @@ export type BooleanComparisonExp = {
   _lte?: Maybe<Scalars['Boolean']>;
   _neq?: Maybe<Scalars['Boolean']>;
   _nin?: Maybe<Array<Scalars['Boolean']>>;
+};
+
+export type MeiliSearchOutput = {
+  __typename?: 'MeiliSearchOutput';
+  hits?: Maybe<Scalars['jsonb']>;
 };
 
 /** Boolean expression to compare columns of type "String". All fields are combined with logical 'AND'. */
@@ -131,7 +141,7 @@ export type ArticleStatesBoolExp = {
 
 /** unique or primary key constraints on table "article_states" */
 export enum ArticleStatesConstraint {
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "value" */
   ArticleStatesPkey = 'article_states_pkey'
 }
 
@@ -295,7 +305,7 @@ export type ArticlesBoolExp = {
 
 /** unique or primary key constraints on table "articles" */
 export enum ArticlesConstraint {
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "post_id" */
   ArticlesPkey = 'articles_pkey'
 }
 
@@ -460,7 +470,7 @@ export type AuthProviderRequestsBoolExp = {
 
 /** unique or primary key constraints on table "auth.provider_requests" */
 export enum AuthProviderRequestsConstraint {
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "id" */
   ProviderRequestsPkey = 'provider_requests_pkey'
 }
 
@@ -614,7 +624,7 @@ export type AuthProvidersBoolExp = {
 
 /** unique or primary key constraints on table "auth.providers" */
 export enum AuthProvidersConstraint {
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "id" */
   ProvidersPkey = 'providers_pkey'
 }
 
@@ -748,7 +758,7 @@ export type AuthRefreshTokensBoolExp = {
 
 /** unique or primary key constraints on table "auth.refresh_tokens" */
 export enum AuthRefreshTokensConstraint {
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "refresh_token" */
   RefreshTokensPkey = 'refresh_tokens_pkey'
 }
 
@@ -945,7 +955,7 @@ export type AuthRolesBoolExp = {
 
 /** unique or primary key constraints on table "auth.roles" */
 export enum AuthRolesConstraint {
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "role" */
   RolesPkey = 'roles_pkey'
 }
 
@@ -1092,11 +1102,11 @@ export type AuthUserProvidersBoolExp = {
 
 /** unique or primary key constraints on table "auth.user_providers" */
 export enum AuthUserProvidersConstraint {
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "id" */
   UserProvidersPkey = 'user_providers_pkey',
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "provider_user_id", "provider_id" */
   UserProvidersProviderIdProviderUserIdKey = 'user_providers_provider_id_provider_user_id_key',
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "provider_id", "user_id" */
   UserProvidersUserIdProviderIdKey = 'user_providers_user_id_provider_id_key'
 }
 
@@ -1315,9 +1325,9 @@ export type AuthUserRolesBoolExp = {
 
 /** unique or primary key constraints on table "auth.user_roles" */
 export enum AuthUserRolesConstraint {
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "id" */
   UserRolesPkey = 'user_roles_pkey',
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "role", "user_id" */
   UserRolesUserIdRoleKey = 'user_roles_user_id_role_key'
 }
 
@@ -1572,7 +1582,7 @@ export type CommentsBoolExp = {
 
 /** unique or primary key constraints on table "comments" */
 export enum CommentsConstraint {
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "id" */
   CommentsPkey = 'comments_pkey'
 }
 
@@ -2844,7 +2854,7 @@ export type PageStatesBoolExp = {
 
 /** unique or primary key constraints on table "page_states" */
 export enum PageStatesConstraint {
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "value" */
   PageStatesPkey = 'page_states_pkey'
 }
 
@@ -3006,7 +3016,7 @@ export type PagesBoolExp = {
 
 /** unique or primary key constraints on table "pages" */
 export enum PagesConstraint {
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "post_id" */
   PagesPkey = 'pages_pkey'
 }
 
@@ -3185,7 +3195,7 @@ export type PostTypesBoolExp = {
 
 /** unique or primary key constraints on table "post_types" */
 export enum PostTypesConstraint {
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "value" */
   PostTypesPkey = 'post_types_pkey'
 }
 
@@ -3381,9 +3391,9 @@ export type PostsBoolExp = {
 
 /** unique or primary key constraints on table "posts" */
 export enum PostsConstraint {
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "id" */
   PostsPkey = 'posts_pkey',
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "slug" */
   PostsSlugKey = 'posts_slug_key'
 }
 
@@ -3590,6 +3600,7 @@ export type QueryRoot = {
   comments_aggregate: CommentsAggregate;
   /** fetch data from the table: "comments" using primary key columns */
   comments_by_pk?: Maybe<Comments>;
+  meiliSearchUsers?: Maybe<MeiliSearchOutput>;
   /** fetch data from the table: "page_states" */
   page_states: Array<PageStates>;
   /** fetch aggregated fields from the table: "page_states" */
@@ -3620,9 +3631,9 @@ export type QueryRoot = {
   taxonomies_aggregate: TaxonomiesAggregate;
   /** fetch data from the table: "taxonomies" using primary key columns */
   taxonomies_by_pk?: Maybe<Taxonomies>;
-  /** fetch data from the table: "term_relationships" */
+  /** An array relationship */
   term_relationships: Array<TermRelationships>;
-  /** fetch aggregated fields from the table: "term_relationships" */
+  /** An aggregate relationship */
   term_relationships_aggregate: TermRelationshipsAggregate;
   /** fetch data from the table: "term_relationships" using primary key columns */
   term_relationships_by_pk?: Maybe<TermRelationships>;
@@ -3855,6 +3866,13 @@ export type QueryRootCommentsAggregateArgs = {
 
 export type QueryRootCommentsByPkArgs = {
   id: Scalars['uuid'];
+};
+
+
+export type QueryRootMeiliSearchUsersArgs = {
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  query: Scalars['String'];
 };
 
 
@@ -4168,9 +4186,9 @@ export type SubscriptionRoot = {
   taxonomies_aggregate: TaxonomiesAggregate;
   /** fetch data from the table: "taxonomies" using primary key columns */
   taxonomies_by_pk?: Maybe<Taxonomies>;
-  /** fetch data from the table: "term_relationships" */
+  /** An array relationship */
   term_relationships: Array<TermRelationships>;
-  /** fetch aggregated fields from the table: "term_relationships" */
+  /** An aggregate relationship */
   term_relationships_aggregate: TermRelationshipsAggregate;
   /** fetch data from the table: "term_relationships" using primary key columns */
   term_relationships_by_pk?: Maybe<TermRelationships>;
@@ -4693,9 +4711,9 @@ export type TaxonomiesBoolExp = {
 
 /** unique or primary key constraints on table "taxonomies" */
 export enum TaxonomiesConstraint {
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "taxonomy" */
   TaxonomiesPkey = 'taxonomies_pkey',
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "taxonomy" */
   TaxonomiesTaxonomyKey = 'taxonomies_taxonomy_key'
 }
 
@@ -4787,6 +4805,8 @@ export type TermRelationships = {
   __typename?: 'term_relationships';
   id: Scalars['uuid'];
   object_id: Scalars['uuid'];
+  /** An object relationship */
+  term?: Maybe<TermTaxonomies>;
 };
 
 /** aggregated selection of "term_relationships" */
@@ -4811,6 +4831,20 @@ export type TermRelationshipsAggregateFieldsCountArgs = {
   distinct?: Maybe<Scalars['Boolean']>;
 };
 
+/** order by aggregate values of table "term_relationships" */
+export type TermRelationshipsAggregateOrderBy = {
+  count?: Maybe<OrderBy>;
+  max?: Maybe<TermRelationshipsMaxOrderBy>;
+  min?: Maybe<TermRelationshipsMinOrderBy>;
+};
+
+/** input type for inserting array relation for remote table "term_relationships" */
+export type TermRelationshipsArrRelInsertInput = {
+  data: Array<TermRelationshipsInsertInput>;
+  /** upsert condition */
+  on_conflict?: Maybe<TermRelationshipsOnConflict>;
+};
+
 /** Boolean expression to filter rows from the table "term_relationships". All fields are combined with a logical 'AND'. */
 export type TermRelationshipsBoolExp = {
   _and?: Maybe<Array<TermRelationshipsBoolExp>>;
@@ -4818,11 +4852,12 @@ export type TermRelationshipsBoolExp = {
   _or?: Maybe<Array<TermRelationshipsBoolExp>>;
   id?: Maybe<UuidComparisonExp>;
   object_id?: Maybe<UuidComparisonExp>;
+  term?: Maybe<TermTaxonomiesBoolExp>;
 };
 
 /** unique or primary key constraints on table "term_relationships" */
 export enum TermRelationshipsConstraint {
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "id" */
   PostTermsPkey = 'post_terms_pkey'
 }
 
@@ -4830,6 +4865,7 @@ export enum TermRelationshipsConstraint {
 export type TermRelationshipsInsertInput = {
   id?: Maybe<Scalars['uuid']>;
   object_id?: Maybe<Scalars['uuid']>;
+  term?: Maybe<TermTaxonomiesObjRelInsertInput>;
 };
 
 /** aggregate max on columns */
@@ -4839,11 +4875,23 @@ export type TermRelationshipsMaxFields = {
   object_id?: Maybe<Scalars['uuid']>;
 };
 
+/** order by max() on columns of table "term_relationships" */
+export type TermRelationshipsMaxOrderBy = {
+  id?: Maybe<OrderBy>;
+  object_id?: Maybe<OrderBy>;
+};
+
 /** aggregate min on columns */
 export type TermRelationshipsMinFields = {
   __typename?: 'term_relationships_min_fields';
   id?: Maybe<Scalars['uuid']>;
   object_id?: Maybe<Scalars['uuid']>;
+};
+
+/** order by min() on columns of table "term_relationships" */
+export type TermRelationshipsMinOrderBy = {
+  id?: Maybe<OrderBy>;
+  object_id?: Maybe<OrderBy>;
 };
 
 /** response of any mutation on the table "term_relationships" */
@@ -4866,6 +4914,7 @@ export type TermRelationshipsOnConflict = {
 export type TermRelationshipsOrderBy = {
   id?: Maybe<OrderBy>;
   object_id?: Maybe<OrderBy>;
+  term?: Maybe<TermTaxonomiesOrderBy>;
 };
 
 /** primary key columns input for table: term_relationships */
@@ -4907,34 +4956,32 @@ export type TermTaxonomies = {
   taxonomyByTaxonomy: Taxonomies;
   /** An object relationship */
   term: Terms;
-  term_slug: Scalars['String'];
   /** An array relationship */
-  term_taxonomies: Array<TermTaxonomies>;
+  term_relationships: Array<TermRelationships>;
   /** An aggregate relationship */
-  term_taxonomies_aggregate: TermTaxonomiesAggregate;
-  /** An object relationship */
-  term_taxonomy?: Maybe<TermTaxonomies>;
+  term_relationships_aggregate: TermRelationshipsAggregate;
+  term_slug: Scalars['String'];
   updated_at: Scalars['timestamptz'];
 };
 
 
 /** columns and relationships of "term_taxonomies" */
-export type TermTaxonomiesTermTaxonomiesArgs = {
-  distinct_on?: Maybe<Array<TermTaxonomiesSelectColumn>>;
+export type TermTaxonomiesTermRelationshipsArgs = {
+  distinct_on?: Maybe<Array<TermRelationshipsSelectColumn>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<TermTaxonomiesOrderBy>>;
-  where?: Maybe<TermTaxonomiesBoolExp>;
+  order_by?: Maybe<Array<TermRelationshipsOrderBy>>;
+  where?: Maybe<TermRelationshipsBoolExp>;
 };
 
 
 /** columns and relationships of "term_taxonomies" */
-export type TermTaxonomiesTermTaxonomiesAggregateArgs = {
-  distinct_on?: Maybe<Array<TermTaxonomiesSelectColumn>>;
+export type TermTaxonomiesTermRelationshipsAggregateArgs = {
+  distinct_on?: Maybe<Array<TermRelationshipsSelectColumn>>;
   limit?: Maybe<Scalars['Int']>;
   offset?: Maybe<Scalars['Int']>;
-  order_by?: Maybe<Array<TermTaxonomiesOrderBy>>;
-  where?: Maybe<TermTaxonomiesBoolExp>;
+  order_by?: Maybe<Array<TermRelationshipsOrderBy>>;
+  where?: Maybe<TermRelationshipsBoolExp>;
 };
 
 /** aggregated selection of "term_taxonomies" */
@@ -4985,15 +5032,14 @@ export type TermTaxonomiesBoolExp = {
   taxonomy?: Maybe<TaxonomiesEnumComparisonExp>;
   taxonomyByTaxonomy?: Maybe<TaxonomiesBoolExp>;
   term?: Maybe<TermsBoolExp>;
+  term_relationships?: Maybe<TermRelationshipsBoolExp>;
   term_slug?: Maybe<StringComparisonExp>;
-  term_taxonomies?: Maybe<TermTaxonomiesBoolExp>;
-  term_taxonomy?: Maybe<TermTaxonomiesBoolExp>;
   updated_at?: Maybe<TimestamptzComparisonExp>;
 };
 
 /** unique or primary key constraints on table "term_taxonomies" */
 export enum TermTaxonomiesConstraint {
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "term_slug" */
   TermTaxonomiesPkey = 'term_taxonomies_pkey'
 }
 
@@ -5006,9 +5052,8 @@ export type TermTaxonomiesInsertInput = {
   taxonomy?: Maybe<TaxonomiesEnum>;
   taxonomyByTaxonomy?: Maybe<TaxonomiesObjRelInsertInput>;
   term?: Maybe<TermsObjRelInsertInput>;
+  term_relationships?: Maybe<TermRelationshipsArrRelInsertInput>;
   term_slug?: Maybe<Scalars['String']>;
-  term_taxonomies?: Maybe<TermTaxonomiesArrRelInsertInput>;
-  term_taxonomy?: Maybe<TermTaxonomiesObjRelInsertInput>;
   updated_at?: Maybe<Scalars['timestamptz']>;
 };
 
@@ -5086,9 +5131,8 @@ export type TermTaxonomiesOrderBy = {
   taxonomy?: Maybe<OrderBy>;
   taxonomyByTaxonomy?: Maybe<TaxonomiesOrderBy>;
   term?: Maybe<TermsOrderBy>;
+  term_relationships_aggregate?: Maybe<TermRelationshipsAggregateOrderBy>;
   term_slug?: Maybe<OrderBy>;
-  term_taxonomies_aggregate?: Maybe<TermTaxonomiesAggregateOrderBy>;
-  term_taxonomy?: Maybe<TermTaxonomiesOrderBy>;
   updated_at?: Maybe<OrderBy>;
 };
 
@@ -5273,9 +5317,9 @@ export type TermsBoolExp = {
 
 /** unique or primary key constraints on table "terms" */
 export enum TermsConstraint {
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "slug" */
   TermsPkey = 'terms_pkey',
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "slug" */
   TermsSlugKey = 'terms_slug_key'
 }
 
@@ -5385,8 +5429,13 @@ export enum TermsUpdateColumn {
 }
 
 
+export type TimestamptzCastExp = {
+  String?: Maybe<StringComparisonExp>;
+};
+
 /** Boolean expression to compare columns of type "timestamptz". All fields are combined with logical 'AND'. */
 export type TimestamptzComparisonExp = {
+  _cast?: Maybe<TimestamptzCastExp>;
   _eq?: Maybe<Scalars['timestamptz']>;
   _gt?: Maybe<Scalars['timestamptz']>;
   _gte?: Maybe<Scalars['timestamptz']>;
@@ -5585,11 +5634,11 @@ export type UsersBoolExp = {
 
 /** unique or primary key constraints on table "auth.users" */
 export enum UsersConstraint {
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "email" */
   UsersEmailKey = 'users_email_key',
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "phone_number" */
   UsersPhoneNumberKey = 'users_phone_number_key',
-  /** unique or primary key constraint */
+  /** unique or primary key constraint on columns "id" */
   UsersPkey = 'users_pkey'
 }
 
@@ -5932,8 +5981,13 @@ export enum UsersUpdateColumn {
 }
 
 
+export type UuidCastExp = {
+  String?: Maybe<StringComparisonExp>;
+};
+
 /** Boolean expression to compare columns of type "uuid". All fields are combined with logical 'AND'. */
 export type UuidComparisonExp = {
+  _cast?: Maybe<UuidCastExp>;
   _eq?: Maybe<Scalars['uuid']>;
   _gt?: Maybe<Scalars['uuid']>;
   _gte?: Maybe<Scalars['uuid']>;
@@ -5944,6 +5998,27 @@ export type UuidComparisonExp = {
   _neq?: Maybe<Scalars['uuid']>;
   _nin?: Maybe<Array<Scalars['uuid']>>;
 };
+
+export type TagsTableQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type TagsTableQuery = (
+  { __typename?: 'query_root' }
+  & { term_taxonomies: Array<(
+    { __typename: 'term_taxonomies' }
+    & Pick<TermTaxonomies, 'taxonomy' | 'description' | 'term_slug'>
+    & { term: (
+      { __typename: 'terms' }
+      & Pick<Terms, 'name' | 'slug'>
+    ), term_relationships_aggregate: (
+      { __typename: 'term_relationships_aggregate' }
+      & { aggregate?: Maybe<(
+        { __typename?: 'term_relationships_aggregate_fields' }
+        & Pick<TermRelationshipsAggregateFields, 'count'>
+      )> }
+    ) }
+  )> }
+);
 
 export type CreateArticleMutationVariables = Exact<{
   object: ArticlesInsertInput;
@@ -6196,6 +6271,54 @@ export type TermTaxonomiesTreeQuery = (
 );
 
 
+export const TagsTableDocument = gql`
+    query TagsTable {
+  term_taxonomies(where: {taxonomy: {_eq: tags}}) {
+    __typename
+    taxonomy
+    description
+    term_slug
+    term {
+      __typename
+      name
+      slug
+    }
+    term_relationships_aggregate {
+      __typename
+      aggregate {
+        count
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useTagsTableQuery__
+ *
+ * To run a query within a React component, call `useTagsTableQuery` and pass it any options that fit your needs.
+ * When your component renders, `useTagsTableQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useTagsTableQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useTagsTableQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<TagsTableQuery, TagsTableQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return ApolloReactHooks.useQuery<TagsTableQuery, TagsTableQueryVariables>(TagsTableDocument, options);
+      }
+export function useTagsTableLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<TagsTableQuery, TagsTableQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return ApolloReactHooks.useLazyQuery<TagsTableQuery, TagsTableQueryVariables>(TagsTableDocument, options);
+        }
+export type TagsTableQueryHookResult = ReturnType<typeof useTagsTableQuery>;
+export type TagsTableLazyQueryHookResult = ReturnType<typeof useTagsTableLazyQuery>;
+export type TagsTableQueryResult = Apollo.QueryResult<TagsTableQuery, TagsTableQueryVariables>;
 export const CreateArticleDocument = gql`
     mutation createArticle($object: articles_insert_input!) {
   insert_articles_one(object: $object) {
@@ -6822,6 +6945,7 @@ export type TermTaxonomiesTreeLazyQueryHookResult = ReturnType<typeof useTermTax
 export type TermTaxonomiesTreeQueryResult = Apollo.QueryResult<TermTaxonomiesTreeQuery, TermTaxonomiesTreeQueryVariables>;
 export const namedOperations = {
   Query: {
+    TagsTable: 'TagsTable',
     article: 'article',
     articles: 'articles',
     articlesAggregate: 'articlesAggregate',

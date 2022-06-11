@@ -6,7 +6,7 @@ import { TagFormValues } from "./tag-form-values-interface";
 interface Props {
   loading: boolean;
   form: UseFormReturnType<TagFormValues>;
-  handleSubmit: (data: TagFormValues) => Promise<void>;
+  handleSubmit: (data: TagFormValues) => void;
 }
 
 const TagFrom = ({ loading, form, handleSubmit }: Props) => {

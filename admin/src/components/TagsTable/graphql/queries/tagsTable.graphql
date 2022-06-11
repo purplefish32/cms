@@ -1,0 +1,19 @@
+query TagsTable {
+  term_taxonomies(where: { taxonomy: { _eq: tags } }) {
+    __typename
+    taxonomy
+    description
+    term_slug
+    term {
+      __typename
+      name
+      slug
+    }
+    term_relationships_aggregate {
+      __typename
+      aggregate {
+        count
+      }
+    }
+  }
+}

@@ -1,0 +1,40 @@
+table:
+  schema: public
+  name: post_types
+is_enum: true
+array_relationships:
+  - name: posts
+    using:
+      foreign_key_constraint_on:
+        column: type
+        table:
+          schema: public
+          name: posts
+insert_permissions:
+  - role: user
+    permission:
+      check: {}
+      columns:
+        - comment
+        - value
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - comment
+        - value
+      filter: {}
+      allow_aggregations: true
+update_permissions:
+  - role: user
+    permission:
+      columns:
+        - comment
+        - value
+      filter: {}
+      check: {}
+delete_permissions:
+  - role: user
+    permission:
+      backend_only: false
+      filter: {}

@@ -1,0 +1,13 @@
+table:
+  schema: public
+  name: term_taxonomies_tree
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - name
+        - parent_slug
+        - slug
+        - taxonomy
+      filter: {}
+      allow_aggregations: true

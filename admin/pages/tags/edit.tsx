@@ -12,7 +12,7 @@ import TagFrom from "../../src/components/Form/TagForm";
 import { TagFormSchema } from "../../src/components/Form/TagForm/tag-form-schema";
 import { TagFormValues } from "../../src/components/Form/TagForm/tag-form-values-interface";
 import Layout from "../../src/components/Layout";
-import TermTaxonomiesTable from "../../src/components/TermTaxonomiesTable";
+import TagsTable from "../../src/components/TagsTable";
 
 /**
  * TagsEditPage: The Tags Edit Page
@@ -29,13 +29,13 @@ const TagsEditPage = () => {
   });
 
   const [createTermTaxonomy, { loading }] = useCreateTermTaxonomyMutation({
-    refetchQueries: [namedOperations.Query.termTaxonomies],
+    refetchQueries: [namedOperations.Query.TagsTable],
   });
 
-  const handleSubmit = async (data: TagFormValues): Promise<void> => {
+  const handleSubmit = (data: TagFormValues): void => {
     const { name, slug, description } = data;
 
-    await createTermTaxonomy({
+    createTermTaxonomy({
       variables: {
         objects: [
           {
@@ -56,6 +56,7 @@ const TagsEditPage = () => {
       icon: <Checkbox />,
       color: "teal",
       message: "The tag has been added.",
+      loading: loading,
     });
   };
 
@@ -68,7 +69,7 @@ const TagsEditPage = () => {
           <TagFrom form={form} handleSubmit={handleSubmit} loading={loading} />
         </Grid.Col>
         <Grid.Col span={8}>
-          <TermTaxonomiesTable taxonomy={TaxonomiesEnum.Tags} />
+          <TagsTable />
         </Grid.Col>
       </Grid>
     </Layout>

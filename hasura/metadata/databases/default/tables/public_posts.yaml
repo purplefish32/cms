@@ -1,0 +1,72 @@
+table:
+  schema: public
+  name: posts
+object_relationships:
+  - name: article
+    using:
+      foreign_key_constraint_on:
+        column: post_id
+        table:
+          schema: public
+          name: articles
+  - name: page
+    using:
+      foreign_key_constraint_on:
+        column: post_id
+        table:
+          schema: public
+          name: pages
+  - name: post_type
+    using:
+      foreign_key_constraint_on: type
+array_relationships:
+  - name: comments
+    using:
+      foreign_key_constraint_on:
+        column: post_id
+        table:
+          schema: public
+          name: comments
+insert_permissions:
+  - role: user
+    permission:
+      check: {}
+      columns:
+        - id
+        - slug
+        - title
+        - created_at
+        - updated_at
+        - type
+        - description
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - description
+        - slug
+        - title
+        - type
+        - created_at
+        - updated_at
+        - id
+      filter: {}
+      allow_aggregations: true
+update_permissions:
+  - role: user
+    permission:
+      columns:
+        - description
+        - slug
+        - title
+        - type
+        - created_at
+        - updated_at
+        - id
+      filter: {}
+      check: {}
+delete_permissions:
+  - role: user
+    permission:
+      backend_only: false
+      filter: {}

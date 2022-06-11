@@ -1,0 +1,63 @@
+table:
+  schema: public
+  name: term_taxonomies
+object_relationships:
+  - name: taxonomyByTaxonomy
+    using:
+      foreign_key_constraint_on: taxonomy
+  - name: term
+    using:
+      foreign_key_constraint_on: term_slug
+array_relationships:
+  - name: term_relationships
+    using:
+      manual_configuration:
+        remote_table:
+          schema: public
+          name: term_relationships
+        insertion_order: null
+        column_mapping:
+          id: id
+insert_permissions:
+  - role: user
+    permission:
+      check: {}
+      columns:
+        - created_at
+        - updated_at
+        - taxonomy
+        - description
+        - term_slug
+        - parent_slug
+        - id
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - description
+        - parent_slug
+        - taxonomy
+        - term_slug
+        - created_at
+        - updated_at
+        - id
+      filter: {}
+      allow_aggregations: true
+update_permissions:
+  - role: user
+    permission:
+      columns:
+        - description
+        - parent_slug
+        - taxonomy
+        - term_slug
+        - created_at
+        - updated_at
+        - id
+      filter: {}
+      check: {}
+delete_permissions:
+  - role: user
+    permission:
+      backend_only: false
+      filter: {}

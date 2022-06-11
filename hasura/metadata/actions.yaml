@@ -1,6 +1,20 @@
-actions: []
+actions:
+  - name: meiliSearchUsers
+    definition:
+      kind: ""
+      handler: http://meilisearch:7700
+      request_transform:
+        body:
+          action: transform
+          template: "{\r\n            \"q\": {{$body.input.query}},\r\n            \"limit\": {{$body.input?.limit ?? 20}},\r\n            \"offset\": {{$body.input?.offset ?? 0}}\r\n          }"
+        url: '{{$base_url}}/indexes/users/search'
+        method: POST
+        version: 2
+        query_params: {}
+        template_engine: Kriti
 custom_types:
   enums: []
   input_objects: []
-  objects: []
+  objects:
+    - name: MeiliSearchOutput
   scalars: []

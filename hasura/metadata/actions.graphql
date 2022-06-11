@@ -1,0 +1,12 @@
+type Query {
+  meiliSearchUsers(
+    query: String!
+    limit: Int
+    offset: Int
+  ): MeiliSearchOutput
+}
+
+type MeiliSearchOutput {
+  hits: jsonb
+}
+

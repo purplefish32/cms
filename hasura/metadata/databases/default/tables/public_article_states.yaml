@@ -1,0 +1,40 @@
+table:
+  schema: public
+  name: article_states
+is_enum: true
+array_relationships:
+  - name: articles
+    using:
+      foreign_key_constraint_on:
+        column: state
+        table:
+          schema: public
+          name: articles
+insert_permissions:
+  - role: user
+    permission:
+      check: {}
+      columns:
+        - comment
+        - value
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - comment
+        - value
+      filter: {}
+      allow_aggregations: true
+update_permissions:
+  - role: user
+    permission:
+      columns:
+        - comment
+        - value
+      filter: {}
+      check: {}
+delete_permissions:
+  - role: user
+    permission:
+      backend_only: false
+      filter: {}
