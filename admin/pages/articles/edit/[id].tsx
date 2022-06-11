@@ -51,11 +51,11 @@ const ArticleEditArticle = () => {
     fetchData()
       .then((data) => {
         form.setValues({
-          state: data?.articles_by_pk?.state ?? ArticleStatesEnum.Draft,
-          title: data?.articles_by_pk?.post?.title ?? "",
-          slug: data?.articles_by_pk?.post?.slug ?? "",
-          excerpt: data?.articles_by_pk?.excerpt ?? "",
-          body: data?.articles_by_pk?.body ?? "",
+          state: data?.article?.state ?? ArticleStatesEnum.Draft,
+          title: data?.article?.post?.title ?? "",
+          slug: data?.article?.post?.slug ?? "",
+          excerpt: data?.article?.excerpt ?? "",
+          body: data?.article?.body ?? "",
         });
       })
       .catch(console.error);
@@ -70,7 +70,7 @@ const ArticleEditArticle = () => {
       await updateArticlesOne({
         variables: {
           articles_pk_columns: {
-            post_id: postId,
+            postId: postId,
           },
           articles_set: {
             state:

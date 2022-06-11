@@ -1,6 +1,0 @@
-mutation createArticle($object: articles_insert_input!) {
-  insert_articles_one(object: $object) {
-    __typename
-    post_id
-  }
-}

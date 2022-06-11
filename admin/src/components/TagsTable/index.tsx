@@ -27,14 +27,14 @@ const TagsTable: FunctionComponent = () => {
         </tr>
       </thead>
       <tbody>
-        {data.term_taxonomies.map((term_taxonomy, key) => {
+        {data.termTaxonomies.map((termTaxonomy, key) => {
           return (
             <tr key={key}>
-              <td>{term_taxonomy.term.name}</td>
-              <td>{term_taxonomy.description}</td>
-              <td>{term_taxonomy.term.slug}</td>
+              <td>{termTaxonomy.term.name}</td>
+              <td>{termTaxonomy.description}</td>
+              <td>{termTaxonomy.term.slug}</td>
               <td>
-                {term_taxonomy.term_relationships_aggregate.aggregate?.count}
+                {termTaxonomy.termRelationships_aggregate.aggregate?.count}
               </td>
             </tr>
           );

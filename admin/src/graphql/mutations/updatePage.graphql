@@ -4,11 +4,11 @@ mutation updatePage(
   $posts_pk_columns: posts_pk_columns_input!
   $posts_set: posts_set_input
 ) {
-  update_pages_by_pk(pk_columns: $pages_pk_columns, _set: $pages_set) {
+  updatePage(pk_columns: $pages_pk_columns, _set: $pages_set) {
     __typename
-    post_id
+    postId
   }
-  update_posts_by_pk(pk_columns: $posts_pk_columns, _set: $posts_set) {
+  updatePost(pk_columns: $posts_pk_columns, _set: $posts_set) {
     __typename
     id
   }

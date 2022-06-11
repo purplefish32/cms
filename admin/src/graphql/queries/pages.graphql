@@ -1,14 +1,14 @@
 query pages($where: pages_bool_exp) {
   pages(where: $where) {
     __typename
-    post_id
+    postId
     body
     post {
       __typename
       title
       type
       slug
-      created_at
+      createdAt
     }
   }
 }

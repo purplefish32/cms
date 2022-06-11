@@ -4,7 +4,7 @@ import Link from "next/link";
 import router from "next/router";
 import React, { FunctionComponent } from "react";
 import { useArticlesQuery } from "../../../generated/graphql";
-import PostDeleteButton from "../PostDeleteButton";
+import ArticleDeleteButton from "../ArticleDeleteButton";
 
 const ArticlesTable: FunctionComponent = () => {
   const { data, error } = useArticlesQuery({
@@ -34,14 +34,14 @@ const ArticlesTable: FunctionComponent = () => {
           return (
             <tr key={key}>
               <td>
-                <Link href={`articles/${article.post_id}`}>
+                <Link href={`articles/${article.postId}`}>
                   {article.post.title}
                 </Link>
               </td>
               <td>
                 Created <br />
                 {format(
-                  new Date(article.post.created_at),
+                  new Date(article.post.createdAt),
                   "yyyy/MM/dd 'at ' HH:ii"
                 )}
               </td>
@@ -49,12 +49,12 @@ const ArticlesTable: FunctionComponent = () => {
                 <Button
                   size="xs"
                   onClick={() => {
-                    router.push(`articles/edit/${article.post_id}`);
+                    router.push(`articles/edit/${article.postId}`);
                   }}
                 >
                   Edit
                 </Button>
-                <PostDeleteButton postId={article.post_id} />
+                <ArticleDeleteButton postId={article.postId} />
               </td>
             </tr>
           );

@@ -1,14 +1,14 @@
 query articles($where: articles_bool_exp) {
   articles(where: $where) {
     __typename
-    post_id
+    postId
     state
     post {
       __typename
       title
       type
       slug
-      created_at
+      createdAt
     }
   }
 }

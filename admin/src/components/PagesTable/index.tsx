@@ -3,7 +3,7 @@ import Link from "next/link";
 import router from "next/router";
 import React, { FunctionComponent } from "react";
 import { usePagesQuery } from "../../../generated/graphql";
-import PostDeleteButton from "../PostDeleteButton";
+import PageDeleteButton from "../PageDeleteButton";
 
 const PostsTable: FunctionComponent = () => {
   const { loading, data, error } = usePagesQuery({
@@ -46,19 +46,19 @@ const PostsTable: FunctionComponent = () => {
           return (
             <tr key={key}>
               <td>
-                <Link href={`pages/${page.post_id}`}>{page.post.title}</Link>
+                <Link href={`pages/${page.postId}`}>{page.post.title}</Link>
               </td>
               <td>{page.body}</td>
               <td>
                 <Button
                   size="xs"
                   onClick={() => {
-                    router.push(`pages/edit/${page.post_id}`);
+                    router.push(`pages/edit/${page.postId}`);
                   }}
                 >
                   Edit
                 </Button>
-                <PostDeleteButton postId={page.post_id} />
+                <PageDeleteButton postId={page.postId} />
               </td>
             </tr>
           );

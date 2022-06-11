@@ -1,5 +1,5 @@
 query pagesAggregate($where: pages_bool_exp) {
-  pages_aggregate(where: $where) {
+  pagesAggregate(where: $where) {
     aggregate {
       __typename
       count

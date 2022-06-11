@@ -29,7 +29,7 @@ const ArticleCounter: FunctionComponent<Props> = (props) => {
     return <div>Loading</div>;
   }
 
-  return <span>{data.articles_aggregate.aggregate.count}</span>;
+  return <span>{data.articlesAggregate.aggregate?.count}</span>;
 };
 
 export default ArticleCounter;

@@ -1,0 +1,6 @@
+mutation insertArticle($object: articles_insert_input!) {
+  insertArticle(object: $object) {
+    __typename
+    postId
+  }
+}

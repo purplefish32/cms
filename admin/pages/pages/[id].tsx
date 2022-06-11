@@ -28,7 +28,7 @@ const PagePage = () => {
     return <div>Loading</div>;
   }
 
-  const { pages_by_pk: page } = data;
+  const { page } = data;
 
   const handleClick = () => {
     router.push(`/pages/edit/${id}`);

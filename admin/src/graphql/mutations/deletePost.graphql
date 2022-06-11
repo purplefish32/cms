@@ -1,6 +1,5 @@
 mutation deletePost($where: posts_bool_exp!) {
-  delete_posts(where: $where) {
+  deletePosts(where: $where) {
     __typename
-    affected_rows
   }
 }

@@ -1,5 +1,5 @@
 query articlesAggregate($where: articles_bool_exp) {
-  articles_aggregate(where: $where) {
+  articlesAggregate(where: $where) {
     aggregate {
       __typename
       count

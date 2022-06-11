@@ -8,7 +8,7 @@ import { capitalize } from "underscore.string";
 import {
   PageStatesEnum,
   PostTypesEnum,
-  useCreatePageMutation,
+  useInsertPageMutation,
 } from "../../generated/graphql";
 import { withApollo } from "../../lib/withApollo";
 import PageForm from "../../src/components/Form/PageForm";
@@ -20,39 +20,37 @@ import Layout from "../../src/components/Layout";
  * @return {JSX.Element} The JSX Code for the Page Create Page
  */
 const PageCreatePage = () => {
-  const [insertPagesOne] = useCreatePageMutation();
+  const [insertPagesOne] = useInsertPageMutation();
 
-  const handleSubmit = async (data: PageFormValues): Promise<void> => {
-    const { title, slug, state, body } = data;
+  const handleSubmit = async (
+    pageFormValues: PageFormValues
+  ): Promise<void> => {
+    const { title, slug, state, body } = pageFormValues;
 
-    try {
-      const { data } = await insertPagesOne({
-        variables: {
-          object: {
-            post: {
-              data: {
-                title,
-                slug,
-                type: PostTypesEnum.Page,
-              },
+    const { data } = await insertPagesOne({
+      variables: {
+        object: {
+          post: {
+            data: {
+              title,
+              slug,
+              type: PostTypesEnum.Page,
             },
-            body,
-            state:
-              PageStatesEnum[capitalize(state) as keyof typeof PageStatesEnum],
           },
+          body,
+          state:
+            PageStatesEnum[capitalize(state) as keyof typeof PageStatesEnum],
         },
-      });
+      },
+    });
 
-      showNotification({
-        icon: <Check />,
-        color: "teal",
-        message: "The page has been created.",
-      });
+    showNotification({
+      icon: <Check />,
+      color: "teal",
+      message: "The page has been created.",
+    });
 
-      router.push(`/pages/edit/${data?.insert_pages_one?.post_id}`);
-    } catch (error) {
-      throw new Error("Could not create page");
-    }
+    router.push(`/pages/edit/${data?.insertPage?.postId}`);
   };
 
   const pageForm = useForm<PageFormValues>({

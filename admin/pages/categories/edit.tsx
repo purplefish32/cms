@@ -5,7 +5,7 @@ import React from "react";
 import {
   namedOperations,
   TaxonomiesEnum,
-  useCreateTermTaxonomyMutation,
+  useInsertTermTaxonomyMutation,
 } from "../../generated/graphql";
 import { withApollo } from "../../lib/withApollo";
 import CategoryFrom from "../../src/components/Form/CategoryForm";
@@ -24,36 +24,32 @@ const CategoriesEditPage = () => {
     initialValues: {
       name: "",
       slug: "",
-      parent_slug: "",
+      parentSlug: "",
       description: "",
     },
   });
 
-  const [createTermTaxonomy, { loading }] = useCreateTermTaxonomyMutation({
+  const [createTermTaxonomy, { loading }] = useInsertTermTaxonomyMutation({
     refetchQueries: [namedOperations.Query.termTaxonomies],
   });
 
   const handleSubmit = async (data: CategoryFormValues): Promise<void> => {
-    // eslint-disable-next-line camelcase
-    const { name, slug, parent_slug, description } = data;
+    const { name, slug, parentSlug, description } = data;
 
     try {
       await createTermTaxonomy({
         variables: {
-          objects: [
-            {
-              description,
-              taxonomy: TaxonomiesEnum.Categories,
-              // eslint-disable-next-line camelcase
-              parent_slug: parent_slug,
-              term: {
-                data: {
-                  name,
-                  slug,
-                },
+          object: {
+            description,
+            taxonomy: TaxonomiesEnum.Categories,
+            parentSlug: parentSlug,
+            term: {
+              data: {
+                name,
+                slug,
               },
             },
-          ],
+          },
         },
       });
 

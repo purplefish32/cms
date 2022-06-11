@@ -1,7 +1,7 @@
 query page($uuid: uuid!) {
-  pages_by_pk(post_id: $uuid) {
+  page(postId: $uuid) {
     __typename
-    post_id
+    postId
     post {
       __typename
       title

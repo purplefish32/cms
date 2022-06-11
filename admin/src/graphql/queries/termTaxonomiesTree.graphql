@@ -1,8 +1,0 @@
-query termTaxonomiesTree($where: term_taxonomies_tree_bool_exp) {
-  term_taxonomies_tree(where: $where) {
-    __typename
-    name
-    slug
-    parent_slug
-  }
-}

@@ -8,7 +8,7 @@ import { capitalize } from "underscore.string";
 import {
   ArticleStatesEnum,
   PostTypesEnum,
-  useCreateArticleMutation,
+  useInsertArticleMutation,
 } from "../../generated/graphql";
 import { withApollo } from "../../lib/withApollo";
 import ArticleForm from "../../src/components/Form/ArticleForm";
@@ -20,42 +20,40 @@ import Layout from "../../src/components/Layout";
  * @return {JSX.Element} The JSX Code for the Page Create Page
  */
 const ArticleCreatePage = () => {
-  const [insertArticlesOne] = useCreateArticleMutation();
+  const [insertArticlesOne] = useInsertArticleMutation();
 
-  const handleSubmit = async (data: ArticleFormValues): Promise<void> => {
-    const { title, slug, state, body, excerpt } = data;
+  const handleSubmit = async (
+    articleFormValues: ArticleFormValues
+  ): Promise<void> => {
+    const { title, slug, state, body, excerpt } = articleFormValues;
 
-    try {
-      const { data } = await insertArticlesOne({
-        variables: {
-          object: {
-            post: {
-              data: {
-                title,
-                slug,
-                type: PostTypesEnum.Page,
-              },
+    const { data } = await insertArticlesOne({
+      variables: {
+        object: {
+          post: {
+            data: {
+              title,
+              slug,
+              type: PostTypesEnum.Page,
             },
-            body,
-            excerpt,
-            state:
-              ArticleStatesEnum[
-                capitalize(state) as keyof typeof ArticleStatesEnum
-              ],
           },
+          body,
+          excerpt,
+          state:
+            ArticleStatesEnum[
+              capitalize(state) as keyof typeof ArticleStatesEnum
+            ],
         },
-      });
+      },
+    });
 
-      showNotification({
-        icon: <Check />,
-        color: "teal",
-        message: "The article has been created.",
-      });
+    showNotification({
+      icon: <Check />,
+      color: "teal",
+      message: "The article has been created.",
+    });
 
-      router.push(`/articles/edit/${data?.insert_articles_one?.post_id}`);
-    } catch (error) {
-      throw new Error("Could not create article");
-    }
+    router.push(`/articles/edit/${data?.insertArticle?.postId}`);
   };
 
   const articleForm = useForm<ArticleFormValues>({

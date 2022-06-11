@@ -1,6 +1,0 @@
-mutation createPage($object: pages_insert_input!) {
-  insert_pages_one(object: $object) {
-    __typename
-    post_id
-  }
-}

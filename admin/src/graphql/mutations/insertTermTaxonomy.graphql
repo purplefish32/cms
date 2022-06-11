@@ -1,0 +1,6 @@
+mutation insertTermTaxonomy($object: termTaxonomies_insert_input!) {
+  insertTermTaxonomy(object: $object) {
+    __typename
+    termSlug
+  }
+}

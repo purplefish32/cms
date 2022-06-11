@@ -5,7 +5,7 @@ import React from "react";
 import {
   namedOperations,
   TaxonomiesEnum,
-  useCreateTermTaxonomyMutation,
+  useInsertTermTaxonomyMutation,
 } from "../../generated/graphql";
 import { withApollo } from "../../lib/withApollo";
 import TagFrom from "../../src/components/Form/TagForm";
@@ -28,7 +28,7 @@ const TagsEditPage = () => {
     },
   });
 
-  const [createTermTaxonomy, { loading }] = useCreateTermTaxonomyMutation({
+  const [createTermTaxonomy, { loading }] = useInsertTermTaxonomyMutation({
     refetchQueries: [namedOperations.Query.TagsTable],
   });
 
@@ -45,18 +45,16 @@ const TagsEditPage = () => {
 
     await createTermTaxonomy({
       variables: {
-        objects: [
-          {
-            description,
-            taxonomy: TaxonomiesEnum.Tags,
-            term: {
-              data: {
-                name,
-                slug,
-              },
+        object: {
+          description,
+          taxonomy: TaxonomiesEnum.Tags,
+          term: {
+            data: {
+              name,
+              slug,
             },
           },
-        ],
+        },
       },
     });
 

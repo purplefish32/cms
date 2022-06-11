@@ -19,7 +19,7 @@ function PageDeleteButton({ postId }) {
       size="xs"
       loading={loading}
       color="red"
-      onClick={async (event) => {
+      onClick={async () => {
         await postsDelete({
           variables: {
             where: {

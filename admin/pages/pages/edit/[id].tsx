@@ -50,10 +50,10 @@ const PageEditPage = () => {
     fetchData()
       .then((data) => {
         form.setValues({
-          state: data?.pages_by_pk?.state ?? PageStatesEnum.Draft,
-          title: data?.pages_by_pk?.post?.title ?? "",
-          slug: data?.pages_by_pk?.post?.slug ?? "",
-          body: data?.pages_by_pk?.body ?? "",
+          state: data?.page?.state ?? PageStatesEnum.Draft,
+          title: data?.page?.post?.title ?? "",
+          slug: data?.page?.post?.slug ?? "",
+          body: data?.page?.body ?? "",
         });
       })
       .catch(console.error);
@@ -68,7 +68,7 @@ const PageEditPage = () => {
       await updatePagesOne({
         variables: {
           pages_pk_columns: {
-            post_id: postId,
+            postId: postId,
           },
           pages_set: {
             state:

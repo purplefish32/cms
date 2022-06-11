@@ -1,4 +1,4 @@
-import { Button, NativeSelect, TextInput } from "@mantine/core";
+import { Button, NativeSelect, Textarea, TextInput } from "@mantine/core";
 import { UseFormReturnType } from "@mantine/form/lib/use-form";
 import React from "react";
 import { ArticleStatesEnum } from "../../../../generated/graphql";
@@ -39,10 +39,12 @@ const ArticleForm = ({ form, handleSubmit }: Props) => {
         required
         {...form.getInputProps("excerpt")}
       />
-      <TextInput
+      <Textarea
         label="Body"
         placeholder="Body"
         required
+        autosize
+        minRows={12}
         {...form.getInputProps("body")}
       />
       <Button fullWidth mt="xl" type="submit">

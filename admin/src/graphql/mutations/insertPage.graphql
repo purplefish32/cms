@@ -1,0 +1,6 @@
+mutation insertPage($object: pages_insert_input!) {
+  insertPage(object: $object) {
+    __typename
+    postId
+  }
+}

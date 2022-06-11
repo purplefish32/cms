@@ -28,7 +28,7 @@ const ArticlePage = () => {
     return <div>Loading</div>;
   }
 
-  const { articles_by_pk: article } = data;
+  const { article } = data;
 
   const handleClick = () => {
     router.push(`/articles/edit/${id}`);

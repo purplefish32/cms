@@ -1,6 +1,6 @@
 export interface CategoryFormValues {
   name: string;
   slug: string;
-  parent_slug: string;
+  parentSlug?: string;
   description: string;
 }
