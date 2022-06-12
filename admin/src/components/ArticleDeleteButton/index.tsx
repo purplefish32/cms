@@ -1,12 +1,16 @@
 /* eslint-disable require-jsdoc */
-import { Button } from "@mantine/core";
+import { ActionIcon } from "@mantine/core";
 import React from "react";
+import { Trash } from "tabler-icons-react";
 import {
   namedOperations,
   useDeletePostMutation,
 } from "../../../generated/graphql";
+interface Props {
+  postId: string;
+}
 
-function ArticleDeleteButton({ postId }) {
+const ArticleDeleteButton = ({ postId }: Props) => {
   const [postsDelete, { loading }] = useDeletePostMutation({
     refetchQueries: [
       namedOperations.Query.articles,
@@ -15,9 +19,9 @@ function ArticleDeleteButton({ postId }) {
   });
 
   return (
-    <Button
-      size="xs"
+    <ActionIcon
       loading={loading}
+      variant="light"
       color="red"
       onClick={async () => {
         await postsDelete({
@@ -31,9 +35,9 @@ function ArticleDeleteButton({ postId }) {
         });
       }}
     >
-      Delete
-    </Button>
+      <Trash size={16} />
+    </ActionIcon>
   );
-}
+};
 
 export default ArticleDeleteButton;

@@ -10,7 +10,7 @@ interface Props {
 
 const PageCounter: FunctionComponent<Props> = (props) => {
   const { state } = props;
-  const { data, error } = usePagesAggregateQuery({
+  const { data, loading } = usePagesAggregateQuery({
     fetchPolicy: "cache-and-network",
     variables: {
       where: {
@@ -21,15 +21,13 @@ const PageCounter: FunctionComponent<Props> = (props) => {
     },
   });
 
-  if (error) {
-    return <div>Error loading page count.</div>;
+  if (!data && loading) {
+    return <>?</>;
   }
 
-  if (!data) {
-    return <div>Loading</div>;
-  }
+  console.log(data);
 
-  return <span>{data?.pagesAggregate?.aggregate?.count}</span>;
+  return <>{data?.pagesAggregate?.aggregate?.count}</>;
 };
 
 export default PageCounter;

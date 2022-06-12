@@ -1,8 +1,6 @@
-import { Button } from "@mantine/core";
+import { Button, Group, Title } from "@mantine/core";
 import router from "next/router";
 import React from "react";
-import { ArticleStatesEnum } from "../../generated/graphql";
-import ArticleCounter from "../../src/components/ArticleCounter";
 import ArticlesTable from "../../src/components/ArticlesTable";
 import Layout from "../../src/components/Layout";
 
@@ -17,12 +15,11 @@ const handleClick = () => {
 const ArticleIndexPage = () => {
   return (
     <Layout>
-      <h1>
-        Articles <Button onClick={handleClick}>Add New</Button>
-      </h1>
-      Published (<ArticleCounter state={ArticleStatesEnum.Published} />) | Draft
-      (<ArticleCounter state={ArticleStatesEnum.Draft} />)
-      <ArticlesTable></ArticlesTable>
+      <Group position={"apart"} align={"end"}>
+        <Title>Articles</Title>
+        <Button onClick={handleClick}>Add New</Button>
+      </Group>
+      <ArticlesTable />
     </Layout>
   );
 };

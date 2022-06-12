@@ -2,7 +2,6 @@
 import {
   Anchor,
   Button,
-  Checkbox,
   Container,
   Group,
   Paper,
@@ -40,7 +39,6 @@ export default function Login() {
     <Container size={420} my={40}>
       <form
         onSubmit={form.onSubmit(async (values) => {
-          console.log(values);
           const { email, password } = values;
           await signIn(email, password);
         })}
@@ -80,7 +78,7 @@ export default function Login() {
             {...form.getInputProps("password")}
           />
           <Group position="apart" mt="md">
-            <Checkbox label="Remember me" />
+            {/* <Checkbox label="Remember me" /> */}
             <Anchor<"a">
               onClick={(event) => event.preventDefault()} // TODO
               href="#"

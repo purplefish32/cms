@@ -1,9 +1,7 @@
-import { Button, Title } from "@mantine/core";
+import { Button, Group, Title } from "@mantine/core";
 import router from "next/router";
 import React from "react";
-import { PageStatesEnum } from "../../generated/graphql";
 import Layout from "../../src/components/Layout";
-import PageCounter from "../../src/components/PageCounter";
 import PagesTable from "../../src/components/PagesTable";
 
 const handleClick = () => {
@@ -17,11 +15,11 @@ const handleClick = () => {
 const PageIndexPage = () => {
   return (
     <Layout>
-      <Title>
-        Pages <Button onClick={handleClick}>Add New</Button>
-      </Title>
-      Published (<PageCounter state={PageStatesEnum.Published} />) | Draft (
-      <PageCounter state={PageStatesEnum.Draft} />)<PagesTable></PagesTable>
+      <Group position={"apart"} align={"end"}>
+        <Title>Pages</Title>
+        <Button onClick={handleClick}>Add New</Button>
+      </Group>
+      <PagesTable />
     </Layout>
   );
 };

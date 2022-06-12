@@ -6,8 +6,13 @@ import {
   fromPromise,
   HttpLink,
   InMemoryCache,
+  split,
 } from "@apollo/client";
 import { onError } from "@apollo/client/link/error";
+import { GraphQLWsLink } from "@apollo/client/link/subscriptions";
+import { getMainDefinition } from "@apollo/client/utilities";
+import { createClient } from "graphql-ws";
+import router from "next/router";
 import React, { createContext, useContext, useState } from "react";
 
 const authContext = createContext({});
@@ -43,6 +48,9 @@ function useProvideAuth() {
   const [session, setSession] = useState<Session | null>(null);
 
   const getNewSession = async (oldSession: Session | null) => {
+    if (!oldSession) {
+      router.push("/login");
+    }
     const res = await fetch(`http://localhost:4000/token`, {
       method: "POST",
       headers: {
@@ -77,6 +85,8 @@ function useProvideAuth() {
   const createApolloClient = () => {
     let isRefreshing = false;
     let pendingRequests: (() => void)[] = [];
+    const ssrMode = typeof window === "undefined";
+    let link;
 
     const resolvePendingRequests = () => {
       pendingRequests.map((callback) => callback());
@@ -103,6 +113,8 @@ function useProvideAuth() {
                       .catch((error) => {
                         pendingRequests = [];
                         // Handle token refresh errors e.g clear stored tokens, redirect to login, ...
+                        console.error(error);
+                        router.push("/login");
                         return;
                       })
                       .finally(() => {
@@ -127,6 +139,18 @@ function useProvideAuth() {
           // if you would also like to retry automatically on
           // network errors, we recommend that you use
           // apollo-link-retry
+          getNewSession(session)
+            .then((session: Session) => {
+              // Store the new tokens for your auth link
+              setSession(session);
+              return;
+            })
+            .catch((error) => {
+              console.error(error);
+              router.push("/login");
+              // Handle token refresh errors e.g clear stored tokens, redirect to login, ...
+              return;
+            });
         }
       }
     );
@@ -136,8 +160,36 @@ function useProvideAuth() {
       headers: getAuthHeaders(),
     });
 
+    if (ssrMode) {
+      link = ApolloLink.from([errorLink, httpLink]);
+    } else {
+      const wsLink = new GraphQLWsLink(
+        createClient({
+          url: "ws://dev.home.lan:8080/v1/graphql",
+          connectionParams: {
+            shouldRetry: true,
+            headers: getAuthHeaders(),
+          },
+        })
+      );
+
+      const splitLink = split(
+        ({ query }) => {
+          const definition = getMainDefinition(query);
+          return (
+            definition.kind === "OperationDefinition" &&
+            definition.operation === "subscription"
+          );
+        },
+        wsLink,
+        httpLink
+      );
+
+      link = ApolloLink.from([errorLink, splitLink]);
+    }
+
     return new ApolloClient({
-      link: ApolloLink.from([errorLink, httpLink]),
+      link,
       cache: new InMemoryCache(),
     });
   };

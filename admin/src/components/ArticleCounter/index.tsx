@@ -10,7 +10,7 @@ interface Props {
 
 const ArticleCounter: FunctionComponent<Props> = (props) => {
   const { state } = props;
-  const { data, error } = useArticlesAggregateQuery({
+  const { data, loading } = useArticlesAggregateQuery({
     fetchPolicy: "cache-and-network",
     variables: {
       where: {
@@ -21,15 +21,11 @@ const ArticleCounter: FunctionComponent<Props> = (props) => {
     },
   });
 
-  if (error) {
-    return <div>Error loading article count.</div>;
+  if (!data && loading) {
+    return <>?</>;
   }
 
-  if (!data) {
-    return <div>Loading</div>;
-  }
-
-  return <span>{data.articlesAggregate.aggregate?.count}</span>;
+  return <>{data?.articlesAggregate?.aggregate?.count}</>;
 };
 
 export default ArticleCounter;
