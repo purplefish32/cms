@@ -1,5 +1,4 @@
 import React from "react";
-import { withApollo } from "../lib/withApollo";
 import Layout from "../src/components/Layout";
 
 /**
@@ -14,4 +13,4 @@ const HomePage = () => {
   );
 };
 
-export default withApollo()(HomePage);
+export default HomePage;

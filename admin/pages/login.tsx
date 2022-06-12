@@ -14,10 +14,10 @@ import {
 import { useForm } from "@mantine/form";
 import router from "next/router";
 import React, { useEffect } from "react";
-import { useAuth } from "../src/hooks/use-auth";
+import { useAuth } from "../lib/auth";
 
 export default function Login() {
-  const { session, signInEmailPassword } = useAuth();
+  const { signIn, isSignedIn } = useAuth();
 
   const form = useForm({
     initialValues: {
@@ -31,17 +31,18 @@ export default function Login() {
   });
 
   useEffect(() => {
-    if (session) {
+    if (isSignedIn()) {
       router.push("/");
     }
-  }, [session]);
+  }, [isSignedIn()]);
 
   return (
     <Container size={420} my={40}>
       <form
         onSubmit={form.onSubmit(async (values) => {
+          console.log(values);
           const { email, password } = values;
-          await signInEmailPassword(email, password);
+          await signIn(email, password);
         })}
       >
         <Title

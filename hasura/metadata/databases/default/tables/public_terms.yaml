@@ -1,11 +1,24 @@
 table:
   schema: public
   name: terms
+configuration:
+  custom_root_fields:
+    insert: insertTerms
+    select_aggregate: termsAggregate
+    insert_one: insertTerm
+    select_by_pk: term
+    select: terms
+    delete: deleteTerms
+    update: updateTerms
+    delete_by_pk: deleteTerm
+    update_by_pk: updateTerm
+  column_config: {}
+  custom_column_names: {}
 object_relationships:
-  - name: term_taxonomy
+  - name: termTaxonomy
     using:
       foreign_key_constraint_on:
-        column: term_slug
+        column: term_id
         table:
           schema: public
           name: term_taxonomies
@@ -16,8 +29,6 @@ insert_permissions:
       columns:
         - name
         - slug
-        - created_at
-        - updated_at
         - id
 select_permissions:
   - role: user
@@ -25,19 +36,14 @@ select_permissions:
       columns:
         - name
         - slug
-        - created_at
-        - updated_at
         - id
       filter: {}
-      allow_aggregations: true
 update_permissions:
   - role: user
     permission:
       columns:
         - name
         - slug
-        - created_at
-        - updated_at
         - id
       filter: {}
       check: {}

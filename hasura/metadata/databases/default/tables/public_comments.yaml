@@ -1,6 +1,34 @@
 table:
   schema: public
   name: comments
+configuration:
+  custom_root_fields:
+    insert: instertComments
+    select_aggregate: commentsAggregate
+    insert_one: instertComment
+    select_by_pk: comment
+    select: comments
+    delete: deleteComments
+    update: updateComments
+    delete_by_pk: deleteComment
+    update_by_pk: updateComment
+  column_config:
+    author_id:
+      custom_name: authorId
+    post_id:
+      custom_name: postId
+    updated_at:
+      custom_name: updatedAt
+    created_at:
+      custom_name: createdAt
+    parent_id:
+      custom_name: parentId
+  custom_column_names:
+    author_id: authorId
+    post_id: postId
+    updated_at: updatedAt
+    created_at: createdAt
+    parent_id: parentId
 object_relationships:
   - name: comment
     using:

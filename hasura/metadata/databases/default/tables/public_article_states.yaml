@@ -2,6 +2,23 @@ table:
   schema: public
   name: article_states
 is_enum: true
+configuration:
+  custom_root_fields:
+    insert: insertArticleStates
+    select_aggregate: articleStatesAggregate
+    insert_one: insertArticleState
+    select_by_pk: articleState
+    select: articleStates
+    delete: deleteArticleStates
+    update: updateArticleStates
+    delete_by_pk: deleteArticleState
+    update_by_pk: updateArticleState
+  custom_name: articleStates
+  column_config:
+    article_state:
+      custom_name: articleState
+  custom_column_names:
+    article_state: articleState
 array_relationships:
   - name: articles
     using:
@@ -15,22 +32,18 @@ insert_permissions:
     permission:
       check: {}
       columns:
-        - comment
-        - value
+        - article_state
 select_permissions:
   - role: user
     permission:
       columns:
-        - comment
-        - value
+        - article_state
       filter: {}
-      allow_aggregations: true
 update_permissions:
   - role: user
     permission:
       columns:
-        - comment
-        - value
+        - article_state
       filter: {}
       check: {}
 delete_permissions:

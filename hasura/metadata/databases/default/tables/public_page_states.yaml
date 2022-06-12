@@ -2,6 +2,23 @@ table:
   schema: public
   name: page_states
 is_enum: true
+configuration:
+  custom_root_fields:
+    insert: insertPageStates
+    select_aggregate: pageStatesAggregate
+    insert_one: insertPageState
+    select_by_pk: pageState
+    select: pageStates
+    delete: deletePageStates
+    update: updatePageStates
+    delete_by_pk: deletePageState
+    update_by_pk: updatePageState
+  custom_name: pageStates
+  column_config:
+    pageState:
+      custom_name: pageState
+  custom_column_names:
+    pageState: pageState
 array_relationships:
   - name: pages
     using:
@@ -15,22 +32,18 @@ insert_permissions:
     permission:
       check: {}
       columns:
-        - comment
-        - value
+        - pageState
 select_permissions:
   - role: user
     permission:
       columns:
-        - comment
-        - value
+        - pageState
       filter: {}
-      allow_aggregations: true
 update_permissions:
   - role: user
     permission:
       columns:
-        - comment
-        - value
+        - pageState
       filter: {}
       check: {}
 delete_permissions:

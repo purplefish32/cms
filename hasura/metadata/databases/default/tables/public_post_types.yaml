@@ -2,6 +2,23 @@ table:
   schema: public
   name: post_types
 is_enum: true
+configuration:
+  custom_root_fields:
+    insert: insertPostTypes
+    select_aggregate: postTypesAggregate
+    insert_one: insertPostType
+    select_by_pk: postType
+    select: postTypes
+    delete: deletePostTypes
+    update: updatetPostTypes
+    delete_by_pk: deletePostType
+    update_by_pk: updatetPostType
+  custom_name: postTypes
+  column_config:
+    post_type:
+      custom_name: postType
+  custom_column_names:
+    post_type: postType
 array_relationships:
   - name: posts
     using:
@@ -15,22 +32,18 @@ insert_permissions:
     permission:
       check: {}
       columns:
-        - comment
-        - value
+        - post_type
 select_permissions:
   - role: user
     permission:
       columns:
-        - comment
-        - value
+        - post_type
       filter: {}
-      allow_aggregations: true
 update_permissions:
   - role: user
     permission:
       columns:
-        - comment
-        - value
+        - post_type
       filter: {}
       check: {}
 delete_permissions:

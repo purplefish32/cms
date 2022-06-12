@@ -1,35 +1,51 @@
 table:
   schema: public
   name: term_taxonomies
+configuration:
+  custom_root_fields:
+    insert: insertTermTaxonomies
+    select_aggregate: termTaxonomiesAggregate
+    insert_one: insertTermTaxonomy
+    select_by_pk: termTaxonomy
+    select: termTaxonomies
+    delete: deleteTermTaxonomies
+    update: updateTermTaxonomies
+    delete_by_pk: deleteTermTaxonomy
+    update_by_pk: updateTermTaxonomy
+  custom_name: termTaxonomies
+  column_config:
+    parent_slug:
+      custom_name: parentSlug
+    term_id:
+      custom_name: termId
+  custom_column_names:
+    parent_slug: parentSlug
+    term_id: termId
 object_relationships:
   - name: taxonomyByTaxonomy
     using:
       foreign_key_constraint_on: taxonomy
   - name: term
     using:
-      foreign_key_constraint_on: term_slug
+      foreign_key_constraint_on: term_id
 array_relationships:
   - name: term_relationships
     using:
-      manual_configuration:
-        remote_table:
+      foreign_key_constraint_on:
+        column: term_taxonomy_id
+        table:
           schema: public
           name: term_relationships
-        insertion_order: null
-        column_mapping:
-          id: id
 insert_permissions:
   - role: user
     permission:
       check: {}
       columns:
-        - created_at
-        - updated_at
-        - taxonomy
         - description
-        - term_slug
         - parent_slug
+        - taxonomy
         - id
+        - term_id
 select_permissions:
   - role: user
     permission:
@@ -37,22 +53,17 @@ select_permissions:
         - description
         - parent_slug
         - taxonomy
-        - term_slug
-        - created_at
-        - updated_at
         - id
+        - term_id
       filter: {}
-      allow_aggregations: true
 update_permissions:
   - role: user
     permission:
       columns:
+        - taxonomy
         - description
         - parent_slug
-        - taxonomy
-        - term_slug
-        - created_at
-        - updated_at
+        - term_id
         - id
       filter: {}
       check: {}

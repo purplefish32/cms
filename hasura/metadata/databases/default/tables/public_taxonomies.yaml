@@ -2,6 +2,18 @@ table:
   schema: public
   name: taxonomies
 is_enum: true
+configuration:
+  custom_root_fields:
+    insert: insertTaxonomies
+    select_aggregate: taxonomiesAggregate
+    insert_one: insertTaxonomy
+    select_by_pk: taxonomy
+    delete: deleteTaxonomies
+    update: updateTaxonomies
+    delete_by_pk: deleteTaxonomy
+    update_by_pk: updateTaxonomy
+  column_config: {}
+  custom_column_names: {}
 array_relationships:
   - name: term_taxonomies
     using:

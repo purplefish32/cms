@@ -7,7 +7,6 @@ import {
   TaxonomiesEnum,
   useInsertTermTaxonomyMutation,
 } from "../../generated/graphql";
-import { withApollo } from "../../lib/withApollo";
 import CategoryFrom from "../../src/components/Form/CategoryForm";
 import { CategoryFormSchema } from "../../src/components/Form/CategoryForm/category-form-schema";
 import { CategoryFormValues } from "../../src/components/Form/CategoryForm/category-form-values-interface";
@@ -75,4 +74,4 @@ const CategoriesEditPage = () => {
   );
 };
 
-export default withApollo()(CategoriesEditPage);
+export default CategoriesEditPage;

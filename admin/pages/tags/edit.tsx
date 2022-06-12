@@ -7,7 +7,6 @@ import {
   TaxonomiesEnum,
   useInsertTermTaxonomyMutation,
 } from "../../generated/graphql";
-import { withApollo } from "../../lib/withApollo";
 import TagFrom from "../../src/components/Form/TagForm";
 import { TagFormSchema } from "../../src/components/Form/TagForm/tag-form-schema";
 import { TagFormValues } from "../../src/components/Form/TagForm/tag-form-values-interface";
@@ -82,4 +81,4 @@ const TagsEditPage = () => {
   );
 };
 
-export default withApollo()(TagsEditPage);
+export default TagsEditPage;

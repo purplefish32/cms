@@ -1,6 +1,25 @@
 table:
   schema: public
   name: posts
+configuration:
+  custom_root_fields:
+    insert: insertPosts
+    select_aggregate: postsAggregate
+    insert_one: insertPost
+    select_by_pk: post
+    select: posts
+    delete: deletePosts
+    update: updatePosts
+    delete_by_pk: deletePost
+    update_by_pk: updatePost
+  column_config:
+    updated_at:
+      custom_name: updatedAt
+    created_at:
+      custom_name: createdAt
+  custom_column_names:
+    updated_at: updatedAt
+    created_at: createdAt
 object_relationships:
   - name: article
     using:
@@ -16,7 +35,7 @@ object_relationships:
         table:
           schema: public
           name: pages
-  - name: post_type
+  - name: postType
     using:
       foreign_key_constraint_on: type
 array_relationships:
@@ -27,6 +46,13 @@ array_relationships:
         table:
           schema: public
           name: comments
+  - name: termRelationships
+    using:
+      foreign_key_constraint_on:
+        column: post_id
+        table:
+          schema: public
+          name: term_relationships
 insert_permissions:
   - role: user
     permission:

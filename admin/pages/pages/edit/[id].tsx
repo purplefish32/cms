@@ -10,7 +10,6 @@ import {
   usePageLazyQuery,
   useUpdatePageMutation,
 } from "../../../generated/graphql";
-import { withApollo } from "../../../lib/withApollo";
 import PageForm from "../../../src/components/Form/PageForm";
 import { PageFormSchema } from "../../../src/components/Form/PageForm/page-form-schema";
 import { PageFormValues } from "../../../src/components/Form/PageForm/page-form-values-interface";
@@ -105,4 +104,4 @@ const PageEditPage = () => {
   );
 };
 
-export default withApollo()(PageEditPage);
+export default PageEditPage;

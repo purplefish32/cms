@@ -10,7 +10,6 @@ import {
   useArticleLazyQuery,
   useUpdateArticleMutation,
 } from "../../../generated/graphql";
-import { withApollo } from "../../../lib/withApollo";
 import ArticleForm from "../../../src/components/Form/ArticleForm";
 import { ArticleFormSchema } from "../../../src/components/Form/ArticleForm/article-form-schema";
 import { ArticleFormValues } from "../../../src/components/Form/ArticleForm/article-form-values-interface";
@@ -32,6 +31,7 @@ const ArticleEditArticle = () => {
       slug: "",
       excerpt: "",
       body: "",
+      tags: [],
     },
   });
 
@@ -56,6 +56,7 @@ const ArticleEditArticle = () => {
           slug: data?.article?.post?.slug ?? "",
           excerpt: data?.article?.excerpt ?? "",
           body: data?.article?.body ?? "",
+          tags: data?.article?.tags ?? [],
         });
       })
       .catch(console.error);
@@ -109,4 +110,4 @@ const ArticleEditArticle = () => {
   );
 };
 
-export default withApollo()(ArticleEditArticle);
+export default ArticleEditArticle;

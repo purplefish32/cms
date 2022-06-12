@@ -2,7 +2,6 @@ import { Button, Title } from "@mantine/core";
 import router, { useRouter } from "next/router";
 import React from "react";
 import { useArticleQuery } from "../../generated/graphql";
-import { withApollo } from "../../lib/withApollo";
 import Layout from "../../src/components/Layout";
 
 /**
@@ -51,4 +50,4 @@ const ArticlePage = () => {
   );
 };
 
-export default withApollo()(ArticlePage);
+export default ArticlePage;

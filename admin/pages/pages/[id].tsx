@@ -2,7 +2,6 @@ import { Button, Title } from "@mantine/core";
 import router, { useRouter } from "next/router";
 import React from "react";
 import { usePageQuery } from "../../generated/graphql";
-import { withApollo } from "../../lib/withApollo";
 import Layout from "../../src/components/Layout";
 
 /**
@@ -49,4 +48,4 @@ const PagePage = () => {
   );
 };
 
-export default withApollo()(PagePage);
+export default PagePage;

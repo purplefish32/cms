@@ -11,6 +11,7 @@ const PostsTable: FunctionComponent = () => {
   });
 
   if (error) {
+    console.error(error);
     return <div>Error loading pages.</div>;
   }
 

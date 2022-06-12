@@ -1,6 +1,21 @@
 table:
   schema: public
   name: articles
+configuration:
+  custom_root_fields:
+    insert: insertArticles
+    select_aggregate: articlesAggregate
+    insert_one: insertArticle
+    select_by_pk: article
+    delete: deleteArticles
+    update: updateArticles
+    delete_by_pk: deleteArticle
+    update_by_pk: updateArticle
+  column_config:
+    post_id:
+      custom_name: postId
+  custom_column_names:
+    post_id: postId
 object_relationships:
   - name: article_state
     using:

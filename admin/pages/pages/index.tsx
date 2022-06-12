@@ -2,7 +2,6 @@ import { Button, Title } from "@mantine/core";
 import router from "next/router";
 import React from "react";
 import { PageStatesEnum } from "../../generated/graphql";
-import { withApollo } from "../../lib/withApollo";
 import Layout from "../../src/components/Layout";
 import PageCounter from "../../src/components/PageCounter";
 import PagesTable from "../../src/components/PagesTable";
@@ -27,4 +26,4 @@ const PageIndexPage = () => {
   );
 };
 
-export default withApollo()(PageIndexPage);
+export default PageIndexPage;

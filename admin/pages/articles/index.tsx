@@ -2,7 +2,6 @@ import { Button } from "@mantine/core";
 import router from "next/router";
 import React from "react";
 import { ArticleStatesEnum } from "../../generated/graphql";
-import { withApollo } from "../../lib/withApollo";
 import ArticleCounter from "../../src/components/ArticleCounter";
 import ArticlesTable from "../../src/components/ArticlesTable";
 import Layout from "../../src/components/Layout";
@@ -28,4 +27,4 @@ const ArticleIndexPage = () => {
   );
 };
 
-export default withApollo()(ArticleIndexPage);
+export default ArticleIndexPage;

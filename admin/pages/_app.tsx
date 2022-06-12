@@ -5,7 +5,7 @@ import { NotificationsProvider } from "@mantine/notifications";
 import { AppProps } from "next/app";
 import Head from "next/head";
 import React, { useEffect } from "react";
-import { AuthProvider } from "../src/hooks/use-auth";
+import { AuthProvider } from "../lib/auth";
 import "../styles/globals.css";
 
 export default function App({ Component, pageProps }: AppProps) {

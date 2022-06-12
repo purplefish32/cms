@@ -1,37 +1,54 @@
 table:
   schema: public
   name: term_relationships
+configuration:
+  custom_root_fields:
+    insert: instertRelationships
+    select_aggregate: termRelationshipsAggregate
+    insert_one: instertRelationship
+    select_by_pk: termRelationship
+    select: termRelationships
+    delete: deleteRelationships
+    update: updateRelationships
+    delete_by_pk: deleteRelationship
+    update_by_pk: updateRelationship
+  custom_name: termRelationships
+  column_config:
+    post_id:
+      custom_name: postId
+    term_taxonomy_id:
+      custom_name: termTaxonomyId
+  custom_column_names:
+    post_id: postId
+    term_taxonomy_id: termTaxonomyId
 object_relationships:
-  - name: term
+  - name: post
     using:
-      manual_configuration:
-        remote_table:
-          schema: public
-          name: term_taxonomies
-        insertion_order: null
-        column_mapping:
-          id: id
+      foreign_key_constraint_on: post_id
+  - name: termTaxonomy
+    using:
+      foreign_key_constraint_on: term_taxonomy_id
 insert_permissions:
   - role: user
     permission:
       check: {}
       columns:
-        - id
-        - object_id
+        - term_taxonomy_id
+        - post_id
 select_permissions:
   - role: user
     permission:
       columns:
-        - id
-        - object_id
+        - term_taxonomy_id
+        - post_id
       filter: {}
       allow_aggregations: true
 update_permissions:
   - role: user
     permission:
       columns:
-        - id
-        - object_id
+        - post_id
+        - term_taxonomy_id
       filter: {}
       check: {}
 delete_permissions:

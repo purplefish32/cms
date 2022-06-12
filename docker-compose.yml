@@ -78,6 +78,7 @@ services:
       HASURA_GRAPHQL_GRAPHQL_URL: http://graphql-engine:8080/v1/graphql
       AUTH_SMTP_HOST: mailhog
       AUTH_SMTP_PORT: 1025
+      AUTH_ACCESS_TOKEN_EXPIRES_IN: 20
     ports:
       - "4000:4000"
     volumes:

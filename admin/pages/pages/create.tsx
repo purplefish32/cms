@@ -10,7 +10,6 @@ import {
   PostTypesEnum,
   useInsertPageMutation,
 } from "../../generated/graphql";
-import { withApollo } from "../../lib/withApollo";
 import PageForm from "../../src/components/Form/PageForm";
 import { PageFormSchema } from "../../src/components/Form/PageForm/page-form-schema";
 import { PageFormValues } from "../../src/components/Form/PageForm/page-form-values-interface";
@@ -71,4 +70,4 @@ const PageCreatePage = () => {
   );
 };
 
-export default withApollo()(PageCreatePage);
+export default PageCreatePage;

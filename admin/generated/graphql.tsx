@@ -44,6 +44,11 @@ export type MeiliSearchOutput = {
   hits?: Maybe<Scalars['jsonb']>;
 };
 
+export type Session = {
+  __typename?: 'Session';
+  session: Scalars['String'];
+};
+
 /** Boolean expression to compare columns of type "String". All fields are combined with logical 'AND'. */
 export type StringComparisonExp = {
   _eq?: Maybe<Scalars['String']>;
@@ -1955,6 +1960,7 @@ export type MutationRoot = {
   instertRelationship?: Maybe<TermRelationships>;
   /** insert data into the table: "term_relationships" */
   instertRelationships?: Maybe<TermRelationshipsMutationResponse>;
+  signin?: Maybe<Session>;
   /** update single row of the table: "articles" */
   updateArticle?: Maybe<Articles>;
   /** update single row of the table: "article_states" */
@@ -2496,6 +2502,13 @@ export type MutationRootInstertRelationshipArgs = {
 export type MutationRootInstertRelationshipsArgs = {
   objects: Array<TermRelationshipsInsertInput>;
   on_conflict?: Maybe<TermRelationshipsOnConflict>;
+};
+
+
+/** mutation root */
+export type MutationRootSigninArgs = {
+  email: Scalars['String'];
+  password: Scalars['String'];
 };
 
 

@@ -1,12 +1,6 @@
-/* eslint-disable valid-jsdoc */
 import Cookies from "cookies";
 import { NextApiRequest, NextApiResponse } from "next";
 
-/**
- * pages/api/login.ts
- *
- * A demo API endpoint for logging in.
- */
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   const { email, password } = req.body;
 
@@ -29,7 +23,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     const { session } = await response.json();
 
-    cookies.set("access-token", session.accessToken, {
+    cookies.set("session", JSON.stringify(session), {
       httpOnly: true,
       sameSite: "lax", // CSRF protection
     });

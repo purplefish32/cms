@@ -11,7 +11,6 @@ import {
   TaxonomiesEnum,
   useInsertArticleMutation,
 } from "../../generated/graphql";
-import { withApollo } from "../../lib/withApollo";
 import ArticleForm from "../../src/components/Form/ArticleForm";
 import { ArticleFormSchema } from "../../src/components/Form/ArticleForm/article-form-schema";
 import { ArticleFormValues } from "../../src/components/Form/ArticleForm/article-form-values-interface";
@@ -29,7 +28,7 @@ const ArticleCreatePage = () => {
     const { title, slug, state, body, excerpt, tags } = articleFormValues;
 
     const termRelationships = {
-      data: tags.map((tag) => {
+      data: tags?.map((tag) => {
         return {
           termTaxonomy: {
             data: {
@@ -98,4 +97,4 @@ const ArticleCreatePage = () => {
   );
 };
 
-export default withApollo()(ArticleCreatePage);
+export default ArticleCreatePage;

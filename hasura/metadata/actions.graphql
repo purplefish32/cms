@@ -14,7 +14,18 @@ type Query {
   ): MeiliSearchOutput
 }
 
+type Mutation {
+  signin(
+    email: String!
+    password: String!
+  ): Session
+}
+
 type MeiliSearchOutput {
   hits: jsonb
+}
+
+type Session {
+  session: String!
 }
 

@@ -1,0 +1,27 @@
+table:
+  schema: public
+  name: summary_taxonomies
+configuration:
+  custom_root_fields:
+    insert: insertSummaryTaxonomies
+    select_aggregate: summaryTaxonomiesAggregate
+    insert_one: insertSummaryTaxonomy
+    select_by_pk: summaryTaxonomy
+    select: summaryTaxonomies
+    delete: deleteSummaryTaxonomies
+    update: updateSummaryTaxonomies
+    delete_by_pk: deleteSummaryTaxonomy
+    update_by_pk: updateSummaryTaxonomy
+  custom_name: summaryTaxonomies
+  column_config: {}
+  custom_column_names: {}
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - count
+        - description
+        - name
+        - slug
+        - taxonomy
+      filter: {}

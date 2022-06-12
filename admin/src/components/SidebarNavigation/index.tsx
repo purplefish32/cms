@@ -1,10 +1,13 @@
 /* eslint-disable require-jsdoc */
-import { Accordion, Anchor, Navbar } from "@mantine/core";
+import { Accordion, Anchor, Button, Navbar } from "@mantine/core";
 import Link from "next/link";
+import router from "next/router";
 import React from "react";
 import { Logout } from "tabler-icons-react";
+import { useAuth } from "../../../lib/auth";
 
 export function SidebarNavigation() {
+  const { signOut } = useAuth();
   return (
     <Navbar width={{ base: 300 }} height={500} p="xs">
       <Navbar.Section>
@@ -56,10 +59,15 @@ export function SidebarNavigation() {
       </Navbar.Section>
 
       <Navbar.Section>
-        <a href="#" onClick={(event) => event.preventDefault()}>
+        <Button
+          onClick={() => {
+            signOut();
+            router.push("/login");
+          }}
+        >
           <Logout />
           <span>Logout</span>
-        </a>
+        </Button>
       </Navbar.Section>
     </Navbar>
   );

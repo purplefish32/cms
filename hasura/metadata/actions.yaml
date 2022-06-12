@@ -7,11 +7,13 @@ actions:
         body:
           action: transform
           template: "{\r\n            \"q\": {{$body.input.query}},\r\n            \"limit\": {{$body.input?.limit ?? 20}},\r\n            \"offset\": {{$body.input?.offset ?? 0}}\r\n          }"
-        url: '{{$base_url}}/indexes/terms/search'
+        url: "{{$base_url}}/indexes/terms/search"
         method: POST
         version: 2
         query_params: {}
         template_engine: Kriti
+    permissions:
+      - role: user
   - name: meiliSearchUsers
     definition:
       kind: ""
@@ -20,14 +22,32 @@ actions:
         body:
           action: transform
           template: "{\r\n            \"q\": {{$body.input.query}},\r\n            \"limit\": {{$body.input?.limit ?? 20}},\r\n            \"offset\": {{$body.input?.offset ?? 0}}\r\n          }"
-        url: '{{$base_url}}/indexes/users/search'
+        url: "{{$base_url}}/indexes/users/search"
         method: POST
         version: 2
         query_params: {}
         template_engine: Kriti
+    permissions:
+      - role: user
+  - name: signin
+    definition:
+      kind: ""
+      handler: http://hasura-auth:4000
+      request_transform:
+        body:
+          action: transform
+          template: "{\r\n  \"email\": {{$body.input?.email}},\r\n  \"password\": {{$body.input?.password}}\r\n}"
+        url: "{{$base_url}}/signin/email-password"
+        method: POST
+        version: 2
+        query_params: {}
+        template_engine: Kriti
+    permissions:
+      - role: user
 custom_types:
   enums: []
   input_objects: []
   objects:
     - name: MeiliSearchOutput
+    - name: Session
   scalars: []
