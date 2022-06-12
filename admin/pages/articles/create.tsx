@@ -4,11 +4,10 @@ import { showNotification } from "@mantine/notifications";
 import router from "next/router";
 import React from "react";
 import { Check } from "tabler-icons-react";
-import { capitalize, slugify } from "underscore.string";
+import { capitalize } from "underscore.string";
 import {
   ArticleStatesEnum,
   PostTypesEnum,
-  TaxonomiesEnum,
   useInsertArticleMutation,
 } from "../../generated/graphql";
 import ArticleForm from "../../src/components/Form/ArticleForm";
@@ -25,9 +24,9 @@ const ArticleCreatePage = () => {
   const handleSubmitArticleForm = async (
     articleFormValues: ArticleFormValues
   ): Promise<void> => {
-    const { title, slug, state, body, excerpt, tags } = articleFormValues;
+    const { title, slug, state, body, excerpt } = articleFormValues;
 
-    const termRelationships = {
+    /* const termRelationships = {
       data: tags?.map((tag) => {
         return {
           termTaxonomy: {
@@ -43,7 +42,7 @@ const ArticleCreatePage = () => {
           },
         };
       }),
-    };
+    };*/
 
     const { data } = await insertArticle({
       variables: {
@@ -53,7 +52,7 @@ const ArticleCreatePage = () => {
               title,
               slug,
               type: PostTypesEnum.Page,
-              termRelationships,
+              // termRelationships,
             },
           },
           body,
@@ -86,8 +85,6 @@ const ArticleCreatePage = () => {
       tags: [],
     },
   });
-
-  console.log(articleForm);
 
   return (
     <Layout>

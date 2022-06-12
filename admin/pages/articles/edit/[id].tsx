@@ -56,7 +56,7 @@ const ArticleEditArticle = () => {
           slug: data?.article?.post?.slug ?? "",
           excerpt: data?.article?.excerpt ?? "",
           body: data?.article?.body ?? "",
-          tags: data?.article?.tags ?? [],
+          // tags: data?.article?.tags ?? [],
         });
       })
       .catch(console.error);

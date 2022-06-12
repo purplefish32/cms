@@ -1,12 +1,9 @@
 /* eslint-disable require-jsdoc */
 import {
-  Anchor,
   Button,
   Container,
-  Group,
   Paper,
   PasswordInput,
-  Text,
   TextInput,
   Title,
 } from "@mantine/core";
@@ -52,17 +49,6 @@ export default function Login() {
         >
           JAHCMS Login
         </Title>
-        <Text color="dimmed" size="sm" align="center" mt={5}>
-          Do not have an account yet?{" "}
-          <Anchor<"a">
-            href="#"
-            size="sm"
-            onClick={(event) => event.preventDefault()} // TODO
-          >
-            Create account
-          </Anchor>
-        </Text>
-
         <Paper withBorder shadow="md" p={30} mt={30} radius="md">
           <TextInput
             label="Email"
@@ -77,16 +63,6 @@ export default function Login() {
             mt="md"
             {...form.getInputProps("password")}
           />
-          <Group position="apart" mt="md">
-            {/* <Checkbox label="Remember me" /> */}
-            <Anchor<"a">
-              onClick={(event) => event.preventDefault()} // TODO
-              href="#"
-              size="sm"
-            >
-              Forgot password?
-            </Anchor>
-          </Group>
           <Button fullWidth mt="xl" type="submit">
             Sign in
           </Button>

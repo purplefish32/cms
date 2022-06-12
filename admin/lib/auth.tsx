@@ -13,7 +13,7 @@ import { GraphQLWsLink } from "@apollo/client/link/subscriptions";
 import { getMainDefinition } from "@apollo/client/utilities";
 import { createClient } from "graphql-ws";
 import router from "next/router";
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 
 const authContext = createContext({});
 
@@ -46,6 +46,16 @@ export const useAuth = () => {
 
 function useProvideAuth() {
   const [session, setSession] = useState<Session | null>(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await fetch("/api/session");
+      const session = await data.json();
+      setSession(session);
+    };
+
+    fetchData().catch(console.error);
+  }, []);
 
   const getNewSession = async (oldSession: Session | null) => {
     if (!oldSession) {
@@ -195,24 +205,21 @@ function useProvideAuth() {
   };
 
   const signIn = async (email: string, password: string) => {
-    const response = await fetch(
-      "http://dev.home.lan:4000/signin/email-password", // TODO HTTPS!
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: email,
-          password: password,
-        }),
-      }
-    );
+    const response = await fetch("/api/signin", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: email,
+        password: password,
+      }),
+    });
 
-    const json = await response.json();
+    const { session } = await response.json();
 
-    if (json.session) {
-      setSession(json.session);
+    if (session) {
+      setSession(session);
     }
   };
 

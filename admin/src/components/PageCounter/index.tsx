@@ -25,8 +25,6 @@ const PageCounter: FunctionComponent<Props> = (props) => {
     return <>?</>;
   }
 
-  console.log(data);
-
   return <>{data?.pagesAggregate?.aggregate?.count}</>;
 };
 
